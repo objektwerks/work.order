@@ -35,10 +35,10 @@ Forms
 Tables
 ------
 
-1. role — name: varchar
-2. user — email address: varchar, street address: varchar
-3. users-roles — join table
-3. work order — homeowner: user, lawncare provider: user, opened: datetime, issue: varchar, resolution: varchar, closed: datetime
+1. **role** — name: varchar
+2. **user** — email address: varchar, street address: varchar
+3. **users-roles** — join table
+3. **work order** — homeowner: user, lawncare provider: user, opened: datetime, issue: varchar, resolution: varchar, closed: datetime
 
 Requirements
 ------------
