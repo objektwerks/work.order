@@ -4,7 +4,7 @@ Work order web site design.
 
 Roles
 -----
-
+>Roles are assigned to a user, defining what actions a user can invoke.
 1. admin — can access and use all site features
 2. homeowner — can add, edit, save and select work orders
 3. lawncare provider — can only select, view and close work orders
