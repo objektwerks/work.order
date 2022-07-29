@@ -39,14 +39,15 @@ Forms
 Server
 ------
 >A server, via the http protocol, receives requests from a client and returns responses.
-1. /register
-2. /login
-3. /workorders
-4. /workorder/id
-5. /roles
-6. /roles/id
-7. /users
-8. /users/id
+1. /
+2. /register
+3. /login
+4. /workorders
+5. /workorder/id
+6. /roles
+7. /roles/id
+8. /users
+9. /users/id
 
 Tables
 ------
