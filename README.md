@@ -34,7 +34,7 @@ Forms
 
 Server
 ------
->A server received requests from a client and returns responses.
+>A server, via the http protocol, receives requests from a client and returns responses.
 1. /register
 2. /login
 3. /workorders
