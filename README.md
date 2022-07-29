@@ -32,6 +32,14 @@ Forms
 
 ** Can include or link to email address and street address.
 
+Server
+------
+>A server received requests from a client and returns responses.
+1. /register
+2. /login
+3. /workorders
+4. /workorder/id
+
 Tables
 ------
 >Provide for the storage and retrieval of data.
