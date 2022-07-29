@@ -54,7 +54,7 @@ Tables
 
 Web Host
 --------
->Require standard web site management tools and mysql | postgresql database.
+>Require standard web site management tools and mysql or postgresql database support.
 
 Development
 -----------
