@@ -39,6 +39,10 @@ Server
 2. /login
 3. /workorders
 4. /workorder/id
+5. /roles
+6. /roles/id
+7. /users
+8. /users/id
 
 Tables
 ------
