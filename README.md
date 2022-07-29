@@ -46,7 +46,7 @@ Web Host
 
 Development
 -----------
->The following technologies will likely be used to build this web site:
+>The following technologies will be used to build this web site:
 1. Javascript
 2. Html, Css
 3. Sql
