@@ -48,6 +48,5 @@ Development
 -----------
 >The following technologies will likely be used to build this web site:
 1. Javascript
-2. Html
-3. Css
-4. Sql
+2. Html, Css
+3. Sql
