@@ -40,10 +40,9 @@ Tables
 3. **users-roles** — join table
 3. **work-order** — homeowner: user, lawncare provider: user, opened: datetime, issue: varchar, resolution: varchar, closed: datetime
 
-Requirements
-------------
-
-1. website provider with the usual compliment of web site management tools, to include mysql database.
+Web Host
+--------
+>Require standard web site management tools and mysql | postgresql database.
 
 Technologies
 ------------
