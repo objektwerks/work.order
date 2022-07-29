@@ -63,4 +63,4 @@ Development
 1. Javascript
 2. Html, Css
 3. Sql
-4. Nodejs
+4. Nodejs ( express, mysql )
