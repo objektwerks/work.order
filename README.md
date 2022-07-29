@@ -62,5 +62,4 @@ Development
 >The following technologies will be used to build this web site:
 1. Javascript
 2. Html, Css
-3. Sql
-4. Nodejs ( express, mysql )
+3. Nodejs ( express, mysql, sql )
