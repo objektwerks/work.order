@@ -34,7 +34,7 @@ Forms
 
 Tables
 ------
-
+>Provide for the storage and retrieval of data.
 1. **role** — name: varchar
 2. **user** — email address: varchar, street address: varchar
 3. **users-roles** — join table
