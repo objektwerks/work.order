@@ -24,11 +24,11 @@ Features [ Role ] ( Actions )
 Forms
 -----
 
-1. register form — email address, street address
-2. login form — email address
-3. work order form — homeowner **, lawncare provider **, opened, issue, resolution, closed
-4. role form - name
-5. user form - email address, street address
+1. **register form** — email address, street address
+2. **login form **— email address
+3. **work order form** — homeowner **, lawncare provider **, opened, issue, resolution, closed
+4. **role form** - name
+5. **user form** - email address, street address
 
 ** Can include or link to email address and street address.
 
