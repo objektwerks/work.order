@@ -2,6 +2,10 @@ Work Order
 ----------
 Work order web site design.
 
+Web Hosting
+-----------
+>Require standard web site management tools and mysql or postgresql database support.
+
 Roles
 -----
 >Roles are assigned to a user. Each role can invoke a set of actions.
@@ -51,10 +55,6 @@ Tables
 2. **user** — email address: varchar, street address: varchar
 3. **users-roles** — join table
 3. **work-order** — homeowner: user, lawncare provider: user, opened: datetime, issue: varchar, resolution: varchar, closed: datetime
-
-Web Host
---------
->Require standard web site management tools and mysql or postgresql database support.
 
 Development
 -----------
