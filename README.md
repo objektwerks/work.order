@@ -11,7 +11,7 @@ Roles
 
 Features [ Role ] ( Actions )
 -----------------------------
-
+>A feature maps to a set of roles and actions.
 1. register form — [ admin ] ( register, edit, save )
 2. login form — [ homeowner, lawncare provider ] ( login )
 3. work order list — [ homeowner, lawncare provider ] ( select to view )
