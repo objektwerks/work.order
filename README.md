@@ -1,6 +1,15 @@
 Work Order
 ----------
-Work order web site design.
+Work order web app.
+
+Install
+-------
+1. npm install
+
+Dev
+---
+1. npx snowpack dev
+>See **snowpack.config.json** and [Snowpack Config](https://www.snowpack.dev/reference/configuration) for configurable options.
 
 Web Hosting
 -----------
