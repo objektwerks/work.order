@@ -1,1 +1,2 @@
-print("Worker Order App!")
+import main from './main.js';
+main();
