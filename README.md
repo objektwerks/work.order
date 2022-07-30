@@ -23,14 +23,14 @@ Web Hosting
 
 Roles
 -----
->Roles are assigned to a user. Each role can invoke a set of actions.
+>Each role can invoke a set of actions.
 1. **admin** — can invoke all actions
 2. **homeowner** — can add, edit, save and select work orders
 3. **lawncare provider** — can select, view and close work orders
 
 Features [ Role ] ( Actions )
 -----------------------------
->A feature maps to a set of roles and actions.
+>A feature maps to a role and set of actions.
 1. **register form** — [ admin ] ( register, edit, save )
 2. **login form** — [ homeowner, lawncare provider ] ( login )
 3. **work order list** — [ homeowner, lawncare provider ] ( select to view )
