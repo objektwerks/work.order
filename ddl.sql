@@ -19,7 +19,7 @@ create table if not exists work_order (
   opened datetime not null,
   issue varchar not null,
   resolution varchar not null,
-  closed datetime not null
+  closed datetime null
 );
 create index if not exists work_order_homeowner_name_idx ON work_order(homeowner_name);
 create index if not exists work_order_homeowner_email_address_idx ON work_order(homeowner_email_address);
