@@ -52,6 +52,10 @@ server.post('/workorders/update', (request, response) => {
   response.send('workorders updated: ' + request.body);
 });
 
+server.get('/workorders/close/:number', (request, response) => {
+  response.send('workorder closed on number: ' + request.params.number);
+});
+
 var host = "127.0.0.1";
 var port = 1337;
 server.listen(port, host, () =>
