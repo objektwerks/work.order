@@ -5,11 +5,17 @@ Work order web app.
 Install
 -------
 1. npm install
+>See **package.json** for installable dependencies.
 
 Dev
 ---
 1. npx snowpack dev
 >See **snowpack.config.json** and [Snowpack Config](https://www.snowpack.dev/reference/configuration) for configurable options.
+
+Build
+-----
+1. npx snowpack build
+>See **build** directory.
 
 Web Hosting
 -----------
