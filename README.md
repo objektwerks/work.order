@@ -19,7 +19,8 @@ Build
 
 Web Hosting
 -----------
->Require standard web site management tools and mysql database support.
+>Require standard web site management tools and mysql database support. Options:
+1. https://www.codeinwp.com/blog/best-nodejs-hosting/
 
 Development
 -----------
