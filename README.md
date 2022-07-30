@@ -1,6 +1,6 @@
 Work Order
 ----------
-Work order web app.
+Work order web app and nodejs server.
 
 Install
 -------
@@ -23,12 +23,12 @@ Web Hosting
 
 Development
 -----------
->The following technologies will be used to build this web site:
+>The following technologies will be used:
 1. Javascript
 2. Html, Css
-3. Sql
-4. Nodejs ( express, mysql )
-5. MySql Database
+3. MySql, Sql
+4. Nodejs
+>See **package.json** for more details.
 
 Roles
 -----
