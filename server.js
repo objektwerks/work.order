@@ -1,9 +1,13 @@
 import store from './store.js';
 
-export default () => {
-    const ADMIN = 'admin';
-    const HOMEOWNER = 'homeowner';
-    const LAWNCARE_PROVIDER = 'lawncare provider';
+store();
 
-    store();
-};
+var host = "127.0.0.1";
+var port = 1337;
+var express = require("express");
+
+var server = express();
+server.use(express.static('public'))
+server.listen(port, host);
+
+console.log('Running server at http://localhost:' + port + '/');
