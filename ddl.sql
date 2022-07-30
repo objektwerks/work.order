@@ -7,8 +7,6 @@ create table if not exists user (
   street_address varchar not null
   primary key (name, email_address)
 );
-create index if not exists user_name_idx ON user(name);
-create index if not exists user_email_address_idx ON user(email_address);
 
 create table if not exists work_order (
   homeowner_name varchar not null,
