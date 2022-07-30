@@ -9,12 +9,11 @@ Install
 
 Dev
 ---
-1. npx snowpack dev --polyfill-node
->See **snowpack.config.json** and [Snowpack Config](https://www.snowpack.dev/reference/configuration) for configurable options.
+1. npm run dev
 
 Build
 -----
-1. npx snowpack build
+1. TODO
 >See **build** directory.
 
 Web Hosting
