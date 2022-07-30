@@ -26,11 +26,13 @@ Development
 >The following technologies will be used to build this web site:
 1. Javascript
 2. Html, Css
-3. Nodejs ( express, mysql, sql )
+3. Sql
+4. Nodejs ( express, mysql )
+5. MySql Database
 
 Roles
 -----
->Each role can invoke a set of actions.
+>A role can invoke a set of actions.
 1. **admin** — can invoke all actions
 2. **homeowner** — can add, edit, save and select work orders
 3. **lawncare provider** — can select, view and close work orders
@@ -47,15 +49,13 @@ Features [ Role ] ( Actions )
 
 Forms
 -----
->Provide for user input and submittal to a route on the server.
 1. **register** — name, role, email address, street address
 2. **login**— name, email address
 3. **user** - name, role, email address, street address
 4. **work order** — number, homeowner name and email address, lawncare provider name and email address, opened, issue, resolution, closed
 
-Server
+Routes
 ------
->Http url routes:
 1. /
 2. /register
 3. /login
