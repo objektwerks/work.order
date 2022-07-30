@@ -74,3 +74,4 @@ Tables
 ------
 1. **user** — name: text, role: text, email address: text, street address: text
 2. **work_order** — number: integer, homeowner name: text, homeowner email address: test, lawncare provider name: text, lawncare provider email address: text, opened: datetime, issue: text, resolution: text, closed: datetime
+>See **ddl.sql** directory.
