@@ -20,6 +20,10 @@ create table if not exists work_order (
   issue varchar not null,
   resolution varchar not null,
   closed datetime null
+  foreign key (homeowner_name) references user(name)
+  foreign key (homeowner_email_address) references user(email_address)
+  foreign key (awncare_provider_name) references user(name)
+  foreign key (awncare_provider_email_address) references user(email_address)
 );
 create index if not exists work_order_homeowner_name_idx ON work_order(homeowner_name);
 create index if not exists work_order_homeowner_email_address_idx ON work_order(homeowner_email_address);
