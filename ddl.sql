@@ -11,7 +11,7 @@ create table if not exists user (
 );
 
 create table if not exists work_order (
-  number bigint auto_increment primary key,
+  number bigint not null auto_increment,
   homeowner_name varchar not null,
   homeowner_email_address varchar not null,
   lawncare_provider_name varchar not null,
@@ -20,6 +20,7 @@ create table if not exists work_order (
   issue varchar not null,
   resolution varchar not null,
   closed datetime null
+  primary key (number)
   constraint homeowner_name_fk foreign key (homeowner_name) references user(name)
   constraint homeowner_email_adddress_fk foreign key (homeowner_email_address) references user(email_address)
   constraint lawncare_provider_name_fk foreign key (lawncare_provider_name) references user(name)
