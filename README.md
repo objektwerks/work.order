@@ -43,9 +43,8 @@ Forms
 >Provide for user input and submittal to a server.
 1. **register** — name, role, email address, street address
 2. **login**— name, email address
-3. **work order** — homeowner email address, lawncare provider email address, opened, issue, resolution, closed
-4. **role** - name
-5. **user** - email address, street address
+3. **user** - name, role, email address, street address
+4. **work order** — homeowner email address, lawncare provider email address, opened, issue, resolution, closed
 
 Server
 ------
@@ -60,7 +59,7 @@ Server
 
 Tables
 ------
->Provides for the storage and retrieval of data.
+>Database tables:
 1. **user** — name: text, email address: text, street address: text, role: text
 2. **work_order** — homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
 

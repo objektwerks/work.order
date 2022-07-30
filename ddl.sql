@@ -1,8 +1,8 @@
 create table if not exists user (
   name varchart not null,
+  role varchar not null,
   email_address varchar not null,
-  street_address varchar not null,
-  role varchar not null
+  street_address varchar not null
 );
 create index if not exists user_name_idx ON user(name);
 create index if not exists user_email_address_idx ON user(email_address);
