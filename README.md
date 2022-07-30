@@ -40,12 +40,14 @@ Roles
 Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a set of roles and actions.
-1. **register form** — [ admin ] ( register, edit, save )
-2. **login form** — [ admin, homeowner, lawncare provider ] ( login )
-3. **user list** — [ admin ] ( select to view )
-4. **user form** — [ admin ] ( add, edit, save )
-5. **work order list** — [ homeowner, lawncare provider ] ( select to view )
-6. **work order form** — [ homeowner ] ( add, edit, save ) [ lawncare provider ] ( close )
+1. **register user** — [ admin ] ( register, edit, save )
+2. **login user** — [ admin, homeowner, lawncare provider ] ( login )
+3. **list users** — [ admin ] ( select to view )
+4. **filter users by role** — [ admin ] ( select to view )
+5. **add and edit user** — [ admin ] ( add, edit, save )
+6. **list work orders** — [ homeowner, lawncare provider ] ( select to view )
+7. **filter work orders by closed is null | homeowner | lawncare provider** — [ homeowner, lawncare provider ] ( select to view )
+8. **add and edit work order** — [ homeowner ] ( add, edit, save ) [ lawncare provider ] ( close )
 
 Forms
 -----
