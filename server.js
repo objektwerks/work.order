@@ -3,28 +3,28 @@ import express from 'express';
 var server = express();
 server.use( express.static('public') )
 
-server.get('/register', (req, res) => {
-  res.send('register');
+server.get('/register', (request, response) => {
+  response.send('register');
 });
 
-server.get('/login', (req, res) => {
-  res.send('register');
+server.get('/login', (request, response) => {
+  response.send('register');
 });
 
-server.get('/users', (req, res) => {
-  res.send('users');
+server.get('/users', (request, response) => {
+  response.send('users');
 });
 
-server.get('/user/:name', (req, res) => {
-  res.send('user name' + req.params.name);
+server.get('/user/:name', (request, response) => {
+  response.send('user name' + request.params.name);
 });
 
-server.get('/workorders', (req, res) => {
-  res.send('workorders');
+server.get('/workorders', (request, response) => {
+  response.send('workorders');
 });
 
-server.get('/workorders/:number', (req, res) => {
-  res.send('workorder number' + req.params.number);
+server.get('/workorders/:number', (request, response) => {
+  response.send('workorder number' + request.params.number);
 });
 
 var host = "127.0.0.1";
