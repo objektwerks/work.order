@@ -3,7 +3,7 @@
     "port": 7676
   },
   "mount": {
-    "public": "/"
+    "public": "/client/public"
   },
   "optimize": {
     "bundle": true,
