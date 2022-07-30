@@ -32,20 +32,18 @@ Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a role and set of actions.
 1. **register form** — [ admin ] ( register, edit, save )
-2. **login form** — [ homeowner, lawncare provider ] ( login )
+2. **login form** — [ admin, homeowner, lawncare provider ] ( login )
 3. **work order list** — [ homeowner, lawncare provider ] ( select to view )
 4. **work order form** — [ homeowner ] ( add, edit, save ) [ lawncare provider ] ( close )
-5. **role list** — [ admin ] ( select to view )
-6. **role form** — [ admin ] ( add, edit, save )
-7. **user list** — [ admin ] ( select to view )
-8. **user form** — [ admin ] ( add, edit, save )
+5. **user list** — [ admin ] ( select to view )
+6. **user form** — [ admin ] ( add, edit, save )
 
 Forms
 -----
 >Provide for user input and submittal to a server.
-1. **register** — role, email address, street address
-2. **login**— email address
-3. **work order** — homeowner, lawncare provider, opened, issue, resolution, closed
+1. **register** — name, role, email address, street address
+2. **login**— name, email address
+3. **work order** — homeowner email address, lawncare provider email address, opened, issue, resolution, closed
 4. **role** - name
 5. **user** - email address, street address
 
@@ -55,12 +53,10 @@ Server
 1. /
 2. /register
 3. /login
-4. /workorders
-5. /workorder/id
-6. /roles
-7. /roles/id
-8. /users
-9. /users/id
+4. /users
+5. /users/id
+6. /workorders
+7. /workorder/id
 
 Tables
 ------
