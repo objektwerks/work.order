@@ -57,9 +57,8 @@ Server
 6. /workorders
 7. /workorder/id
 
-Tables
-------
->Database tables:
+Database Tables
+---------------
 1. **user** — name: text, email address: text, street address: text, role: text
 2. **work_order** — homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
 
