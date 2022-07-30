@@ -53,7 +53,7 @@ Forms
 
 Server
 ------
->A server, via the http protocol, receives requests from a client and returns responses.
+>A server, via the http protocol, receives requests from a client and returns responses on the follow routes:
 1. /
 2. /register
 3. /login
