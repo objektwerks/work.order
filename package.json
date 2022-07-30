@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon ./server.js"
+    "start": "nodemon ./server.js"
   },
   "type": "module",
   "dependencies": {
