@@ -9,6 +9,7 @@ create table if not exists user (
 );
 
 create table if not exists work_order (
+  number bigint primary key auto_increment,
   homeowner_name varchar not null,
   homeowner_email_address varchar not null,
   lawncare_provider_name varchar not null,
