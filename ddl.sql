@@ -1,4 +1,6 @@
-create database if not exists `work_order_db`;
+create database if not exists work_order_db;
+
+use work_order_db
 
 create table if not exists user (
   name varchart not null,
