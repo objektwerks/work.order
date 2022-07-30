@@ -37,7 +37,7 @@ Roles
 
 Features [ Role ] ( Actions )
 -----------------------------
->A feature maps to a role and set of actions.
+>A feature maps to a set of roles and actions.
 1. **register form** — [ admin ] ( register, edit, save )
 2. **login form** — [ admin, homeowner, lawncare provider ] ( login )
 3. **user list** — [ admin ] ( select to view )
@@ -47,7 +47,7 @@ Features [ Role ] ( Actions )
 
 Forms
 -----
->Provide for user input and submittal to a server.
+>Provide for user input and submittal to a route on the server.
 1. **register** — name, role, email address, street address
 2. **login**— name, email address
 3. **user** - name, role, email address, street address
