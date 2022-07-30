@@ -66,11 +66,11 @@ Server
 
 Tables
 ------
->Provide for the storage and retrieval of data.
-1. **role** — name: varchar
-2. **user** — email address: varchar, street address: varchar
+>Provides for the storage and retrieval of data.
+1. **role** — name: text
+2. **user** — email address: text, street address: text
 3. **users-roles** — join table
-3. **work-order** — homeowner: user, lawncare provider: user, opened: datetime, issue: varchar, resolution: varchar, closed: datetime
+3. **work-order** — homeowner: user, lawncare provider: user, opened: datetime, issue: text, resolution: text, closed: datetime
 
 Development
 -----------
