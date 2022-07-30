@@ -1,2 +1,3 @@
-import main from './main.js';
-main();
+const ADMIN = 'admin';
+const HOMEOWNER = 'homeowner';
+const LAWNCARE_PROVIDER = 'lawncare provider';
