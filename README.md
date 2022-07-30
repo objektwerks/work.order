@@ -60,9 +60,9 @@ Server
 2. /register
 3. /login
 4. /users
-5. /users/id
+5. /users/name
 6. /workorders
-7. /workorder/id
+7. /workorder/number
 
 Database Tables
 ---------------
