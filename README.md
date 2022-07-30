@@ -51,11 +51,11 @@ Forms
 1. **register** — name, role, email address, street address
 2. **login**— name, email address
 3. **user** - name, role, email address, street address
-4. **work order** — homeowner name and email address, lawncare provider name and email address, opened, issue, resolution, closed
+4. **work order** — number, homeowner name and email address, lawncare provider name and email address, opened, issue, resolution, closed
 
 Server
 ------
->A server, via the http protocol, receives requests from a client and returns responses on the follow routes:
+>Http url routes:
 1. /
 2. /register
 3. /login
@@ -64,7 +64,11 @@ Server
 6. /workorders
 7. /workorder/number
 
-Database Tables
----------------
+Database
+--------
+1. **work_order_db**
+
+Tables
+------
 1. **user** — name: text, role: text, email address: text, street address: text
 2. **work_order** — number: integer, homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
