@@ -9,8 +9,10 @@ create table `user` (
   `role` varchar(64) not null,
   `email_address` varchar(128) not null,
   `street_address` varchar(255) not null,
+  `registered` datetime not null,
   primary key (`name`, `email_address`)
 );
+create trigger user_registered_trigger BEFORE INSERT ON `user` FOR EACH ROW SET NEW.registered = UTC_TIMESTAMP();
 create index user_name_idx ON `user`(`name`);
 create index user_email_address_idx ON `user`(`email_address`);
 
