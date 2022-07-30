@@ -8,7 +8,7 @@ server.get('/register', (request, response) => {
 });
 
 server.get('/login', (request, response) => {
-  response.send('register');
+  response.send('login');
 });
 
 server.get('/users', (request, response) => {
