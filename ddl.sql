@@ -1,18 +1,13 @@
-create table if not exists role (
-  name varchar not null
-);
-create index if not exists role_name_idx ON role(name);
-
-create table if not exists user (
+create table if not exists homeowner (
   email_address varchar not null,
   street_address varchar not null
 );
-create index if not exists user_email_address_idx ON user(email_address);
+create index if not exists user_email_address_idx ON homeowner(email_address);
 
-create table if not exists users_roles (
-  user varchar not null,
-  role varchar not null
+create table if not exists lawncare_provider (
+  email_address varchar not null
 );
+create index if not exists user_email_address_idx ON lawncare_provider(email_address);
 
 create table if not exists work_order (
   homeowner varchar not null,
