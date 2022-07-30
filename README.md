@@ -51,7 +51,7 @@ Forms
 1. **register** — name, role, email address, street address
 2. **login**— name, email address
 3. **user** - name, role, email address, street address
-4. **work order** — homeowner email address, lawncare provider email address, opened, issue, resolution, closed
+4. **work order** — homeowner name and email address, lawncare provider name and email address, opened, issue, resolution, closed
 
 Server
 ------
@@ -66,5 +66,5 @@ Server
 
 Database Tables
 ---------------
-1. **user** — name: text, email address: text, street address: text, role: text
-2. **work_order** — homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
+1. **user** — name: text, role: text, email address: text, street address: text
+2. **work_order** — number: integer, homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
