@@ -21,6 +21,13 @@ Web Hosting
 -----------
 >Require standard web site management tools and mysql database support.
 
+Development
+-----------
+>The following technologies will be used to build this web site:
+1. Javascript
+2. Html, Css
+3. Nodejs ( express, mysql, sql )
+
 Roles
 -----
 >Each role can invoke a set of actions.
@@ -61,10 +68,3 @@ Database Tables
 ---------------
 1. **user** — name: text, email address: text, street address: text, role: text
 2. **work_order** — homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
-
-Development
------------
->The following technologies will be used to build this web site:
-1. Javascript
-2. Html, Css
-3. Nodejs ( express, mysql, sql )
