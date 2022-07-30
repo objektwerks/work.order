@@ -67,10 +67,9 @@ Server
 Tables
 ------
 >Provides for the storage and retrieval of data.
-1. **role** — name: text
-2. **user** — email address: text, street address: text
-3. **users-roles** — join table
-3. **work-order** — homeowner: user, lawncare provider: user, opened: datetime, issue: text, resolution: text, closed: datetime
+1. **homeowner** — email address: text, street address: text
+2. **lawncare_provider** — email address: text
+3. **work_order** — homeowner: text, lawncare provider: text, opened: datetime, issue: text, resolution: text, closed: datetime
 
 Development
 -----------

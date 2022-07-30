@@ -17,4 +17,4 @@ create table if not exists work_order (
   resolution varchar not null,
   closed datetime not null
 );
-create index if not exists homeowner_idx ON role(homeowner);
+create index if not exists work_order_homeowner_idx ON work_order(homeowner);
