@@ -5,6 +5,7 @@ create table if not exists user (
   role varchar not null,
   email_address varchar not null,
   street_address varchar not null
+  primary key (name, email_address)
 );
 create index if not exists user_name_idx ON user(name);
 create index if not exists user_email_address_idx ON user(email_address);
