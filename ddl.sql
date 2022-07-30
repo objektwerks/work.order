@@ -12,7 +12,7 @@ create table `user` (
   `registered` datetime not null,
   primary key (`name`, `email_address`)
 );
-create trigger user_registered_trigger BEFORE INSERT ON `user` FOR EACH ROW SET NEW.registered = UTC_TIMESTAMP();
+create trigger user_registered_trigger BEFORE INSERT ON `user` FOR EACH ROW SET NEW.registered = IFNULL(NEW.registered, NOW());
 create index user_name_idx ON `user`(`name`);
 create index user_email_address_idx ON `user`(`email_address`);
 
