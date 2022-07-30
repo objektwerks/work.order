@@ -43,13 +43,11 @@ Features [ Role ] ( Actions )
 Forms
 -----
 >Provide for user input and submittal to a server.
-1. **register** — email address, street address
+1. **register** — role, email address, street address
 2. **login**— email address
-3. **work order** — homeowner **, lawncare provider **, opened, issue, resolution, closed
+3. **work order** — homeowner, lawncare provider, opened, issue, resolution, closed
 4. **role** - name
 5. **user** - email address, street address
-
-** Can include or link to email address and street address.
 
 Server
 ------
