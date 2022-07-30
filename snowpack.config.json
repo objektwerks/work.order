@@ -1,0 +1,8 @@
+{
+  "devOptions": {
+    "port": 7676
+  },
+  "mount": {
+    "public": "/"
+  }
+}
