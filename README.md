@@ -19,7 +19,7 @@ Build
 
 Web Hosting
 -----------
->Require standard web site management tools and mysql or postgresql database support.
+>Require standard web site management tools and mysql database support.
 
 Roles
 -----
