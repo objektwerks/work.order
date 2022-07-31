@@ -56,8 +56,8 @@ server.get('/workorders/close/:number', (request, response) => {
   response.send('workorder closed on number: ' + request.params.number);
 });
 
-var host = "127.0.0.1";
 var port = process.env.PORT || 3000;
+var host = "127.0.0.1";
 server.listen(port, host, () =>
-  console.log('Running server at http://localhost:' + port + '/')
+  console.log(`*** nodejs-express server running at http://${host}:${port}/`)
 );
