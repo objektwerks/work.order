@@ -16,10 +16,9 @@ Build
 1. TODO
 >See **build** directory.
 
-Web Hosting
+Nodejs Host
 -----------
->Require standard web site management tools and mysql database support. Options:
-1. https://www.codeinwp.com/blog/best-nodejs-hosting/
+>Using [NodeChef](https://www.nodechef.com/nodejs-hosting).
 
 Development
 -----------
