@@ -9,7 +9,7 @@ Install
 
 Dev
 ---
-1. npm start
+1. npm run dev
 
 Build
 -----
