@@ -1,7 +1,7 @@
 import express from 'express';
 
 const server = express();
-server.use( express.static('public') )
+server.use( express.static('client') )
 server.use(express.json());
 
 server.get('/register', (request, response) => {
