@@ -24,7 +24,7 @@ create table `work_order` (
   `lawncare_provider_email_address` varchar(128) not null,
   `opened` datetime not null,
   `issue` text(1028) not null,
-  `resolution` text(1028) not null,
+  `resolution` text(1028) null,
   `closed` datetime null,
   primary key (`number`),
   constraint homeowner_name_fk foreign key (`homeowner_name`) references `user`(`name`),
