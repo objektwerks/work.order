@@ -1,6 +1,6 @@
 import express from 'express';
 
-var server = express();
+const server = express();
 server.use( express.static('public') )
 server.use(express.json());
 
@@ -56,8 +56,8 @@ server.get('/workorders/close/:number', (request, response) => {
   response.send('workorder closed on number: ' + request.params.number);
 });
 
-var port = process.env.PORT || 3000;
-var host = "127.0.0.1";
+const port = process.env.PORT || 3000;
+const host = "127.0.0.1";
 server.listen(port, host, () =>
   console.log(`*** nodejs-express server running at http://${host}:${port}/`)
 );
