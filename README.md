@@ -57,9 +57,14 @@ Routes
 2. /register
 3. /login
 4. /users
-5. /users/name
-6. /workorders
-7. /workorder/number
+5. /users/:name
+6. /users/add
+7. /users/update
+8. /workorders
+9. /workorders/:number
+10. /workorders/add
+11. /workorders/update
+12. /workorders/close/:number
 
 Database
 --------

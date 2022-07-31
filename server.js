@@ -24,15 +24,15 @@ server.get('/users', (request, response) => {
   response.send('users');
 });
 
-server.get('/user/:name', (request, response) => {
+server.get('/users/:name', (request, response) => {
   response.send('user name: ' + request.params.name);
 });
 
-server.post('/user/add', (request, response) => {
+server.post('/users/add', (request, response) => {
   response.send('user added: ' + request.body);
 });
 
-server.post('/user/update', (request, response) => {
+server.post('/users/update', (request, response) => {
   response.send('user updated: ' + request.body);
 });
 
