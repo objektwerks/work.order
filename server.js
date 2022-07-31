@@ -44,8 +44,8 @@ server.post('/workorders/update', (request, response) => {
   response.send('workorders updated: ' + request.body);
 });
 
-server.get('/workorders/close/:number', (request, response) => {
-  response.send('workorder closed on number: ' + request.params.number);
+server.post('/workorders/close', (request, response) => {
+  response.send('workorder closed: ' + request.body);
 });
 
 const port = process.env.PORT || 3000;
