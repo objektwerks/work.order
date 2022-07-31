@@ -4,19 +4,11 @@ const server = express();
 server.use( express.static('client') )
 server.use(express.json());
 
-server.get('/register', (request, response) => {
-  response.send('register');
+server.post('/register', (request, response) => {
+  response.send('registered ' + request.body);
 });
 
-server.post('/register/add', (request, response) => {
-  response.send('registration added: ' + request.body);
-});
-
-server.post('/register/update', (request, response) => {
-  response.send('registration updated: ' + request.body);
-});
-
-server.get('/login', (request, response) => {
+server.post('/login', (request, response) => {
   response.send('logged in: ' + request.body);
 });
 
