@@ -46,7 +46,8 @@ Features [ Role ] ( Actions )
 5. **add and edit user** — [ admin ] ( add, edit, save )
 6. **list work orders by user** — [ admin, homeowner, lawncare provider ] ( select to view )
 7. **filter work orders by not closed** — [ admin, homeowner, lawncare provider ] ( select to view )
-8. **add and edit work order** — [ homeowner ] ( add, edit, save ) [ lawncare provider ] ( close )
+8. **add and edit work order** — [ homeowner ] ( add, edit, save )
+9. **close work order** - [ lawncare provider ] ( close )
 
 Forms
 -----
