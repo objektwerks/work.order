@@ -11,11 +11,6 @@ Dev
 ---
 1. npm run dev
 
-Build
------
-1. TODO
->See **build** directory.
-
 Nodejs Host
 -----------
 >Using [NodeChef](https://www.nodechef.com/nodejs-hosting).
