@@ -53,15 +53,15 @@ Forms
 
 Routes
 ------
-1. get - /
+1. get  - /
 2. post - /register
 3. post - /login
-4. get - /users
-5. get - /users/:name
+4. get  - /users
+5. get  - /users/:name
 6. post - /users/add
 7. post - /users/update
-8. get - /workorders
-9. get - /workorders/:number
+8. get  - /workorders
+9. get  - /workorders/:number
 10. post - /workorders/add
 11. post - /workorders/update
 12. post - /workorders/close
