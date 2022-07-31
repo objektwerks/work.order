@@ -44,7 +44,7 @@ Features [ Role ] ( Actions )
 3. **list users** — [ admin ] ( select to view )
 4. **filter users by role** — [ admin ] ( select to view )
 5. **add and edit user** — [ admin ] ( add, edit, save )
-6. **list work orders** — [ homeowner, lawncare provider ] ( select to view )
+6. **list work orders by user** — [ homeowner, lawncare provider ] ( select to view )
 7. **filter work orders by closed is null | homeowner | lawncare provider** — [ homeowner, lawncare provider ] ( select to view )
 8. **add and edit work order** — [ homeowner ] ( add, edit, save ) [ lawncare provider ] ( close )
 
