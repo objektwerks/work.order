@@ -57,7 +57,7 @@ server.get('/workorders/close/:number', (request, response) => {
 });
 
 var host = "127.0.0.1";
-var port = 1337;
+var port = process.env.PORT || 3000;
 server.listen(port, host, () =>
   console.log('Running server at http://localhost:' + port + '/')
 );
