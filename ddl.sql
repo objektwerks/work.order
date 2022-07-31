@@ -17,7 +17,7 @@ create index user_name_idx ON `user`(`name`);
 create index user_email_address_idx ON `user`(`email_address`);
 
 create table `work_order` (
-  `number` bigint not null auto_increment,
+  `number` bigint unsigned not null auto_increment,
   `homeowner_name` varchar(128) not null,
   `homeowner_email_address` varchar(128) not null,
   `lawncare_provider_name` varchar(128) not null,
