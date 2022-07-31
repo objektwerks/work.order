@@ -32,6 +32,7 @@ create table `work_order` (
   constraint lawncare_provider_name_fk foreign key (`lawncare_provider_name`) references `user`(`name`),
   constraint lawncare_provider_email_address_fk foreign key (`lawncare_provider_email_address`) references `user`(`email_address`)
 );
+create trigger work_order_opened_trigger BEFORE INSERT ON `work_order` FOR EACH ROW SET NEW.opened = IFNULL(NEW.opened, NOW());
 create index work_order_homeowner_name_idx ON `work_order`(`homeowner_name`);
 create index work_order_homeowner_email_address_idx ON `work_order`(`homeowner_email_address`);
 create index work_order_opened_idx ON `work_order`(`opened`);
