@@ -58,5 +58,5 @@ server.post('/workorders/close', (request, response) => {
 const port = process.env.PORT || 3000;
 const host = "127.0.0.1";
 server.listen(port, host, () =>
-  console.log(`*** nodejs-express server running at http://${host}:${port}/`),
+  console.log(`*** server is running @ http://${host}:${port}/`)
 );
