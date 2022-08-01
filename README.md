@@ -72,9 +72,10 @@ Database
 
 Tables
 ------
-1. **user** — name: text, role: text, email address: text, street address: text, registered: datetime
-2. **work_order** — number: integer, homeowner name: text, homeowner email address: test, service provider name: text, service provider email address: text, opened: datetime, closed: datetime, issue: text, resolution: text
->See **ddl.sql** directory.
+1. homeowner
+2. service_provider
+3. work_order
+>See **ddl.sql** for details.
 
 Mysql
 -----
