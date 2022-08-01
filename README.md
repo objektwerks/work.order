@@ -27,8 +27,8 @@ Development
 Roles
 -----
 >A role can invoke a set of actions.
-1. **admin** — can invoke all actions
-2. **homeowner** — can add, edit and select work orders
+1. **admin** — can invoke all actions; a homeowner can be an admin!
+2. **homeowner** — can add, select and edit work orders
 3. **service provider** — can select and edit work orders
 
 Features [ Role ] ( Actions )
@@ -36,11 +36,11 @@ Features [ Role ] ( Actions )
 >A feature maps to a set of roles and actions.
 1. **register homeowner | service provider** — [ admin ] ( register, edit )
 2. **login homeowner | service provider** — [ admin, homeowner, service provider ] ( login )
-3. **list homeowners | service providers** — [ admin ] ( select to view )
-4. **add and edit homeowner | service provider** — [ admin ] ( add, edit, save )
-5. **list work orders by homeowner** — [ admin, homeowner, service provider ] ( select to view )
-6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( select to view )
-7. **add and edit work order** — [ homeowner, service provider ] ( add, edit, save )
+3. **list homeowners | service providers** — [ admin ] ( view )
+4. **add and edit homeowner | service provider** — [ admin ] ( add, edit )
+5. **list work orders by homeowner | service provider** — [ admin, homeowner, service provider ] ( view )
+6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( view )
+7. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
 
 Forms
 -----
