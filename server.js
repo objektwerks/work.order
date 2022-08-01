@@ -51,7 +51,7 @@ server.get('/workorders', (request, response) => {
 });
 
 server.get('/workorders/:number', (request, response) => {
-  response.send('workorder number: ' + request.params.number);
+  response.send('workorder by number: ' + request.params.number);
 });
 
 server.post('/workorders/save', (request, response) => {
