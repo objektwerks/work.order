@@ -6,4 +6,9 @@ class Service {
   constructor(store) {
     this.store = store;
   }
+
+  ping() {
+    console.log("*** Service is running ...");
+    this.store.ping();
+  }
 }

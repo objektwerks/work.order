@@ -1,4 +1,12 @@
 import mysql from 'mysql';
 
-const url = process.env.DATABASE_URL;
-const connection = mysql.createConnection(url);
+class Store {
+  constructor(url) {
+    this.url = url;
+    this.connection = mysql.createConnection(url);
+  }
+
+  ping() {
+    console.log("*** Store is running ...")
+  }
+}

@@ -1,4 +1,10 @@
+import Store from './server/store.js';
+import Service from './server/service.js';
 import express from 'express';
+
+const url = process.env.DATABASE_URL;
+const store = new Store(url);
+const service = new Service(store)
 
 const server = express();
 server.use( express.static('client') )
@@ -51,5 +57,6 @@ server.post('/workorders/close', (request, response) => {
 const port = process.env.PORT || 3000;
 const host = "127.0.0.1";
 server.listen(port, host, () =>
-  console.log(`*** nodejs-express server running at http://${host}:${port}/`)
+  console.log(`*** nodejs-express server running at http://${host}:${port}/`),
+  service.ping()
 );
