@@ -36,11 +36,12 @@ Features [ Role ] ( Actions )
 >A feature maps to a set of roles and actions.
 1. **register user** — [ admin ] ( register, edit )
 2. **login user** — [ admin, homeowner, service provider ] ( login )
-3. **list users by role** — [ admin ] ( view )
-4. **add and edit user** — [ admin ] ( add, edit )
-5. **list work orders by role** — [ admin, homeowner, service provider ] ( view )
-6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( view )
-7. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
+3. **list users** — [ admin ] ( view )
+4. **filter users by role** — [ admin ] ( view )
+5. **add and edit user** — [ admin ] ( add, edit )
+6. **list work orders by user** — [ admin, homeowner, service provider ] ( view )
+7. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( view )
+8. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
 
 Forms
 -----
