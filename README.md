@@ -73,7 +73,7 @@ Database
 Tables
 ------
 1. **user** — name: text, role: text, email address: text, street address: text, registered: datetime
-2. **work_order** — number: integer, homeowner name: text, homeowner email address: test, lawncare provider name: text, lawncare provider email address: text, opened: datetime, issue: text, resolution: text, closed: datetime
+2. **work_order** — number: integer, homeowner name: text, homeowner email address: test, lawncare provider name: text, lawncare provider email address: text, opened: datetime, closed: datetime, issue: text, resolution: text
 >See **ddl.sql** directory.
 
 Mysql
