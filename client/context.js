@@ -11,7 +11,7 @@ export class User {
     this.registered = registered;
   }
 
-  asJson() {
+  toJson() {
     return JSON.stringify(
       {
         id: this.id,
@@ -21,6 +21,10 @@ export class User {
         registered: this.registered
       }
     )
+  }
+
+  toObject(json) {
+    return JSON.parse(json)
   }
 }
 
@@ -35,7 +39,7 @@ export class WorkOrder {
     this.resolution = resolution
   }
 
-  asJson() {
+  toJson() {
     return JSON.stringify(
       {
         number: this.number,
@@ -47,5 +51,9 @@ export class WorkOrder {
         resolution: this.resolution
       }
     )
+  }
+
+  toObject(json) {
+    return JSON.parse(json)
   }
 }
