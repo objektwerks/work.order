@@ -7,6 +7,6 @@ export default class Store {
   }
 
   ping() {
-    console.log("*** Store is running ...")
+    console.log("*** store is running ...")
   }
 }

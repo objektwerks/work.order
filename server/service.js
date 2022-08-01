@@ -8,7 +8,7 @@ export default class Service {
   }
 
   ping() {
-    console.log("*** Service is running ...");
+    console.log("*** service is running ...");
     this.store.ping();
   }
 }
