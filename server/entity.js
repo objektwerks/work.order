@@ -35,14 +35,14 @@ export class User {
 }
 
 export class WorkOrder {
-  constructor(number, homeowner, serviceProvider, opened, closed, issue, resolution) {
+  constructor(number, homeowner, serviceProvider, issue, resolution, opened, closed) {
     this.number = number,
     this.homeowner = homeowner,
     this.serviceProvider = serviceProvider,
-    this.opened = opened,
-    this.closed = closed,
     this.issue = issue,
-    this.resolution = resolution
+    this.resolution = resolution,
+    this.opened = opened,
+    this.closed = closed
   }
 
   toJson() {
@@ -51,10 +51,10 @@ export class WorkOrder {
         number: this.number,
         homeowner: this.homeowner,
         serviceProvider: this.serviceProvider,
-        opened: this.opened,
-        closed: this.closed,
         issue: this.issue,
-        resolution: this.resolution
+        resolution: this.resolution,
+        opened: this.opened,
+        closed: this.closed
       }
     )
   }
