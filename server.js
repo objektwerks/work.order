@@ -22,8 +22,8 @@ server.get('/users', (request, response) => {
   response.send('users');
 });
 
-server.get('/users/:email_address', (request, response) => {
-  response.send('user by email address: ' + request.params.name);
+server.get('/users/:role', (request, response) => {
+  response.send('users by role: ' + request.params.name);
 });
 
 server.post('/users/save', (request, response) => {
