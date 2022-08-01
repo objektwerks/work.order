@@ -28,43 +28,44 @@ Roles
 -----
 >A role can invoke a set of actions.
 1. **admin** — can invoke all actions
-2. **homeowner** — can add, edit, save and select work orders
-3. **service provider** — can select, view and close work orders
+2. **homeowner** — can add, edit and select work orders
+3. **service provider** — can select and edit work orders
 
 Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a set of roles and actions.
-1. **register user** — [ admin ] ( register, edit, save )
-2. **login user** — [ admin, homeowner, service provider ] ( login )
-3. **list users** — [ admin ] ( select to view )
-4. **filter users by role** — [ admin ] ( select to view )
-5. **add and edit user** — [ admin ] ( add, edit, save )
-6. **list work orders by user** — [ admin, homeowner, service provider ] ( select to view )
-7. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( select to view )
-8. **add and edit work order** — [ homeowner ] ( add, edit, save )
-9. **close work order** - [ service provider ] ( close )
+1. **register homeowner | service provider** — [ admin ] ( register, edit )
+2. **login homeowner | service provider** — [ admin, homeowner, service provider ] ( login )
+3. **list homeowners | service providers** — [ admin ] ( select to view )
+4. **add and edit homeowner | service provider** — [ admin ] ( add, edit, save )
+5. **list work orders by homeowner** — [ admin, homeowner, service provider ] ( select to view )
+6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( select to view )
+7. **add and edit work order** — [ homeowner, service provider ] ( add, edit, save )
 
 Forms
 -----
-1. **register** — name, role, email address, street address
-2. **login**— name, email address
-3. **user** - name, role, email address, street address
-4. **work order** — number, homeowner name and email address, service provider name and email address, opened, issue, resolution, closed
+1. **register homeowner** — name, email address, street address
+2. **register service provider** - name, email address
+3. **login**— email address, pin
+4. **homeowner** - id, name, email address, street address, registered, is admin
+5. **service provider** - id, name, email address, registered
+6. **work order** — number, homeowner id, service provider id, opened, issue, resolution, closed
 
 Routes
 ------
 1. get  - /
-2. post - /register
-3. post - /login
-4. get  - /users
-5. get  - /users/:name
-6. post - /users/add
-7. post - /users/update
+2. post - /register/homeowner
+3. post - /register/serviceprovider
+4. post - /login
+5. get  - /homeowners
+6. get  - /homeowners/:id
+7. post - /homeowners/save
+5. get  - /serviceproviders
+6. get  - /serviceproviders/:id
+7. post - /serviceproviders/save
 8. get  - /workorders
 9. get  - /workorders/:number
-10. post - /workorders/add
-11. post - /workorders/update
-12. post - /workorders/close
+10. post - /workorders/save
 
 Database
 --------
