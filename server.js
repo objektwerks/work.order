@@ -30,11 +30,11 @@ server.post('/users/save', (request, response) => {
   response.send('user saved: ' + request.body);
 });
 
-server.get('/workorders/:homeowner_id', (request, response) => {
+server.get('/workorders/homeowner/:id', (request, response) => {
   response.send('workorder by homeowner id: ' + request.params.number);
 });
 
-server.get('/workorders/:serviceprovider_id', (request, response) => {
+server.get('/workorders/serviceprovider/:id', (request, response) => {
   response.send('workorder by service provider id: ' + request.params.number);
 });
 
