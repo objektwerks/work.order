@@ -36,7 +36,7 @@ export class User {
 
 export class WorkOrder {
   constructor(number, homeowner, serviceProvider, issue) {
-    this(number, homeowner, serviceProvider, issue, null, new Date().toISOString, null)
+    this(number, homeowner, serviceProvider, issue, "", new Date().toISOString, "")
   }
 
   constructor(number, homeowner, serviceProvider, issue, resolution, opened, closed) {
