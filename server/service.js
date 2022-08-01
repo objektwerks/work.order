@@ -2,7 +2,7 @@ const ADMIN = 'admin';
 const HOMEOWNER = 'homeowner';
 const SERVICE_PROVIDER = 'service provider';
 
-class Service {
+export default class Service {
   constructor(store) {
     this.store = store;
   }

@@ -1,6 +1,6 @@
 import mysql from 'mysql';
 
-class Store {
+export default class Store {
   constructor(url) {
     this.url = url;
     this.connection = mysql.createConnection(url);
