@@ -4,29 +4,18 @@ create database `work_order_db`;
 
 use `work_order_db`
 
-create table `homeowner` (
+create table `user` (
   `id` int not null auto_increment,
+  `role` varchar(32) not null,
   `name` varchar(128) not null,
   `email_address` varchar(128) not null unique,
   `street_address` varchar(128) not null unique,
   `registered` datetime not null,
-  `is_admin` boolean not null default false,
   primary key (`id`)
 );
-create trigger homeowner_registered_trigger BEFORE INSERT ON `homeowner` FOR EACH ROW SET NEW.registered = IFNULL(NEW.registered, NOW());
-create index homeowner_name_idx ON `homeowner`(`name`);
-create index homeowner_email_address_idx ON `homeowner`(`email_address`);
-
-create table `service_provider` (
-  `id` int not null auto_increment,
-  `name` varchar(128) not null,
-  `email_address` varchar(128) not null unique,
-  `registered` datetime not null,
-  primary key (`id`)
-);
-create trigger service_provider_registered_trigger BEFORE INSERT ON `service_provider` FOR EACH ROW SET NEW.registered = IFNULL(NEW.registered, NOW());
-create index service_provider_name_idx ON `service_provider`(`name`);
-create index service_provider_email_address_idx ON `service_provider`(`email_address`);
+create index user_name_idx ON `user`(`name`);
+create index user_email_address_idx ON `user`(`email_address`);
+create trigger user_registered_trigger BEFORE INSERT ON `user` FOR EACH ROW SET NEW.registered = IFNULL(NEW.registered, NOW());
 
 create table `work_order` (
   `number` int not null auto_increment,
@@ -37,7 +26,7 @@ create table `work_order` (
   `issue` text(1028) not null,
   `resolution` text(1028) null,
   primary key (`number`),
-  constraint homeowner_id_fk foreign key (`homeowner_id`) REFERENCES `homeowner`(`id`),
-  constraint service_provider_id_fk foreign key (`service_provider_id`) REFERENCES `service_provider`(`id`)
+  constraint homeowner_id_fk foreign key (`homeowner_id`) REFERENCES `user`(`id`),
+  constraint service_provider_id_fk foreign key (`service_provider_id`) REFERENCES `user`(`id`)
 );
 create trigger work_order_opened_trigger BEFORE INSERT ON `work_order` FOR EACH ROW SET NEW.opened = IFNULL(NEW.opened, NOW());
