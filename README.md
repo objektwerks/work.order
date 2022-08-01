@@ -72,9 +72,9 @@ Database
 
 Tables
 ------
-1. homeowner
-2. service_provider
-3. work_order
+1. **homeowner**
+2. **service_provider**
+3. **work_order**
 >See **ddl.sql** for details.
 
 Mysql
