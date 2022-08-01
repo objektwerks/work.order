@@ -61,7 +61,7 @@ Routes
 6. get  - /homeowners/:email_address
 7. post - /homeowners/save
 5. get  - /serviceproviders
-6. get _ /serviceproviders/:email_address
+6. get  - /serviceproviders/:email_address
 7. post - /serviceproviders/save
 8. get  - /workorders
 9. get  - /workorders/:number
