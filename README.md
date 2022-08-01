@@ -58,9 +58,8 @@ Routes
 4. get  - /users
 5. get  - /users/:email_address
 6. post - /users/save
-7. get  - /workorders/:homeowner_id
-8. get  - /workorders/:serviceprovider_id
-9.  post - /workorders/save
+7. get  - /workorders/:user_id
+8.  post - /workorders/save
 
 Database
 --------

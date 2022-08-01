@@ -30,12 +30,8 @@ server.post('/users/save', (request, response) => {
   response.send('user saved: ' + request.body);
 });
 
-server.get('/workorders', (request, response) => {
-  response.send('workorders');
-});
-
-server.get('/workorders/:number', (request, response) => {
-  response.send('workorder by number: ' + request.params.number);
+server.get('/workorders/:user_id', (request, response) => {
+  response.send('workorder by user id: ' + request.params.number);
 });
 
 server.post('/workorders/save', (request, response) => {
