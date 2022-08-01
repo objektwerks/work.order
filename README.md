@@ -78,3 +78,7 @@ Mysql
 >Second option:
 1. mysql -uroot -p
 2. \. ddl.sql
+
+Date Time
+---------
+>Use ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ
