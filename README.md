@@ -79,7 +79,7 @@ Tables
 Mysql
 -----
 >First option:
-1. mysql -u root -p < ddl.sql
+1. mysql -uroot -p < ddl.sql
 >Second option:
-1. mysql -u root -p
+1. mysql -uroot -p
 2. \. ddl.sql
