@@ -10,40 +10,24 @@ const server = express();
 server.use( express.static('client') )
 server.use(express.json());
 
-server.post('/register/homeowner', (request, response) => {
-  response.send('registered homeowner: ' + request.body);
-});
-
-server.post('/register/serviceprovider', (request, response) => {
-  response.send('registered service provider: ' + request.body);
+server.post('/register', (request, response) => {
+  response.send('registered user: ' + request.body);
 });
 
 server.post('/login', (request, response) => {
-  response.send('logged in: ' + request.body);
+  response.send('logged in user: ' + request.body);
 });
 
-server.get('/homeowners', (request, response) => {
-  response.send('homeowners');
+server.get('/users', (request, response) => {
+  response.send('users');
 });
 
-server.get('/homeowners/:email_address', (request, response) => {
-  response.send('homeowner by email address: ' + request.params.name);
+server.get('/users/:email_address', (request, response) => {
+  response.send('user by email address: ' + request.params.name);
 });
 
-server.post('/homeowners/save', (request, response) => {
-  response.send('homeowner saved: ' + request.body);
-});
-
-server.get('/serviceproviders', (request, response) => {
-  response.send('service providers');
-});
-
-server.get('/serviceproviders/:email_address', (request, response) => {
-  response.send('service provider by email address: ' + request.params.name);
-});
-
-server.post('/serviceproviders/save', (request, response) => {
-  response.send('service provider saved: ' + request.body);
+server.post('/users/save', (request, response) => {
+  response.send('user saved: ' + request.body);
 });
 
 server.get('/workorders', (request, response) => {
