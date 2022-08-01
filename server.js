@@ -5,7 +5,6 @@ import express from 'express';
 const url = process.env.DATABASE_URL;
 const store = new Store(url);
 const service = new Service(store)
-service.ping();
 
 const server = express();
 server.use( express.static('client') )
