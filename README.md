@@ -34,38 +34,32 @@ Roles
 Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a set of roles and actions.
-1. **register homeowner | service provider** — [ admin ] ( register, edit )
-2. **login homeowner | service provider** — [ admin, homeowner, service provider ] ( login )
-3. **list homeowners | service providers** — [ admin ] ( view )
-4. **add and edit homeowner | service provider** — [ admin ] ( add, edit )
-5. **list work orders by homeowner | service provider** — [ admin, homeowner, service provider ] ( view )
+1. **register user** — [ admin ] ( register, edit )
+2. **login user** — [ admin, homeowner, service provider ] ( login )
+3. **list users by role** — [ admin ] ( view )
+4. **add and edit user** — [ admin ] ( add, edit )
+5. **list work orders by role** — [ admin, homeowner, service provider ] ( view )
 6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( view )
 7. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
 
 Forms
 -----
-1. **register homeowner** — name, email address, street address
-2. **register service provider** - name, email address
-3. **login**— email address, pin
-4. **homeowner** - id, name, email address, street address, registered, is admin
-5. **service provider** - id, name, email address, registered
-6. **work order** — number, homeowner id, service provider id, opened, issue, resolution, closed
+1. **register** — role, name, email address, street address
+2. **login**— email address, pin
+3. **user** - id, role, name, email address, street address, registered
+4. **work order** — number, homeowner id, service provider id, opened, issue, resolution, closed
 
 Routes
 ------
 1. get  - /
-2. post - /register/homeowner
-3. post - /register/serviceprovider
-4. post - /login
-5. get  - /homeowners
-6. get  - /homeowners/:email_address
-7. post - /homeowners/save
-5. get  - /serviceproviders
-6. get  - /serviceproviders/:email_address
-7. post - /serviceproviders/save
-8. get  - /workorders
-9. get  - /workorders/:number
-10. post - /workorders/save
+2. post - /register
+3. post - /login
+4. get  - /users
+5. get  - /users/:email_address
+6. post - /users/save
+7. get  - /workorders
+8. get  - /workorders/:number
+9. post - /workorders/save
 
 Database
 --------
@@ -73,9 +67,8 @@ Database
 
 Tables
 ------
-1. **homeowner**
-2. **service_provider**
-3. **work_order**
+1. **user**
+2. **work_order**
 >See **ddl.sql** for details.
 
 Mysql
