@@ -58,10 +58,10 @@ Routes
 3. post - /register/serviceprovider
 4. post - /login
 5. get  - /homeowners
-6. get  - /homeowners/:id
+6. get  - /homeowners/:email_address
 7. post - /homeowners/save
 5. get  - /serviceproviders
-6. get  - /serviceproviders/:id
+6. get _ /serviceproviders/:email_address
 7. post - /serviceproviders/save
 8. get  - /workorders
 9. get  - /workorders/:number

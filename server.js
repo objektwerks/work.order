@@ -10,28 +10,40 @@ const server = express();
 server.use( express.static('client') )
 server.use(express.json());
 
-server.post('/register', (request, response) => {
-  response.send('registered ' + request.body);
+server.post('/register/homeowner', (request, response) => {
+  response.send('registered homeowner: ' + request.body);
+});
+
+server.post('/register/serviceprovider', (request, response) => {
+  response.send('registered service provider: ' + request.body);
 });
 
 server.post('/login', (request, response) => {
   response.send('logged in: ' + request.body);
 });
 
-server.get('/users', (request, response) => {
-  response.send('users');
+server.get('/homeowners', (request, response) => {
+  response.send('homeowners');
 });
 
-server.get('/users/:name', (request, response) => {
-  response.send('user name: ' + request.params.name);
+server.get('/homeowners/:email_address', (request, response) => {
+  response.send('homeowner by email address: ' + request.params.name);
 });
 
-server.post('/users/add', (request, response) => {
-  response.send('user added: ' + request.body);
+server.post('/homeowners/save', (request, response) => {
+  response.send('homeowner saved: ' + request.body);
 });
 
-server.post('/users/update', (request, response) => {
-  response.send('user updated: ' + request.body);
+server.get('/serviceproviders', (request, response) => {
+  response.send('service providers');
+});
+
+server.get('/serviceproviders/:email_address', (request, response) => {
+  response.send('service provider by email address: ' + request.params.name);
+});
+
+server.post('/serviceproviders/save', (request, response) => {
+  response.send('service provider saved: ' + request.body);
 });
 
 server.get('/workorders', (request, response) => {
@@ -42,16 +54,8 @@ server.get('/workorders/:number', (request, response) => {
   response.send('workorder number: ' + request.params.number);
 });
 
-server.post('/workorders/add', (request, response) => {
-  response.send('workorder added: ' + request.body);
-});
-
-server.post('/workorders/update', (request, response) => {
-  response.send('workorders updated: ' + request.body);
-});
-
-server.post('/workorders/close', (request, response) => {
-  response.send('workorder closed: ' + request.body);
+server.post('/workorders/save', (request, response) => {
+  response.send('workorder saved: ' + request.body);
 });
 
 const port = process.env.PORT || 3000;
