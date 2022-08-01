@@ -10,7 +10,7 @@ create table `user` (
   `name` varchar(128) not null,
   `email_address` varchar(128) not null unique,
   `street_address` varchar(128) not null unique,
-  `registered` datetime not null,
+  `registered` varchar(24) not null,
   primary key (`id`)
 );
 create index user_name_idx ON `user`(`name`);
@@ -21,8 +21,8 @@ create table `work_order` (
   `number` int not null auto_increment,
   `homeowner_id` int not null,
   `service_provider_id` int not null,
-  `opened` datetime not null,
-  `closed` datetime null,
+  `opened` varchar(24) not null,
+  `closed` varchar(24) null,
   `issue` text(1028) not null,
   `resolution` text(1028) null,
   primary key (`number`),
