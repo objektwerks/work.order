@@ -20,8 +20,8 @@ create table `work_order` (
   `number` bigint unsigned not null auto_increment,
   `homeowner_name` varchar(128) not null,
   `homeowner_email_address` varchar(128) not null,
-  `lawncare_provider_name` varchar(128) not null,
-  `lawncare_provider_email_address` varchar(128) not null,
+  `service_provider_name` varchar(128) not null,
+  `service_provider_email_address` varchar(128) not null,
   `opened` datetime not null,
   `closed` datetime null,
   `issue` text(1028) not null,
@@ -29,8 +29,8 @@ create table `work_order` (
   primary key (`number`),
   constraint homeowner_name_fk foreign key (`homeowner_name`) references `user`(`name`),
   constraint homeowner_email_adddress_fk foreign key (`homeowner_email_address`) references `user`(`email_address`),
-  constraint lawncare_provider_name_fk foreign key (`lawncare_provider_name`) references `user`(`name`),
-  constraint lawncare_provider_email_address_fk foreign key (`lawncare_provider_email_address`) references `user`(`email_address`)
+  constraint service_provider_name_fk foreign key (`service_provider_name`) references `user`(`name`),
+  constraint service_provider_email_address_fk foreign key (`service_provider_email_address`) references `user`(`email_address`)
 );
 create trigger work_order_opened_trigger BEFORE INSERT ON `work_order` FOR EACH ROW SET NEW.opened = IFNULL(NEW.opened, NOW());
 create index work_order_homeowner_name_idx ON `work_order`(`homeowner_name`);
