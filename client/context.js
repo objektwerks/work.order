@@ -3,9 +3,14 @@ export const homeowner = "homeowner";
 export const serviceProvider = "serviceprovider"
 
 export class User {
+  constructor(id, role, name, emailAddress, streetAddress) {
+    this(id, role, name, emailAddress, streetAddress, new Date().toISOString)
+  }
+
   constructor(id, role, name, emailAddress, streetAddress, registered) {
     this.id = id;
     this.role = role;
+    this.name = name;
     this.emailAddress = emailAddress;
     this.streetAddress = streetAddress;
     this.registered = registered;
@@ -16,6 +21,7 @@ export class User {
       {
         id: this.id,
         role: this.role,
+        name: this.name,
         emmailAddress: this.emailAddress,
         streetAddress: this.streetAddress,
         registered: this.registered
