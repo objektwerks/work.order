@@ -11,3 +11,15 @@ export class User {
     this.registered = registered;
   }
 }
+
+export class WorkOrder {
+  constructor(number, homeowner, serviceProvider, opened, closed, issue, resolution) {
+    this.number = number;
+    this.homeowner = homeowner;
+    this.serviceProvider = serviceProvider;
+    this.opened = opened;
+    this.closed = closed;
+    this.issue = issue;
+    this.resolution = resolution;
+  }
+}
