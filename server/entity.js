@@ -35,14 +35,14 @@ export class User {
 }
 
 export class WorkOrder {
-  constructor(number, homeowner, serviceProvider, issue) {
-    this(number, homeowner, serviceProvider, issue, "", new Date().toISOString, "")
+  constructor(number, homeownerId, serviceProviderId, issue) {
+    this(number, homeownerId, serviceProviderId, issue, "", new Date().toISOString, "")
   }
 
-  constructor(number, homeowner, serviceProvider, issue, resolution, opened, closed) {
+  constructor(number, homeownerId, serviceProviderId, issue, resolution, opened, closed) {
     this.number = number,
-    this.homeowner = homeowner,
-    this.serviceProvider = serviceProvider,
+    this.homeownerId = homeownerId,
+    this.serviceProviderId = serviceProviderId,
     this.issue = issue,
     this.resolution = resolution,
     this.opened = opened,
@@ -53,8 +53,8 @@ export class WorkOrder {
     return JSON.stringify(
       {
         number: this.number,
-        homeowner: this.homeowner,
-        serviceProvider: this.serviceProvider,
+        homeownerId: this.homeownerId,
+        serviceProviderId: this.serviceProviderId,
         issue: this.issue,
         resolution: this.resolution,
         opened: this.opened,
