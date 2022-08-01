@@ -35,6 +35,10 @@ export class User {
 }
 
 export class WorkOrder {
+  constructor(number, homeowner, serviceProvider, issue) {
+    this(number, homeowner, serviceProvider, issue, null, new Date().toISOString, null)
+  }
+
   constructor(number, homeowner, serviceProvider, issue, resolution, opened, closed) {
     this.number = number,
     this.homeowner = homeowner,
