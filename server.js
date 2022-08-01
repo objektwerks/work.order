@@ -18,10 +18,6 @@ server.post('/login', (request, response) => {
   response.send('logged in user: ' + request.body);
 });
 
-server.get('/users', (request, response) => {
-  response.send('users');
-});
-
 server.get('/users/:role', (request, response) => {
   response.send('users by role: ' + request.params.name);
 });

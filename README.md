@@ -54,12 +54,11 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. get  - /users
-5. get  - /users/:role
-6. post - /users/save
-7. get  - /workorders/homeowner/:id
-8. get  - /workorders/serviceprovider/:id
-9. post - /workorders/save
+4. get  - /users/:role
+5. post - /users/save
+6. get  - /workorders/homeowner/:id
+7. get  - /workorders/serviceprovider/:id
+8. post - /workorders/save
 
 Database
 --------
