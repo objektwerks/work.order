@@ -6,9 +6,9 @@ use `work_order_db`
 
 create table `user` (
   `name` varchar(128) not null,
-  `role` varchar(64) not null,
+  `role` varchar(32) not null,
   `email_address` varchar(128) not null,
-  `street_address` varchar(255) not null,
+  `street_address` varchar(128) not null,
   `registered` datetime not null,
   primary key (`name`, `email_address`)
 );
