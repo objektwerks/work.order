@@ -4,12 +4,16 @@
   "homepage": "https://github.com/objektwerks/work.order#readme",
   "license": "Apache 2.0",
   "author": "Objektwerks",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/objektwerks/work.order.git"
+  },
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "type": "module",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.18.1",
