@@ -59,5 +59,6 @@ process.on('SIGTERM', () => {
   server.close(() => {
     store.disconnect();
     console.log('*** server shutdown.')
+    process.exit(0);
   })
 })
