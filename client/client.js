@@ -1,7 +1,7 @@
-import * as Context from './context.js';
+import * as Random from './random.js';
 
 console.log('*** client running ...');
 
-console.log(Context.randomPassword());
-console.log(Context.randomPassword());
-console.log(Context.randomPassword());
+console.log(Random.password());
+console.log(Random.password());
+console.log(Random.password());
