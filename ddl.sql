@@ -11,6 +11,7 @@ create table `user` (
   `email_address` varchar(128) not null unique,
   `street_address` varchar(128) not null unique,
   `registered` varchar(24) not null,
+  `password` varchar(7) not null,
   primary key (`id`)
 );
 create index user_name_idx ON `user`(`name`);
