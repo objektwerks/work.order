@@ -38,7 +38,7 @@ Features [ Role ] ( Actions )
 2. **login user** — [ homeowner, service provider ] ( login )
 3. **list work orders by user** — [ homeowner, service provider ] ( view )
 4. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
-5. **add and edit user** — [ homeowner, service provider ] ( add, edit )
+5. **edit user** — [ homeowner, service provider ] ( add, edit )
 
 Forms
 -----
@@ -52,17 +52,17 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. get  - /workorders/homeowner/:id
-5. get  - /workorders/serviceprovider/:id
-6. post - /workorders/save
+4. get  - /workorders/:id
+5. post - /workorders/save
+6. post - /users/save
 
 Sequences
 ---------
 1. client --- register --> server --- user --> client
 2. client --- login --> server --- user, work orders --> client
-3. client --- user --> server --- 200 | 400 --> client
-4. client --- work order --> server --- 200 | 400 --> client
-5. client --- list --> server --- work orders --> client
+3. client --- work order --> server --- 200 | 400 --> client
+4. client --- list --> server --- work orders --> client
+5. client --- user --> server --- 200 | 400 --> client
 
 Database
 --------

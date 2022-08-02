@@ -31,24 +31,16 @@ server.post('/login', (request, response) => {
   response.send('logged in user: ' + request.body);
 });
 
-server.get('/users/:role', (request, response) => {
-  response.send('users by role: ' + request.params.name);
-});
-
-server.post('/users/save', (request, response) => {
-  response.send('user saved: ' + request.body);
-});
-
-server.get('/workorders/homeowner/:id', (request, response) => {
-  response.send('workorder by homeowner id: ' + request.params.number);
-});
-
-server.get('/workorders/serviceprovider/:id', (request, response) => {
-  response.send('workorder by service provider id: ' + request.params.number);
+server.get('/workorders/:id', (request, response) => {
+  response.send('workorder by id: ' + request.params.number);
 });
 
 server.post('/workorders/save', (request, response) => {
   response.send('workorder saved: ' + request.body);
+});
+
+server.post('/users/save', (request, response) => {
+  response.send('user saved: ' + request.body);
 });
 
 const port = process.env.PORT || 3000;
