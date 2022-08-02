@@ -9,5 +9,6 @@ export default class Store {
 
   disconnect() {
     this.connection.end();
+    console.log("*** store shutdown.")
   }
 }
