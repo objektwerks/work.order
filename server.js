@@ -1,5 +1,6 @@
 import Store from './server/store.js';
 import Service from './server/service.js';
+import compression from 'compression';
 import express from 'express';
 
 const url = process.env.DATABASE_URL;
@@ -7,6 +8,7 @@ const store = new Store(url);
 const service = new Service(store)
 
 const server = express();
+server.use(compression());
 server.use( express.static('client') )
 server.use(express.json());
 
