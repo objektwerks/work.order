@@ -47,5 +47,5 @@ const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP || "127.0.0.1";
 server.listen(port, host, () =>
   console.log(`*** server is running @ http://${host}:${port}/`),
-  console.log(`*** pin: ${newPin()}`)
+  console.log(`*** new pin verified: ${newPin()}`)
 );
