@@ -64,6 +64,8 @@ Sequences
 ---------
 * client --- register --> server --- 200 | 400 --> client
 * client --- login --> server --- 200 | 401 --> client
+* client --- user --> server --- 200 | 400 --> client
+* client --- work order --> server --- 200 | 400 --> client
 
 Database
 --------
