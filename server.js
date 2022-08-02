@@ -55,20 +55,18 @@ const http = server.listen(port, host, () =>
 );
 
 process.on('SIGINT', () => {
-  http.close(() => {
-    shutdown();
-  });
+  shutdown();
 });
 
 process.on('SIGTERM', () => {
-  http.close(() => {
-    shutdown();
-  });
+  shutdown();
 });
 
 function shutdown() {
-  console.log('*** server shutting down ...');
-  store.disconnect();
-  console.log('*** server shutdown.');
-  process.exit();
+  http.close(() => {
+    console.log('*** server shutting down ...');
+    store.disconnect();
+    console.log('*** server shutdown.');
+    process.exit();
+  });
 }
