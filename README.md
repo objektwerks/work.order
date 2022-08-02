@@ -62,10 +62,10 @@ Routes
 
 Sequences
 ---------
-* client --- register --> server --- 200 | 400 --> client
-* client --- login --> server --- 200 | 401 --> client
-* client --- user --> server --- 200 | 400 --> client
-* client --- work order --> server --- 200 | 400 --> client
+1. client --- register --> server --- 200 | 400 --> client
+2. client --- login --> server --- 200 | 401 --> client
+3. client --- user --> server --- 200 | 400 --> client
+4. client --- work order --> server --- 200 | 400 --> client
 
 Database
 --------
