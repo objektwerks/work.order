@@ -23,6 +23,15 @@ export class Register {
   }
 }
 
+export class Login {
+  static create(emailAddress, pin) {
+    return {
+      emailAddress: emailAddress,
+      pin: pin
+    }    
+  }
+}
+
 export class User {
   static create(id, role, name, emailAddress, streetAddress) {
     return create(id, role, name, emailAddress, streetAddress, new Date().toISOString);
