@@ -27,7 +27,7 @@ Development
 Roles
 -----
 >A role can invoke a set of actions.
-1. **admin** — can invoke all actions; a homeowner can be an admin!
+1. **admin** — can invoke all actions!
 2. **homeowner** — can add, select and edit work orders
 3. **service provider** — can select and edit work orders
 
