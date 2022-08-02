@@ -25,12 +25,15 @@ export default class Emailer {
       subject: subject,
       text: `Your pin is: ${pin}`
     };
+    var sendSucceeded = true;
     this.transporter.sendMail(message, function(error, info) {
       if (error) {
-        console.log(`*** Emailer failed: ${error}`);
+        console.log(`*** emailer failed: ${error}`);
+        sendSucceeded = false;
       } else {
-        console.log(`*** Emailer sent: ${info.messageId} to: ${message.to}`);
+        console.log(`*** emailer sent: ${info.messageId} to: ${message.to}`);
       }
     });
+    return sendSucceeded;
   }
 }
