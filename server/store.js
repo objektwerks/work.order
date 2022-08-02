@@ -6,4 +6,8 @@ export default class Store {
     this.connection = mysql.createConnection(url);
     console.log("*** store is running ...")
   }
+
+  disconnect() {
+    this.connection.end();
+  }
 }
