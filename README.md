@@ -62,8 +62,8 @@ Routes
 
 Sequences
 ---------
-1. client --- register --> server --- 200 | 400 --> client
-2. client --- login --> server --- 200 | 401 --> client
+1. client --- register --> server --- user --> client
+2. client --- login --> server --- user, work orders --> client
 3. client --- user --> server --- 200 | 400 --> client
 4. client --- work order --> server --- 200 | 400 --> client
 
