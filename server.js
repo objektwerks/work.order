@@ -49,16 +49,26 @@ server.post('/users/save', (request, response) => {
 
 const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP || "127.0.0.1";
-server.listen(port, host, () =>
+const http = server.listen(port, host, () =>
   console.log(`*** server is running @ http://${host}:${port}/`),
   console.log(`*** new pin verified: ${newPin()}`)
 );
 
+process.on('SIGINT', () => {
+  http.close(() => {
+    shutdown();
+  });
+});
+
 process.on('SIGTERM', () => {
-  console.log('*** sigterm received, closing server ...')
-  server.close(() => {
-    store.disconnect();
-    console.log('*** server shutdown.')
-    process.exit(0);
-  })
-})
+  http.close(() => {
+    shutdown();
+  });
+});
+
+function shutdown() {
+  console.log('*** server shutting down ...');
+  store.disconnect();
+  console.log('*** server shutdown.');
+  process.exit();
+}

@@ -4,11 +4,11 @@ export default class Store {
   constructor(url) {
     this.url = url;
     this.connection = mysql.createConnection(url);
-    console.log("*** store is running ...")
+    console.log("*** connected to store ...")
   }
 
   disconnect() {
     this.connection.end();
-    console.log("*** store shutdown.")
+    console.log("*** disconnected from store.")
   }
 }
