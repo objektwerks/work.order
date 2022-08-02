@@ -60,6 +60,11 @@ Routes
 7. get  - /workorders/serviceprovider/:id
 8. post - /workorders/save
 
+Sequences
+---------
+* client --- register --> server --- 200 | 400 --> client
+* client --- login --> server --- 200 | 401 --> client
+
 Database
 --------
 1. **work_order_db**
