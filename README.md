@@ -27,17 +27,16 @@ Development
 Roles
 -----
 >A role can invoke a set of actions.
-1. **admin** — can invoke all actions
-2. **homeowner** — can add, select and edit work orders
-3. **service provider** — can select and edit work orders
+1. **homeowner** — add, select and edit work orders
+2. **service provider** — select and edit work orders
 
 Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a set of roles and actions.
-1. **register user** — [ homeowner, service provider ] ( register, edit )
+1. **register user** — [ homeowner, service provider ] ( register )
 2. **login user** — [ homeowner, service provider ] ( login )
-3. **list work orders by user** — [ homeowner, service provider ] ( view )
-4. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
+3. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
+4. **refresh work orders/order** - [ homeowner, service provider ] ( refresh )
 5. **edit user** — [ homeowner, service provider ] ( add, edit )
 
 Forms
@@ -52,16 +51,17 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. get  - /workorders/:id
-5. post - /workorders/save
-6. post - /users/save
+4. post - /workorders/save
+5. get  - /workorders/refresh
+6. get  - /workorders/refresh/:number
+7. post - /users/save
 
 Sequences
 ---------
 1. client --- register --> server --- user --> client
 2. client --- login --> server --- user, work orders --> client
 3. client --- work order --> server --- 200 | 400 --> client
-4. client --- list --> server --- work orders --> client
+4. client --- list | number --> server --- work order(s) --> client
 5. client --- user --> server --- 200 | 400 --> client
 
 Database
