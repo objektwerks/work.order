@@ -23,7 +23,7 @@ export default class Emailer {
       from: this.sender,
       to: recipient,
       subject: subject,
-      text: `Your pin is: ${pin}`
+      text: `Your new pin is: ${pin} Use it to login. Record and keep it in a safe place. Then delete this email!`
     };
     var sendSucceeded = true;
     this.transporter.sendMail(message, function(error, info) {
