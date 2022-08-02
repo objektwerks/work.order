@@ -18,11 +18,11 @@ export default class Emailer {
     console.log("*** emailer is running ...")
   }
 
-  send(recipient, subject, pin) {
+  send(recipient, pin) {
     var message = {
       from: this.sender,
       to: recipient,
-      subject: subject,
+      subject: `Work Order Registration`,
       text: `Your new pin is: ${pin} Use it to login. Record and keep it in a safe place. Then delete this email!`
     };
     var sendSucceeded = true;
