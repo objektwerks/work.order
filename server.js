@@ -1,5 +1,6 @@
 import Store from './server/store.js';
 import Service from './server/service.js';
+import { newPin } from './server/pin.js';
 
 import compression from 'compression';
 import express from 'express';
@@ -45,5 +46,6 @@ server.post('/workorders/save', (request, response) => {
 const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP || "127.0.0.1";
 server.listen(port, host, () =>
-  console.log(`*** server is running @ http://${host}:${port}/`)
+  console.log(`*** server is running @ http://${host}:${port}/`),
+  console.log(`*** pin: ${newPin()}`)
 );
