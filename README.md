@@ -34,13 +34,12 @@ Roles
 Features [ Role ] ( Actions )
 -----------------------------
 >A feature maps to a set of roles and actions.
-1. **register user** — [ admin ] ( register, edit )
+1. **register user** — [ admin, homeowner, service provider ] ( register, edit )
 2. **login user** — [ admin, homeowner, service provider ] ( login )
-3. **list users by role** — [ admin ] ( view )
-4. **add and edit user** — [ admin ] ( add, edit )
-5. **list work orders by user** — [ admin, homeowner, service provider ] ( view )
-6. **filter work orders by not closed** — [ admin, homeowner, service provider ] ( view )
-7. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
+3. **list work orders by user** — [ admin, homeowner, service provider ] ( view )
+4. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
+5. **list users by role** — [ admin ] ( view )
+6. **add and edit user** — [ admin ] ( add, edit )
 
 Forms
 -----
@@ -54,11 +53,11 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. get  - /users/:role
-5. post - /users/save
-6. get  - /workorders/homeowner/:id
-7. get  - /workorders/serviceprovider/:id
-8. post - /workorders/save
+4. get  - /workorders/homeowner/:id
+5. get  - /workorders/serviceprovider/:id
+6. post - /workorders/save
+7. get  - /users/:role
+8. post - /users/save
 
 Sequences
 ---------
