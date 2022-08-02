@@ -1,5 +1,6 @@
 import Store from './server/store.js';
 import Service from './server/service.js';
+import Emailer from './server/emailer.js';
 import { newPin } from './server/pin.js';
 
 import compression from 'compression';
@@ -7,7 +8,14 @@ import express from 'express';
 
 const url = process.env.DATABASE_URL;
 const store = new Store(url);
-const service = new Service(store)
+
+const emailHost = process.env.EMAIL_HOST;
+const emailPort = process.env.EMAIL_PORT;
+const emailSender = process.env.EMAIL_SENDER;
+const emailPassword = process.env.EMAIL_PASSWORD;
+const emailer = new Emailer(emailHost, emailPort, emailSender, emailPassword);
+
+const service = new Service(store, emailer);
 
 const server = express();
 

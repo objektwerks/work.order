@@ -1,6 +1,7 @@
 export default class Service {
-  constructor(store) {
+  constructor(store, emailer) {
     this.store = store;
+    this.emailer = emailer;
     console.log("*** service is running ...");
   }
 }
