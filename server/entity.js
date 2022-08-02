@@ -12,6 +12,17 @@ export class Entity {
   }
 }
 
+export class Register {
+  static create(role, name, emailAddress, streetAddress) {
+    return {
+      role: role,
+      name: name,
+      emailAddress: emailAddress,
+      streetAddress: streetAddress
+    }    
+  }
+}
+
 export class User {
   static create(id, role, name, emailAddress, streetAddress) {
     return create(id, role, name, emailAddress, streetAddress, new Date().toISOString);
