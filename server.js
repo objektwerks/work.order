@@ -53,7 +53,11 @@ server.listen(port, host, () =>
   console.log(`*** server is running @ http://${host}:${port}/`),
   console.log(`*** new pin verified: ${newPin()}`)
 );
-server.on('close', () => {
-  store.disconnect();
-  console.log('*** server shutdown.')
-});
+
+process.on('SIGTERM', () => {
+  console.log('*** sigterm received, closing server ...')
+  server.close(() => {
+    store.disconnect();
+    console.log('*** server shutdown.')
+  })
+})
