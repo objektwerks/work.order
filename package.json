@@ -1,8 +1,9 @@
 {
   "version": "0.0.1",
-  "description": "work order nodejs web app",
+  "description": "Work order web client and nodejs server.",
   "homepage": "https://github.com/objektwerks/work.order#readme",
-  "license": "apache 2.0",
+  "license": "Apache 2.0",
+  "author": "Objektwerks",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
