@@ -32,6 +32,15 @@ export class Login {
   }
 }
 
+export class UserWorkOrders {
+  static create(user, workorders) {
+    return {
+      user: user,
+      workorders: workorders
+    }    
+  }
+}
+
 export class User {
   static create(id, role, name, emailAddress, streetAddress) {
     return create(id, role, name, emailAddress, streetAddress, new Date().toISOString);
