@@ -55,16 +55,16 @@ const http = server.listen(port, host, () =>
 );
 
 process.on('SIGINT', () => {
-  shutdown();
+  shutdown('sigint');
 });
 
 process.on('SIGTERM', () => {
-  shutdown();
+  shutdown('sigterm');
 });
 
-function shutdown() {
+function shutdown(signal) {
   http.close(() => {
-    console.log('*** server shutting down ...');
+    console.log(`*** [${signal}] server shutting down ...`);
     store.disconnect();
     console.log('*** server shutdown.');
     process.exit();
