@@ -4,7 +4,7 @@ try {
 } catch (error) {
   console.log('*** nodejs crypto support is disabled!');
   console.log('*** nodejs crypto error: ', error);
-  throw error;
+  throw `*** nodejs crypto support is disabled: ${error}`;
 }
 
 const specialChars = "~!@#$%^&*-+=<>?/:;";
