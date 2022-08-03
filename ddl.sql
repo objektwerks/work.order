@@ -15,6 +15,7 @@ create table `user` (
   primary key (`id`)
 );
 create index user_email_address_idx ON `user`(`email_address`);
+create index user_pin_idx ON `user`(`pin`);
 
 create table `work_order` (
   `number` int not null auto_increment,
