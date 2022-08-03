@@ -37,14 +37,15 @@ Features [ Role ] ( Actions )
 2. **login user** — [ homeowner, service provider ] ( login )
 3. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
 4. **refresh work orders/order** - [ homeowner, service provider ] ( refresh )
-5. **edit user** — [ homeowner, service provider ] ( add, edit )
+5. **list users by role** - [ homeowner ] ( list )
+6. **edit user** — [ homeowner, service provider ] ( add, edit )
 
 Forms
 -----
 1. **register** — role, name, email address, street address
 2. **login**— email address, pin
 3. **user** - id, role, name, email address, street address, registered
-4. **work order** — number, homeowner id, service provider id, issue, resolution, opened, closed
+4. **work order** — number, homeowner id, service provider id via list, issue, image_url, resolution, opened, closed
 
 Routes
 ------
@@ -54,7 +55,8 @@ Routes
 4. post - /workorders/save
 5. get  - /workorders/refresh
 6. get  - /workorders/refresh/:number
-7. post - /users/save
+7. get  - /users/:role
+8. post - /users/save
 
 Sequences
 ---------

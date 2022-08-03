@@ -43,6 +43,10 @@ server.get('/workorders/refresh/:number', (request, response) => {
   response.send('workorder refreshed by number: ' + request.params.number);
 });
 
+server.post('/users/:role', (request, response) => {
+  response.send('user by role: ' + request.body);
+});
+
 server.post('/users/save', (request, response) => {
   response.send('user saved: ' + request.body);
 });
