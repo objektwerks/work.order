@@ -26,6 +26,7 @@ create table `work_order` (
   `resolution` varchar(512) not null default "",
   `opened` varchar(24) not null,
   `closed` varchar(24) not null default "",
+  `image_url` varchar(255) not null default "",
   primary key (`number`),
   constraint homeowner_id_fk foreign key (`homeowner_id`) REFERENCES `user`(`id`),
   constraint service_provider_id_fk foreign key (`service_provider_id`) REFERENCES `user`(`id`)
