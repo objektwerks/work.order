@@ -67,6 +67,7 @@ Sequences
 4. client:list --- userid --> server --- workorders --> client
 5. client:get --- number --> server --- workorder --> client
 6. client:save --- user --> server --- status --> client
+7. client:list --- role --> server --- users --> client
 
 Database
 --------
