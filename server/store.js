@@ -65,11 +65,7 @@ export default class Store {
         });
       }
     });
-    if (list.length > 0) {
-      return list[0];
-    } else {
-      return null;
-    }
+    return (list.length > 0) ? list[0] : null;
   }
 
   getUserByEmailAddressPin(emailAddress, pin) {
@@ -86,11 +82,7 @@ export default class Store {
         });
       }
     });
-    if (list.length > 0) {
-      return list[0];
-    } else {
-      return null;
-    }
+    return (list.length > 0) ? list[0] : null;
   }
 
   getUserById(id) {
@@ -107,11 +99,7 @@ export default class Store {
         });
       }
     });
-    if (list.length > 0) {
-      return list[0];
-    } else {
-      return null;
-    }
+    return (list.length > 0) ? list[0] : null;
   }
 
   addWorkOrder(workorder) {
