@@ -31,7 +31,20 @@ export default class Store {
   }
 
   getWorkOrderByNumber(number) {
-
+    var list = [];
+    connection.query(`select * from work_order where number = ${number}`, (err, rows) => {
+      if(err) {
+        console.log(err)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+          )
+        });
+      }
+    });
+    if (list.length > 0) list[0];
   }
 
   addWorkOrder(workorder) {
