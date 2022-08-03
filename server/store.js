@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import { WorkOrder, User } from './entity.js';
+import { User, WorkOrder } from './entity.js';
 
 export default class Store {
   constructor(url) {
