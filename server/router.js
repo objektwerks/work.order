@@ -42,7 +42,7 @@ export default class Router {
     const port = process.env.PORT || 3000;
     const host = process.env.BIND_IP || "127.0.0.1";
     const http = router.listen(port, host, () =>
-      console.log(`*** router is listening @ http://${host}:${port}/`),
+      console.log(`*** server and router listening on http://${host}:${port}/`),
     );
     
     process.on('SIGINT', () => {
@@ -55,9 +55,9 @@ export default class Router {
 
     function shutdown(signal) {
       http.close(() => {
-        console.log(`*** [${signal}] router and server shutting down ...`);
+        console.log(`*** [${signal}] server and router shutting down ...`);
         service.store.disconnect();
-        console.log('*** router and server shutdown.');
+        console.log('*** server and router shutdown.');
         process.exit();
       });
     }
