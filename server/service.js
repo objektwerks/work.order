@@ -44,7 +44,6 @@ export default class Service {
         userWorkOrders.error = "Login failed!";
         console.log(`*** service.login failed: ${credentials.emailAddress}`);
       }
-      return userWorkOrders;
     } catch(error) {
       userWorkOrders.error = "Login failed!";
       console.log(`*** service.login for ${credentials.emailAddress} failed: ${error}`);
