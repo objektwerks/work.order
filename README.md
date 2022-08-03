@@ -35,17 +35,18 @@ Features [ Role ] ( Actions )
 >A feature maps to a set of roles and actions.
 1. **register user** — [ homeowner, service provider ] ( register )
 2. **login user** — [ homeowner, service provider ] ( login )
-3. **add and edit work order** — [ homeowner, service provider ] ( add, edit )
-4. **list work orders by userid** - [ homeowner, service provider ] ( list )
-5. **get work order by number** - [ homeowner, service provider ] ( get )
-6. **edit user** — [ homeowner, service provider ] ( add, edit )
-7. **list users by role** - [ homeowner ] ( list )
+3. **add work order** — [ homeowner ] ( add )
+4. **edit work order** — [ homeowner, service provider ] ( edit )
+5. **list work orders by userid** - [ homeowner, service provider ] ( list )
+6. **get work order by number** - [ homeowner, service provider ] ( get )
+7. **edit user** — [ homeowner, service provider ] ( add, edit )
+8. **list users by role** - [ homeowner ] ( list )
 
 Forms
 -----
 1. **register** — role, name, email address, street address
 2. **login**— email address, pin
-3. **user** - id, role, name, email address, street address, registered
+3. **user** - role, name, email address, street address, registered
 4. **work order** — number, homeowner id, service provider id via list, issue, image_url, resolution, opened, closed
 
 Routes
