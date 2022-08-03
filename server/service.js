@@ -14,8 +14,9 @@ export default class Service {
     let registered = new Date().toISOString();
     let pin = newPin();
     let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
-    this.store.saveUser(user);
-    this.emailer.send(user.emailAddress, pin);
+    let count = this.store.saveUser(user);
+    let succeeded = this.emailer.send(user.emailAddress, pin);
+    console.log(`*** service.register count/succeeded: ${count}/${succeeded} for registration: ${registration}`);
   }
 
   login(credentials) {
