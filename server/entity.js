@@ -30,6 +30,21 @@ export class Credentials {
   }
 }
 
+export class Status {
+  static success() {
+    return {
+      success: true,
+      error: ""
+    }
+  }
+  static fail(error) {
+    return {
+      success: false,
+      error: error
+    }
+  }
+}
+
 export class UserWorkOrders {
   static create(error, user, workorders) {
     return {

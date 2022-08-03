@@ -1,5 +1,5 @@
 import { newPin } from './pin.js';
-import { User, UserWorkOrders } from './entity.js';
+import { Status, User, UserWorkOrders } from './entity.js';
 
 export default class Service {
   constructor(store, emailer) {
@@ -10,6 +10,7 @@ export default class Service {
   }
 
   register(registration) {
+    let status;
     try {
       let id = 0;
       let registered = new Date().toISOString();
@@ -18,13 +19,17 @@ export default class Service {
       id = this.store.addUser(user);
       if (id > 0) {
         this.emailer.send(user.emailAddress, pin);
+        status = Status.success();
         console.log(`*** service.register succeeded for: ${registration.emailAddress}`);
       } else {
+        status = Status.error(`register failed for ${registration.emailAddress}`);
         console.log(`*** service.register failed for ${registration.emailAddress}`);
       }
     } catch (error) {
+      status = Status.error(`register failed for ${registration.emailAddress}`);
       console.log(`*** service.register for ${registration.emailAddress} failed: ${error}`);
     }
+    return status;
   }
 
   login(credentials) {

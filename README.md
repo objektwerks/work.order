@@ -61,12 +61,12 @@ Routes
 
 Sequences
 ---------
-1. client:register --- registration --> server
+1. client:register --- registration --> server --- status ---> client
 2. client:login --- credentials --> server --- user, workorders --> client
-3. client:save --- work order --> server --- 200 | 400 --> client
+3. client:save --- work order --> server --- status --> client
 4. client:list --- userid --> server --- workorders --> client
 5. client:get --- number --> server --- workorder --> client
-6. client:save --- user --> server --- 200 | 400 --> client
+6. client:save --- user --> server --- status --> client
 
 Database
 --------
