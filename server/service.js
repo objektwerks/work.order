@@ -10,23 +10,31 @@ export default class Service {
   }
 
   register(registration) {
-    let id = 0;
-    let registered = new Date().toISOString();
-    let pin = newPin();
-    let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
-    let count = this.store.saveUser(user);
-    let succeeded = this.emailer.send(user.emailAddress, pin);
-    console.log(`*** service.register count/succeeded: ${count}/${succeeded} for registration: ${registration}`);
+    try {
+      let id = 0;
+      let registered = new Date().toISOString();
+      let pin = newPin();
+      let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
+      this.store.addUser(user);
+      let succeeded = this.emailer.send(user.emailAddress, pin);
+      console.log(`*** service.register count/succeeded: ${count}/${succeeded} for registration: ${registration}`);
+    } catch (error) {
+      console.log(`*** service.register failed: ${error}`);
+    }
   }
 
   login(credentials) {
-    let user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
-    let workorders;
-    if (user != null) {
-      workorders = store.listWorkOrdersByUserId(user.id);
-      return UserWorkOrders.create(user, workorders);
-    } else {
-      return null;
+    try {
+      let user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
+      let workorders;
+      if (user != null) {
+        workorders = store.listWorkOrdersByUserId(user.id);
+        return UserWorkOrders.create(user, workorders);
+      } else {
+        return null;
+      }
+    } catch(error) {
+      console.log(`*** service.login failed: ${error}`);
     }
   }
 
