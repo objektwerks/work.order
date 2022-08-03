@@ -55,11 +55,11 @@ export default class Store {
 
   }
 
-  getUser(emailAddress, pin) {
+  listUsersByRole(role) {
 
   }
 
-  listUsersByRole(role) {
+  getUser(emailAddress, pin) {
 
   }
 
