@@ -1,4 +1,5 @@
 import mysql from 'mysql';
+import * as Entity from './entity.js';
 
 export default class Store {
   constructor(url) {
@@ -12,14 +13,22 @@ export default class Store {
     console.log("*** disconnected from store.")
   }
 
+  // number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed
   listWorkOrdersByUserId(userId) {
+    var list = [];
     connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (err, rows) => {
       if(err) {
         console.log(err)
       } else {
-        console.log(rows);
+        rows.forEach( (row) => {
+          console.log(row);
+          list.push(
+            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row. resolution, row.opend, row.closed)
+          )
+        });
       }
     });
+    list;
   }
 
   getWorkOrderByNumber(number) {
