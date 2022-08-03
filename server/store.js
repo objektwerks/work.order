@@ -114,6 +114,27 @@ export default class Store {
     }
   }
 
+  getUserByEmailAddress(emailAddress) {
+    let list = [];
+    connection.query(`select * from user where email_address = ${emailAddress}`, (error, rows) => {
+      if (error) {
+        log('getUserByEmailAddress', error)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    if (list.length > 0) {
+      return list[0];
+    } else {
+      return list;
+    }
+  }
+
   addWorkOrder(workorder) {
     let number = 0;
     connection.query('insert into work_order set ?', workorder, (error, result) => {
