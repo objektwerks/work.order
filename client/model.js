@@ -2,14 +2,12 @@ export const admin = "admin";
 export const homeowner = "homeowner";
 export const serviceProvider = "serviceprovider"
 
-export class Entity {
-  static toJson(object) {
-    return JSON.stringify(object)
-  }
+export function toJson(object) {
+  return JSON.stringify(object)
+}
 
-  static toObject(json) {
-    return JSON.parse(json)
-  }
+export function toObject(json) {
+  return JSON.parse(json)
 }
 
 export class Register {
