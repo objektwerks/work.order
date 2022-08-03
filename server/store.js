@@ -13,11 +13,15 @@ export default class Store {
     console.log("*** disconnected from store.");
   }
 
+  log(method, error) {
+    console.log(`*** store.${method} error: ${error}`)
+  }
+
   listWorkOrdersByUserId(userId) {
     let list = [];
     connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
       if (error) {
-        console.log(error)
+        log('listWorkOrdersByUserId', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -34,7 +38,7 @@ export default class Store {
     let list = [];
     connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
       if (error) {
-        console.log(error)
+        log('listUsersByRole', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -51,7 +55,7 @@ export default class Store {
     let list = [];
     connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
       if (error) {
-        console.log(error)
+        log('getWorkOrderByNumber', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -72,7 +76,7 @@ export default class Store {
     let list = [];
     connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
       if (error) {
-        console.log(error)
+        log('getUserByEmailAddressPin', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -93,7 +97,7 @@ export default class Store {
     let list = [];
     connection.query(`select * from user where id = ${id}`, (error, rows) => {
       if (error) {
-        console.log(error)
+        log('getUserById', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -114,7 +118,7 @@ export default class Store {
     let number = 0;
     connection.query('insert into work_order set ?', workorder, (error, result) => {
       if (error) {
-        console.log(error)
+        log('addWorkOrder', error)
       } else {
         number = result.insertId;
         console.log(`workorder number: ${number}`);
@@ -127,7 +131,7 @@ export default class Store {
     let id = 0;
     connection.query('insert into user set ?', user, (error, result) => {
       if (error) {
-        console.log(error)
+        log('addUser', error)
       } else {
         id = result.insertId;
         console.log(`user id: ${id}`);
@@ -140,7 +144,7 @@ export default class Store {
     let count = 0;
     connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
       if (error) {
-        console.log(error)
+        log('updateWorkOrder', error)
       } else {
         count = result.affectedRows;
         console.log(`workorder ${workorder.number} update count: ${count}`);
@@ -153,7 +157,7 @@ export default class Store {
     let count = 0;
     connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
       if (error) {
-        console.log(error)
+        log('updateUser', error)
       } else {
         count = result.affectedRows;
         console.log(`user ${user.id} update count: ${count}`);
