@@ -60,11 +60,11 @@ Routes
 
 Sequences
 ---------
-1. client --- register --> server --- user --> client
-2. client --- login --> server --- user, work orders --> client
-3. client --- work order --> server --- 200 | 400 --> client
-4. client --- list | number --> server --- work order(s) --> client
-5. client --- user --> server --- 200 | 400 --> client
+1. client:register --- registration --> server
+2. client:login --- emailAddress, pin --> server --- user, work orders --> client
+3. client:save --- work order --> server --- 200 | 400 --> client
+4. client:list --- list | number --> server --- work order(s) --> client
+5. client:save --- user --> server --- 200 | 400 --> client
 
 Database
 --------

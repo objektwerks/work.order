@@ -4,4 +4,10 @@ export default class Service {
     this.emailer = emailer;
     console.log("*** service is running ...");
   }
+
+  register(registration) {
+
+  }
+
+  login(emailAddress, pin)
 }
