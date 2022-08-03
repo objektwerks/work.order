@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import * as Entity from './entity.js';
+import { WorkOrder, User } from './entity.js';
 
 export default class Store {
   constructor(url) {
@@ -68,7 +68,7 @@ export default class Store {
     if (list.length > 0) {
       return list[0];
     } else {
-      return list;
+      return null;
     }
   }
 
@@ -89,7 +89,7 @@ export default class Store {
     if (list.length > 0) {
       return list[0];
     } else {
-      return list;
+      return null;
     }
   }
 
@@ -110,7 +110,7 @@ export default class Store {
     if (list.length > 0) {
       return list[0];
     } else {
-      return list;
+      return null;
     }
   }
 
