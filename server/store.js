@@ -15,9 +15,9 @@ export default class Store {
 
   listWorkOrdersByUserId(userId) {
     var list = [];
-    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (err, rows) => {
-      if(err) {
-        console.log(err)
+    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (error, rows) => {
+      if (error) {
+        console.log(error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -32,9 +32,9 @@ export default class Store {
 
   listUsersByRole(role) {
     var list = [];
-    connection.query(`select * from user where role = ${role}`, (err, rows) => {
-      if(err) {
-        console.log(err)
+    connection.query(`select * from user where role = ${role}`, (error, rows) => {
+      if (error) {
+        console.log(error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -49,9 +49,9 @@ export default class Store {
 
   getWorkOrderByNumber(number) {
     var list = [];
-    connection.query(`select * from work_order where number = ${number}`, (err, rows) => {
-      if(err) {
-        console.log(err)
+    connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
+      if (error) {
+        console.log(error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -70,9 +70,9 @@ export default class Store {
 
   getUserByCredentials(emailAddress, pin) {
     var list = [];
-    connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (err, rows) => {
-      if(err) {
-        console.log(err)
+    connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
+      if (error) {
+        console.log(error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -90,7 +90,16 @@ export default class Store {
   }
 
   addWorkOrder(workorder) {
-
+    var number = 0;
+    connection.query('insert into work_order set ?', workorder, (error, response) => {
+      if (error) {
+        console.log(error)
+      } else {
+        number = response.insertId;
+        console.log(`workorder number: ${number}`);
+      }
+    });
+    number;
   }
 
   addUser(user) {
