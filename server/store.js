@@ -30,6 +30,23 @@ export default class Store {
     list;
   }
 
+  listUsersByRole(role) {
+    var list = [];
+    connection.query(`select * from user where role = ${role}`, (err, rows) => {
+      if(err) {
+        console.log(err)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    list;
+  }
+
   getWorkOrderByNumber(number) {
     var list = [];
     connection.query(`select * from work_order where number = ${number}`, (err, rows) => {
@@ -49,31 +66,6 @@ export default class Store {
     } else {
       return list;
     }
-  }
-
-  addWorkOrder(workorder) {
-
-  }
-
-  updateWorkOrder(workorder) {
-
-  }
-
-  listUsersByRole(role) {
-    var list = [];
-    connection.query(`select * from user where role = ${role}`, (err, rows) => {
-      if(err) {
-        console.log(err)
-      } else {
-        rows.forEach((row) => {
-          console.log(row);
-          list.push(
-            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
-          )
-        });
-      }
-    });
-    list;
   }
 
   getUser(emailAddress, pin) {
@@ -97,7 +89,15 @@ export default class Store {
     }
   }
 
+  addWorkOrder(workorder) {
+
+  }
+
   addUser(user) {
+
+  }
+
+  updateWorkOrder(workorder) {
 
   }
 
