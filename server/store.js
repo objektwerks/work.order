@@ -68,9 +68,30 @@ export default class Store {
     }
   }
 
-  getUserByCredentials(emailAddress, pin) {
+  getUserByEmailAddressPin(emailAddress, pin) {
     var list = [];
     connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
+      if (error) {
+        console.log(error)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    if (list.length > 0) {
+      return list[0];
+    } else {
+      return list;
+    }
+  }
+
+  getUserById(id) {
+    var list = [];
+    connection.query(`select * from user where id = ${id}`, (error, rows) => {
       if (error) {
         console.log(error)
       } else {
