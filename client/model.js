@@ -62,7 +62,8 @@ export class User {
       name: name,
       emailAddress: emailAddress,
       streetAddress: streetAddress,
-      registered: registered
+      registered: registered,
+      pin: ""
     }
   }
 }
