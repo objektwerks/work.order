@@ -31,8 +31,9 @@ export class Credentials {
 }
 
 export class UserWorkOrders {
-  static create(user, workorders) {
+  static create(error, user, workorders) {
     return {
+      error: error,
       user: user,
       workorders: workorders
     }    

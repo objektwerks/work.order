@@ -24,21 +24,23 @@ export default class Service {
   }
 
   login(credentials) {
+    let userWorkOrders;
     try {
       let user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
-      let userWorkOrders;
       if (user != null) {
         let workorders = store.listWorkOrdersByUserId(user.id);
         userWorkOrders = UserWorkOrders.create(user, workorders);
         console.log(`*** service.login succeeded: ${credentials.emailAddress}`);
       } else {
-        userWorkOrders = null;
+        userWorkOrders.error = "Login failed!";
         console.log(`*** service.login failed: ${credentials.emailAddress}`);
       }
       return userWorkOrders;
     } catch(error) {
+      userWorkOrders.error = "Login failed!";
       console.log(`*** service.login for ${credentials.emailAddress} failed: ${error}`);
     }
+    return userWorkOrders;
   }
 
   saveWorkOrder(workorder) {
