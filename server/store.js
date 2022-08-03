@@ -91,11 +91,11 @@ export default class Store {
 
   addWorkOrder(workorder) {
     var number = 0;
-    connection.query('insert into work_order set ?', workorder, (error, response) => {
+    connection.query('insert into work_order set ?', workorder, (error, result) => {
       if (error) {
         console.log(error)
       } else {
-        number = response.insertId;
+        number = result.insertId;
         console.log(`workorder number: ${number}`);
       }
     });
@@ -104,11 +104,11 @@ export default class Store {
 
   addUser(user) {
     var id = 0;
-    connection.query('insert into user set ?', user, (error, response) => {
+    connection.query('insert into user set ?', user, (error, result) => {
       if (error) {
         console.log(error)
       } else {
-        id = response.insertId;
+        id = result.insertId;
         console.log(`user id: ${id}`);
       }
     });
@@ -116,7 +116,16 @@ export default class Store {
   }
 
   updateWorkOrder(workorder) {
-
+    var count = 0;
+    connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
+      if (error) {
+        console.log(error)
+      } else {
+        count = result.affectedRows;
+        console.log(`workorder number: ${count}`);
+      }
+    });
+    count;
   }
 
   updateUser(user) {
