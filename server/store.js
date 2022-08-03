@@ -13,7 +13,13 @@ export default class Store {
   }
 
   listWorkOrdersByUserId(userId) {
-
+    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (err, rows) => {
+      if(err) {
+        console.log(err)
+      } else {
+        console.log(rows);
+      }
+    });
   }
 
   getWorkOrderByNumber(number) {
