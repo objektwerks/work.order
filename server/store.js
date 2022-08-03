@@ -15,7 +15,7 @@ export default class Store {
 
   listWorkOrdersByUserId(userId) {
     var list = [];
-    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (error, rows) => {
+    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
       if (error) {
         console.log(error)
       } else {
@@ -32,7 +32,7 @@ export default class Store {
 
   listUsersByRole(role) {
     var list = [];
-    connection.query(`select * from user where role = ${role}`, (error, rows) => {
+    connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
       if (error) {
         console.log(error)
       } else {
