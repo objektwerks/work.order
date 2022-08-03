@@ -14,7 +14,7 @@ export default class Store {
   }
 
   listWorkOrdersByUserId(userId) {
-    var list = [];
+    let list = [];
     connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
       if (error) {
         console.log(error)
@@ -31,7 +31,7 @@ export default class Store {
   }
 
   listUsersByRole(role) {
-    var list = [];
+    let list = [];
     connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
       if (error) {
         console.log(error)
@@ -48,7 +48,7 @@ export default class Store {
   }
 
   getWorkOrderByNumber(number) {
-    var list = [];
+    let list = [];
     connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
       if (error) {
         console.log(error)
@@ -69,7 +69,7 @@ export default class Store {
   }
 
   getUserByEmailAddressPin(emailAddress, pin) {
-    var list = [];
+    let list = [];
     connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
       if (error) {
         console.log(error)
@@ -90,7 +90,7 @@ export default class Store {
   }
 
   getUserById(id) {
-    var list = [];
+    let list = [];
     connection.query(`select * from user where id = ${id}`, (error, rows) => {
       if (error) {
         console.log(error)
@@ -111,7 +111,7 @@ export default class Store {
   }
 
   addWorkOrder(workorder) {
-    var number = 0;
+    let number = 0;
     connection.query('insert into work_order set ?', workorder, (error, result) => {
       if (error) {
         console.log(error)
@@ -124,7 +124,7 @@ export default class Store {
   }
 
   addUser(user) {
-    var id = 0;
+    let id = 0;
     connection.query('insert into user set ?', user, (error, result) => {
       if (error) {
         console.log(error)
@@ -137,7 +137,7 @@ export default class Store {
   }
 
   updateWorkOrder(workorder) {
-    var count = 0;
+    let count = 0;
     connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
       if (error) {
         console.log(error)
@@ -150,7 +150,7 @@ export default class Store {
   }
 
   updateUser(user) {
-    var count = 0;
+    let count = 0;
     connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
       if (error) {
         console.log(error)
