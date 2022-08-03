@@ -14,7 +14,6 @@ create table `user` (
   `pin` varchar(7) not null unique,
   primary key (`id`)
 );
-create index user_name_idx ON `user`(`name`);
 create index user_email_address_idx ON `user`(`email_address`);
 
 create table `work_order` (
