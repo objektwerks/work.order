@@ -53,6 +53,20 @@ export class WorkOrder {
       closed: closed
     }
   }
+
+  static single(error, workorder) {
+    return {
+      error: error,
+      workorder: workorder
+    }    
+  }
+
+  static list(error, workorders) {
+    return {
+      error: error,
+      workorders: workorders
+    }    
+  }
 }
 
 export class User {
