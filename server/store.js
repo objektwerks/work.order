@@ -13,7 +13,6 @@ export default class Store {
     console.log("*** disconnected from store.")
   }
 
-  // number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed
   listWorkOrdersByUserId(userId) {
     var list = [];
     connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId}`, (err, rows) => {
@@ -23,7 +22,7 @@ export default class Store {
         rows.forEach( (row) => {
           console.log(row);
           list.push(
-            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row. resolution, row.opend, row.closed)
+            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
           )
         });
       }
