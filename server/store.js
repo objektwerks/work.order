@@ -5,12 +5,12 @@ export default class Store {
   constructor(url) {
     this.url = url;
     this.connection = mysql.createConnection(url);
-    console.log("*** connected to store ...")
+    console.log("*** connected to store ...");
   }
 
   disconnect() {
     this.connection.end();
-    console.log("*** disconnected from store.")
+    console.log("*** disconnected from store.");
   }
 
   listWorkOrdersByUserId(userId) {
@@ -19,7 +19,7 @@ export default class Store {
       if(err) {
         console.log(err)
       } else {
-        rows.forEach( (row) => {
+        rows.forEach((row) => {
           console.log(row);
           list.push(
             WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
