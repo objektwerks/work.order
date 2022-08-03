@@ -94,4 +94,11 @@ export class User {
       pin: ""
     }
   }
+
+  static list(error, users) {
+    return {
+      error: error,
+      users: users
+    }    
+  }
 }
