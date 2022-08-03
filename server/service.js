@@ -22,8 +22,8 @@ export default class Service {
         status = Status.success();
         console.log(`*** service.register succeeded for: ${registration.emailAddress}`);
       } else {
-        status = Status.error(`register failed for ${registration.emailAddress}`);
-        console.log(`*** service.register failed for ${registration.emailAddress}`);
+        status = Status.error(`Register failed for: ${registration.emailAddress}`);
+        console.log(`*** service.register failed for: ${registration.emailAddress}`);
       }
     } catch (error) {
       status = Status.error(`register failed for ${registration.emailAddress}`);
@@ -39,10 +39,10 @@ export default class Service {
       if (user != null) {
         let workorders = store.listWorkOrdersByUserId(user.id);
         userWorkOrders = UserWorkOrders.create(user, workorders);
-        console.log(`*** service.login succeeded: ${credentials.emailAddress}`);
+        console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
       } else {
         userWorkOrders.error = "Login failed!";
-        console.log(`*** service.login failed: ${credentials.emailAddress}`);
+        console.log(`*** service.login failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {
       userWorkOrders.error = "Login failed!";
