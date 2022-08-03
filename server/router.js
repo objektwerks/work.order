@@ -1,0 +1,65 @@
+import compression from 'compression';
+import express from 'express';
+
+export default class Router {
+  constructor(service) {
+    this.service = service;
+
+    const router = express();
+
+    router.use(compression());
+    router.use(express.static('client'))
+    router.use(express.json());
+    
+    router.post('/register', (request, response) => {
+      response.send(service.register(request.body));
+    });
+    
+    router.post('/login', (request, response) => {
+      response.send(service.login(request.body));
+    });
+    
+    router.post('/workorders/save', (request, response) => {
+      response.send(service.saveWorkOrder(request.body));
+    });
+    
+    router.get('/workorders/:userid', (request, response) => {
+      response.send(service.listWorkOrdersByUserId(request.params.userid));
+    });
+    
+    router.get('/workorders/:number', (request, response) => {
+      response.send(service.getWorkOrderByNumber(request.params.number));
+    });
+    
+    router.post('/users/save', (request, response) => {
+      response.send(service.saveUser(request.body));
+    });
+    
+    router.post('/users/:role', (request, response) => {
+      response.send(service.listUsersByRole(request.body));
+    });
+    
+    const port = process.env.PORT || 3000;
+    const host = process.env.BIND_IP || "127.0.0.1";
+    const http = router.listen(port, host, () =>
+      console.log(`*** router is listening @ http://${host}:${port}/`),
+    );
+    
+    process.on('SIGINT', () => {
+      shutdown('sigint');
+    });
+    
+    process.on('SIGTERM', () => {
+      shutdown('sigterm');
+    });
+
+    function shutdown(signal) {
+      http.close(() => {
+        console.log(`*** [${signal}] router and server shutting down ...`);
+        service.store.disconnect();
+        console.log('*** router and server shutdown.');
+        process.exit();
+      });
+    }
+  }
+}
