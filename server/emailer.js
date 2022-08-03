@@ -25,15 +25,13 @@ export default class Emailer {
       subject: `Work Order Registration`,
       text: `Your new pin is: ${pin} Use it to login. Record and keep it in a safe place. Then delete this email!`
     };
-    var sendSucceeded = true;
     this.transporter.sendMail(message, function(error, info) {
       if (error) {
         console.log(`*** emailer failed: ${error}`);
-        sendSucceeded = false;
+        throw error;
       } else {
         console.log(`*** emailer sent: ${info.messageId} to: ${message.to}`);
       }
     });
-    return sendSucceeded;
   }
 }

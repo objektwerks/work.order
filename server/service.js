@@ -15,9 +15,13 @@ export default class Service {
       let registered = new Date().toISOString();
       let pin = newPin();
       let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
-      this.store.addUser(user);
-      let succeeded = this.emailer.send(user.emailAddress, pin);
-      console.log(`*** service.register count/succeeded: ${count}/${succeeded} for registration: ${registration}`);
+      id = this.store.addUser(user);
+      if (id > 0) {
+        this.emailer.send(user.emailAddress, pin);
+        console.log(`*** service.register succeeded for: ${registration.emailAddress}`);
+      } else {
+        console.log(`*** service.register failed for ${registration.emailAddress}`);
+      }
     } catch (error) {
       console.log(`*** service.register for ${registration.emailAddress} failed: ${error}`);
     }
