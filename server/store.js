@@ -103,7 +103,16 @@ export default class Store {
   }
 
   addUser(user) {
-
+    var id = 0;
+    connection.query('insert into user set ?', user, (error, response) => {
+      if (error) {
+        console.log(error)
+      } else {
+        id = response.insertId;
+        console.log(`user id: ${id}`);
+      }
+    });
+    id;
   }
 
   updateWorkOrder(workorder) {
