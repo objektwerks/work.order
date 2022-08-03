@@ -68,7 +68,7 @@ export default class Store {
     }
   }
 
-  getUser(emailAddress, pin) {
+  getUserByCredentials(emailAddress, pin) {
     var list = [];
     connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (err, rows) => {
       if(err) {

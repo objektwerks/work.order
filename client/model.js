@@ -39,19 +39,6 @@ export class UserWorkOrders {
   }
 }
 
-export class User {
-  static create(id, role, name, emailAddress, streetAddress, registered) {
-    return {
-      id: id,
-      role: role,
-      name: name,
-      emailAddress: emailAddress,
-      streetAddress: streetAddress,
-      registered: registered
-    }
-  }
-}
-
 export class WorkOrder {
   static create(number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed) {
     return {
@@ -63,6 +50,19 @@ export class WorkOrder {
       resolution: resolution,
       opened: opened,
       closed: closed
+    }
+  }
+}
+
+export class User {
+  static create(id, role, name, emailAddress, streetAddress, registered) {
+    return {
+      id: id,
+      role: role,
+      name: name,
+      emailAddress: emailAddress,
+      streetAddress: streetAddress,
+      registered: registered
     }
   }
 }
