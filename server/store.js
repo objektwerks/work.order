@@ -44,7 +44,11 @@ export default class Store {
         });
       }
     });
-    if (list.length > 0) list[0];
+    if (list.length > 0) {
+      return list[0];
+    } else {
+      return list;
+    }
   }
 
   addWorkOrder(workorder) {
@@ -73,7 +77,24 @@ export default class Store {
   }
 
   getUser(emailAddress, pin) {
-
+    var list = [];
+    connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (err, rows) => {
+      if(err) {
+        console.log(err)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    if (list.length > 0) {
+      return list[0];
+    } else {
+      return list;
+    }
   }
 
   addUser(user) {
