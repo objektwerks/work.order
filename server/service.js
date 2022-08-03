@@ -9,5 +9,5 @@ export default class Service {
 
   }
 
-  login(emailAddress, pin)
+  login(credentials)
 }

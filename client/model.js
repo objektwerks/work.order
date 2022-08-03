@@ -10,7 +10,7 @@ export function toObject(json) {
   return JSON.parse(json)
 }
 
-export class Register {
+export class Registration {
   static create(role, name, emailAddress, streetAddress) {
     return {
       role: role,
@@ -21,7 +21,7 @@ export class Register {
   }
 }
 
-export class Login {
+export class Credentials {
   static create(emailAddress, pin) {
     return {
       emailAddress: emailAddress,
