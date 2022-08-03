@@ -56,7 +56,20 @@ export default class Store {
   }
 
   listUsersByRole(role) {
-
+    var list = [];
+    connection.query(`select * from user where role = ${role}`, (err, rows) => {
+      if(err) {
+        console.log(err)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    list;
   }
 
   getUser(emailAddress, pin) {
