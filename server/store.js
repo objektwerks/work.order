@@ -122,13 +122,22 @@ export default class Store {
         console.log(error)
       } else {
         count = result.affectedRows;
-        console.log(`workorder number: ${count}`);
+        console.log(`workorder ${workorder.number} update count: ${count}`);
       }
     });
     count;
   }
 
   updateUser(user) {
-
+    var count = 0;
+    connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
+      if (error) {
+        console.log(error)
+      } else {
+        count = result.affectedRows;
+        console.log(`user ${user.id} update count: ${count}`);
+      }
+    });
+    count;
   }
 }
