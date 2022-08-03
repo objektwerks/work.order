@@ -19,7 +19,7 @@ export default class Service {
       let succeeded = this.emailer.send(user.emailAddress, pin);
       console.log(`*** service.register count/succeeded: ${count}/${succeeded} for registration: ${registration}`);
     } catch (error) {
-      console.log(`*** service.register failed: ${error}`);
+      console.log(`*** service.register for ${registration.emailAddress} failed: ${error}`);
     }
   }
 
