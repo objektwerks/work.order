@@ -12,7 +12,11 @@ export default class Store {
     console.log("*** disconnected from store.")
   }
 
-  listWorkOrders(userId) {
+  listWorkOrdersByUserId(userId) {
+
+  }
+
+  getWorkOrderByNumber(number) {
 
   }
 
@@ -28,7 +32,7 @@ export default class Store {
 
   }
 
-  listUsers(role) {
+  listUsersByRole(role) {
 
   }
 

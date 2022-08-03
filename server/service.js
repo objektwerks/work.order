@@ -9,5 +9,27 @@ export default class Service {
 
   }
 
-  login(credentials)
+  login(credentials) {
+
+  }
+
+  saveWorkOrder(workorder) {
+
+  }
+
+  listWorkOrdersByUserId(userId) {
+
+  }
+
+  getWorkOrderByNumber(number) {
+
+  }
+
+  saveUser(user) {
+
+  }
+
+  listUsersByRole(role) {
+    
+  }
 }

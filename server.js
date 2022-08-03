@@ -35,20 +35,20 @@ server.post('/workorders/save', (request, response) => {
   response.send('workorder saved: ' + request.body);
 });
 
-server.get('/workorders/refresh', (request, response) => {
-  response.send('workorders refreshed: ' + request.params.number);
+server.get('/workorders/:userid', (request, response) => {
+  response.send('workorders by userid: ' + request.params.number);
 });
 
-server.get('/workorders/refresh/:number', (request, response) => {
-  response.send('workorder refreshed by number: ' + request.params.number);
-});
-
-server.post('/users/:role', (request, response) => {
-  response.send('user by role: ' + request.body);
+server.get('/workorders/:number', (request, response) => {
+  response.send('workorder by number: ' + request.params.number);
 });
 
 server.post('/users/save', (request, response) => {
   response.send('user saved: ' + request.body);
+});
+
+server.post('/users/:role', (request, response) => {
+  response.send('user by role: ' + request.body);
 });
 
 const port = process.env.PORT || 3000;
