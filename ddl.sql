@@ -23,10 +23,10 @@ create table `work_order` (
   `homeowner_id` int not null,
   `service_provider_id` int not null,
   `issue` varchar(512) not null,
+  `image_url` varchar(255) not null default "",
   `resolution` varchar(512) not null default "",
   `opened` varchar(24) not null,
   `closed` varchar(24) not null default "",
-  `image_url` varchar(255) not null default "",
   primary key (`number`),
   constraint homeowner_id_fk foreign key (`homeowner_id`) REFERENCES `user`(`id`),
   constraint service_provider_id_fk foreign key (`service_provider_id`) REFERENCES `user`(`id`)
