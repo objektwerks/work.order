@@ -6,11 +6,11 @@ import Router from './server/router.js';
 const url = process.env.DATABASE_URL;
 const store = new Store(url);
 
-const emailHost = process.env.EMAIL_HOST;
-const emailPort = process.env.EMAIL_PORT;
-const emailSender = process.env.EMAIL_SENDER;
-const emailPassword = process.env.EMAIL_PASSWORD;
-const emailer = new Emailer(emailHost, emailPort, emailSender, emailPassword);
+const host = process.env.EMAIL_HOST;
+const port = process.env.EMAIL_PORT;
+const sender = process.env.EMAIL_SENDER;
+const password = process.env.EMAIL_PASSWORD;
+const emailer = new Emailer(host, port, sender, password);
 
 const service = new Service(store, emailer);
 
