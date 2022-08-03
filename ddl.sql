@@ -16,7 +16,6 @@ create table `user` (
 );
 create index user_name_idx ON `user`(`name`);
 create index user_email_address_idx ON `user`(`email_address`);
-create trigger user_registered_trigger BEFORE INSERT ON `user` FOR EACH ROW SET NEW.registered = IFNULL(NEW.registered, NOW());
 
 create table `work_order` (
   `number` int not null auto_increment,
@@ -31,4 +30,3 @@ create table `work_order` (
   constraint homeowner_id_fk foreign key (`homeowner_id`) REFERENCES `user`(`id`),
   constraint service_provider_id_fk foreign key (`service_provider_id`) REFERENCES `user`(`id`)
 );
-create trigger work_order_opened_trigger BEFORE INSERT ON `work_order` FOR EACH ROW SET NEW.opened = IFNULL(NEW.opened, NOW());

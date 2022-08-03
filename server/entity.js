@@ -42,10 +42,6 @@ export class UserWorkOrders {
 }
 
 export class User {
-  static create(id, role, name, emailAddress, streetAddress) {
-    return create(id, role, name, emailAddress, streetAddress, new Date().toISOString);
-  }
-
   static create(id, role, name, emailAddress, streetAddress, registered) {
     return {
       id: id,
@@ -59,16 +55,13 @@ export class User {
 }
 
 export class WorkOrder {
-  static create(number, homeownerId, serviceProviderId, issue) {
-    return create(number, homeownerId, serviceProviderId, issue, "", new Date().toISOString, "");
-  }
-
-  static create(number, homeownerId, serviceProviderId, issue, resolution, opened, closed) {
+  static create(number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed) {
     return {
       number: number,
       homeownerId: homeownerId,
       serviceProviderId: serviceProviderId,
       issue: issue,
+      imageUrl: imageUrl,
       resolution: resolution,
       opened: opened,
       closed: closed
