@@ -10,6 +10,7 @@ Install
 Dev
 ---
 1. npm run dev
+2. Control-C
 
 Nodejs Host
 -----------
