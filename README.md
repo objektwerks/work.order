@@ -28,8 +28,8 @@ Development
 Roles
 -----
 >A role can invoke a set of actions.
-1. **homeowner** — add, select and edit ***work orders***
-2. **service provider** — select and edit ***work orders***
+1. **homeowner** — add, select and edit *work orders*
+2. **service provider** — select and edit *work orders*
 
 Features [ Role ] ( Actions )
 -----------------------------
