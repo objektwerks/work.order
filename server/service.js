@@ -51,10 +51,22 @@ export default class Service {
     return userWorkOrders;
   }
 
-  saveWorkOrder(workorder) {
+  listWorkOrdersByUserId(userId) {
+
+  }
+
+  listUsersByRole(role) {
+    
+  }
+
+  getWorkOrderByNumber(number) {
+
+  }
+
+  addWorkOrder(workorder) {
     let saved;
     try {
-      let id = this.store.saveWorkOrder(workorder);
+      let id = this.store.addWorkOrder(workorder);
       workorder.id = id
       saved = WorkOrder.success(workorder);
       console.log(`*** service.saveWorkOrder succeeded for id: ${id}`);
@@ -65,19 +77,17 @@ export default class Service {
     saved;
   }
 
-  listWorkOrdersByUserId(userId) {
-
-  }
-
-  getWorkOrderByNumber(number) {
-
-  }
-
-  saveUser(user) {
-
-  }
-
-  listUsersByRole(role) {
-    
+  addUser(user) {
+    let saved;
+    try {
+      let id = this.store.addUser(user);
+      user.id = id
+      saved = User.success(user);
+      console.log(`*** service.saveUser succeeded for id: ${id}`);
+    } catch(error) {
+      saved = User.fail("Save user failed!");
+      console.log(`*** service.saveUser failed: ${error}`);
+    }
+    saved;
   }
 }
