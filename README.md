@@ -12,8 +12,8 @@ Dev
 1. npm run dev
 2. Control-C ( to stop nodemon )
 
-Nodejs Host
------------
+Nodejs Hosting Providers
+------------------------
 >Consider:
 1. [NodeChef](https://www.nodechef.com/nodejs-hosting)
 2. [Heroku](https://www.heroku.com/nodejs)
