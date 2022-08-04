@@ -34,7 +34,7 @@ export class Status {
   static success() {
     return {
       success: true,
-      error: ""
+      error: ''
     }
   }
   static fail(error) {
@@ -125,7 +125,7 @@ export class User {
       emailAddress: emailAddress,
       streetAddress: streetAddress,
       registered: registered,
-      pin: ""
+      pin: ''
     }
   }
 
