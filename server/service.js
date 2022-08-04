@@ -90,4 +90,12 @@ export default class Service {
     }
     saved;
   }
+
+  updateWorkOrder(workorder) {
+
+  }
+
+  updateUser(user) {
+    
+  }
 }
