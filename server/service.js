@@ -65,7 +65,16 @@ export default class Service {
   }
 
   listUsersByRole(role) {
-    
+    let users;
+    try {
+      let list = this.store.listUsersByRole(role);
+      users = Users.success(list);
+      console.log(`*** service.listUsersByRole succeeded for role: ${role}`);
+    } catch(error) {
+      users = Users.fail('List work orders by user id failed!');
+      console.log(`*** service.listUsersByRole for role: ${role} failed: ${error}`);
+    }
+    return users;
   }
 
   getWorkOrderByNumber(number) {
