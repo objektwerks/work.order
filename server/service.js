@@ -77,25 +77,11 @@ export default class Service {
     saved;
   }
 
-  addUser(user) {
-    let saved;
-    try {
-      let id = this.store.addUser(user);
-      user.id = id
-      saved = User.success(user);
-      console.log(`*** service.saveUser succeeded for id: ${id}`);
-    } catch(error) {
-      saved = User.fail("Save user failed!");
-      console.log(`*** service.saveUser failed: ${error}`);
-    }
-    saved;
-  }
-
   updateWorkOrder(workorder) {
 
   }
 
   updateUser(user) {
-    
+
   }
 }
