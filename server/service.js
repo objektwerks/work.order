@@ -5,7 +5,7 @@ export default class Service {
   constructor(store, emailer) {
     this.store = store;
     this.emailer = emailer;
-    console.log("*** service is running ...");
+    console.log('*** service is running ...');
     console.log(`*** new pin verified: ${newPin()}`)
   }
 
@@ -121,7 +121,7 @@ export default class Service {
         console.log(`*** service.updateWorkOrder failed!`);
       }
     } catch(error) {
-      status = Status.fail("Update work order failed!");
+      status = Status.fail('Update work order failed!');
       console.log(`*** service.updateWorkOrder failed: ${error}`);
     }
     return status;
@@ -139,7 +139,7 @@ export default class Service {
         console.log(`*** service.updateUser failed!`);
       }
     } catch(error) {
-      status = Status.fail("Update user order failed!");
+      status = Status.fail('Update user order failed!');
       console.log(`*** service.updateUser failed: ${error}`);
     }
     return status;
