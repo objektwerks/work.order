@@ -5,12 +5,12 @@ Work order web app and nodejs server.
 Install
 -------
 1. npm install
->See **package.json** for installable dependencies.
+>See **package.json** for details.
 
 Dev
 ---
 1. npm run dev
-2. Control-C
+2. Control-C ( to stop nodemon )
 
 Nodejs Host
 -----------
@@ -18,7 +18,7 @@ Nodejs Host
 
 Development
 -----------
->The project uses the following technologies:
+>This project uses the following technologies:
 1. Javascript
 2. Html, Css
 3. MySql, Sql
