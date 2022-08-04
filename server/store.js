@@ -51,23 +51,6 @@ export default class Store {
     return list;
   }
 
-  getWorkOrderByNumber(number) {
-    let list = [];
-    connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
-      if (error) {
-        log('getWorkOrderByNumber', error)
-      } else {
-        rows.forEach((row) => {
-          console.log(row);
-          list.push(
-            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
-          )
-        });
-      }
-    });
-    return (list.length > 0) ? list[0] : null;
-  }
-
   getUserByEmailAddressPin(emailAddress, pin) {
     let list = [];
     connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
@@ -78,6 +61,23 @@ export default class Store {
           console.log(row);
           list.push(
             User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          )
+        });
+      }
+    });
+    return (list.length > 0) ? list[0] : null;
+  }
+
+  getWorkOrderByNumber(number) {
+    let list = [];
+    connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
+      if (error) {
+        log('getWorkOrderByNumber', error)
+      } else {
+        rows.forEach((row) => {
+          console.log(row);
+          list.push(
+            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
           )
         });
       }
