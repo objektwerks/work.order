@@ -1,5 +1,5 @@
 import { newPin } from './pin.js';
-import { Status, User, UserWorkOrders } from './entity.js';
+import { Status, User, UserWorkOrders, WorkOrder } from './entity.js';
 
 export default class Service {
   constructor(store, emailer) {
@@ -52,7 +52,17 @@ export default class Service {
   }
 
   saveWorkOrder(workorder) {
-
+    let saved;
+    try {
+      let id = this.store.saveWorkOrder(workorder);
+      workorder.id = id
+      saved = WorkOrder.success(workorder);
+      console.log(`*** service.saveWorkOrder succeeded for id: ${id}`);
+    } catch(error) {
+      saved = WorkOrder.fail("Save work order failed!");
+      console.log(`*** service.saveWorkOrder failed: ${error}`);
+    }
+    saved;
   }
 
   listWorkOrdersByUserId(userId) {

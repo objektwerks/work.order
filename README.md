@@ -64,10 +64,10 @@ Sequences
 ---------
 1. client:register --- registration --> server --- status ---> client
 2. client:login --- credentials --> server --- user, workorders --> client
-3. client:save --- work order --> server --- status --> client
+3. client:save --- work order --> server --- workorder --> client
 4. client:list --- userid --> server --- workorders --> client
 5. client:get --- number --> server --- workorder --> client
-6. client:save --- user --> server --- status --> client
+6. client:save --- user --> server --- user --> client
 7. client:list --- role --> server --- users --> client
 
 Database

@@ -33,11 +33,13 @@ export class Credentials {
 export class Status {
   static success() {
     return {
+      success: true,
       error: ""
     }
   }
   static fail(error) {
     return {
+      success: false,
       error: error
     }
   }
@@ -49,6 +51,22 @@ export class UserWorkOrders {
       error: error,
       user: user,
       workorders: workorders
+    }    
+  }
+}
+
+export class WorkOrders {
+  static success(workorders) {
+    return {
+      success: true,
+      workorders: workorders
+    }    
+  }
+
+  static fail(error) {
+    return {
+      success: false,
+      error: error
     }    
   }
 }
@@ -67,17 +85,33 @@ export class WorkOrder {
     }
   }
 
-  static single(error, workorder) {
+  static success(workorder) {
     return {
-      error: error,
+      success: true,
       workorder: workorder
     }    
   }
 
-  static list(error, workorders) {
+  static fail(error) {
     return {
-      error: error,
-      workorders: workorders
+      success: false,
+      error: error
+    }    
+  }
+}
+
+export class Users {
+  static success(users) {
+    return {
+      success: true,
+      users: users
+    }    
+  }
+
+  static fail(error) {
+    return {
+      success: false,
+      error: error
     }    
   }
 }
@@ -95,10 +129,17 @@ export class User {
     }
   }
 
-  static list(error, users) {
+  static success(user) {
     return {
-      error: error,
-      users: users
+      success: true,
+      user: user
+    }    
+  }
+
+  static fail(error) {
+    return {
+      success: false,
+      error: error
     }    
   }
 }
