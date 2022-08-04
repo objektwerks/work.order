@@ -18,7 +18,7 @@ Nodejs Host
 
 Development
 -----------
->The following technologies will be used:
+>The project uses the following technologies:
 1. Javascript
 2. Html, Css
 3. MySql, Sql
