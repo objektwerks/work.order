@@ -5,12 +5,12 @@ export default class Store {
   constructor(url) {
     this.url = url;
     this.connection = mysql.createConnection(url);
-    console.log("*** connected to store ...");
+    console.log('*** connected to store ...');
   }
 
   disconnect() {
     this.connection.end();
-    console.log("*** disconnected from store.");
+    console.log('*** disconnected from store.');
   }
 
   log(method, error) {
