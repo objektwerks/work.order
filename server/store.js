@@ -85,23 +85,6 @@ export default class Store {
     return (list.length > 0) ? list[0] : null;
   }
 
-  getUserById(id) {
-    let list = [];
-    connection.query(`select * from user where id = ${id}`, (error, rows) => {
-      if (error) {
-        log('getUserById', error)
-      } else {
-        rows.forEach((row) => {
-          console.log(row);
-          list.push(
-            User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
-          )
-        });
-      }
-    });
-    return (list.length > 0) ? list[0] : null;
-  }
-
   addWorkOrder(workorder) {
     let number = 0;
     connection.query('insert into work_order set ?', workorder, (error, result) => {
