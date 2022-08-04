@@ -65,7 +65,7 @@ export default class Store {
         });
       }
     });
-    return (list.length > 0) ? list[0] : null;
+    return (list.length > 0) ? list[0] : {};
   }
 
   getWorkOrderByNumber(number) {
@@ -82,7 +82,7 @@ export default class Store {
         });
       }
     });
-    return (list.length > 0) ? list[0] : null;
+    return (list.length > 0) ? list[0] : {};
   }
 
   addWorkOrder(workorder) {

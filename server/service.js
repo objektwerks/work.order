@@ -36,7 +36,7 @@ export default class Service {
     let userWorkOrders;
     try {
       let user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
-      if (user != null) {
+      if (Object.entries(user).length > 0) {
         let workorders = store.listWorkOrdersByUserId(user.id);
         userWorkOrders = UserWorkOrders.create(user, workorders);
         console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
@@ -81,7 +81,7 @@ export default class Service {
     let workorder;
     try {
       let get = this.store.getWorkOrderByNumber(number);
-      if (get != null) {
+      if (Object.entries(get).length > 0) {
         workorder = WorkOrder.success(get);
         console.log(`*** service.getWorkOrderByNumber succeeded for number: ${number}`);
       } else {
