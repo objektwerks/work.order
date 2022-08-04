@@ -13,11 +13,11 @@ export default class Service {
     let status;
     try {
       let pin = newPin();
-      this.emailer.send(user.emailAddress, pin);
-
       let id = 0;
       let registered = new Date().toISOString();
       let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
+      
+      this.emailer.send(user.emailAddress, pin);
       id = this.store.addUser(user);
       if (id > 0) {
         status = Status.success();
