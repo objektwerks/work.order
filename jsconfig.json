@@ -4,6 +4,6 @@
     "module": "es6",
     "target": "es6"
   },
-  "include": ["client/*", "server/*"],
+  "include": ["./server.js", "client/*", "server/*"],
   "exclude": ["node_modules"]
 }
