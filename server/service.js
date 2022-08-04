@@ -41,11 +41,11 @@ export default class Service {
         userWorkOrders = UserWorkOrders.create(user, workorders);
         console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
       } else {
-        userWorkOrders.error = "Login failed!";
+        userWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
         console.log(`*** service.login failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {
-      userWorkOrders.error = "Login failed!";
+      userWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
       console.log(`*** service.login for ${credentials.emailAddress} failed: ${error}`);
     }
     return userWorkOrders;
