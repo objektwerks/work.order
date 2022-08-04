@@ -17,6 +17,7 @@ Nodejs Host
 >Consider:
 1. [NodeChef](https://www.nodechef.com/nodejs-hosting)
 2. [Heroku](https://www.heroku.com/nodejs)
+3. [Digital Ocean](https://www.digitalocean.com/)
 
 Development
 -----------
