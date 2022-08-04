@@ -1,6 +1,6 @@
-export const admin = "admin";
-export const homeowner = "homeowner";
-export const serviceProvider = "serviceprovider"
+export const admin = 'admin';
+export const homeowner = 'homeowner';
+export const serviceProvider = 'serviceprovider';
 
 export function toJson(object) {
   return JSON.stringify(object)
