@@ -31,7 +31,7 @@ export default class Store {
         });
       }
     });
-    list;
+    return list;
   }
 
   listUsersByRole(role) {
@@ -48,7 +48,7 @@ export default class Store {
         });
       }
     });
-    list;
+    return list;
   }
 
   getWorkOrderByNumber(number) {
@@ -95,7 +95,7 @@ export default class Store {
         console.log(`workorder number: ${number}`);
       }
     });
-    number;
+    return number;
   }
 
   addUser(user) {
@@ -108,7 +108,7 @@ export default class Store {
         console.log(`user id: ${id}`);
       }
     });
-    id;
+    return id;
   }
 
   updateWorkOrder(workorder) {
@@ -121,7 +121,7 @@ export default class Store {
         console.log(`workorder ${workorder.number} update count: ${count}`);
       }
     });
-    count;
+    return count;
   }
 
   updateUser(user) {
@@ -134,6 +134,6 @@ export default class Store {
         console.log(`user ${user.id} update count: ${count}`);
       }
     });
-    count;
+    return count;
   }
 }

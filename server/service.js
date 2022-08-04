@@ -1,5 +1,5 @@
 import { newPin } from './pin.js';
-import { Status, User, UserWorkOrders, WorkOrder } from './entity.js';
+import { Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 export default class Service {
   constructor(store, emailer) {
@@ -52,7 +52,16 @@ export default class Service {
   }
 
   listWorkOrdersByUserId(userId) {
-
+    let workorders;
+    try {
+      let list = this.store.listWorkOrdersByUserId(userId);
+      workorders = WorkOrders.success(list);
+      console.log(`*** service.listWorkOrdersByUserId succeeded for user id: ${userId}`);
+    } catch(error) {
+      workorders = WorkOrders.fail('List work orders by user id failed!');
+      console.log(`*** service.listWorkOrdersByUserId for user id: ${userId} failed: ${error}`);
+    }
+    return workorders;
   }
 
   listUsersByRole(role) {
@@ -74,7 +83,7 @@ export default class Service {
       saved = WorkOrder.fail('Add work order failed!');
       console.log(`*** service.saveWorkOrder failed: ${error}`);
     }
-    saved;
+    return saved;
   }
 
   updateWorkOrder(workorder) {
@@ -92,7 +101,7 @@ export default class Service {
       status = Status.fail("Update work order failed!");
       console.log(`*** service.updateWorkOrder failed: ${error}`);
     }
-    status;
+    return status;
   }
 
   updateUser(user) {
@@ -110,6 +119,6 @@ export default class Service {
       status = Status.fail("Update user order failed!");
       console.log(`*** service.updateUser failed: ${error}`);
     }
-    status;
+    return status;
   }
 }
