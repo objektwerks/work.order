@@ -1,3 +1,4 @@
+// @ts-check
 import mysql from 'mysql';
 import { User, WorkOrder } from './entity.js';
 
@@ -19,9 +20,9 @@ export default class Store {
 
   listWorkOrdersByUserId(userId) {
     let list = [];
-    connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
+    this.connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
       if (error) {
-        log('listWorkOrdersByUserId', error)
+        this.log('listWorkOrdersByUserId', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -36,9 +37,9 @@ export default class Store {
 
   listUsersByRole(role) {
     let list = [];
-    connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
+    this.connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
       if (error) {
-        log('listUsersByRole', error)
+        this.log('listUsersByRole', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -53,9 +54,9 @@ export default class Store {
 
   getUserByEmailAddressPin(emailAddress, pin) {
     let list = [];
-    connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
+    this.connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
       if (error) {
-        log('getUserByEmailAddressPin', error)
+        this.log('getUserByEmailAddressPin', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -70,9 +71,9 @@ export default class Store {
 
   getWorkOrderByNumber(number) {
     let list = [];
-    connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
+    this.connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
       if (error) {
-        log('getWorkOrderByNumber', error)
+        this.log('getWorkOrderByNumber', error)
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -87,9 +88,9 @@ export default class Store {
 
   addWorkOrder(workorder) {
     let number = 0;
-    connection.query('insert into work_order set ?', workorder, (error, result) => {
+    this.connection.query('insert into work_order set ?', workorder, (error, result) => {
       if (error) {
-        log('addWorkOrder', error)
+        this.log('addWorkOrder', error)
       } else {
         number = result.insertId;
         console.log(`workorder number: ${number}`);
@@ -100,9 +101,9 @@ export default class Store {
 
   addUser(user) {
     let id = 0;
-    connection.query('insert into user set ?', user, (error, result) => {
+    this.connection.query('insert into user set ?', user, (error, result) => {
       if (error) {
-        log('addUser', error)
+        this.log('addUser', error)
       } else {
         id = result.insertId;
         console.log(`user id: ${id}`);
@@ -113,9 +114,9 @@ export default class Store {
 
   updateWorkOrder(workorder) {
     let count = 0;
-    connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
+    this.connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
       if (error) {
-        log('updateWorkOrder', error)
+        this.log('updateWorkOrder', error)
       } else {
         count = result.affectedRows;
         console.log(`workorder ${workorder.number} update count: ${count}`);
@@ -126,9 +127,9 @@ export default class Store {
 
   updateUser(user) {
     let count = 0;
-    connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
+    this.connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
       if (error) {
-        log('updateUser', error)
+        this.log('updateUser', error)
       } else {
         count = result.affectedRows;
         console.log(`user ${user.id} update count: ${count}`);

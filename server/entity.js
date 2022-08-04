@@ -1,3 +1,4 @@
+// @ts-check
 export const admin = 'admin';
 export const homeowner = 'homeowner';
 export const serviceProvider = 'serviceprovider';
@@ -46,11 +47,18 @@ export class Status {
 }
 
 export class UserWorkOrders {
-  static create(error, user, workorders) {
+  static success(error, user, workorders) {
     return {
       error: error,
       user: user,
       workorders: workorders
+    }    
+  }
+  static fail(error) {
+    return {
+      error: error,
+      user: {},
+      workorders: {}
     }    
   }
 }

@@ -1,3 +1,4 @@
+// @ts-check
 import { newPin } from './pin.js';
 import { Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
@@ -36,13 +37,13 @@ export default class Service {
   login(credentials) {
     let userWorkOrders;
     try {
-      let user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
+      let user = this.store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
       if (Object.entries(user).length > 0) {
-        let workorders = store.listWorkOrdersByUserId(user.id);
-        userWorkOrders = UserWorkOrders.create(user, workorders);
+        let workorders = this.store.listWorkOrdersByUserId(user.id);
+        userWorkOrders = UserWorkOrders.success(user, workorders);
         console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
       } else {
-        userWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
+        userWorkOrders = UserWorkOrders.fail(`Login failed for ${credentials.emailAddress}!`);
         console.log(`*** service.login failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {

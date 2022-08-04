@@ -1,3 +1,4 @@
+// @ts-check
 import Store from './server/store.js';
 import Emailer from './server/emailer.js';
 import Service from './server/service.js';
