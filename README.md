@@ -39,7 +39,7 @@ Features [ Role ] ( Actions )
 4. **edit work order** — [ homeowner, service provider ] ( edit )
 5. **list work orders by userid** - [ homeowner, service provider ] ( list )
 6. **get work order by number** - [ homeowner, service provider ] ( get )
-7. **edit user** — [ homeowner, service provider ] ( add, edit )
+7. **edit user** — [ homeowner, service provider ] ( edit )
 8. **list users by role** - [ homeowner ] ( list )
 
 Forms
