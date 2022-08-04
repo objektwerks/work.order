@@ -54,11 +54,12 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. post - /workorders/save
-5. get  - /workorders/:userid
-6. get  - /workorders/:number
-7. post - /users/save
-8. get  - /users/:role
+4. post - /workorders/add/:number
+5. post - /workorders/update/:number
+6. get  - /workorders/:userid
+7. get  - /workorders/:number
+8. post - /users/update
+9. get  - /users/:role
 
 Sequences
 ---------
