@@ -12,21 +12,22 @@ export default class Service {
   register(registration) {
     let status;
     try {
+      let pin = newPin();
+      this.emailer.send(user.emailAddress, pin);
+
       let id = 0;
       let registered = new Date().toISOString();
-      let pin = newPin();
       let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
       id = this.store.addUser(user);
       if (id > 0) {
-        this.emailer.send(user.emailAddress, pin);
         status = Status.success();
         console.log(`*** service.register succeeded for: ${registration.emailAddress}`);
       } else {
-        status = Status.error(`Register failed for: ${registration.emailAddress}`);
+        status = Status.fail(`Register failed for: ${registration.emailAddress}`);
         console.log(`*** service.register failed for: ${registration.emailAddress}`);
       }
     } catch (error) {
-      status = Status.error(`register failed for ${registration.emailAddress}`);
+      status = Status.fail(`register failed for ${registration.emailAddress}`);
       console.log(`*** service.register for ${registration.emailAddress} failed: ${error}`);
     }
     return status;
