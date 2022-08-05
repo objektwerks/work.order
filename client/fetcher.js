@@ -38,6 +38,7 @@ export class Fetcher {
       headers: this.headers,
       body: toJson(registration)
     })
-    .then((response) => { return toObject(response.json()) });
+    .then((response) => response.json())
+    .then((json) => { return toObject(json) } );
   }
 }
