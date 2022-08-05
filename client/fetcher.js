@@ -70,6 +70,10 @@ export class Fetcher {
     return this.send(`/workorders/${number}`, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
 
+  updateUser(user) {
+    return this.send('/users/update', this.post, user, () => Status.fail('Update user failed.'));
+  }
+
   listUsersByRole(role) {
     return this.send(`/users/${role}`, this.get, {}, () => Users.fail('List users by role failed!'));
   }
