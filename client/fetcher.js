@@ -20,7 +20,7 @@
 8. client:list --- role --> server --- users --> client
 */
 
-import { toJson, toObject } from './model.js';
+import { toJson, toObject, Status } from './model.js';
 
 export class Fetcher {
   constructor() {
@@ -39,6 +39,10 @@ export class Fetcher {
       body: toJson(registration)
     })
     .then((response) => response.json())
-    .then((json) => { return toObject(json) } );
+    .then((json) => { return toObject(json) } )
+    .catch(error => {
+      console.log('Register failed: ', error);
+      return Status.fail('Register failed!');
+    });
   }
 }
