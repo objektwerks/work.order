@@ -1,6 +1,6 @@
 Work Order
 ----------
-Work order web app and nodejs server.
+Work order web app using javascript, html, css, mysql and nodejs.
 
 Install
 -------
@@ -25,15 +25,6 @@ Image Content Delivery Network (CDN)
 1. [Bunny](https://bunny.net/)
 2. [ImageKit](https://imagekit.io/)
 3. [Cloudinary](https://cloudinary.com/) ( Javascript SDK )
-
-Development
------------
->This project uses the following technologies:
-1. Javascript
-2. Html, Css
-3. MySql, Sql
-4. Nodejs
->See **package.json** for more details.
 
 Roles
 -----
