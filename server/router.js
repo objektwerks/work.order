@@ -36,7 +36,7 @@ export default class Router {
       response.send(service.getWorkOrderByNumber(request.params.number));
     });
     
-    router.post('/users/update/:id', (request, response) => {
+    router.post('/users/update', (request, response) => {
       response.send(service.updateUser(request.body));
     });
     
