@@ -1,3 +1,4 @@
+// @ts-check
 import nodemailer from 'nodemailer';
 
 export default class Emailer {

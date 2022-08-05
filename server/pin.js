@@ -1,11 +1,5 @@
-let crypto;
-try {
-  crypto = await import('node:crypto');
-} catch (error) {
-  console.log('*** nodejs crypto support is disabled!');
-  console.log('*** nodejs crypto error: ', error);
-  throw `*** nodejs crypto support is disabled: ${error}`;
-}
+// @ts-check
+import crypto from 'node:crypto';
 
 const specialChars = "~!@#$%^&*-+=<>?/:;";
 const letters = "abcdefghijklmnopqrstuvwxyz";
