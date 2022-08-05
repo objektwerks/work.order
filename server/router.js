@@ -40,8 +40,8 @@ export default class Router {
       response.send(service.updateUser(request.body));
     });
     
-    router.post('/users/:role', (request, response) => {
-      response.send(service.listUsersByRole(request.body));
+    router.get('/users/:role', (request, response) => {
+      response.send(service.listUsersByRole(request.params.role));
     });
     
     const port = parseInt(process.env.PORT) || 3000;
