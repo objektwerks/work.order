@@ -20,11 +20,11 @@ export default class Router {
       response.send(service.login(request.body));
     });
     
-    router.post('/workorders/add/:number', (request, response) => {
+    router.post('/workorders/add', (request, response) => {
       response.send(service.addWorkOrder(request.body));
     });
 
-    router.post('/workorders/update/:number', (request, response) => {
+    router.post('/workorders/update', (request, response) => {
       response.send(service.updateWorkOrder(request.body));
     });
     
