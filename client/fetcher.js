@@ -33,7 +33,7 @@ export class Fetcher {
   }
 
   register(registration) {
-    return fetch('/register', {
+    fetch('/register', {
       method: this.post,
       headers: this.headers,
       body: toJson(registration)
