@@ -56,8 +56,8 @@ Routes
 1. get  - /
 2. post - /register
 3. post - /login
-4. post - /workorders/add/:number
-5. post - /workorders/update/:number
+4. post - /workorders/add
+5. post - /workorders/update
 6. get  - /workorders/:userid
 7. get  - /workorders/:number
 8. post - /users/update
