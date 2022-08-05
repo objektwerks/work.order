@@ -34,6 +34,8 @@ export class Fetcher {
       method: this.post,
       headers: this.appJsonHeader,
       body: toJson(registration)
+    }).then((response) => {
+      return toObject(response.json());
     });
   }
 }
