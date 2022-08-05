@@ -20,7 +20,7 @@
 8. client:list --- role --> server --- users --> client
 */
 
-import { toJson, toObject, Status, User, Users, UserWorkOrders } from './model.js';
+import { toJson, toObject, Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './model.js';
 
 export class Fetcher {
   constructor() {
@@ -52,5 +52,9 @@ export class Fetcher {
 
   login(credentials) {
     return this.send('/login', this.post, credentials, UserWorkOrders.fail('Login failed.'));
+  }
+
+  addWorkOrder(workorder) {
+    return this.send('/workorders/add', this.post, workorder, WorkOrder.fail('Add work order failed!'));
   }
 }
