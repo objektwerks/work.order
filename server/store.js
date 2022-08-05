@@ -15,14 +15,14 @@ export default class Store {
   }
 
   log(method, error) {
-    console.log(`*** store.${method} error: ${error}`)
+    console.log(`*** store.${method} error: ${error}`);
   }
 
   listWorkOrdersByUserId(id) {
     let list = [];
     this.connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error, rows) => {
       if (error) {
-        this.log('listWorkOrdersByUserId', error)
+        this.log('listWorkOrdersByUserId', error);
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -39,7 +39,7 @@ export default class Store {
     let list = [];
     this.connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
       if (error) {
-        this.log('listUsersByRole', error)
+        this.log('listUsersByRole', error);
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -56,7 +56,7 @@ export default class Store {
     let list = [];
     this.connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
       if (error) {
-        this.log('getUserByEmailAddressPin', error)
+        this.log('getUserByEmailAddressPin', error);
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -73,7 +73,7 @@ export default class Store {
     let list = [];
     this.connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
       if (error) {
-        this.log('getWorkOrderByNumber', error)
+        this.log('getWorkOrderByNumber', error);
       } else {
         rows.forEach((row) => {
           console.log(row);
@@ -90,7 +90,7 @@ export default class Store {
     let number = 0;
     this.connection.query('insert into work_order set ?', workorder, (error, result) => {
       if (error) {
-        this.log('addWorkOrder', error)
+        this.log('addWorkOrder', error);
       } else {
         number = result.insertId;
         console.log(`workorder number: ${number}`);
@@ -103,7 +103,7 @@ export default class Store {
     let id = 0;
     this.connection.query('insert into user set ?', user, (error, result) => {
       if (error) {
-        this.log('addUser', error)
+        this.log('addUser', error);
       } else {
         id = result.insertId;
         console.log(`user id: ${id}`);
@@ -116,7 +116,7 @@ export default class Store {
     let count = 0;
     this.connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
       if (error) {
-        this.log('updateWorkOrder', error)
+        this.log('updateWorkOrder', error);
       } else {
         count = result.affectedRows;
         console.log(`workorder ${workorder.number} update count: ${count}`);
@@ -129,7 +129,7 @@ export default class Store {
     let count = 0;
     this.connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
       if (error) {
-        this.log('updateUser', error)
+        this.log('updateUser', error);
       } else {
         count = result.affectedRows;
         console.log(`user ${user.id} update count: ${count}`);
