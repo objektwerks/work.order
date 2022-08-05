@@ -57,4 +57,8 @@ export class Fetcher {
   addWorkOrder(workorder) {
     return this.send('/workorders/add', this.post, workorder, WorkOrder.fail('Add work order failed!'));
   }
+
+  updateWorkOrder(workorder) {
+    return this.send('/workorders/update', this.post, workorder, WorkOrder.fail('Update work order failed!'));
+  }
 }
