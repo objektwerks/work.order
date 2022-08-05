@@ -42,23 +42,23 @@ export class Fetcher {
     .then((json) => { return toObject(json) } )
     .catch(error => {
       console.log(`${url} failed: `, error);
-      return fault;
+      return fault();
     });
   }
 
   register(registration) {
-    return this.send('/register', this.post, registration, Status.fail('Register failed.'));
+    return this.send('/register', this.post, registration, () => Status.fail('Register failed.'));
   }
 
   login(credentials) {
-    return this.send('/login', this.post, credentials, UserWorkOrders.fail('Login failed.'));
+    return this.send('/login', this.post, credentials, () => UserWorkOrders.fail('Login failed.'));
   }
 
   addWorkOrder(workorder) {
-    return this.send('/workorders/add', this.post, workorder, WorkOrder.fail('Add work order failed!'));
+    return this.send('/workorders/add', this.post, workorder, () => WorkOrder.fail('Add work order failed!'));
   }
 
   updateWorkOrder(workorder) {
-    return this.send('/workorders/update', this.post, workorder, WorkOrder.fail('Update work order failed!'));
+    return this.send('/workorders/update', this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
   }
 }
