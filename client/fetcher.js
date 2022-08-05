@@ -26,16 +26,18 @@ export class Fetcher {
   constructor() {
     this.get = 'GET';
     this.post = 'POST';
-    this.appJsonHeader = { 'Content-Type': 'application/json;charset=utf-8' };
+    this.headers = {
+      "Content-Type": "application/json; charset=utf-8",
+      'Accept': 'application/json'
+    }
   }
 
   register(registration) {
-    fetch('/register', {
+    return fetch('/register', {
       method: this.post,
-      headers: this.appJsonHeader,
+      headers: this.headers,
       body: toJson(registration)
-    }).then((response) => {
-      return toObject(response.json());
-    });
+    })
+    .then((response) => { return toObject(response.json()) });
   }
 }
