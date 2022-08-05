@@ -62,7 +62,11 @@ export class Fetcher {
     return this.send('/workorders/update', this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
   }
 
-  listWorkOrders(userId) {
-    return this.send(`/workorders/${userId}`, this.get, {}, () => WorkOrders.fail('List work orders failed!'));
+  listWorkOrdersByUserId(userId) {
+    return this.send(`/workorders/${userId}`, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
+  }
+
+  getWorkOrdersByNumber(number) {
+    return this.send(`/workorders/${number}`, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
 }
