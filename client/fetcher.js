@@ -32,17 +32,21 @@ export class Fetcher {
     }
   }
 
-  register(registration) {
-    fetch('/register', {
-      method: this.post,
+  send(url, method, entity, fault) {
+    return fetch(url, {
+      method: method,
       headers: this.headers,
-      body: toJson(registration)
+      body: toJson(entity)
     })
     .then((response) => response.json())
     .then((json) => { return toObject(json) } )
     .catch(error => {
-      console.log('Register failed: ', error);
-      return Status.fail('Register failed!');
+      console.log(`${url} failed: `, error);
+      return fault;
     });
+  }
+
+  register(registration) {
+    return this.send('/register', this.post, registration, Status.fail('Register failed.'));
   }
 }
