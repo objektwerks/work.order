@@ -69,4 +69,8 @@ export class Fetcher {
   getWorkOrdersByNumber(number) {
     return this.send(`/workorders/${number}`, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
+
+  listUsersByRole(role) {
+    return this.send(`/users/${role}`, this.get, {}, () => Users.fail('List users by role failed!'));
+  }
 }
