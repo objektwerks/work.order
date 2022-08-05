@@ -41,12 +41,12 @@ export class Fetcher {
     return this.send('/workorders/update', this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
   }
 
-  listWorkOrdersByUserId(userId) {
-    return this.send(`/workorders/${userId}`, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
-  }
-
   getWorkOrderByNumber(number) {
     return this.send(`/workorders/${number}`, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
+  }
+
+  listWorkOrdersByUserId(id) {
+    return this.send(`/workorders/user/${id}`, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
   }
 
   updateUser(user) {

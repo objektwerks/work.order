@@ -39,7 +39,7 @@ Features [ Role ] ( Actions )
 2. **login user** — [ homeowner, service provider ] ( login )
 3. **add work order** — [ homeowner ] ( add )
 4. **edit work order** — [ homeowner, service provider ] ( edit )
-5. **list work orders by userid** - [ homeowner, service provider ] ( list )
+5. **list work orders by user** - [ homeowner, service provider ] ( list )
 6. **get work order by number** - [ homeowner, service provider ] ( get )
 7. **edit user** — [ homeowner, service provider ] ( edit )
 8. **list users by role** - [ homeowner ] ( list )
@@ -58,8 +58,8 @@ Routes
 3. post - /login
 4. post - /workorders/add
 5. post - /workorders/update
-6. get  - /workorders/:userid
-7. get  - /workorders/:number
+6. get  - /workorders/:number
+7. get  - /workorders/user/:id
 8. post - /users/update
 9. get  - /users/:role
 

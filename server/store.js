@@ -18,9 +18,9 @@ export default class Store {
     console.log(`*** store.${method} error: ${error}`)
   }
 
-  listWorkOrdersByUserId(userId) {
+  listWorkOrdersByUserId(id) {
     let list = [];
-    this.connection.query(`select * from work_order where homeowner_id = ${userId} or service_provider_id = ${userId} order by opened desc`, (error, rows) => {
+    this.connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error, rows) => {
       if (error) {
         this.log('listWorkOrdersByUserId', error)
       } else {
