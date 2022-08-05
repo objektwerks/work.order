@@ -4,6 +4,14 @@ import { toJson, toObject, Status, Users, UserWorkOrders, WorkOrder, WorkOrders 
 export default class Fetcher {
   constructor(rootUrl) {
     this.rootUrl = rootUrl
+    this.registerUrl = rootUrl + '/register';
+    this.loginUrl = rootUrl + '/login';
+    this.addWorkOrderUrl = rootUrl + '/workorders/add';
+    this.updateWorkOrderUrl = rootUrl + '/workorders/update';
+    this.getWorkOrderByNumberUrl = rootUrl + '/workorders/';
+    this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
+    this.updateUserUrl = rootUrl + '/users/update';
+    this.listUsersByRoleUrl = rootUrl + '/users/';
     this.get = 'GET';
     this.post = 'POST';
     this.headers = {
@@ -27,34 +35,34 @@ export default class Fetcher {
   }
 
   register(registration) {
-    return this.send('/register', this.post, registration, () => Status.fail('Register failed.'));
+    return this.send(this.registerUrl, this.post, registration, () => Status.fail('Register failed.'));
   }
 
   login(credentials) {
-    return this.send('/login', this.post, credentials, () => UserWorkOrders.fail('Login failed.'));
+    return this.send(this.loginUrl, this.post, credentials, () => UserWorkOrders.fail('Login failed.'));
   }
 
   addWorkOrder(workorder) {
-    return this.send('/workorders/add', this.post, workorder, () => WorkOrder.fail('Add work order failed!'));
+    return this.send(this.addWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Add work order failed!'));
   }
 
   updateWorkOrder(workorder) {
-    return this.send('/workorders/update', this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
+    return this.send(this.updateWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
   }
 
   getWorkOrderByNumber(number) {
-    return this.send(`/workorders/${number}`, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
+    return this.send(this.getWorkOrderByNumberUrl + number, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
 
   listWorkOrdersByUserId(id) {
-    return this.send(`/workorders/user/${id}`, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
+    return this.send(this.listWorkOrdersByUserIdUrl + id, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
   }
 
   updateUser(user) {
-    return this.send('/users/update', this.post, user, () => Status.fail('Update user failed.'));
+    return this.send(this.updateUserUrl, this.post, user, () => Status.fail('Update user failed.'));
   }
 
   listUsersByRole(role) {
-    return this.send(`/users/${role}`, this.get, {}, () => Users.fail('List users by role failed!'));
+    return this.send(this.listUsersByRoleUrl + role, this.get, {}, () => Users.fail('List users by role failed!'));
   }
 }
