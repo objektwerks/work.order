@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "checkJs": true,
-    "module": "es6",
-    "target": "es6"
+    "module": "es2015",
+    "target": "es2015"
   },
   "include": ["./server.js", "./client/*", "./server/*"],
   "exclude": ["node_modules"]
