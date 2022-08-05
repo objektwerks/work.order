@@ -1,5 +1,5 @@
 // @ts-check
-import { toJson, toObject, Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './model.js';
+import { toJson, toObject, Status, Users, UserWorkOrders, WorkOrder, WorkOrders } from './model.js';
 
 export class Fetcher {
   constructor() {
