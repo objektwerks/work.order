@@ -1,8 +1,9 @@
 // @ts-check
 import { toJson, toObject, Status, Users, UserWorkOrders, WorkOrder, WorkOrders } from './model.js';
 
-export class Fetcher {
-  constructor() {
+export default class Fetcher {
+  constructor(rootUrl) {
+    this.rootUrl = rootUrl
     this.get = 'GET';
     this.post = 'POST';
     this.headers = {
@@ -12,7 +13,7 @@ export class Fetcher {
   }
 
   send(url, method, entity, fault) {
-    return fetch(url, {
+    return fetch(this.rootUrl + url, {
       method: method,
       headers: this.headers,
       body: toJson(entity)
