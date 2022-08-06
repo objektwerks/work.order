@@ -27,13 +27,13 @@ export default class Router {
     router.post('/workorders/update', (request, response) => {
       response.send(service.updateWorkOrder(request.body));
     });
-    
-    router.get('/workorders/:number', (request, response) => {
-      response.send(service.getWorkOrderByNumber(request.params.number));
-    });
 
     router.get('/workorders/user/:id', (request, response) => {
       response.send(service.listWorkOrdersByUserId(request.params.id));
+    });
+    
+    router.get('/workorders/:number', (request, response) => {
+      response.send(service.getWorkOrderByNumber(request.params.number));
     });
     
     router.post('/users/update', (request, response) => {
