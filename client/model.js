@@ -60,7 +60,7 @@ export class UserWorkOrders {
       success: false,
       error: error,
       user: {},
-      workorders: {}
+      workorders: []
     }    
   }
 }
