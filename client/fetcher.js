@@ -21,17 +21,24 @@ export default class Fetcher {
   }
 
   async call(url, method, entity, fault) {
-    return await fetch(url, {
-      method: method,
-      headers: this.headers,
-      body: toJson(entity)
-    })
-    .then((response) => response.json())
-    .then((json) => { return toObject(json) } )
-    .catch(error => {
-      console.log(`${url} failed: `, error);
-      return fault();
-    });
+    let result;
+    try {
+      let response = await fetch(url, {
+        method: method,
+        headers: this.headers,
+        body: toJson(entity)
+      });
+      if (response.status > 199 && response.status < 300) {
+        let json = await response.json();
+        result = toObject(json);
+      } else {
+        throw `*** ${url} failed with status code: ${response.status} status text: ${response.statusText}`;
+      }
+    } catch (error) {
+      console.log(error);
+      result = fault();
+    }
+    return result;
   }
 
   async register(registration) {
