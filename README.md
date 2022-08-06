@@ -7,6 +7,10 @@ Install
 1. npm install
 >See **package.json** for details.
 
+Database
+--------
+1. npm run ddl
+
 Dev
 ---
 1. npm run dev
