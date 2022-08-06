@@ -11,6 +11,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
+    "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
