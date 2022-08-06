@@ -78,7 +78,7 @@ export class WorkOrders {
     return {
       success: false,
       error: error,
-      workorders: {}
+      workorders: []
     }    
   }
 }
