@@ -21,7 +21,7 @@ export default class Fetcher {
   }
 
   send(url, method, entity, fault) {
-    return fetch(this.rootUrl + url, {
+    return fetch(url, {
       method: method,
       headers: this.headers,
       body: toJson(entity)
