@@ -28,7 +28,7 @@ export default class Fetcher {
         headers: this.headers,
         body: toJson(entity)
       });
-      if (response.status > 199 && response.status < 300) {
+      if (response.ok) {
         result = toObject( await response.json() );
       } else {
         throw `*** ${url} failed with status code: ${response.status} status text: ${response.statusText}`;
