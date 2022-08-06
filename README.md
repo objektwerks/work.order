@@ -91,6 +91,8 @@ Mysql
 >Second option:
 1. mysql -uroot -p
 2. \. ddl.sql
+>Third option:
+1. npm run ddl
 
 Date Time
 ---------
