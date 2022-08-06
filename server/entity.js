@@ -69,6 +69,7 @@ export class WorkOrders {
   static success(workorders) {
     return {
       success: true,
+      error: '',
       workorders: workorders
     }    
   }
@@ -76,7 +77,8 @@ export class WorkOrders {
   static fail(error) {
     return {
       success: false,
-      error: error
+      error: error,
+      workorders: {}
     }    
   }
 }
