@@ -49,6 +49,7 @@ export class Status {
 export class UserWorkOrders {
   static success(user, workorders) {
     return {
+      success: true,
       error: '',
       user: user,
       workorders: workorders
@@ -56,6 +57,7 @@ export class UserWorkOrders {
   }
   static fail(error) {
     return {
+      success: false,
       error: error,
       user: {},
       workorders: {}
