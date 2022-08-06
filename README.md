@@ -78,14 +78,11 @@ Sequences
 7. client:update --- user --> server --- status --> client
 8. client:list --- role --> server --- users --> client
 
-Database
---------
-1. **work_order_db**
-
-Tables
+Schema
 ------
-1. **user**
-2. **work_order**
+1. **work_order_db**
+2. **user**
+3. **work_order**
 >See **ddl.sql** for details.
 
 Mysql
