@@ -127,7 +127,7 @@ export class Users {
     return {
       success: false,
       error: error,
-      users: {}
+      users: []
     }    
   }
 }
