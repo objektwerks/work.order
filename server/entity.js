@@ -47,9 +47,9 @@ export class Status {
 }
 
 export class UserWorkOrders {
-  static success(error, user, workorders) {
+  static success(user, workorders) {
     return {
-      error: error,
+      error: '',
       user: user,
       workorders: workorders
     }    
