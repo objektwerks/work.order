@@ -118,6 +118,7 @@ export class Users {
   static success(users) {
     return {
       success: true,
+      error: '',
       users: users
     }    
   }
@@ -125,7 +126,8 @@ export class Users {
   static fail(error) {
     return {
       success: false,
-      error: error
+      error: error,
+      users: {}
     }    
   }
 }
