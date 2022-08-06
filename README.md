@@ -90,13 +90,11 @@ Tables
 
 Mysql
 -----
->First option:
+>Option 1:
 1. mysql -uroot -p < ddl.sql
->Second option:
+>Option 2:
 1. mysql -uroot -p
 2. \. ddl.sql
->Third option:
-1. npm run ddl
 
 Date Time
 ---------
