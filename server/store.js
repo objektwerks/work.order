@@ -6,6 +6,12 @@ export default class Store {
   constructor(url) {
     this.url = url;
     this.connection = mysql.createConnection(url);
+    this.connection.connect((error) => {
+      if (error) {
+        console.log('*** failed to connect to store: ${error}');
+        throw error;
+      }
+    });
     console.log('*** connected to store ...');
   }
 
