@@ -7,19 +7,19 @@ const fetcher = new Fetcher(`http://${host}:${port}`);
 
 console.log('*** client running ...');
 
-function selectLoginRegisterTab(tabId) {
-  let tabs = document.getElementsByClassName('login-register-tab');
-  for (const tab of tabs) {
-    tab['style'].display = 'none';
+function selectLoginRegisterTab(paneId) {
+  let panes = document.getElementsByClassName('login-register-pane');
+  for (const pane of panes) {
+    pane['style'].display = 'none';
   }
-  document.getElementById(tabId).style.display = 'block';
+  document.getElementById(paneId).style.display = 'block';
 }
 
-document.getElementById('login-tab-button-id').addEventListener('click', function() {
-  selectLoginRegisterTab('login-tab-id')
+document.getElementById('login-menu-id').addEventListener('click', function() {
+  selectLoginRegisterTab('login-pane-id')
 }, false);
-document.getElementById('register-tab-button-id').addEventListener('click', function() {
-  selectLoginRegisterTab('register-tab-id')
+document.getElementById('register-menu-id').addEventListener('click', function() {
+  selectLoginRegisterTab('register-pane-id')
 }, false);
 
 document.getElementById('login-command-id').addEventListener('click', function() {
