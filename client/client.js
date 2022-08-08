@@ -23,11 +23,29 @@ document.getElementById('register-menu-id').addEventListener('click', function()
 }, false);
 
 // Login
+document.getElementById('login-email-address-id').addEventListener('change', function() {
+  // TODO
+});
+document.getElementById('login-pin-id').addEventListener('change', function() {
+  // TODO
+});
 document.getElementById('login-command-id').addEventListener('click', function() {
   // TODO
 }, false);
 
 // Register
+document.getElementById('register-role-id').addEventListener('change', function() {
+  // TODO
+});
+document.getElementById('register-name-id').addEventListener('change', function() {
+  // TODO
+});
+document.getElementById('register-email-address-id').addEventListener('change', function() {
+  // TODO
+});
+document.getElementById('register-street-address-id').addEventListener('change', function() {
+  // TODO
+});
 document.getElementById('register-command-id').addEventListener('click', function() {
   // TODO
 }, false);
