@@ -20,6 +20,15 @@ export class Registration {
       streetAddress: streetAddress
     }    
   }
+
+  static validate(role, name, emailAddress, streetAddress) {
+    let errors = [];
+    if (role != homeowner || role != serviceProvider) errors.push("Select a role.");
+    if (name.length < 2) errors.push('For name, enter at least 2 characters.');
+    if (emailAddress.length < 3) errors.push('For email address, enter at least 3 characters.');
+    if (streetAddress.length < 3) errors.push('For street address, enter at least 3 characters.');
+    return errors;
+  }
 }
 
 export class Credentials {
