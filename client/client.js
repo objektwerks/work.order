@@ -24,10 +24,18 @@ document.getElementById('register-menu-id').addEventListener('click', function()
 
 // Login
 document.getElementById('login-command-id').addEventListener('click', function() {
-  // TODO
+  // get form values
+  // validate form values
+  // package form values
+  // call fetcher
+  // handle fetcher return value vis-a-vis UI
 }, false);
 
 // Register
 document.getElementById('register-command-id').addEventListener('click', function() {
-  // TODO
+  // get form values
+  // validate form values
+  // package form values
+  // call fetcher
+  // handle fetcher return value vis-a-vis UI
 }, false);
