@@ -38,6 +38,13 @@ export class Credentials {
       pin: pin
     }    
   }
+
+  static validate(emailAddress, pin) {
+    let errors = [];
+    if (pin.length != 7) errors.push('For pin, enter at exactly 7 numbers, characters and/or symbols.');
+    if (emailAddress.length < 3) errors.push('For email address, enter at least 3 characters.');
+    return errors;
+  }
 }
 
 export class Status {
