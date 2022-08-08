@@ -49,6 +49,9 @@
             </div>
         </div>
         <footer class="w3-container w3-indigo" style="font-size: 13px; color: white">Copyright &copy; 2022 Objectwerks</footer>
-        <script type="module" src="client.js"></script>
+        <script type="module">
+            import Client from './client.js';
+            new Client('http://127.0.0.1:3000');
+        </script>
     </body>
 </html>

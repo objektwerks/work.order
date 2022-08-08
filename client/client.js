@@ -4,9 +4,13 @@ import Fetcher from './fetcher.js';
 import Login from './login.js';
 import Register from './register.js';
 
-const fetcher = new Fetcher(`http://127.0.0.1:3000`);
-const menu = new Menu();
-const login = new Login(fetcher);
-const register = new Register(fetcher);
-
-console.log('*** client running ...');
+export default class Client {
+  constructor(url) {
+    this.url = url;
+    this.fetcher = new Fetcher(this.url);
+    this.menu = new Menu();
+    this.login = new Login(this.fetcher);
+    this.register = new Register(this.fetcher);
+    console.log('*** client running ...');
+  }
+}
