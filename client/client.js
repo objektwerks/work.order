@@ -14,3 +14,10 @@ function selectLoginRegisterTab(tabId) {
   }
   document.getElementById(tabId).style.display = "block";
 }
+
+document.getElementById('login-button-id').addEventListener('click', function() {
+  selectLoginRegisterTab('login-tab-id')
+}, false);
+document.getElementById('register-button-id').addEventListener('click', function() {
+  selectLoginRegisterTab('register-tab-id')
+}, false);
