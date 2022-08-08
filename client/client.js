@@ -21,3 +21,10 @@ document.getElementById('login-button-id').addEventListener('click', function() 
 document.getElementById('register-button-id').addEventListener('click', function() {
   selectLoginRegisterTab('register-tab-id')
 }, false);
+
+document.getElementById('login-id').addEventListener('click', function() {
+  // TODO
+}, false);
+document.getElementById('register-id').addEventListener('click', function() {
+  // TODO
+}, false);
