@@ -6,13 +6,13 @@ export default class Register {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
-    document.getElementById('register-command-id').addEventListener('click', () => {
-      document.getElementById('register-errors-pane-id').style.display = 'none';
+    Client.getById('register-command-id').addEventListener('click', () => {
+      Client.hide('register-errors-pane-id');
 
-      const role = document.getElementById('register-role-id')['value'];
-      const name = document.getElementById('register-name-id')['value'];
-      const emailAddress = document.getElementById('register-email-address-id')['value'];
-      const streetAddress = document.getElementById('register-street-address-id')['value'];
+      const role = Client.getById('register-role-id')['value'];
+      const name = Client.getById('register-name-id')['value'];
+      const emailAddress = Client.getById('register-email-address-id')['value'];
+      const streetAddress = Client.getById('register-street-address-id')['value'];
 
       const errors = Registration.validate(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
@@ -35,6 +35,6 @@ export default class Register {
 
   listErrors(errors) {
     Client.listValues('register-errors-list-id', errors);
-    document.getElementById('register-errors-pane-id').style.display = 'block';
+    Client.show('register-errors-pane-id');
   }
 }
