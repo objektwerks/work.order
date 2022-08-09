@@ -15,7 +15,7 @@ export default class Login {
         const credentials = Credentials.create(emailAddress, pin);
         const userWorkOrders = this.fetch(credentials);
         console.log('login -> userWorkOrders: ', userWorkOrders);
-        // TODO: Set UI
+        // TODO: Set user and work orders forms.
       } else {
         Client.addToList('login-errors-list-id', errors);
       }
