@@ -1,3 +1,4 @@
+// @ts-check
 export default class Menu {
   constructor() {
     document.getElementById('login-menu-id').addEventListener('click', () => {
