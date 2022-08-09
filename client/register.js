@@ -20,7 +20,7 @@ export default class Register {
         // TODO: Set UI
       } else {
         Client.addToList('register-errors-list-id', errors);
-        document.getElementById('register-errors-list-id').style.display = 'block';
+        document.getElementById('register-errors-pane-id').style.display = 'block';
       }
     }, false);
   }
