@@ -20,7 +20,8 @@ export default class Login {
           errors.push(userWorkOrders.error);
           this.listErrors(errors);
         } else {
-          // TODO: Set user and work orders forms.
+          show('workorders-pane-id');
+          // TODO: Set service providers and workorder-subpane-id as required.
         }
       } else {
         this.listErrors(errors);
