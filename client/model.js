@@ -31,7 +31,7 @@ export class Registration {
     if (role != homeowner || role != serviceProvider) errors.push("Select a role.");
     if (name.length < 2) errors.push('For name, enter at least 2 characters.');
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-    if (streetAddress.length < 3) errors.push('For street address, enter at least 3 characters.');
+    if (streetAddress.length < 7) errors.push('For street address, enter at least 6 characters.');
     return errors;
   }
 }
@@ -46,7 +46,7 @@ export class Credentials {
 
   static validate(emailAddress, pin) {
     let errors = [];
-    if (pin.length != 7) errors.push('For pin, enter at exactly 7 numbers, characters and/or symbols.');
+    if (pin.length != 7) errors.push('For pin, enter exactly 7 numbers, characters and/or symbols.');
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
     return errors;
   }

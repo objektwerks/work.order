@@ -6,8 +6,8 @@ use `work_order_db`
 
 create table `user` (
   `id` int not null auto_increment,
-  `role` varchar(32) not null,
-  `name` varchar(128) not null,
+  `role` varchar(24) not null,
+  `name` varchar(64) not null,
   `email_address` varchar(128) not null unique,
   `street_address` varchar(128) not null unique,
   `registered` varchar(24) not null,
@@ -21,9 +21,9 @@ create table `work_order` (
   `number` int not null auto_increment,
   `homeowner_id` int not null,
   `service_provider_id` int not null,
-  `issue` varchar(512) not null,
+  `issue` varchar(255) not null,
   `image_url` varchar(255) not null default "",
-  `resolution` varchar(512) not null default "",
+  `resolution` varchar(255) not null default "",
   `opened` varchar(24) not null,
   `closed` varchar(24) not null default "",
   primary key (`number`),
