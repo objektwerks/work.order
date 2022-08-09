@@ -7,6 +7,8 @@ export default class Login {
     this.fetcher = fetcher;
 
     document.getElementById('login-command-id').addEventListener('click', () => {
+      document.getElementById('login-errors-pane-id').style.display = 'none';
+
       const emailAddress = document.getElementById('login-email-address-id')['value'];
       const pin = document.getElementById('login-pin-id')['value']
 
