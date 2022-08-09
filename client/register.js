@@ -1,5 +1,6 @@
 // @ts-check
 import { Registration } from "./model.js";
+import Client from './client.js';
 
 export default class Register {
   constructor(fetcher) {
@@ -18,9 +19,8 @@ export default class Register {
         console.log('register -> status: ', status);
         // TODO: Set UI
       } else {
-        // TODO: Set errors on register-errors-list-id 
+        Client.addToList('register-errors-list-id', errors);
       }
-
     }, false);
   }
 
