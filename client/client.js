@@ -14,6 +14,14 @@ export default class Client {
     console.log('*** client running ...');
   }
 
+  static getById(id) {
+    document.getElementById(id);
+  }
+
+  static getByClass(name) {
+    document.getElementsByClassName(name);
+  }
+
   static hide(id) {
     document.getElementById(id).style.display = 'none';
   }
