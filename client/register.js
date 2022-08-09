@@ -7,6 +7,8 @@ export default class Register {
     this.fetcher = fetcher;
 
     document.getElementById('register-command-id').addEventListener('click', () => {
+      document.getElementById('register-errors-pane-id').style.display = 'none';
+
       const role = document.getElementById('register-role-id')['value'];
       const name = document.getElementById('register-name-id')['value'];
       const emailAddress = document.getElementById('register-email-address-id')['value'];
