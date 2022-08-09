@@ -66,6 +66,24 @@
                 <p class="w3-panel">Check your email for login credentials. Then select Menu > Login to login.</p>
             </div>
 
+            <!-- User -->
+            <div id="user-pane-id" class="w3-container w3-padding-16" style="display:none">
+                <div id="user-errors-pane-id" class="w3-panel w3-red" style="display:none">
+                    <ul id="user-errors-list-id" class="w3-ul"></ul>
+                </div>
+                <label for="user-role-id" class="w3-text-indigo">Role:</label>
+                <input id="user-role-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+                <label for="user-name-id" class="w3-text-indigo">Name:</label>
+                <input id="user-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required></input>
+                <label for="user-email-address-id" class="w3-text-indigo">Email Address:</label>
+                <input id="user-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
+                <label for="user-street-address-id" class="w3-text-indigo">Street Address:</label>
+                <input id="user-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
+                <div class="w3-bar w3-center w3-padding-16">
+                    <button id="user-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
+                </div>
+            </div>
+
             <!-- Work Orders -->
             <div id="workorders-pane-id" class="w3-container w3-padding-16" style="display:none">
                 <div id="workorder-subpane-id" class="w3-panel">
