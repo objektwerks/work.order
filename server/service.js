@@ -2,6 +2,9 @@
 import { newPin } from './pin.js';
 import { Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
+const registrationSubject = `Work Order Registration`;
+const registrationText = `is your new pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
+
 export default class Service {
   constructor(store, emailer) {
     this.store = store;
@@ -18,7 +21,7 @@ export default class Service {
       let registered = new Date().toISOString();
       let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
       
-      this.emailer.send(user.emailAddress, pin);
+      this.emailer.send(user.emailAddress, pin, registrationSubject, registrationText);
       id = this.store.addUser(user);
       if (id > 0) {
         status = Status.success();

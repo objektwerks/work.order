@@ -19,12 +19,12 @@ export default class Emailer {
     console.log('*** emailer is connected ...')
   }
 
-  send(recipient, pin) {
+  send(recipient, pin, subject, text) {
     const message = {
       from: this.sender,
       to: recipient,
-      subject: `Work Order Registration`,
-      text: `Your new pin is: ${pin} Use it to login. Record and keep it in a safe place. Then delete this email!`
+      subject: subject,
+      text: `${pin} ${text}`
     };
     this.transporter.sendMail(message, function(error, info) {
       if (error) {
