@@ -10,11 +10,58 @@ export function toObject(json) {
   return JSON.parse(json)
 }
 
+function validateRole(role) {
+  return role == homeowner || role == serviceProvider;
+}
+
+function validateName(name) {
+  return name.length >= 2;
+}
+
 function validateEmailAddress(emailAddress) {
   return emailAddress.length >= 3 && emailAddress.includes('@');
 }
 
+function validateStreetAddress(streetAddress) {
+  return streetAddress.length < 7;
+
+}
+
+function validatePin(pin) {
+  return pin.length == 7;
+}
+
+function validateDateTime(datetime) {
+  return datetime.length === 24;
+}
+
+function validateId(id) {
+  return id > 0;
+}
+
+function validateNumber(number) {
+  return number > 0;
+}
+
+function validateDefined(string) {
+  let isDefined;
+  try {
+    isDefined = string.length >= 0;
+  } catch {
+    isDefined = false;
+  }
+  return isDefined;
+}
+
+const roleInvalidMessage = 'A valid role must be selected.';
+const nameInvalidMessage = 'For name, enter at least 2 characters.'
 const emailAddressInvalidMessage = 'For email address, enter at least 3 characters to inlcude @.';
+const streetAddressInvalidMessage = 'For street address, enter at least 6 characters.';
+const pinInvalidMessage = 'For pin, enter exactly 7 numbers, characters and/or symbols.';
+const datetimeInvalidMessage = 'For datetime, must use 24-character ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ';
+const idInvalidMessage = 'An id must be greater than 0.'
+const numberInvalidMessage = 'A number must be greater than 0.'
+const notDefinedMessage = 'This value must not be null or undefined.';
 
 export class Registration {
   static create(role, name, emailAddress, streetAddress) {
@@ -28,10 +75,10 @@ export class Registration {
 
   static validate(role, name, emailAddress, streetAddress) {
     const errors = [];
-    if (role != homeowner || role != serviceProvider) errors.push("Select a role.");
-    if (name.length < 2) errors.push('For name, enter at least 2 characters.');
+    if (!validateRole(role)) errors.push(roleInvalidMessage);
+    if (!validateName(name)) errors.push(nameInvalidMessage);
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-    if (streetAddress.length < 7) errors.push('For street address, enter at least 6 characters.');
+    if (!validateStreetAddress(streetAddress)) errors.push(streetAddressInvalidMessage);
     return errors;
   }
 }
@@ -46,8 +93,8 @@ export class Credentials {
 
   static validate(emailAddress, pin) {
     const errors = [];
-    if (pin.length != 7) errors.push('For pin, enter exactly 7 numbers, characters and/or symbols.');
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
+    if (!validatePin) errors.push(pinInvalidMessage);
     return errors;
   }
 }
@@ -133,6 +180,19 @@ export class WorkOrder {
       workorder: {}
     }    
   }
+
+  static validate(number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed) {
+    const errors = [];
+    if (!validateNumber(number)) errors.push(numberInvalidMessage);
+    if (!validateId(homeownerId)) errors.push(idInvalidMessage);
+    if (!validateId(serviceProviderId)) errors.push(idInvalidMessage);
+    if (!validateDefined(issue)) errors.push(notDefinedMessage);
+    if (!validateDefined(imageUrl)) errors.push(notDefinedMessage);
+    if (!validateDefined(resolution)) errors.push(notDefinedMessage);
+    if (!validateDateTime(opened)) errors.push(datetimeInvalidMessage);
+    if (!validateDefined(closed)) errors.push(notDefinedMessage);
+    return errors;
+  }
 }
 
 export class Users {
@@ -180,5 +240,16 @@ export class User {
       error: error,
       user: {}
     }    
+  }
+
+  static validate(id, role, name, emailAddress, streetAddress, registered) {
+    const errors = [];
+    if (!validateId(id)) errors.push(idInvalidMessage);
+    if (!validateRole(role)) errors.push(roleInvalidMessage);
+    if (!validateName(name)) errors.push(nameInvalidMessage);
+    if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
+    if (!validateStreetAddress(streetAddress)) errors.push(streetAddressInvalidMessage);
+    if (!validateDateTime(registered)) errors.push(datetimeInvalidMessage);
+    return errors;
   }
 }
