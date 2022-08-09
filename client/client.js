@@ -15,11 +15,11 @@ export default class Client {
   }
 
   static getById(id) {
-    document.getElementById(id);
+    return document.getElementById(id);
   }
 
   static getByClass(name) {
-    document.getElementsByClassName(name);
+    return document.getElementsByClassName(name);
   }
 
   static hide(id) {

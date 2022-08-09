@@ -3,17 +3,17 @@ import Client from './client.js';
 
 export default class Menu {
   constructor() {
-    document.getElementById('login-menu-id').addEventListener('click', () => {
+    Client.getById('login-menu-id').addEventListener('click', () => {
       this.selectLoginRegisterTab('login-pane-id')
     }, false);
     
-    document.getElementById('register-menu-id').addEventListener('click', () => {
+    Client.getById('register-menu-id').addEventListener('click', () => {
       this.selectLoginRegisterTab('register-pane-id')
     }, false);
   }
 
   selectLoginRegisterTab(paneId) {
-    let panes = document.getElementsByClassName('login-register-pane');
+    let panes = Client.getByClass('login-register-pane');
     for (const pane of panes) {
       pane['style'].display = 'none';
     }
