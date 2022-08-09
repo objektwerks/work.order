@@ -6,7 +6,7 @@ export default class Login {
     this.fetcher = fetcher;
 
     document.getElementById('login-command-id').addEventListener('click', () => {
-      const emailAddress =  document.getElementById('login-email-address-id')['value'];
+      const emailAddress = document.getElementById('login-email-address-id')['value'];
       const pin = document.getElementById('login-pin-id')['value']
 
       const errors = Credentials.validate(emailAddress, pin);

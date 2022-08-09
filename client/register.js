@@ -6,10 +6,10 @@ export default class Register {
     this.fetcher = fetcher;
 
     document.getElementById('register-command-id').addEventListener('click', () => {
-      const role =  document.getElementById('register-role-id')['value'];
-      const name =  document.getElementById('register-name-id')['value'];
-      const emailAddress =  document.getElementById('register-email-address-id')['value'];
-      const streetAddress =  document.getElementById('register-street-address-id')['value'];
+      const role = document.getElementById('register-role-id')['value'];
+      const name = document.getElementById('register-name-id')['value'];
+      const emailAddress = document.getElementById('register-email-address-id')['value'];
+      const streetAddress = document.getElementById('register-street-address-id')['value'];
 
       const errors = Registration.validate(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
