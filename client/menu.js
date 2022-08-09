@@ -13,7 +13,7 @@ export default class Menu {
   }
 
   selectLoginRegisterTab(paneId) {
-    let panes = getByClass('login-register-pane');
+    const panes = getByClass('login-register-pane');
     for (const pane of panes) {
       pane['style'].display = 'none';
     }
