@@ -12,6 +12,10 @@ export function getByClass(name) {
   return document.getElementsByClassName(name);
 }
 
+export function disable(id, isDisabled) {
+  document.getElementById(id)['disabled'] = isDisabled;
+}
+
 export function hide(id) {
   document.getElementById(id).style.display = 'none';
 }
