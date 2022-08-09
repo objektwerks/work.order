@@ -1,18 +1,18 @@
 // @ts-check
 import { Registration } from "./model.js";
-import Client from './client.js';
+import { getById, getValueById, hide, listValues, show } from './client.js';
 
 export default class Register {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
-    Client.getById('register-command-id').addEventListener('click', () => {
-      Client.hide('register-errors-pane-id');
+    getById('register-command-id').addEventListener('click', () => {
+      hide('register-errors-pane-id');
 
-      const role = Client.getValueById('register-role-id');
-      const name = Client.getValueById('register-name-id');
-      const emailAddress = Client.getValueById('register-email-address-id');
-      const streetAddress = Client.getValueById('register-street-address-id');
+      const role = getValueById('register-role-id');
+      const name = getValueById('register-name-id');
+      const emailAddress = getValueById('register-email-address-id');
+      const streetAddress = getValueById('register-street-address-id');
 
       const errors = Registration.validate(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
@@ -34,7 +34,7 @@ export default class Register {
   }
 
   listErrors(errors) {
-    Client.listValues('register-errors-list-id', errors);
-    Client.show('register-errors-pane-id');
+    listValues('register-errors-list-id', errors);
+    show('register-errors-pane-id');
   }
 }

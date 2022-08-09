@@ -1,16 +1,16 @@
 // @ts-check
 import { Credentials } from './model.js';
-import Client from './client.js';
+import { getById, getValueById, hide, listValues, show } from './client.js';
 
 export default class Login {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
-    Client.getById('login-command-id').addEventListener('click', () => {
-      Client.hide('login-errors-pane-id');
+    getById('login-command-id').addEventListener('click', () => {
+      hide('login-errors-pane-id');
 
-      const emailAddress = Client.getValueById('login-email-address-id');
-      const pin = Client.getValueById('login-pin-id');
+      const emailAddress = getValueById('login-email-address-id');
+      const pin = getValueById('login-pin-id');
 
       const errors = Credentials.validate(emailAddress, pin);
       if (errors.length === 0) {
@@ -34,7 +34,7 @@ export default class Login {
   }
 
   listErrors(errors) {
-    Client.listValues('login-errors-list-id', errors);
-    Client.show('login-errors-pane-id');
+    listValues('login-errors-list-id', errors);
+    show('login-errors-pane-id');
   }
 }
