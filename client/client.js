@@ -14,7 +14,7 @@ export default class Client {
     console.log('*** client running ...');
   }
 
-  static listErrors(listId, values) {
+  static listValues(listId, values) {
     document.getElementById(listId).innerHTML = '';
     const ul = document.getElementById(listId);
     for (const value of values) {

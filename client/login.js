@@ -34,7 +34,7 @@ export default class Login {
   }
 
   listErrors(errors) {
-    Client.listErrors('login-errors-list-id', errors);
+    Client.listValues('login-errors-list-id', errors);
     document.getElementById('login-errors-pane-id').style.display = 'block';
   }
 }
