@@ -18,7 +18,6 @@ export default class Register {
       if (errors.length === 0) {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
         const status = this.fetch(registration);
-        console.log('register -> status: ', status);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
