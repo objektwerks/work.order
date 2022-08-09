@@ -6,11 +6,11 @@ export default class Login {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
-    document.getElementById('login-command-id').addEventListener('click', () => {
+    Client.getById('login-command-id').addEventListener('click', () => {
       Client.hide('login-errors-pane-id');
 
-      const emailAddress = document.getElementById('login-email-address-id')['value'];
-      const pin = document.getElementById('login-pin-id')['value']
+      const emailAddress = Client.getById('login-email-address-id')['value'];
+      const pin = Client.getById('login-pin-id')['value']
 
       const errors = Credentials.validate(emailAddress, pin);
       if (errors.length === 0) {
