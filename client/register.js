@@ -1,3 +1,4 @@
+// @ts-check
 export default class Register {
   constructor(fetcher) {
     document.getElementById('register-command-id').addEventListener('click', () => {
