@@ -18,6 +18,10 @@ export default class Client {
     return document.getElementById(id);
   }
 
+  static getValueById(id) {
+    return document.getElementById(id)['value'];
+  }
+
   static getByClass(name) {
     return document.getElementsByClassName(name);
   }
