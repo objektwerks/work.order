@@ -9,8 +9,8 @@ export default class Login {
     Client.getById('login-command-id').addEventListener('click', () => {
       Client.hide('login-errors-pane-id');
 
-      const emailAddress = Client.getById('login-email-address-id')['value'];
-      const pin = Client.getById('login-pin-id')['value']
+      const emailAddress = Client.getValueById('login-email-address-id');
+      const pin = Client.getValueById('login-pin-id');
 
       const errors = Credentials.validate(emailAddress, pin);
       if (errors.length === 0) {
