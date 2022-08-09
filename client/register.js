@@ -19,7 +19,6 @@ export default class Register {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
         const status = this.fetch(registration);
         console.log('register -> status: ', status);
-        // TODO: Set UI
       } else {
         Client.addToList('register-errors-list-id', errors);
         document.getElementById('register-errors-pane-id').style.display = 'block';
