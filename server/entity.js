@@ -24,7 +24,6 @@ function validateEmailAddress(emailAddress) {
 
 function validateStreetAddress(streetAddress) {
   return streetAddress.length < 7;
-
 }
 
 function validatePin(pin) {
