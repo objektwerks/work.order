@@ -34,7 +34,7 @@ export default class Register {
   }
 
   listErrors(errors) {
-    Client.addToList('register-errors-list-id', errors);
+    Client.listErrors('register-errors-list-id', errors);
     document.getElementById('register-errors-pane-id').style.display = 'block';
   }
 }
