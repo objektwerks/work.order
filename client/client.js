@@ -13,4 +13,14 @@ export default class Client {
     this.register = new Register(this.fetcher);
     console.log('*** client running ...');
   }
+
+  static addToList(listId, values) {
+    document.getElementById(listId).innerHTML = '';
+    const ul = document.getElementById(listId);
+    for (const value of values) {
+      let li = document.createElement('li');
+      li.appendChild(document.createTextNode(value));
+      ul.appendChild(li);
+    }
+  }
 }
