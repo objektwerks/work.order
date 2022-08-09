@@ -27,7 +27,7 @@ export class Registration {
   }
 
   static validate(role, name, emailAddress, streetAddress) {
-    let errors = [];
+    const errors = [];
     if (role != homeowner || role != serviceProvider) errors.push("Select a role.");
     if (name.length < 2) errors.push('For name, enter at least 2 characters.');
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
@@ -45,7 +45,7 @@ export class Credentials {
   }
 
   static validate(emailAddress, pin) {
-    let errors = [];
+    const errors = [];
     if (pin.length != 7) errors.push('For pin, enter exactly 7 numbers, characters and/or symbols.');
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
     return errors;
