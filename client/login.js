@@ -17,15 +17,24 @@ export default class Login {
         const credentials = Credentials.create(emailAddress, pin);
         const userWorkOrders = this.fetch(credentials);
         console.log('login -> userWorkOrders: ', userWorkOrders);
-        // TODO: Check success/fail and set user and work orders forms as required.
+        if (!userWorkOrders.success) {
+          errors.push(userWorkOrders.error);
+          this.listErrors(errors);
+        } else {
+          // TODO: Set user and work orders forms.
+        }
       } else {
-        Client.addToList('login-errors-list-id', errors);
-        document.getElementById('login-errors-pane-id').style.display = 'block';
+        this.listErrors(errors);
       }
     }, false);
   }
 
   fetch(credentials) {
     return this.fetcher.login(credentials);
+  }
+
+  listErrors(errors) {
+    Client.addToList('login-errors-list-id', errors);
+    document.getElementById('login-errors-pane-id').style.display = 'block';
   }
 }
