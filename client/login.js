@@ -16,7 +16,13 @@ export default class Login {
         console.log('login -> userWorkOrders: ', userWorkOrders);
         // TODO: Set UI
       } else {
-        // TODO: Set errors on login-errors-list-id
+        document.getElementById('login-errors-list-id').innerHTML = '';
+        const ul = document.getElementById('login-errors-list-id');
+        for (const error of errors) {
+          let li = document.createElement('li');
+          li.appendChild(document.createTextNode(error));
+          ul.appendChild(li);
+        }
       }
     }, false);
   }
