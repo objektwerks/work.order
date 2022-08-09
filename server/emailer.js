@@ -20,7 +20,7 @@ export default class Emailer {
   }
 
   send(recipient, pin) {
-    var message = {
+    const message = {
       from: this.sender,
       to: recipient,
       subject: `Work Order Registration`,
