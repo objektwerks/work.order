@@ -1,6 +1,6 @@
 // @ts-check
 import { Registration } from "./model.js";
-import { getById, getValueById, hide, listValues, show } from './client.js';
+import { getById, getValueById, hide, listValues, show } from './document.js';
 
 export default class Register {
   constructor(fetcher) {

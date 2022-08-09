@@ -1,6 +1,6 @@
 // @ts-check
 import { Credentials } from './model.js';
-import { getById, getValueById, hide, listValues, show } from './client.js';
+import { getById, getValueById, hide, listValues, show } from './document.js';
 
 export default class Login {
   constructor(fetcher) {
