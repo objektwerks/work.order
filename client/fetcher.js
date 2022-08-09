@@ -37,7 +37,7 @@ export default class Fetcher {
       console.log(error);
       result = fault();
     }
-    console.log(`*** fetcher:call -> url: ${uri} result: `, result);
+    console.log(`*** fetcher:call -> url: ${url} result: `, result);
     return result;
   }
 
