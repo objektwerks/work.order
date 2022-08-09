@@ -13,7 +13,7 @@ export default class Login {
       const credentials = Credentials.create(emailAddress, pin);
 
       const userWorkOrders = this.fetch(credentials);
-      console.log('login -> userWorkOrders', userWorkOrders);
+      console.log('login -> userWorkOrders: ', userWorkOrders);
       // TODO: Set UI
     }, false);
   }
