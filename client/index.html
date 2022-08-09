@@ -23,6 +23,9 @@
                 </div>
             </div>
             <div id="login-pane-id" class="login-register-pane w3-container w3-padding-16" style="display:none">
+                <div id="login-errors-pane-id" class="w3-panel w3-red" style="display:none">
+                    <ul id="login-errors-list-id" class="w3-ul"></ul>
+                </div>
                 <label for="login-email-address-id" class="w3-text-indigo">Email Address:</label>
                 <input id="login-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
                 <label for="login-pin-id" class="w3-text-indigo">Pin:</label>
@@ -32,6 +35,9 @@
                 </div>
             </div>
             <div id="register-pane-id" class="login-register-pane w3-container w3-padding-16" style="display:none">
+                <div id="register-errors-pane-id" class="w3-panel w3-red" style="display:none">
+                    <ul id="register-errors-list-id" class="w3-ul"></ul>
+                </div>
                 <label for="register-role-id" class="w3-text-indigo">Role:</label>
                 <select id="register-role-id" class="w3-select w3-text-indigo w3-hover-light-blue" name="role" required>
                     <option value="homeowner">Homeowner</option>
