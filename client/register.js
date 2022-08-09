@@ -9,10 +9,10 @@ export default class Register {
     Client.getById('register-command-id').addEventListener('click', () => {
       Client.hide('register-errors-pane-id');
 
-      const role = Client.getById('register-role-id')['value'];
-      const name = Client.getById('register-name-id')['value'];
-      const emailAddress = Client.getById('register-email-address-id')['value'];
-      const streetAddress = Client.getById('register-street-address-id')['value'];
+      const role = Client.getValueById('register-role-id');
+      const name = Client.getValueById('register-name-id');
+      const emailAddress = Client.getValueById('register-email-address-id');
+      const streetAddress = Client.getValueById('register-street-address-id');
 
       const errors = Registration.validate(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
