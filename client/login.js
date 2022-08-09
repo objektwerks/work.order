@@ -25,7 +25,7 @@ export default class Login {
     }, false);
   }
 
-  async fetch(credentials) {
-    return await this.fetcher.login(credentials);
+  fetch(credentials) {
+    return this.fetcher.login(credentials);
   }
 }

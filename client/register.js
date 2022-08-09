@@ -26,7 +26,7 @@ export default class Register {
     }, false);
   }
 
-  async fetch(registration) {
-    return await this.fetcher.register(registration);
+  fetch(registration) {
+    return this.fetcher.register(registration);
   }
 }
