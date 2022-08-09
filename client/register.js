@@ -11,12 +11,16 @@ export default class Register {
       const emailAddress =  document.getElementById('register-email-address-id')['value'];
       const streetAddress =  document.getElementById('register-street-address-id')['value'];
 
-      Registration.validate(role, name, emailAddress, streetAddress);
-      const registration = Registration.create(role, name, emailAddress, streetAddress);
+      const errors = Registration.validate(role, name, emailAddress, streetAddress);
+      if (errors.length === 0) {
+        const registration = Registration.create(role, name, emailAddress, streetAddress);
+        const status = this.fetch(registration);
+        console.log('register -> status: ', status);
+        // TODO: Set UI
+      } else {
+        // TODO: Set errors on register-errors-list-id 
+      }
 
-      const status = this.fetch(registration);
-      console.log('register -> status: ', status);
-      // TODO: Set UI
     }, false);
   }
 

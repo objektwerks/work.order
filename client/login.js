@@ -9,12 +9,15 @@ export default class Login {
       const emailAddress =  document.getElementById('login-email-address-id')['value'];
       const pin = document.getElementById('login-pin-id')['value']
 
-      Credentials.validate(emailAddress, pin);
-      const credentials = Credentials.create(emailAddress, pin);
-
-      const userWorkOrders = this.fetch(credentials);
-      console.log('login -> userWorkOrders: ', userWorkOrders);
-      // TODO: Set UI
+      const errors = Credentials.validate(emailAddress, pin);
+      if (errors.length === 0) {
+        const credentials = Credentials.create(emailAddress, pin);
+        const userWorkOrders = this.fetch(credentials);
+        console.log('login -> userWorkOrders: ', userWorkOrders);
+        // TODO: Set UI
+      } else {
+        // TODO: Set errors on login-errors-list-id
+      }
     }, false);
   }
 
