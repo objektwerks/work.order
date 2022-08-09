@@ -10,6 +10,12 @@ export function toObject(json) {
   return JSON.parse(json)
 }
 
+function validateEmailAddress(emailAddress) {
+  return emailAddress.length >= 3 && emailAddress.includes('@');
+}
+
+const emailAddressInvalidMessage = 'For email address, enter at least 3 characters to inlcude @.';
+
 export class Registration {
   static create(role, name, emailAddress, streetAddress) {
     return {
@@ -19,6 +25,15 @@ export class Registration {
       streetAddress: streetAddress
     }    
   }
+
+  static validate(role, name, emailAddress, streetAddress) {
+    const errors = [];
+    if (role != homeowner || role != serviceProvider) errors.push("Select a role.");
+    if (name.length < 2) errors.push('For name, enter at least 2 characters.');
+    if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
+    if (streetAddress.length < 7) errors.push('For street address, enter at least 6 characters.');
+    return errors;
+  }
 }
 
 export class Credentials {
@@ -27,6 +42,13 @@ export class Credentials {
       emailAddress: emailAddress,
       pin: pin
     }    
+  }
+
+  static validate(emailAddress, pin) {
+    const errors = [];
+    if (pin.length != 7) errors.push('For pin, enter exactly 7 numbers, characters and/or symbols.');
+    if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
+    return errors;
   }
 }
 
