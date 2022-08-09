@@ -18,6 +18,7 @@ export default class Login {
         // TODO: Set user and work orders forms.
       } else {
         Client.addToList('login-errors-list-id', errors);
+        document.getElementById('login-errors-list-id').style.display = 'block';
       }
     }, false);
   }
