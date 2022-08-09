@@ -7,7 +7,7 @@ export default class Login {
     this.fetcher = fetcher;
 
     document.getElementById('login-command-id').addEventListener('click', () => {
-      document.getElementById('login-errors-pane-id').style.display = 'none';
+      Client.hide('login-errors-pane-id');
 
       const emailAddress = document.getElementById('login-email-address-id')['value'];
       const pin = document.getElementById('login-pin-id')['value']
@@ -35,6 +35,6 @@ export default class Login {
 
   listErrors(errors) {
     Client.listValues('login-errors-list-id', errors);
-    document.getElementById('login-errors-pane-id').style.display = 'block';
+    Client.show('login-errors-pane-id');
   }
 }
