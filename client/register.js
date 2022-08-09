@@ -19,15 +19,22 @@ export default class Register {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
         const status = this.fetch(registration);
         console.log('register -> status: ', status);
-        // TODO: Check success/fail and set errors as required.
+        if (!status.success) {
+          errors.push(status.error);
+          this.listErrors(errors);
+        }
       } else {
-        Client.addToList('register-errors-list-id', errors);
-        document.getElementById('register-errors-pane-id').style.display = 'block';
+        this.listErrors(errors);
       }
     }, false);
   }
 
   fetch(registration) {
     return this.fetcher.register(registration);
+  }
+
+  listErrors(errors) {
+    Client.addToList('register-errors-list-id', errors);
+    document.getElementById('register-errors-pane-id').style.display = 'block';
   }
 }
