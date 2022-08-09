@@ -16,10 +16,10 @@ export default class Service {
   register(registration) {
     let status;
     try {
-      let pin = newPin();
+      const pin = newPin();
       let id = 0;
-      let registered = new Date().toISOString();
-      let user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
+      const registered = new Date().toISOString();
+      const user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
       
       this.emailer.send(user.emailAddress, pin, registrationSubject, registrationText);
       id = this.store.addUser(user);
@@ -40,9 +40,9 @@ export default class Service {
   login(credentials) {
     let userWorkOrders;
     try {
-      let user = this.store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
+      const user = this.store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
       if (Object.entries(user).length > 0) {
-        let workorders = this.store.listWorkOrdersByUserId(user.id);
+        const workorders = this.store.listWorkOrdersByUserId(user.id);
         userWorkOrders = UserWorkOrders.success(user, workorders);
         console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
       } else {
@@ -59,7 +59,7 @@ export default class Service {
   listWorkOrdersByUserId(id) {
     let workorders;
     try {
-      let list = this.store.listWorkOrdersByUserId(id);
+      const list = this.store.listWorkOrdersByUserId(id);
       workorders = WorkOrders.success(list);
       console.log(`*** service.listWorkOrdersByUserId succeeded for user id: ${id}`);
     } catch(error) {
@@ -72,7 +72,7 @@ export default class Service {
   listUsersByRole(role) {
     let users;
     try {
-      let list = this.store.listUsersByRole(role);
+      const list = this.store.listUsersByRole(role);
       users = Users.success(list);
       console.log(`*** service.listUsersByRole succeeded for role: ${role}`);
     } catch(error) {
@@ -85,7 +85,7 @@ export default class Service {
   getWorkOrderByNumber(number) {
     let workorder;
     try {
-      let get = this.store.getWorkOrderByNumber(number);
+      const get = this.store.getWorkOrderByNumber(number);
       if (Object.entries(get).length > 0) {
         workorder = WorkOrder.success(get);
         console.log(`*** service.getWorkOrderByNumber succeeded for number: ${number}`);
@@ -103,7 +103,7 @@ export default class Service {
   addWorkOrder(workorder) {
     let saved;
     try {
-      let id = this.store.addWorkOrder(workorder);
+      const id = this.store.addWorkOrder(workorder);
       workorder.id = id
       saved = WorkOrder.success(workorder);
       console.log(`*** service.saveWorkOrder succeeded for id: ${id}`);
@@ -117,7 +117,7 @@ export default class Service {
   updateWorkOrder(workorder) {
     let status;
     try {
-      let count = this.store.updateWorkOrder(workorder);
+      const count = this.store.updateWorkOrder(workorder);
       if (count > 0) {
         status = Status.success();
         console.log(`*** service.updateWorkOrder succeeded for id: ${workorder.id}`);
@@ -135,7 +135,7 @@ export default class Service {
   updateUser(user) {
     let status;
     try {
-      let count = this.store.updateUser(user);
+      const count = this.store.updateUser(user);
       if (count > 0) {
         status = Status.success();
         console.log(`*** service.updateUser succeeded for id: ${user.id}`);
