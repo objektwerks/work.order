@@ -1,5 +1,6 @@
 // @ts-check
 import { Credentials } from './model.js';
+import Client from './client.js';
 
 export default class Login {
   constructor(fetcher) {
@@ -16,13 +17,7 @@ export default class Login {
         console.log('login -> userWorkOrders: ', userWorkOrders);
         // TODO: Set UI
       } else {
-        document.getElementById('login-errors-list-id').innerHTML = '';
-        const ul = document.getElementById('login-errors-list-id');
-        for (const error of errors) {
-          let li = document.createElement('li');
-          li.appendChild(document.createTextNode(error));
-          ul.appendChild(li);
-        }
+        Client.addToList('login-errors-list-id', errors);
       }
     }, false);
   }
