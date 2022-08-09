@@ -1,4 +1,6 @@
 // @ts-check
+import Client from './client.js';
+
 export default class Menu {
   constructor() {
     document.getElementById('login-menu-id').addEventListener('click', () => {
@@ -15,6 +17,6 @@ export default class Menu {
     for (const pane of panes) {
       pane['style'].display = 'none';
     }
-    document.getElementById(paneId).style.display = 'block';
+    Client.show(paneId);
   }
 }
