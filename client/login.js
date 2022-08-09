@@ -16,7 +16,6 @@ export default class Login {
       if (errors.length === 0) {
         const credentials = Credentials.create(emailAddress, pin);
         const userWorkOrders = this.fetch(credentials);
-        console.log('login -> userWorkOrders: ', userWorkOrders);
         if (!userWorkOrders.success) {
           errors.push(userWorkOrders.error);
           this.listErrors(errors);
