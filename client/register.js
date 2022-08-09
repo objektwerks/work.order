@@ -22,6 +22,8 @@ export default class Register {
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
+        } else {
+          show('register-info-pane-id');
         }
       } else {
         this.listErrors(errors);
