@@ -153,11 +153,12 @@ export class WorkOrders {
 }
 
 export class WorkOrder {
-  static create(number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed) {
+  static create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     return {
       number: number,
       homeownerId: homeownerId,
       serviceProviderId: serviceProviderId,
+      title: title,
       issue: issue,
       imageUrl: imageUrl,
       resolution: resolution,
@@ -182,11 +183,12 @@ export class WorkOrder {
     }    
   }
 
-  static validate(number, homeownerId, serviceProviderId, issue, imageUrl, resolution, opened, closed) {
+  static validate(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     const errors = [];
     if (!validateNumber(number)) errors.push(numberInvalidMessage);
     if (!validateId(homeownerId)) errors.push(idInvalidMessage);
     if (!validateId(serviceProviderId)) errors.push(idInvalidMessage);
+    if (!validateDefined(title)) errors.push(notDefinedMessage);
     if (!validateDefined(issue)) errors.push(notDefinedMessage);
     if (!validateDefined(imageUrl)) errors.push(notDefinedMessage);
     if (!validateDefined(resolution)) errors.push(notDefinedMessage);
