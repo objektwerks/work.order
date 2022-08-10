@@ -186,24 +186,6 @@ export class WorkOrder {
   }
 }
 
-export class Users {
-  static success(users) {
-    return {
-      success: true,
-      error: '',
-      users: users
-    }    
-  }
-
-  static fail(error) {
-    return {
-      success: false,
-      error: error,
-      users: []
-    }    
-  }
-}
-
 export class User {
   static create(id, role, name, emailAddress, streetAddress, registered) {
     return {
