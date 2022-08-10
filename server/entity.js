@@ -11,45 +11,33 @@ export function toObject(json) {
 }
 
 function validateRole(role) {
-  return role == homeowner || role == serviceProvider;
-}
-
-function validateName(name) {
-  return name.length >= 2;
+  return role === homeowner || role === serviceProvider;
 }
 
 function validateEmailAddress(emailAddress) {
-  return emailAddress.length >= 3 && emailAddress.includes('@');
+  return validateLengthRange(emailAddress, 3, 128) && emailAddress.includes('@');
 }
 
-function validateStreetAddress(streetAddress) {
-  return streetAddress.length < 7;
+function validateLength(string, length) {
+  return string.length === length;
 }
 
-function validatePin(pin) {
-  return pin.length == 7;
+function validateLengthRange(string, lower, upper) {
+  return string.length >= lower && string.length <= upper;
 }
 
-function validateDateTime(datetime) {
-  return datetime.length === 24;
-}
-
-function validateId(id) {
-  return id > 0;
-}
-
-function validateNumber(number) {
+function validateGreaterThanZero(number) {
   return number > 0;
 }
 
-function validateNotEmpty(string) {
-  let isNotEmpty;
+function validateDefined(string) {
+  let isDefined;
   try {
-    isNotEmpty = string.length >= 0;
+    isDefined = string.length >= 0;
   } catch {
-    isNotEmpty = false;
+    isDefined = false;
   }
-  return isNotEmpty;
+  return isDefined;
 }
 
 const roleInvalidMessage = 'A valid role must be selected.';
@@ -75,9 +63,9 @@ export class Registration {
   static validate(role, name, emailAddress, streetAddress) {
     const errors = [];
     if (!validateRole(role)) errors.push(roleInvalidMessage);
-    if (!validateName(name)) errors.push(nameInvalidMessage);
+    if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-    if (!validateStreetAddress(streetAddress)) errors.push(streetAddressInvalidMessage);
+    if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage);
     return errors;
   }
 }
@@ -93,7 +81,7 @@ export class Credentials {
   static validate(emailAddress, pin) {
     const errors = [];
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-    if (!validatePin) errors.push(pinInvalidMessage);
+    if (!validateLength(pin, 7)) errors.push(pinInvalidMessage);
     return errors;
   }
 }
@@ -185,15 +173,15 @@ export class WorkOrder {
 
   static validate(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     const errors = [];
-    if (!validateNumber(number)) errors.push(numberInvalidMessage);
-    if (!validateId(homeownerId)) errors.push(idInvalidMessage);
-    if (!validateId(serviceProviderId)) errors.push(idInvalidMessage);
-    if (!validateNotEmpty(title)) errors.push(emptyInvalidMessage);
-    if (!validateNotEmpty(issue)) errors.push(emptyInvalidMessage);
-    if (!validateNotEmpty(imageUrl)) errors.push(emptyInvalidMessage);
-    if (!validateNotEmpty(resolution)) errors.push(emptyInvalidMessage);
-    if (!validateDateTime(opened)) errors.push(datetimeInvalidMessage);
-    if (!validateNotEmpty(closed)) errors.push(emptyInvalidMessage);
+    if (!validateGreaterThanZero(number)) errors.push(numberInvalidMessage);
+    if (!validateGreaterThanZero(homeownerId)) errors.push(idInvalidMessage);
+    if (!validateGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage);
+    if (!validateLengthRange(title, 4, 64)) errors.push(emptyInvalidMessage);
+    if (!validateLengthRange(issue, 4, 255)) errors.push(emptyInvalidMessage);
+    if (!validateDefined(imageUrl)) errors.push(emptyInvalidMessage);
+    if (!validateDefined(resolution)) errors.push(emptyInvalidMessage);
+    if (!validateLength(opened, 24)) errors.push(datetimeInvalidMessage);
+    if (!validateDefined(closed)) errors.push(emptyInvalidMessage);
     return errors;
   }
 }
@@ -247,12 +235,12 @@ export class User {
 
   static validate(id, role, name, emailAddress, streetAddress, registered) {
     const errors = [];
-    if (!validateId(id)) errors.push(idInvalidMessage);
+    if (!validateGreaterThanZero(id)) errors.push(idInvalidMessage);
     if (!validateRole(role)) errors.push(roleInvalidMessage);
-    if (!validateName(name)) errors.push(nameInvalidMessage);
+    if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
     if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-    if (!validateStreetAddress(streetAddress)) errors.push(streetAddressInvalidMessage);
-    if (!validateDateTime(registered)) errors.push(datetimeInvalidMessage);
+    if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage);
+    if (!validateLength(registered, 24)) errors.push(datetimeInvalidMessage);
     return errors;
   }
 }
