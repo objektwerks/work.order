@@ -1,7 +1,7 @@
 // @ts-check
 import { getById } from './document.js';
 
-export default class UserPane {
+export default class UserView {
   constructor(fetcher) {
     this.fetcher = fetcher;
 

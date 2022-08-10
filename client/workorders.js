@@ -1,7 +1,7 @@
 // @ts-check
 import { getById } from './document.js';
 
-export default class WorkOrdersPane {
+export default class WorkOrdersView {
   constructor(fetcher) {
     this.fetcher = fetcher;
 

@@ -2,7 +2,7 @@
 import { Registration } from "./model.js";
 import { getById, getValueById, hide, listValues, show } from './document.js';
 
-export default class RegisterPane {
+export default class RegisterView {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
