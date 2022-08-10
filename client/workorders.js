@@ -15,7 +15,7 @@ export default class WorkOrdersPane {
 
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
-        console.log(`li clicked id: ${event.target['id']}`);
+        console.log(`click event, li id: ${event.target['id']}`);
       }
     }, false);
   }
