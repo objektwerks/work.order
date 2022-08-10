@@ -1,6 +1,6 @@
 // @ts-check
-import Menu from './menu.js';
 import Fetcher from './fetcher.js';
+import Menu from './menu.js';
 import LoginPane from './login.js';
 import RegisterPane from './register.js';
 import WorkOrdersPane from './workorders.js';
