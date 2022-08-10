@@ -2,7 +2,7 @@
 import { Credentials } from './model.js';
 import { getById, getValueById, hide, listValues, show } from './document.js';
 
-export default class Login {
+export default class LoginPane {
   constructor(fetcher) {
     this.fetcher = fetcher;
 
