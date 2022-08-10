@@ -42,14 +42,14 @@ function validateNumber(number) {
   return number > 0;
 }
 
-function validateDefined(string) {
-  let isDefined;
+function validateNotEmpty(string) {
+  let isNotEmpty;
   try {
-    isDefined = string.length >= 0;
+    isNotEmpty = string.length >= 0;
   } catch {
-    isDefined = false;
+    isNotEmpty = false;
   }
-  return isDefined;
+  return isNotEmpty;
 }
 
 const roleInvalidMessage = 'A valid role must be selected.';
@@ -60,7 +60,7 @@ const pinInvalidMessage = 'For pin, enter exactly 7 numbers, characters and/or s
 const datetimeInvalidMessage = 'For datetime, must use 24-character ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ';
 const idInvalidMessage = 'An id must be greater than 0.'
 const numberInvalidMessage = 'A number must be greater than 0.'
-const notDefinedMessage = 'This value must not be null or undefined.';
+const emptyInvalidMessage = 'This field must not be empty. Enter some text.';
 
 export class Registration {
   static create(role, name, emailAddress, streetAddress) {
@@ -188,12 +188,12 @@ export class WorkOrder {
     if (!validateNumber(number)) errors.push(numberInvalidMessage);
     if (!validateId(homeownerId)) errors.push(idInvalidMessage);
     if (!validateId(serviceProviderId)) errors.push(idInvalidMessage);
-    if (!validateDefined(title)) errors.push(notDefinedMessage);
-    if (!validateDefined(issue)) errors.push(notDefinedMessage);
-    if (!validateDefined(imageUrl)) errors.push(notDefinedMessage);
-    if (!validateDefined(resolution)) errors.push(notDefinedMessage);
+    if (!validateNotEmpty(title)) errors.push(emptyInvalidMessage);
+    if (!validateNotEmpty(issue)) errors.push(emptyInvalidMessage);
+    if (!validateNotEmpty(imageUrl)) errors.push(emptyInvalidMessage);
+    if (!validateNotEmpty(resolution)) errors.push(emptyInvalidMessage);
     if (!validateDateTime(opened)) errors.push(datetimeInvalidMessage);
-    if (!validateDefined(closed)) errors.push(notDefinedMessage);
+    if (!validateNotEmpty(closed)) errors.push(emptyInvalidMessage);
     return errors;
   }
 }
