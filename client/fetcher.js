@@ -1,5 +1,5 @@
 // @ts-check
-import { toJson, toObject, Status, Users, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './model.js';
+import { toJson, toObject, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './model.js';
 
 export default class Fetcher {
   constructor(rootUrl) {
@@ -67,9 +67,5 @@ export default class Fetcher {
 
   async updateUser(user) {
     return await this.call(this.updateUserUrl, this.post, user, () => Status.fail('Update user failed.'));
-  }
-
-  async listUsersByRole(role) {
-    return await this.call(this.listUsersByRoleUrl + role, this.get, {}, () => Users.fail('List users by role failed!'));
   }
 }
