@@ -1,4 +1,5 @@
 // @ts-check
+import { UserServiceProvidersWorkOrders } from './model.js';
 import { getById } from './document.js';
 
 export default class WorkOrdersView {
