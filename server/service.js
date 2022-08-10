@@ -1,6 +1,6 @@
 // @ts-check
 import { newPin } from './pin.js';
-import { Status, User, Users, UserWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { serviceProvider, Status, User, Users, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
@@ -38,22 +38,23 @@ export default class Service {
   }
 
   login(credentials) {
-    let userWorkOrders;
+    let userServiceProvidersWorkOrders;
     try {
       const user = this.store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
       if (Object.entries(user).length > 0) {
+        const serviceproviders = this.store.listUsersByRole(serviceProvider);
         const workorders = this.store.listWorkOrdersByUserId(user.id);
-        userWorkOrders = UserWorkOrders.success(user, workorders);
+        userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceproviders, workorders);
         console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
       } else {
-        userWorkOrders = UserWorkOrders.fail(`Login failed for ${credentials.emailAddress}!`);
+        userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}!`);
         console.log(`*** service.login failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {
-      userWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
+      userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
       console.log(`*** service.login for ${credentials.emailAddress} failed: ${error}`);
     }
-    return userWorkOrders;
+    return userServiceProvidersWorkOrders;
   }
 
   listWorkOrdersByUserId(id) {

@@ -113,12 +113,13 @@ export class Status {
   }
 }
 
-export class UserWorkOrders {
-  static success(user, workorders) {
+export class UserServiceProvidersWorkOrders {
+  static success(user, serviceproviders, workorders) {
     return {
       success: true,
       error: '',
       user: user,
+      serviceproviders: serviceproviders,
       workorders: workorders
     }    
   }
@@ -127,6 +128,7 @@ export class UserWorkOrders {
       success: false,
       error: error,
       user: {},
+      serviceproviders: [],
       workorders: []
     }    
   }

@@ -1,5 +1,5 @@
 // @ts-check
-import { toJson, toObject, Status, Users, UserWorkOrders, WorkOrder, WorkOrders } from './model.js';
+import { toJson, toObject, Status, Users, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './model.js';
 
 export default class Fetcher {
   constructor(rootUrl) {
@@ -46,7 +46,7 @@ export default class Fetcher {
   }
 
   async login(credentials) {
-    return await this.call(this.loginUrl, this.post, credentials, () => UserWorkOrders.fail('Login failed.'));
+    return await this.call(this.loginUrl, this.post, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
   }
 
   async addWorkOrder(workorder) {
