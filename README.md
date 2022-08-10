@@ -46,7 +46,6 @@ Features [ Role ] ( Actions )
 5. **list work orders by user** - [ homeowner, service provider ] ( list )
 6. **get work order by number** - [ homeowner, service provider ] ( get )
 7. **edit user** — [ homeowner, service provider ] ( edit )
-8. **list users by role** - [ homeowner ] ( list )
 
 Forms
 -----
@@ -65,7 +64,6 @@ Routes
 6. get  - /workorders/user/:id
 7. get  - /workorders/:number
 8. post - /users/update
-9. get  - /users/:role
 
 Sequences
 ---------
@@ -76,7 +74,6 @@ Sequences
 5. client:list --- userid --> server --- workorders --> client
 6. client:get --- number --> server --- workorder --> client
 7. client:update --- user --> server --- status --> client
-8. client:list --- role --> server --- users --> client
 
 Schema
 ------
