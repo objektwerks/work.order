@@ -21,7 +21,7 @@ export default class Menu {
   }
 
   selectMenuItem(viewId) {
-    const views = getByClass('model-view');
+    const views = getByClass('view');
     for (const view of views) {
       view['style'].display = 'none';
     }
