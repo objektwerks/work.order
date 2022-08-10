@@ -40,10 +40,6 @@ export default class Router {
       response.send(service.updateUser(request.body));
     });
     
-    router.get('/users/:role', (request, response) => {
-      response.send(service.listUsersByRole(request.params.role));
-    });
-    
     const port = parseInt(process.env.PORT) || 3000;
     const host = process.env.BIND_IP || '127.0.0.1';
     const http = router.listen(port, host, () =>
