@@ -21,6 +21,7 @@ create table `work_order` (
   `number` int not null auto_increment,
   `homeowner_id` int not null,
   `service_provider_id` int not null,
+  `title` varchar(64) not null,
   `issue` varchar(255) not null,
   `image_url` varchar(255) not null default "",
   `resolution` varchar(255) not null default "",
