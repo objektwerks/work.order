@@ -13,8 +13,11 @@ export default class WorkOrdersPane {
 
     }, false);
 
-    getById('workorders-list-id').addEventListener('click', () => {
+    getById('workorders-list-id').addEventListener('click', (event) => {
       // See: https://davidwalsh.name/event-delegate
+      if(event.target && event.target['nodeName'] === "li") {
+        console.log(`li clicked id: ${event.target['id']}`);
+      }
     }, false);
   }
 }
