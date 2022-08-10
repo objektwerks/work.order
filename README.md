@@ -56,14 +56,13 @@ Forms
 
 Routes
 ------
-1. get  - /
-2. post - /register
-3. post - /login
-4. post - /workorders/add
-5. post - /workorders/update
-6. get  - /workorders/user/:id
-7. get  - /workorders/:number
-8. post - /users/update
+1. post - /register
+2. post - /login
+3. post - /workorders/add
+4. post - /workorders/update
+5. get  - /workorders/user/:id
+6. get  - /workorders/:number
+7. post - /users/update
 
 Sequences
 ---------
