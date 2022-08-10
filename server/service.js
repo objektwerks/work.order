@@ -1,6 +1,6 @@
 // @ts-check
 import { newPin } from './pin.js';
-import { serviceProvider, Status, User, Users, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { serviceProvider, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
@@ -68,19 +68,6 @@ export default class Service {
       console.log(`*** service.listWorkOrdersByUserId for user id: ${id} failed: ${error}`);
     }
     return workorders;
-  }
-
-  listUsersByRole(role) {
-    let users;
-    try {
-      const list = this.store.listUsersByRole(role);
-      users = Users.success(list);
-      console.log(`*** service.listUsersByRole succeeded for role: ${role}`);
-    } catch(error) {
-      users = Users.fail('List work orders by user id failed!');
-      console.log(`*** service.listUsersByRole for role: ${role} failed: ${error}`);
-    }
-    return users;
   }
 
   getWorkOrderByNumber(number) {
