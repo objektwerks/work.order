@@ -7,7 +7,7 @@ export default class RegisterView {
     this.fetcher = fetcher;
 
     getById('register-command-id').addEventListener('click', () => {
-      hide('register-errors-pane-id');
+      hide('register-errors-view-id');
 
       const role = getValueById('register-role-id');
       const name = getValueById('register-name-id');
@@ -22,10 +22,10 @@ export default class RegisterView {
           errors.push(status.error);
           this.listErrors(errors);
         } else {
-          hide('register-pane-id"');
+          hide('register-view-id"');
           hide('register-menu-id');
           
-          show('register-info-pane-id');
+          show('register-info-view-id');
         }
       } else {
         this.listErrors(errors);
@@ -39,6 +39,6 @@ export default class RegisterView {
 
   listErrors(errors) {
     listValues('register-errors-list-id', errors);
-    show('register-errors-pane-id');
+    show('register-errors-view-id');
   }
 }
