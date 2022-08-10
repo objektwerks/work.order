@@ -13,7 +13,7 @@ export default class WorkOrdersPane {
 
     }, false);
 
-    getById('workorders-list-command-id').addEventListener('click', () => {
+    getById('workorders-list-id').addEventListener('click', () => {
 
     }, false);
   }
