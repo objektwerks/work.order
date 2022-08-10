@@ -24,6 +24,7 @@ export default class Register {
         } else {
           hide('register-pane-id"');
           hide('register-menu-id');
+          
           show('register-info-pane-id');
         }
       } else {

@@ -20,7 +20,16 @@ export default class Login {
           errors.push(userWorkOrders.error);
           this.listErrors(errors);
         } else {
+          hide('login-pane-id');
+          hide('login-menu-id');
+
+          hide('register-pane-id"');
+          hide('register-info-pane-id');
+          hide('register-menu-id');
+
           show('workorders-pane-id');
+          show(`workorders-menu-id`);
+          show(`user-menu-id`);
           // TODO: Set service providers and workorder-subpane-id as required.
         }
       } else {
