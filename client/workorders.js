@@ -14,7 +14,7 @@ export default class WorkOrdersPane {
     }, false);
 
     getById('workorders-list-id').addEventListener('click', () => {
-
+      // See: https://davidwalsh.name/event-delegate
     }, false);
   }
 }
