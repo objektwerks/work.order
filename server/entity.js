@@ -48,7 +48,7 @@ const pinInvalidMessage = 'For pin, enter exactly 7 numbers, characters and/or s
 const datetimeInvalidMessage = 'For datetime, must use 24-character ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ';
 const idInvalidMessage = 'An id must be greater than 0.'
 const numberInvalidMessage = 'A number must be greater than 0.'
-const emptyInvalidMessage = 'This field must not be empty. Enter some text.';
+const definedInvalidMessage = 'This field may be empty, but must be defined.';
 
 export class Registration {
   static create(role, name, emailAddress, streetAddress) {
@@ -176,12 +176,12 @@ export class WorkOrder {
     if (!validateGreaterThanZero(number)) errors.push(numberInvalidMessage);
     if (!validateGreaterThanZero(homeownerId)) errors.push(idInvalidMessage);
     if (!validateGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage);
-    if (!validateLengthRange(title, 4, 64)) errors.push(emptyInvalidMessage);
-    if (!validateLengthRange(issue, 4, 255)) errors.push(emptyInvalidMessage);
-    if (!validateDefined(imageUrl)) errors.push(emptyInvalidMessage);
-    if (!validateDefined(resolution)) errors.push(emptyInvalidMessage);
+    if (!validateLengthRange(title, 4, 64)) errors.push(definedInvalidMessage);
+    if (!validateLengthRange(issue, 4, 255)) errors.push(definedInvalidMessage);
+    if (!validateDefined(imageUrl)) errors.push(definedInvalidMessage);
+    if (!validateDefined(resolution)) errors.push(definedInvalidMessage);
     if (!validateLength(opened, 24)) errors.push(datetimeInvalidMessage);
-    if (!validateDefined(closed)) errors.push(emptyInvalidMessage);
+    if (!validateDefined(closed)) errors.push(definedInvalidMessage);
     return errors;
   }
 }
