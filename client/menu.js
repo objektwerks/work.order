@@ -4,27 +4,27 @@ import { getById, getByClass, show } from './document.js';
 export default class Menu {
   constructor() {
     getById('login-menu-id').addEventListener('click', () => {
-      this.selectTab('login-pane-id')
+      this.selectMenuItem('login-view-id')
     }, false);
     
     getById('register-menu-id').addEventListener('click', () => {
-      this.selectTab('register-pane-id')
+      this.selectMenuItem('register-view-id')
     }, false);
 
     getById('workorders-menu-id').addEventListener('click', () => {
-      this.selectTab('workorders-pane-id')
+      this.selectMenuItem('workorders-view-id')
     }, false);
 
     getById('user-menu-id').addEventListener('click', () => {
-      this.selectTab('user-pane-id')
+      this.selectMenuItem('user-view-id')
     }, false);
   }
 
-  selectTab(paneId) {
-    const panes = getByClass('model-pane');
-    for (const pane of panes) {
-      pane['style'].display = 'none';
+  selectMenuItem(viewId) {
+    const views = getByClass('model-view');
+    for (const view of views) {
+      view['style'].display = 'none';
     }
-    show(paneId);
+    show(viewId);
   }
 }
