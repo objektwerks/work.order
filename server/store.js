@@ -27,7 +27,7 @@ export default class Store {
         rows.forEach((row) => {
           console.log(row);
           list.push(
-            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
           )
         });
       }
