@@ -27,6 +27,7 @@ export function show(id) {
 export function listValues(listId, values) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
+  ul.className = '"w3-ul w3-hoverable';
   for (const value of values) {
     let li = document.createElement('li');
     li.appendChild(document.createTextNode(value));
