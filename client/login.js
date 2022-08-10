@@ -7,7 +7,7 @@ export default class LoginView {
     this.fetcher = fetcher;
 
     getById('login-command-id').addEventListener('click', () => {
-      hide('login-errors-pane-id');
+      hide('login-errors-view-id');
 
       const emailAddress = getValueById('login-email-address-id');
       const pin = getValueById('login-pin-id');
@@ -20,14 +20,14 @@ export default class LoginView {
           errors.push(userWorkOrders.error);
           this.listErrors(errors);
         } else {
-          hide('login-pane-id');
+          hide('login-view-id');
           hide('login-menu-id');
 
-          hide('register-pane-id"');
-          hide('register-info-pane-id');
+          hide('register-view-id"');
+          hide('register-info-view-id');
           hide('register-menu-id');
 
-          show('workorders-pane-id');
+          show('workorders-view-id');
           show(`workorders-menu-id`);
           show(`user-menu-id`);
           // TODO: Set service providers and workorder-subpane-id as required.
@@ -44,6 +44,6 @@ export default class LoginView {
 
   listErrors(errors) {
     listValues('login-errors-list-id', errors);
-    show('login-errors-pane-id');
+    show('login-errors-view-id');
   }
 }
