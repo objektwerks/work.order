@@ -15,9 +15,9 @@ export default class LoginView {
       const errors = Credentials.validate(emailAddress, pin);
       if (errors.length === 0) {
         const credentials = Credentials.create(emailAddress, pin);
-        const userWorkOrders = this.fetch(credentials);
-        if (!userWorkOrders.success) {
-          errors.push(userWorkOrders.error);
+        const userServiceProvidersWorkOrders = this.fetch(credentials);
+        if (!userServiceProvidersWorkOrders.success) {
+          errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
           hide('login-view-id');
@@ -30,7 +30,7 @@ export default class LoginView {
           show('workorders-view-id');
           show(`workorders-menu-id`);
           show(`user-menu-id`);
-          // TODO: Set service providers and workorder-subpane-id as required.
+          // TODO: Set user, service providers and workorders.
         }
       } else {
         this.listErrors(errors);
