@@ -20,6 +20,8 @@ export default class LoginView {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
+          // TODO: Set user, service providers and workorders. Where?
+
           hide('login-view-id');
           hide('login-menu-id');
 
@@ -30,7 +32,6 @@ export default class LoginView {
           show('workorders-view-id');
           show(`workorders-menu-id`);
           show(`user-menu-id`);
-          // TODO: Set user, service providers and workorders.
         }
       } else {
         this.listErrors(errors);
