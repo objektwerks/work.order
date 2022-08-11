@@ -6,6 +6,10 @@ import RegisterView from './register.js';
 import WorkOrdersView from './workorders.js';
 import UserView from './user.js';
 
+// @ts-ignore
+import now from './now.js';
+now('client');
+
 export default class Client {
   constructor(url) {
     this.url = url;

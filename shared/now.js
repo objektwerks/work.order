@@ -1,3 +1,4 @@
-export function now() {
-  console.log(`*** Now: ${new Date().toISOString}`);
+// @ts-check
+export default function now(target) {
+  console.log(`*** Now: ${new Date()} for ${target}.`);
 }

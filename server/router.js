@@ -2,6 +2,9 @@
 import compression from 'compression';
 import express from 'express';
 
+import now from '../shared/now.js';
+now('router');
+
 export default class Router {
   constructor(service) {
     this.service = service;
@@ -10,6 +13,7 @@ export default class Router {
 
     router.use(compression());
     router.use(express.static('client'))
+    router.use(express.static('shared'))
     router.use(express.json());
     
     router.post('/register', (request, response) => {
