@@ -33,7 +33,7 @@ function validateGreaterThanZero(number) {
 function validateDefined(string) {
   let isDefined;
   try {
-    isDefined = string.length >= 0;
+    isDefined = string !== undefined && string !== null && string.length >= 0;
   } catch {
     isDefined = false;
   }
