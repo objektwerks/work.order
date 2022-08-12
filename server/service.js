@@ -20,7 +20,6 @@ export default class Service {
       let id = 0;
       const registered = new Date().toISOString();
       const user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
-      
       this.emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration);
       id = this.store.addUser(user);
       if (id > 0) {
