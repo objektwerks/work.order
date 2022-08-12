@@ -9,7 +9,7 @@ export default class Fetcher {
     this.registerUrl = rootUrl + '/register';
     this.loginUrl = rootUrl + '/login';
     this.addWorkOrderUrl = rootUrl + '/workorders/add';
-    this.updateWorkOrderUrl = rootUrl + '/workorders/update';
+    this.saveWorkOrderUrl = rootUrl + '/workorders/save';
     this.getWorkOrderByNumberUrl = rootUrl + '/workorders/';
     this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
     this.updateUserUrl = rootUrl + '/users/update';
@@ -55,8 +55,8 @@ export default class Fetcher {
     return await this.call(this.addWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Add work order failed!'));
   }
 
-  async updateWorkOrder(workorder) {
-    return await this.call(this.updateWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
+  async saveWorkOrder(workorder) {
+    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
   }
 
   async getWorkOrderByNumber(number) {
