@@ -2,6 +2,10 @@ Work Order
 ----------
 Work order web app using javascript, html, css, w3c.css, express, nodemailer, mysql and nodejs.
 
+Doc
+---
+>See **doc** folder for images of UI.
+
 Install
 -------
 1. npm install
