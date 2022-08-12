@@ -26,7 +26,7 @@ export default class LoginView {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
-          model.bindUserToUserView(userServiceProvidersWorkOrders.user);
+          model.bindUserToView(userServiceProvidersWorkOrders.user);
           model.bindServiceProvidersToListView(userServiceProvidersWorkOrders.serviceproviders);
           model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
 

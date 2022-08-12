@@ -8,7 +8,7 @@ export default class Model {
     this.workorders = [];
   }
 
-  bindUserToUserView(user) {
+  bindUserToView(user) {
     this.user = user;
     setValueById('user-role-id', user.role);
     setValueById('user-name-id', user.name);
@@ -17,7 +17,7 @@ export default class Model {
     setValueById('user-registered-id', user.registered);
   }
 
-  bindUserViewToUser(name, emailAddress, streetAddress) {
+  bindViewToUser(name, emailAddress, streetAddress) {
     this.user.name = name;
     this.user.emailAddress = emailAddress;
     this.user.streetAddress = streetAddress;
@@ -32,7 +32,7 @@ export default class Model {
     // TODO add work orders to workorders-list-id!
   }
 
-  bindWorkOrderToWorkOrderView(workorder) {
+  bindWorkOrderToView(workorder) {
     for(const wo of this.workorders) {
       if (wo.number === workorder.number) {
         setValueById('workorder-number-id', workorder.number);
@@ -48,7 +48,7 @@ export default class Model {
     }
   }
 
-  bindWorkOrderViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+  bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     for(const workorder of this.workorders) {
       if (workorder.number === number) {
         workorder.number = number;
