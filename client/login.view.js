@@ -31,14 +31,15 @@ export default class LoginView {
           model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
 
           hide('login-view-id');
-          hide('login-menu-id');
-
           hide('register-view-id"');
+
+          hide('login-menu-id');
           hide('register-menu-id');
 
-          show('workorders-view-id');
           show(`workorders-menu-id`);
           show(`user-menu-id`);
+
+          show('workorders-view-id');
         }
       } else {
         this.listErrors(errors);
