@@ -37,16 +37,15 @@ export function listValues(listId, values) {
     li.appendChild(document.createTextNode(value));
     ul.appendChild(li);
   }
-
-  export function listIdValues(listId, idvalues) {
-    document.getElementById(listId).innerHTML = '';
-    const ul = document.getElementById(listId);
-    ul.className = '"w3-ul w3-hoverable';
-    for (const idvalue of idvalues) {
-      let li = document.createElement('li');
-      li.id = idvalue.id;
-      li.appendChild(document.createTextNode(idvalue.value));
-      ul.appendChild(li);
-    }
+}
+export function listIdValues(listId, idvalues) {
+  document.getElementById(listId).innerHTML = '';
+  const ul = document.getElementById(listId);
+  ul.className = '"w3-ul w3-hoverable';
+  for (const idvalue of idvalues) {
+    let li = document.createElement('li');
+    li.id = idvalue.id;
+    li.appendChild(document.createTextNode(idvalue.value));
+    ul.appendChild(li);
   }
 }
