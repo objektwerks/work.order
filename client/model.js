@@ -23,12 +23,13 @@ export default class Model {
     this.user.streetAddress = streetAddress;
   }
 
-  bindServiceProviders(serviceproviders) {
+  bindServiceProvidersToListView(serviceproviders) {
     this.serviceproviders = serviceproviders;
   }
 
-  bindWorkOrders(workorders) {
+  bindWorkOrdersToListView(workorders) {
     this.workorders = workorders;
+    // TODO add work orders to workorders-list-id!
   }
 
   bindWorkOrderToWorkOrderView(workorder) {

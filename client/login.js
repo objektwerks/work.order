@@ -27,8 +27,8 @@ export default class LoginView {
           this.listErrors(errors);
         } else {
           model.bindUserToUserView(userServiceProvidersWorkOrders.user);
-          model.bindServiceProviders(userServiceProvidersWorkOrders.serviceproviders);
-          model.bindWorkOrders(userServiceProvidersWorkOrders.workorders);
+          model.bindServiceProvidersToListView(userServiceProvidersWorkOrders.serviceproviders);
+          model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
 
           hide('login-view-id');
           hide('login-menu-id');
