@@ -1,6 +1,6 @@
 // @ts-check
 import mysql from 'mysql';
-import { User, WorkOrder } from './entity.js';
+import { User, WorkOrder } from '../shared/entity.js';
 
 export default class Store {
   constructor(url) {

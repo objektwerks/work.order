@@ -1,6 +1,8 @@
 // @ts-check
-import { UserServiceProvidersWorkOrders } from './model.js';
 import { getById } from './document.js';
+
+// @ts-ignore
+import { UserServiceProvidersWorkOrders } from './model.js';
 
 export default class WorkOrdersView {
   constructor(fetcher) {

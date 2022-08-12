@@ -1,6 +1,8 @@
 // @ts-check
-import { Registration } from "./model.js";
 import { getById, getValueById, hide, listValues, show } from './document.js';
+
+// @ts-ignore
+import { Registration } from "./entity.js";
 
 export default class RegisterView {
   constructor(fetcher) {

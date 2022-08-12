@@ -1,6 +1,8 @@
 // @ts-check
-import { Credentials } from './model.js';
 import { getById, getValueById, hide, listValues, show } from './document.js';
+
+// @ts-ignore
+import { Credentials } from './entity.js';
 
 export default class LoginView {
   constructor(fetcher) {
