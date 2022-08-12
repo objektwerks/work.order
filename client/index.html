@@ -64,10 +64,14 @@
                 </div>
             </div>
 
-            <!-- Register Info -->
-            <div id="register-info-view-id" class="w3-panel w3-indigo" style="display:none">
-                <h3 class="w3-text-indigo">Register</h3>
-                <p>Check your email for your login pin. Then select Login.</p>
+            <!-- Register Dialog -->
+            <div id="register-dialog-id" class="w3-model w3-indigo" style="display:none">
+                <div class="w3-modal-content">
+                    <span onclick="document.getElementById('register-info-view-id').style.display='none'"
+                          class="w3-button w3-display-topright">&times;</span>
+                    <h3 class="w3-text-indigo">Register</h3>
+                    <p>Check your email for your login pin. Then select Login.</p>
+                </div>
             </div>
 
             <!-- Work Orders -->

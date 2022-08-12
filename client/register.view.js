@@ -30,7 +30,7 @@ export default class RegisterView {
           hide('register-view-id"');
           hide('register-menu-id');
           
-          show('register-info-view-id');
+          show('register-dialog-id');
         }
       } else {
         this.listErrors(errors);
