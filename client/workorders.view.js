@@ -1,9 +1,6 @@
 // @ts-check
 import { getById } from './document.js';
 
-// @ts-ignore
-import { UserServiceProvidersWorkOrders } from './entity.js';
-
 export default class WorkOrdersView {
   constructor(fetcher, model) {
     this.fetcher = fetcher;
