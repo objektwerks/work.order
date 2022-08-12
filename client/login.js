@@ -4,6 +4,9 @@ import { getById, getValueById, hide, listValues, show } from './document.js';
 // @ts-ignore
 import { Credentials } from './entity.js';
 
+// @ts-ignore
+import { validateCredentials } from './validator.js';
+
 export default class LoginView {
   constructor(fetcher, model) {
     this.fetcher = fetcher;
@@ -15,7 +18,7 @@ export default class LoginView {
       const emailAddress = getValueById('login-email-address-id');
       const pin = getValueById('login-pin-id');
 
-      const errors = Credentials.validate(emailAddress, pin);
+      const errors = validateCredentials(emailAddress, pin);
       if (errors.length === 0) {
         const credentials = Credentials.create(emailAddress, pin);
         const userServiceProvidersWorkOrders = this.fetch(credentials);

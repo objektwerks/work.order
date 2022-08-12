@@ -4,6 +4,9 @@ import { getById, getValueById, hide, listValues, show } from './document.js';
 // @ts-ignore
 import { Registration } from "./entity.js";
 
+// @ts-ignore
+import { validateRegistration } from './validator.js';
+
 export default class RegisterView {
   constructor(fetcher) {
     this.fetcher = fetcher;
@@ -16,7 +19,7 @@ export default class RegisterView {
       const emailAddress = getValueById('register-email-address-id');
       const streetAddress = getValueById('register-street-address-id');
 
-      const errors = Registration.validate(role, name, emailAddress, streetAddress);
+      const errors = validateRegistration(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
         const status = this.fetch(registration);
