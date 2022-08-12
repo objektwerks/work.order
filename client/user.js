@@ -18,9 +18,7 @@ export default class UserView {
 
       const errors = validateUserView(name, emailAddress, streetAddress);
       if (errors.length === 0) {
-        model.name = name;
-        model.emailAddress = emailAddress;
-        model.streetAddress = streetAddress;
+        model.bindUserViewToUser(name, emailAddress, streetAddress);
         const status = this.fetcher.updateUser(model.user);
         if (!status.success) {
           errors.push(status.error);

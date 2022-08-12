@@ -8,6 +8,10 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
+export function setValueById(id, value) {
+  return document.getElementById(id)['value'] = value;
+}
+
 export function getByClass(name) {
   return document.getElementsByClassName(name);
 }
