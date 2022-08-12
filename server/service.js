@@ -120,20 +120,20 @@ export default class Service {
     return status;
   }
 
-  updateUser(user) {
+  saveUser(user) {
     let status;
     try {
-      const count = this.store.updateUser(user);
+      const count = this.store.saveUser(user);
       if (count > 0) {
         status = Status.success();
-        console.log(`*** service.updateUser succeeded for id: ${user.id}`);
+        console.log(`*** service.saveUser succeeded for id: ${user.id}`);
       } else {
-        status = Status.fail('Update user order failed!');
-        console.log(`*** service.updateUser failed!`);
+        status = Status.fail('Save user order failed!');
+        console.log(`*** service.saveUser failed!`);
       }
     } catch(error) {
-      status = Status.fail('Update user order failed!');
-      console.log(`*** service.updateUser failed: ${error}`);
+      status = Status.fail('Save user order failed!');
+      console.log(`*** service.saveUser failed: ${error}`);
     }
     return status;
   }

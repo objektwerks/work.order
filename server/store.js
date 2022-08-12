@@ -125,14 +125,14 @@ export default class Store {
     return count;
   }
 
-  updateUser(user) {
+  saveUser(user) {
     let count = 0;
     this.connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
       if (error) {
-        this.log('updateUser', error);
+        this.log('saveUser', error);
       } else {
         count = result.affectedRows;
-        console.log(`user ${user.id} update count: ${count}`);
+        console.log(`user ${user.id} save count: ${count}`);
       }
     });
     return count;
