@@ -12,7 +12,7 @@ export default class Fetcher {
     this.saveWorkOrderUrl = rootUrl + '/workorders/save';
     this.getWorkOrderByNumberUrl = rootUrl + '/workorders/';
     this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
-    this.updateUserUrl = rootUrl + '/users/update';
+    this.saveUserUrl = rootUrl + '/users/save';
     this.listUsersByRoleUrl = rootUrl + '/users/';
     this.get = 'GET';
     this.post = 'POST';
@@ -56,7 +56,7 @@ export default class Fetcher {
   }
 
   async saveWorkOrder(workorder) {
-    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Update work order failed!'));
+    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Save work order failed!'));
   }
 
   async getWorkOrderByNumber(number) {
@@ -67,7 +67,7 @@ export default class Fetcher {
     return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
   }
 
-  async updateUser(user) {
-    return await this.call(this.updateUserUrl, this.post, user, () => Status.fail('Update user failed.'));
+  async saveUser(user) {
+    return await this.call(this.saveUserUrl, this.post, user, () => Status.fail('Save user failed.'));
   }
 }
