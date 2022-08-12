@@ -16,7 +16,7 @@ export default class Emailer {
         pass: password,
       },
     });
-    console.log('*** emailer is connected ...')
+    console.log('*** emailer is connected ...');
   }
 
   send(recipient, pin, subject, text) {
