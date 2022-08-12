@@ -2,9 +2,6 @@
 import compression from 'compression';
 import express from 'express';
 
-import now from '../shared/now.js';
-now('router');
-
 export default class Router {
   constructor(service) {
     this.service = service;
