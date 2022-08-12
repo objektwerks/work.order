@@ -44,7 +44,7 @@ export default class Router {
     const port = parseInt(process.env.PORT) || 3000;
     const host = process.env.BIND_IP || '127.0.0.1';
     const http = router.listen(port, host, () =>
-      console.log(`*** server and router listening on http://${host}:${port}/`),
+      console.log(`*** server and router listening on http://${host}:${port}/`)
     );
     
     process.on('SIGINT', () => {
