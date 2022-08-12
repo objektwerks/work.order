@@ -23,6 +23,14 @@ export default class Model {
     this.user.streetAddress = streetAddress;
   }
 
+  bindServiceProviders(serviceproviders) {
+    this.serviceproviders = serviceproviders;
+  }
+
+  bindWorkOrders(workorders) {
+    this.workorders = workorders;
+  }
+
   bindWorkOrderToWorkOrderView(workorder) {
     for(const wo of this.workorders) {
       if (wo.number === workorder.number) {
