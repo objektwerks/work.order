@@ -38,6 +38,7 @@ export function listValues(listId, values) {
     ul.appendChild(li);
   }
 }
+
 export function listIdValues(listId, idvalues) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
