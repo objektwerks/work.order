@@ -13,7 +13,6 @@ export default class LoginView {
     this.model = model;
 
     getById('login-command-id').addEventListener('click', () => {
-      hide('register-info-view-id');
       hide('login-errors-view-id');
 
       const emailAddress = getValueById('login-email-address-id');
@@ -35,7 +34,6 @@ export default class LoginView {
           hide('login-menu-id');
 
           hide('register-view-id"');
-          hide('register-info-view-id');
           hide('register-menu-id');
 
           show('workorders-view-id');
