@@ -19,8 +19,8 @@ export default class UserView {
       const name = getValueById('user-name-id');
       const emailAddress = getValueById('user-email-address-id');
       const streetAddress = getValueById('user-street-address-id');
+
       const errors = validateUser(role, name, emailAddress, streetAddress);
-      
       if (errors.length === 0) {
         const user = User.create(role, name, emailAddress, streetAddress);
         const status = this.fetch(user);
