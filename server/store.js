@@ -112,14 +112,14 @@ export default class Store {
     return id;
   }
 
-  updateWorkOrder(workorder) {
+  saveWorkOrder(workorder) {
     let count = 0;
     this.connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
       if (error) {
-        this.log('updateWorkOrder', error);
+        this.log('saveWorkOrder', error);
       } else {
         count = result.affectedRows;
-        console.log(`workorder ${workorder.number} update count: ${count}`);
+        console.log(`workorder ${workorder.number} save count: ${count}`);
       }
     });
     return count;

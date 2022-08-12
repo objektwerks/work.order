@@ -105,7 +105,7 @@ export default class Service {
   saveWorkOrder(workorder) {
     let status;
     try {
-      const count = this.store.updateWorkOrder(workorder);
+      const count = this.store.saveWorkOrder(workorder);
       if (count > 0) {
         status = Status.success();
         console.log(`*** service.saveWorkOrder succeeded for id: ${workorder.id}`);
