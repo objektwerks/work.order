@@ -4,9 +4,6 @@ import { getById, getValueById, hide, listValues, show } from './document.js';
 // @ts-ignore
 import { validateUser } from './validator.js';
 
-// @ts-ignore
-import { User } from './entity.js';
-
 export default class UserView {
   constructor(fetcher, model) {
     this.fetcher = fetcher;
@@ -22,8 +19,7 @@ export default class UserView {
 
       const errors = validateUser(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
-        const user = User.create(role, name, emailAddress, streetAddress);
-        const status = this.fetch(user);
+        const status = this.fetcher.updateUser(model.user);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
@@ -34,10 +30,6 @@ export default class UserView {
         this.listErrors(errors);
       }      
     }, false);
-  }
-
-  fetch(user) {
-    return this.fetcher.updateUser(user);
   }
 
   listErrors(errors) {
