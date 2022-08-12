@@ -7,7 +7,7 @@ export default class WorkOrdersView {
     this.model = model;
 
     getById('workorder-new-command-id').addEventListener('click', () => {
-
+      model.bindEmptyWorkOrderToView();
     }, false);
 
     getById('workorder-save-command-id').addEventListener('click', () => {
