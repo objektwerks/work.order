@@ -26,7 +26,7 @@ export default class Router {
     });
 
     router.post('/workorders/save', (request, response) => {
-      response.send(service.updateWorkOrder(request.body));
+      response.send(service.saveWorkOrder(request.body));
     });
 
     router.get('/workorders/user/:id', (request, response) => {
@@ -38,7 +38,7 @@ export default class Router {
     });
     
     router.post('/users/save', (request, response) => {
-      response.send(service.updateUser(request.body));
+      response.send(service.saveUser(request.body));
     });
     
     const port = parseInt(process.env.PORT) || 3000;
