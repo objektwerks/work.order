@@ -102,20 +102,20 @@ export default class Service {
     return saved;
   }
 
-  updateWorkOrder(workorder) {
+  saveWorkOrder(workorder) {
     let status;
     try {
       const count = this.store.updateWorkOrder(workorder);
       if (count > 0) {
         status = Status.success();
-        console.log(`*** service.updateWorkOrder succeeded for id: ${workorder.id}`);
+        console.log(`*** service.saveWorkOrder succeeded for id: ${workorder.id}`);
       } else {
-        status = Status.fail('Update work order failed!');
-        console.log(`*** service.updateWorkOrder failed!`);
+        status = Status.fail('Save work order failed!');
+        console.log(`*** service.saveWorkOrder failed!`);
       }
     } catch(error) {
-      status = Status.fail('Update work order failed!');
-      console.log(`*** service.updateWorkOrder failed: ${error}`);
+      status = Status.fail('Save work order failed!');
+      console.log(`*** service.saveWorkOrder failed: ${error}`);
     }
     return status;
   }
