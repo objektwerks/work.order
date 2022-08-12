@@ -3,11 +3,11 @@ export const homeowner = 'homeowner';
 export const serviceProvider = 'serviceprovider';
 
 export function toJson(object) {
-  return JSON.stringify(object)
+  return JSON.stringify(object);
 }
 
 export function toObject(json) {
-  return JSON.parse(json)
+  return JSON.parse(json);
 }
 
 export class Registration {
