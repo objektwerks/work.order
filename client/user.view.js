@@ -10,7 +10,6 @@ export default class UserView {
     this.model = model;
 
     getById('user-save-command-id').addEventListener('click', () => {
-      hide('user-info-view-id');
       hide('user-errors-view-id');
 
       const name = getValueById('user-name-id');
@@ -25,7 +24,7 @@ export default class UserView {
           errors.push(status.error);
           this.listErrors(errors);
         } else {          
-          show('user-info-view-id');
+          show('user-dialog-id');
         }
       } else {
         this.listErrors(errors);
