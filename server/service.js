@@ -10,7 +10,7 @@ export default class Service {
     this.store = store;
     this.emailer = emailer;
     console.log('*** service is running ...');
-    console.log(`*** new pin verified: ${newPin()}`)
+    console.log(`*** new pin verified: ${newPin()}`);
   }
 
   register(registration) {
