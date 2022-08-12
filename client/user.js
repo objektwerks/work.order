@@ -22,16 +22,13 @@ export default class UserView {
       const errors = validateUser(role, name, emailAddress, streetAddress);
       
       if (errors.length === 0) {
-        const registration = User.create(role, name, emailAddress, streetAddress);
-        const status = this.fetch(registration);
+        const user = User.create(role, name, emailAddress, streetAddress);
+        const status = this.fetch(user);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
-        } else {
-          hide('register-view-id"');
-          hide('register-menu-id');
-          
-          show('register-info-view-id');
+        } else {          
+          show('user-info-view-id');
         }
       } else {
         this.listErrors(errors);
@@ -39,12 +36,12 @@ export default class UserView {
     }, false);
   }
 
-  fetch(registration) {
-    return this.fetcher.register(registration);
+  fetch(user) {
+    return this.fetcher.updateUser(user);
   }
 
   listErrors(errors) {
-    listValues('register-errors-list-id', errors);
-    show('register-errors-view-id');
+    listValues('user-errors-list-id', errors);
+    show('user-errors-view-id');
   }
 }
