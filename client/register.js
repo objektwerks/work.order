@@ -22,7 +22,7 @@ export default class RegisterView {
       const errors = validateRegistration(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
-        const status = this.fetch(registration);
+        const status = this.fetcher.register(registration);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
@@ -36,10 +36,6 @@ export default class RegisterView {
         this.listErrors(errors);
       }
     }, false);
-  }
-
-  fetch(registration) {
-    return this.fetcher.register(registration);
   }
 
   listErrors(errors) {
