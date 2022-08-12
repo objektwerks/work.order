@@ -76,10 +76,7 @@ export function validateWorkOrder(number, homeownerId, serviceProviderId, title,
 export function validateUser(id, role, name, emailAddress, streetAddress, registered) {
   const errors = [];
   if (!validateGreaterThanZero(id)) errors.push(idInvalidMessage);
-  if (!validateRole(role)) errors.push(roleInvalidMessage);
-  if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
-  if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
-  if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage);
   if (!validateLength(registered, 24)) errors.push(datetimeInvalidMessage);
+  errors.concat( validateRegistration(role, name, emailAddress, streetAddress) );
   return errors;
 }
