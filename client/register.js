@@ -2,10 +2,10 @@
 import { getById, getValueById, hide, listValues, show } from './document.js';
 
 // @ts-ignore
-import { Registration } from "./entity.js";
+import { validateRegistration } from './validator.js';
 
 // @ts-ignore
-import { validateRegistration } from './validator.js';
+import { Registration } from "./entity.js";
 
 export default class RegisterView {
   constructor(fetcher) {
