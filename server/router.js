@@ -25,7 +25,7 @@ export default class Router {
       response.send(service.addWorkOrder(request.body));
     });
 
-    router.post('/workorders/update', (request, response) => {
+    router.post('/workorders/save', (request, response) => {
       response.send(service.updateWorkOrder(request.body));
     });
 
@@ -37,7 +37,7 @@ export default class Router {
       response.send(service.getWorkOrderByNumber(request.params.number));
     });
     
-    router.post('/users/update', (request, response) => {
+    router.post('/users/save', (request, response) => {
       response.send(service.updateUser(request.body));
     });
     
