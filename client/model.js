@@ -25,11 +25,24 @@ export default class Model {
 
   bindServiceProvidersToListView(serviceproviders) {
     this.serviceproviders = serviceproviders;
+    // TODO see add service providers to select with options below.
   }
 
   bindWorkOrdersToListView(workorders) {
     this.workorders = workorders;
     // TODO add work orders to workorders-list-id!
+  }
+
+  bindEmptyWorkOrderToView() {
+    setValueById('workorder-number-id', 0);
+    setValueById('workorder-homeowner-id', 0);
+    setValueById('workorder-service-provider-id', 0); // TODO add service providers to select with options!
+    setValueById('workorder-title-id', "");
+    setValueById('workorder-issue-id', "");
+    setValueById('workorder-image-url-id', "");
+    setValueById('workorder-resolution-id', "");
+    setValueById('workorder-opened-id', "");
+    setValueById('workorder-closed-id', "");
   }
 
   bindWorkOrderToView(workorder) {
