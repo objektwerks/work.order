@@ -10,6 +10,7 @@ export default class UserView {
     this.model = model;
 
     getById('user-save-command-id').addEventListener('click', () => {
+      hide('user-info-view-id');
       hide('user-errors-view-id');
 
       const name = getValueById('user-name-id');
