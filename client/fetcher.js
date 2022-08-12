@@ -56,7 +56,7 @@ export default class Fetcher {
   }
 
   async saveWorkOrder(workorder) {
-    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Save work order failed!'));
+    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => Status.fail('Save work order failed!'));
   }
 
   async getWorkOrderByNumber(number) {
