@@ -1,5 +1,8 @@
 // @ts-check
-import { toJson, toObject, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './model.js';
+
+
+// @ts-ignore
+import { toJson, toObject, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 export default class Fetcher {
   constructor(rootUrl) {

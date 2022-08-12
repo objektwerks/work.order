@@ -2,11 +2,12 @@
 import { getById } from './document.js';
 
 // @ts-ignore
-import { UserServiceProvidersWorkOrders } from './model.js';
+import { UserServiceProvidersWorkOrders } from './entity.js';
 
 export default class WorkOrdersView {
-  constructor(fetcher) {
+  constructor(fetcher, model) {
     this.fetcher = fetcher;
+    this.model = model;
 
     getById('workorder-new-command-id').addEventListener('click', () => {
 

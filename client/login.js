@@ -5,8 +5,9 @@ import { getById, getValueById, hide, listValues, show } from './document.js';
 import { Credentials } from './entity.js';
 
 export default class LoginView {
-  constructor(fetcher) {
+  constructor(fetcher, model) {
     this.fetcher = fetcher;
+    this.model = model;
 
     getById('login-command-id').addEventListener('click', () => {
       hide('login-errors-view-id');
@@ -22,7 +23,9 @@ export default class LoginView {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
-          // TODO: Set user, service providers and workorders. Where?
+          model.user = userServiceProvidersWorkOrders.user;
+          model.serviceproviders = userServiceProvidersWorkOrders.serviceproviders;
+          model.workorders = userServiceProvidersWorkOrders.workorders;
 
           hide('login-view-id');
           hide('login-menu-id');
