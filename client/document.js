@@ -46,7 +46,7 @@ export function listIdValues(listId, idvalues) {
   for (const idvalue of idvalues) {
     let li = document.createElement('li');
     li.id = idvalue.id;
-    li.appendChild(document.createTextNode(idvalue.value));
+    li.appendChild(document.createTextNode(`${idvalue.id} - idvalue.value`));
     ul.appendChild(li);
   }
 }
