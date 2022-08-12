@@ -78,9 +78,6 @@
             <div id="workorders-view-id" class="view w3-container" style="display:none">
                 <h3 class="w3-text-indigo">Work Orders</h3>
                 <div id="workorder-view-id" class=" w3-container w3-padding-16">
-                    <div id="workorder-info-view-id" class="w3-panel w3-indigo" style="display:none">
-                        <p>Work order updated successfully.</p>
-                    </div>
                     <div id="workorder-errors-view-id" class="w3-panel w3-red" style="display:none">
                         <ul id="workorder-errors-list-id" class="w3-ul"></ul>
                     </div>
@@ -109,6 +106,16 @@
                 </div>
                 <div id="workorders-list-view-id" class=" w3-container w3-padding w3-indigo">
                     <ul id="workorders-list-id" class="w3-ul w3-hoverable"></ul>
+                </div>
+            </div>
+
+            <!-- Work Order Dialog -->
+            <div id="workorder-dialog-id" class="w3-model w3-indigo" style="display:none">
+                <div class="w3-modal-content">
+                    <span onclick="document.getElementById('register-info-view-id').style.display='none'"
+                            class="w3-button w3-display-topright">&times;</span>
+                    <h3 class="w3-text-indigo">Work Order</h3>
+                    <p>Work order updated successfully.</p>
                 </div>
             </div>
 
