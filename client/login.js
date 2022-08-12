@@ -21,7 +21,7 @@ export default class LoginView {
       const errors = validateCredentials(emailAddress, pin);
       if (errors.length === 0) {
         const credentials = Credentials.create(emailAddress, pin);
-        const userServiceProvidersWorkOrders = this.fetch(credentials);
+        const userServiceProvidersWorkOrders = this.fetcher.login(credentials);
         if (!userServiceProvidersWorkOrders.success) {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
@@ -45,10 +45,6 @@ export default class LoginView {
         this.listErrors(errors);
       }
     }, false);
-  }
-
-  fetch(credentials) {
-    return this.fetcher.login(credentials);
   }
 
   listErrors(errors) {
