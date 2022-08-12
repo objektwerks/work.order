@@ -3,7 +3,7 @@ import Fetcher from './fetcher.js';
 import Model from './model.js';
 import Menu from './menu.js';
 import LoginView from './login.view.js';
-import RegisterView from './register.js';
+import RegisterView from './register.view.js';
 import WorkOrdersView from './workorders.js';
 import UserView from './user.js';
 
