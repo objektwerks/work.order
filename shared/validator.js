@@ -80,3 +80,11 @@ export function validateUser(id, role, name, emailAddress, streetAddress, regist
   errors.concat( validateRegistration(role, name, emailAddress, streetAddress) );
   return errors;
 }
+
+export function validateUserView(name, emailAddress, streetAddress) {
+  const errors = [];
+  if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
+  if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
+  if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage);
+  return errors;
+}

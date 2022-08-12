@@ -2,7 +2,7 @@
 import { getById, getValueById, hide, listValues, show } from './document.js';
 
 // @ts-ignore
-import { validateUser } from './validator.js';
+import { validateUserView } from './validator.js';
 
 export default class UserView {
   constructor(fetcher, model) {
@@ -12,13 +12,15 @@ export default class UserView {
     getById('user-save-command-id').addEventListener('click', () => {
       hide('user-errors-view-id');
 
-      const role = getValueById('user-role-id');
       const name = getValueById('user-name-id');
       const emailAddress = getValueById('user-email-address-id');
       const streetAddress = getValueById('user-street-address-id');
 
-      const errors = validateUser(role, name, emailAddress, streetAddress);
+      const errors = validateUserView(name, emailAddress, streetAddress);
       if (errors.length === 0) {
+        model.name = name;
+        model.emailAddress = emailAddress;
+        model.streetAddress = streetAddress;
         const status = this.fetcher.updateUser(model.user);
         if (!status.success) {
           errors.push(status.error);
