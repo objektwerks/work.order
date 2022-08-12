@@ -13,10 +13,10 @@ export default class Client {
     this.fetcher = new Fetcher(this.url);
     this.model = new Model();
     this.menu = new Menu();
-    this.loginpane = new LoginView(this.fetcher, this.model);
-    this.registerpane = new RegisterView(this.fetcher);
-    this.workorderspane = new WorkOrdersView(this.fetcher, this.model);
-    this.userpane = new UserView(this.fetcher, this.model);
+    this.loginView = new LoginView(this.fetcher, this.model);
+    this.registerView = new RegisterView(this.fetcher);
+    this.workordersView = new WorkOrdersView(this.fetcher, this.model);
+    this.userView = new UserView(this.fetcher, this.model);
     console.log('*** client running ...');
   }
 }
