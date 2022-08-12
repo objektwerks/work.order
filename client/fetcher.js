@@ -1,6 +1,5 @@
 // @ts-check
 
-
 // @ts-ignore
 import { toJson, toObject, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
