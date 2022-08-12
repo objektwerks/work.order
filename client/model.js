@@ -30,7 +30,7 @@ export default class Model {
 
   bindWorkOrdersToListView(workorders) {
     this.workorders = workorders;
-    // TODO add work orders to workorders-list-id!
+    // TODO add work orders to workorders-list-id! See document listIdValues
   }
 
   bindEmptyWorkOrderToView() {
