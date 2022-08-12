@@ -22,4 +22,36 @@ export default class Model {
     this.user.emailAddress = emailAddress;
     this.user.streetAddress = streetAddress;
   }
+
+  bindWorkOrderToWorkOrderView(workorder) {
+    for(const wo of this.workorders) {
+      if (wo.number === workorder.number) {
+        setValueById('workorder-number-id', workorder.number);
+        setValueById('workorder-homeowner-id', workorder.homeownerId);
+        setValueById('workorder-service-provider-id', workorder.serviceProviderId);
+        setValueById('workorder-title-id', workorder.title);
+        setValueById('workorder-issue-id', workorder.issue);
+        setValueById('workorder-image-url-id', workorder.imageUrl);
+        setValueById('workorder-resolution-id', workorder.resolution);
+        setValueById('workorder-opened-id', workorder.opened);
+        setValueById('workorder-closed-id', workorder.closed);
+      }
+    }
+  }
+
+  bindWorkOrderViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+    for(const workorder of this.workorders) {
+      if (workorder.number === number) {
+        workorder.number = number;
+        workorder.homeownerId = homeownerId;
+        workorder.serviceProviderId = serviceProviderId;
+        workorder.title = title;
+        workorder.issue = issue;
+        workorder.imageUrl = imageUrl;
+        workorder.resolution = resolution;
+        workorder.opened = opened;
+        workorder.closed = closed;
+      }
+    }
+  }
 }
