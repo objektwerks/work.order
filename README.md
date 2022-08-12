@@ -59,20 +59,20 @@ Routes
 1. post - /register
 2. post - /login
 3. post - /workorders/add
-4. post - /workorders/update
+4. post - /workorders/save
 5. get  - /workorders/user/:id
 6. get  - /workorders/:number
-7. post - /users/update
+7. post - /users/save
 
 Sequences
 ---------
 1. **client:register** --- registration --> server --- status ---> client
 2. **client:login** --- credentials --> server --- user, workorders --> client
 3. **client:add** --- work order --> server --- workorder --> client
-4. **client:update** --- work order --> server --- status --> client
+4. **client:save** --- work order --> server --- status --> client
 5. **client:list** --- userid --> server --- workorders --> client
 6. **client:get** --- number --> server --- workorder --> client
-7. **client:update** --- user --> server --- status --> client
+7. **client:save** --- user --> server --- status --> client
 
 Schema
 ------
