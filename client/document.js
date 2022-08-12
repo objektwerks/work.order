@@ -48,4 +48,5 @@ export function listValues(listId, values) {
       li.appendChild(document.createTextNode(idvalue.value));
       ul.appendChild(li);
     }
+  }
 }
