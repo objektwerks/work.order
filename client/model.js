@@ -37,7 +37,7 @@ export default class Model {
       if (wo.number === workorder.number) {
         setValueById('workorder-number-id', workorder.number);
         setValueById('workorder-homeowner-id', workorder.homeownerId);
-        setValueById('workorder-service-provider-id', workorder.serviceProviderId);
+        setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
         setValueById('workorder-title-id', workorder.title);
         setValueById('workorder-issue-id', workorder.issue);
         setValueById('workorder-image-url-id', workorder.imageUrl);
