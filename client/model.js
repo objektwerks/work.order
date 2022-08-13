@@ -6,6 +6,7 @@ export default class Model {
     this.user = {};
     this.serviceproviders = [];
     this.workorders = [];
+    this.selectedworkorder = {};
   }
 
   bindUserToView(user) {
