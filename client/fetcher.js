@@ -23,13 +23,13 @@ export default class Fetcher {
     }
   }
 
-  async call(url, method, headers, entity, fault) {
+  async call(url, method, headers, entity, fault, asJson = true) {
     let result;
     try {
       let response = await fetch(url, {
         method: method,
         headers: headers,
-        body: toJson(entity)
+        body: asJson ? toJson(entity) : entity
       });
       if (response.ok) {
         result = toObject( await response.json() );
@@ -75,6 +75,6 @@ export default class Fetcher {
   async saveImage(file, filename) {
     const formdata = new FormData();
     formdata.append('file', file, filename);
-    return await this.call(this.saveImageUrl, this.post, {}, formdata, () => ImageUrl.fail('Save image failed.'));
+    return await this.call(this.saveImageUrl, this.post, {}, formdata, () => ImageUrl.fail('Save image failed.'), false);
   }
 }
