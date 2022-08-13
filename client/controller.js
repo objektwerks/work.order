@@ -7,7 +7,7 @@ import RegisterView from './register.view.js';
 import WorkOrdersView from './workorders.view.js';
 import UserView from './user.view.js';
 
-export default class Client {
+export default class Controller {
   constructor(url) {
     this.url = url;
     this.fetcher = new Fetcher(this.url);
