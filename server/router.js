@@ -15,7 +15,7 @@ export default class Router {
     router.use(express.json());
     router.use(express.urlencoded({ extended: true }));
 
-    const images = multer({ dest: "./.images" });
+    const images = multer({ dest: "./.images/" });
 
     router.post('/register', (request, response) => {
       response.send(service.register(request.body));
@@ -45,7 +45,7 @@ export default class Router {
       response.send(service.saveUser(request.body));
     });
 
-    router.post('/image/save', images.single, (request, response) => {
+    router.post('/image/save', images.single('image'), (request, response) => {
       response.send(service.saveImage(request.body));
     });
     
