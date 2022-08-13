@@ -20,6 +20,17 @@ export function setImageUrlById(id, url) {
   return document.getElementById(id)['src'] = url;
 }
 
+export function displayImage(file, imgId) {
+  const img = getById(imgId);
+  const reader = new FileReader();
+  reader.onload = function() {
+    var dataURL = reader.result;
+    // @ts-ignore
+    img.src = dataURL;
+  };
+  reader.readAsDataURL(file);
+}
+
 export function getByClass(name) {
   return document.getElementsByClassName(name);
 }
