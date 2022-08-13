@@ -14,6 +14,7 @@ export default class Fetcher {
     this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
     this.saveUserUrl = rootUrl + '/users/save';
     this.listUsersByRoleUrl = rootUrl + '/users/';
+    this.saveImageUrl = rootUrl + '/image/';
     this.get = 'GET';
     this.post = 'POST';
     this.headers = {
@@ -22,12 +23,12 @@ export default class Fetcher {
     }
   }
 
-  async call(url, method, entity, fault) {
+  async call(url, method, headers, entity, fault) {
     let result;
     try {
       let response = await fetch(url, {
         method: method,
-        headers: this.headers,
+        headers: headers,
         body: toJson(entity)
       });
       if (response.ok) {
@@ -44,30 +45,36 @@ export default class Fetcher {
   }
 
   async register(registration) {
-    return await this.call(this.registerUrl, this.post, registration, () => Status.fail('Register failed.'));
+    return await this.call(this.registerUrl, this.post, this.headers, registration, () => Status.fail('Register failed.'));
   }
 
   async login(credentials) {
-    return await this.call(this.loginUrl, this.post, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
+    return await this.call(this.loginUrl, this.post, this.headers, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
   }
 
   async addWorkOrder(workorder) {
-    return await this.call(this.addWorkOrderUrl, this.post, workorder, () => WorkOrder.fail('Add work order failed!'));
+    return await this.call(this.addWorkOrderUrl, this.post, this.headers, workorder, () => WorkOrder.fail('Add work order failed!'));
   }
 
   async saveWorkOrder(workorder) {
-    return await this.call(this.saveWorkOrderUrl, this.post, workorder, () => Status.fail('Save work order failed!'));
+    return await this.call(this.saveWorkOrderUrl, this.post, this.headers, workorder, () => Status.fail('Save work order failed!'));
   }
 
   async getWorkOrderByNumber(number) {
-    return await this.call(this.getWorkOrderByNumberUrl + number, this.get, {}, () => WorkOrder.fail('Get work order by number failed!'));
+    return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
 
   async listWorkOrdersByUserId(id) {
-    return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, {}, () => WorkOrders.fail('List work orders by user failed!'));
+    return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
   }
 
   async saveUser(user) {
-    return await this.call(this.saveUserUrl, this.post, user, () => Status.fail('Save user failed.'));
+    return await this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
+  }
+
+  async saveImage(name, file, filename) {
+    const formdata = new FormData();
+    formdata.append(name, file, filename);
+    return await this.call(this.saveImageUrl, this.post, this.headers, formdata, () => Status.fail('Save image failed.'));
   }
 }
