@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { toJson, toObject, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { toJson, toObject, ImageUrl, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 export default class Fetcher {
   constructor(rootUrl) {
@@ -75,6 +75,6 @@ export default class Fetcher {
   async saveImage(name, file, filename) {
     const formdata = new FormData();
     formdata.append(name, file, filename);
-    return await this.call(this.saveImageUrl, this.post, {}, formdata, () => Status.fail('Save image failed.'));
+    return await this.call(this.saveImageUrl, this.post, {}, formdata, () => ImageUrl.fail('Save image failed.'));
   }
 }
