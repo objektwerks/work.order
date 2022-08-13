@@ -1,5 +1,5 @@
 // @ts-check
-import { setValueById } from './common.js';
+import { setImageUrlById, setValueById } from './common.js';
 
 export default class Model {
   constructor() {
@@ -53,7 +53,7 @@ export default class Model {
         setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
         setValueById('workorder-title-id', workorder.title);
         setValueById('workorder-issue-id', workorder.issue);
-        setValueById('workorder-image-url-id', workorder.imageUrl);
+        setImageUrlById('workorder-image-url-id', workorder.imageUrl);
         setValueById('workorder-resolution-id', workorder.resolution);
         setValueById('workorder-opened-id', workorder.opened);
         setValueById('workorder-closed-id', workorder.closed);
