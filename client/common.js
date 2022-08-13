@@ -4,6 +4,10 @@ export function getById(id) {
   return document.getElementById(id);
 }
 
+export function getFileById(id) {
+  return document.getElementById(id)['files'][0];
+}
+
 export function getValueById(id) {
   return document.getElementById(id)['value'];
 }

@@ -1,6 +1,6 @@
 // @ts-check
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getValueById, hide, listValues, show } from './common.js';
+import { getById, getFileById, getValueById, hide, listValues, show } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -41,6 +41,7 @@ export default class WorkOrdersView {
 
     getById('workorder-image-file-id').addEventListener('change', (event) => {
       // TODO!
+      let file = getFileById('workorder-image-file-id');
     }, false);
 
     getById('workorders-list-id').addEventListener('click', (event) => {
