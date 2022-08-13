@@ -39,6 +39,10 @@ export default class WorkOrdersView {
       }  
     }, false);
 
+    getById('workorder-image-file-id').addEventListener('change', (event) => {
+      // TODO!
+    }, false);
+
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         console.log(`click li id: ${event.target['id']}`);
