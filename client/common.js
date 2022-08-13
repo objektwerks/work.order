@@ -12,6 +12,10 @@ export function setValueById(id, value) {
   return document.getElementById(id)['value'] = value;
 }
 
+export function setImageUrlById(id, url) {
+  return document.getElementById(id)['src'] = url;
+}
+
 export function getByClass(name) {
   return document.getElementsByClassName(name);
 }
