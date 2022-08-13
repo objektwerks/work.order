@@ -14,7 +14,6 @@ export default class Router {
     router.use(express.json());
     router.use(express.urlencoded({ extended: true }));
 
-    
     router.post('/register', (request, response) => {
       response.send(service.register(request.body));
     });
