@@ -145,3 +145,20 @@ export class User {
     }    
   }
 }
+
+export class ImageUrl {
+  static success(url) {
+    return {
+      success: true,
+      error: '',
+      url: url
+    }
+  }
+  static fail(error) {
+    return {
+      success: false,
+      error: error,
+      url: ''
+    }
+  }
+}
