@@ -1,6 +1,6 @@
 // @ts-check
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getFileById, getValueById, displayImage, hide, listValues, show } from './common.js';
+import { getById, getFileById, getValueById, displayImage, hide, listValues, show, setValueById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -41,7 +41,15 @@ export default class WorkOrdersView {
 
     getById('workorder-image-file-id').addEventListener('change', (event) => {
       let file = getFileById('workorder-image-file-id');
-      // TODO - post to file server!
+      const status = this.fetcher.saveImage(file, 'filename');
+      if (!status.success) {
+        const errors = []
+        errors.push(status.error);
+        this.listErrors(errors);
+      } else {          
+        setValueById('workorder-dialog-message', 'Photo saved successfully.');
+        show('workorder-dialog-id');
+      }
       displayImage(file, 'workorder-image-url-id');
     }, false);
 
