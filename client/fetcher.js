@@ -14,7 +14,7 @@ export default class Fetcher {
     this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
     this.saveUserUrl = rootUrl + '/users/save';
     this.listUsersByRoleUrl = rootUrl + '/users/';
-    this.saveImageUrl = rootUrl + '/image/';
+    this.saveImageUrl = rootUrl + '/image/save';
     this.get = 'GET';
     this.post = 'POST';
     this.headers = {
@@ -75,6 +75,6 @@ export default class Fetcher {
   async saveImage(name, file, filename) {
     const formdata = new FormData();
     formdata.append(name, file, filename);
-    return await this.call(this.saveImageUrl, this.post, this.headers, formdata, () => Status.fail('Save image failed.'));
+    return await this.call(this.saveImageUrl, this.post, {}, formdata, () => Status.fail('Save image failed.'));
   }
 }

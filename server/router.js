@@ -40,6 +40,10 @@ export default class Router {
     router.post('/users/save', (request, response) => {
       response.send(service.saveUser(request.body));
     });
+
+    router.post('/image/save', (request, response) => {
+      response.send(service.saveImage(request.body));
+    });
     
     const port = parseInt(process.env.PORT) || 3000;
     const host = process.env.BIND_IP || '127.0.0.1';

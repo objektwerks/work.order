@@ -136,4 +136,8 @@ export default class Service {
     }
     return status;
   }
+
+  saveImage(image) {
+    // TODO!
+  }
 }
