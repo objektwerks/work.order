@@ -1,6 +1,6 @@
 // @ts-check
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getFileById, getValueById, displayImage, hide, listValues, show, setValueById } from './common.js';
+import { getById, getFileById, getValueById, displayImage, hide, listValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -47,7 +47,7 @@ export default class WorkOrdersView {
         errors.push(status.error);
         this.listErrors(errors);
       } else {          
-        setValueById('workorder-dialog-message', 'Photo saved successfully.');
+        setTextById('workorder-dialog-message', 'Photo saved successfully.');
         show('workorder-dialog-id');
       }
       displayImage(file, 'workorder-image-url-id');
