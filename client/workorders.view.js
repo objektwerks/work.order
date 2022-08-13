@@ -41,10 +41,10 @@ export default class WorkOrdersView {
 
     getById('workorder-image-file-id').addEventListener('change', (event) => {
       let file = getFileById('workorder-image-file-id');
-      const status = this.fetcher.saveImage(file, 'filename');
-      if (!status.success) {
+      const imageUrl = this.fetcher.saveImage(file, 'filename');
+      if (!imageUrl.success) {
         const errors = []
-        errors.push(status.error);
+        errors.push(imageUrl.error);
         this.listErrors(errors);
       } else {          
         setTextById('workorder-dialog-message', 'Photo saved successfully.');
