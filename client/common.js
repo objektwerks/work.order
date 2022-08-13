@@ -12,6 +12,10 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
+export function setTextById(id, text) {
+  return document.getElementById(id).innerText = text;
+}
+
 export function setValueById(id, value) {
   return document.getElementById(id)['value'] = value;
 }
