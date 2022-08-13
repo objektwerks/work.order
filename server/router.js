@@ -1,5 +1,6 @@
 // @ts-check
 import compression from 'compression';
+import multer from 'multer';
 import express from 'express';
 
 export default class Router {
@@ -13,6 +14,8 @@ export default class Router {
     router.use(express.static('shared'));
     router.use(express.json());
     router.use(express.urlencoded({ extended: true }));
+
+    const images = multer({ dest: "./.images" });
 
     router.post('/register', (request, response) => {
       response.send(service.register(request.body));
@@ -42,7 +45,7 @@ export default class Router {
       response.send(service.saveUser(request.body));
     });
 
-    router.post('/image/save', (request, response) => {
+    router.post('/image/save', images.single, (request, response) => {
       response.send(service.saveImage(request.body));
     });
     
