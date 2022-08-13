@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, listValues, show } from './document.js';
+import { getById, getValueById, hide, listValues, show } from './common.js';
 
 // @ts-ignore
 import { Credentials } from './entity.js';

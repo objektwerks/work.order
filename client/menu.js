@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getByClass, show } from './document.js';
+import { getById, getByClass, show } from './common.js';
 
 export default class Menu {
   constructor() {

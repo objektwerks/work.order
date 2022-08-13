@@ -1,6 +1,6 @@
 // @ts-check
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getValueById, hide, listValues, show } from './document.js';
+import { getById, getValueById, hide, listValues, show } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {

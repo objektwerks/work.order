@@ -1,5 +1,5 @@
 // @ts-check
-import { setValueById } from './document.js';
+import { setValueById } from './common.js';
 
 export default class Model {
   constructor() {
