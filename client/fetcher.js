@@ -74,7 +74,7 @@ export default class Fetcher {
 
   async saveImage(file, filename) {
     const formdata = new FormData();
-    formdata.append('image', file, filename);
+    formdata.append('file', file, filename);
     return await this.call(this.saveImageUrl, this.post, {}, formdata, () => ImageUrl.fail('Save image failed.'));
   }
 }
