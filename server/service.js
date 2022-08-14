@@ -97,10 +97,10 @@ export default class Service {
       const id = this.store.addWorkOrder(workorder);
       workorder.id = id
       saved = WorkOrder.success(workorder);
-      console.log(`*** service.saveWorkOrder succeeded for id: ${id}`);
+      this.log('addWorkOrder', `succeeded for id: ${id}`);
     } catch(error) {
       saved = WorkOrder.fail('Add work order failed!');
-      console.log(`*** service.saveWorkOrder failed: ${error}`);
+      this.log('addWorkOrder', `failed: ${error}`);
     }
     return saved;
   }
