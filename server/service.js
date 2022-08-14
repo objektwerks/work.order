@@ -129,14 +129,14 @@ export default class Service {
       const count = this.store.saveUser(user);
       if (count > 0) {
         status = Status.success();
-        console.log(`*** service.saveUser succeeded for id: ${user.id}`);
+        this.log('saveUser', `succeeded for id: ${user.id}`);
       } else {
         status = Status.fail('Save user order failed!');
-        console.log(`*** service.saveUser failed!`);
+        this.log('saveUser', `failed.`);
       }
     } catch(error) {
-      status = Status.fail('Save user failed!');
-      console.log(`*** service.saveUser failed: ${error}`);
+      status = Status.fail('Save user failed.');
+      this.log('saveUser', `failed: ${error}`);
     }
     return status;
   }
