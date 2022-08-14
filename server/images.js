@@ -11,8 +11,6 @@ const storage = multer.diskStorage({
       ext = '.jpeg';
     } else if (file.mimetype === 'image/png') {
       ext = '.png';
-    } else if(file.mimetype === 'image/heic') {
-      ext = '.heic';
     } else {
       ext = "unknown";
     }
@@ -21,7 +19,7 @@ const storage = multer.diskStorage({
   }
 })
 const fileFilter = (request, file, callback) => {
-  if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png' || file.mimetype == 'image/heic') {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
       callback(null, true);
   } else {
       callback(null, false);
