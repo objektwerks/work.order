@@ -1,4 +1,5 @@
 // @ts-check
+import fs from 'fs';
 import multer from 'multer';
 
 const storage = multer.diskStorage({
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
     callback(null, filename);
   }
 })
+
 const fileFilter = (request, file, callback) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
       callback(null, true);
@@ -25,4 +27,14 @@ const fileFilter = (request, file, callback) => {
       callback(null, false);
   }
 }
+
 export const images = multer({ storage: storage, fileFilter: fileFilter });
+
+export function checkImagesDir(dir) {
+  if (fs.existsSync(dir)){
+    console.log(`*** ${dir} already exists.`);
+  } else {
+    fs.mkdirSync(dir);
+    console.log(`*** ${dir} created.`);
+  }
+}
