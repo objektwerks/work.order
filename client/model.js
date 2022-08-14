@@ -30,7 +30,7 @@ export default class Model {
   }
 
   bindWorkOrdersToListView(workorders) {
-    for ( const workorder of workorders) {
+    for (const workorder of workorders) {
       this.workorders.set(workorder.number, workorder);
     }
     // TODO add work orders to workorders-list-id! See common.listIdValues
@@ -49,34 +49,32 @@ export default class Model {
   }
 
   bindWorkOrderToView(workorder) {
-    for(const wo of this.workorders) {
-      if (wo.number === workorder.number) {
-        setValueById('workorder-number-id', workorder.number);
-        setValueById('workorder-homeowner-id', workorder.homeownerId);
-        setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
-        setValueById('workorder-title-id', workorder.title);
-        setValueById('workorder-issue-id', workorder.issue);
-        setImageUrlById('workorder-image-url-id', workorder.imageUrl);
-        setValueById('workorder-resolution-id', workorder.resolution);
-        setValueById('workorder-opened-id', workorder.opened);
-        setValueById('workorder-closed-id', workorder.closed);
-      }
+    const wo = this.workorders.get(workorder.number);
+    if (wo.number === workorder.number) {
+      setValueById('workorder-number-id', workorder.number);
+      setValueById('workorder-homeowner-id', workorder.homeownerId);
+      setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
+      setValueById('workorder-title-id', workorder.title);
+      setValueById('workorder-issue-id', workorder.issue);
+      setImageUrlById('workorder-image-url-id', workorder.imageUrl);
+      setValueById('workorder-resolution-id', workorder.resolution);
+      setValueById('workorder-opened-id', workorder.opened);
+      setValueById('workorder-closed-id', workorder.closed);
     }
   }
 
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
-    for(const workorder of this.workorders) {
-      if (workorder.number === number) {
-        workorder.number = number;
-        workorder.homeownerId = homeownerId;
-        workorder.serviceProviderId = serviceProviderId;
-        workorder.title = title;
-        workorder.issue = issue;
-        workorder.imageUrl = imageUrl;
-        workorder.resolution = resolution;
-        workorder.opened = opened;
-        workorder.closed = closed;
-      }
+    const workorder = this.workorders.get(number);
+    if (workorder.number === number) {
+      workorder.number = number;
+      workorder.homeownerId = homeownerId;
+      workorder.serviceProviderId = serviceProviderId;
+      workorder.title = title;
+      workorder.issue = issue;
+      workorder.imageUrl = imageUrl;
+      workorder.resolution = resolution;
+      workorder.opened = opened;
+      workorder.closed = closed;
     }
   }
 }
