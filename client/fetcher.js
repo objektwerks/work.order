@@ -72,9 +72,10 @@ export default class Fetcher {
     return await this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
   }
 
-  async saveImage(file, filename) {
+  async saveImage(number, file, filename) {
     const headers = { "Content-Type": "multipart/form-data" }
     const formdata = new FormData();
+    formdata.append('number', number);
     formdata.append('image', file, filename);
     return await this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
   }

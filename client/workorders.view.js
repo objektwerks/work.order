@@ -40,8 +40,10 @@ export default class WorkOrdersView {
     }, false);
 
     getById('workorder-image-file-id').addEventListener('change', (event) => {
-      let file = getFileById('workorder-image-file-id');
-      const imageUrl = this.fetcher.saveImage(file, 'filename');
+      const number = getValueById('workorder-number-id');
+      const file = getFileById('workorder-image-file-id');
+      const filename = `${number}-image`;
+      const imageUrl = this.fetcher.saveImage(number, file, filename);
       if (!imageUrl.success) {
         const errors = []
         errors.push(imageUrl.error);
