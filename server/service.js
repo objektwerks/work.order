@@ -13,6 +13,10 @@ export default class Service {
     console.log(`*** new pin verified: ${newPin()}`);
   }
 
+  log(method, message) {
+    console.log('*** service.${method}: ', message);
+  }
+
   register(registration) {
     let status;
     try {
