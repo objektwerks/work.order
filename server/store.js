@@ -14,8 +14,8 @@ export default class Store {
     console.log('*** disconnected from store.');
   }
 
-  log(method, error) {
-    console.log(`*** store.${method} error: ${error}`);
+  log(method, message) {
+    console.log('*** store.${method}:', message);
   }
 
   listWorkOrdersByUserId(id) {
@@ -93,7 +93,7 @@ export default class Store {
         this.log('addWorkOrder', error);
       } else {
         number = result.insertId;
-        console.log(`workorder number: ${number}`);
+        this.log('addWorkOrder', `added workorder number: ${number}`);
       }
     });
     return number;
@@ -106,7 +106,7 @@ export default class Store {
         this.log('addUser', error);
       } else {
         id = result.insertId;
-        console.log(`user id: ${id}`);
+        this.log('addUser', `added user id: ${id}`);
       }
     });
     return id;
@@ -119,7 +119,7 @@ export default class Store {
         this.log('saveWorkOrder', error);
       } else {
         count = result.affectedRows;
-        console.log(`workorder ${workorder.number} save count: ${count}`);
+        this.log('saveWorkOrder', `saved workorder ${workorder.number} with count: ${count}`);
       }
     });
     return count;
@@ -132,7 +132,7 @@ export default class Store {
         this.log('saveUser', error);
       } else {
         count = result.affectedRows;
-        console.log(`user ${user.id} save count: ${count}`);
+        this.log('saveUser', `saved user ${user.id} with count: ${count}`);
       }
     });
     return count;
@@ -145,7 +145,7 @@ export default class Store {
         this.log('saveImageUrl', error);
       } else {
         count = result.affectedRows;
-        console.log(`image url ${url} save count: ${count}`);
+        this.log('saveImageUrl', `saved image url ${url} with count: ${count}`);
       }
     });
     return count;
