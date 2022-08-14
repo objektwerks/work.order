@@ -12,7 +12,7 @@ export default class Router {
     router.use(compression());
     router.use(express.static('client'));
     router.use(express.static('shared'));
-    router.use(express.static('.images'));
+    router.use(express.static('images'));
     router.use(express.json());
     router.use(express.urlencoded({ extended: true }));
 
@@ -47,7 +47,7 @@ export default class Router {
     });
 
     router.post('/image/save', images.single('image'), (request, response) => {
-      response.send(service.saveImage(request.body));
+      response.send(service.saveImage(request.file));
     });
     
     const port = parseInt(process.env.PORT) || 3000;
