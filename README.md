@@ -60,6 +60,7 @@ Routes
 5. get  - /workorders/user/:id
 6. get  - /workorders/:number
 7. post - /users/save
+8. post - /image/save
 
 Sequences
 ---------
@@ -70,6 +71,7 @@ Sequences
 5. **client:list** --- userid --> server --- workorders --> client
 6. **client:get** --- number --> server --- workorder --> client
 7. **client:save** --- user --> server --- status --> client
+8. **client:save** --- image --> server --- imageurl --> client
 
 Schema
 ------
