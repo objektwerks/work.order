@@ -38,7 +38,6 @@ export default class Model {
 
   bindEmptyWorkOrderToView() {
     setValueById('workorder-number-id', 0);
-    setValueById('workorder-homeowner-id', 0);
     setValueById('workorder-service-provider-id', 0); // TODO add service providers to select with options!
     setValueById('workorder-title-id', "");
     setValueById('workorder-issue-id', "");
@@ -52,7 +51,6 @@ export default class Model {
     const wo = this.workorders.get(workorder.number);
     if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
-      setValueById('workorder-homeowner-id', workorder.homeownerId);
       setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
       setValueById('workorder-title-id', workorder.title);
       setValueById('workorder-issue-id', workorder.issue);
@@ -63,11 +61,10 @@ export default class Model {
     }
   }
 
-  bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+  bindViewToWorkOrder(number, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     const workorder = this.workorders.get(number);
     if (workorder !== undefined && workorder.number === number) {
       workorder.number = number;
-      workorder.homeownerId = homeownerId;
       workorder.serviceProviderId = serviceProviderId;
       workorder.title = title;
       workorder.issue = issue;
