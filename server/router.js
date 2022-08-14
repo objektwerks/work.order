@@ -45,9 +45,12 @@ export default class Router {
     });
 
     router.post('/image/save', images.single('image'), (request, response) => {
+      const number = request.body.number;
+      const url = '/images/' + request.file.filename
       console.log('*** image file: ', request.file);
-      console.log('*** number: ', request.body.number);
-      response.send(service.saveImage(request.file));
+      console.log('*** number: ', number);
+      console.log('*** url: ', url);
+      response.send(service.saveImage(number, url));
     });
     
     const port = parseInt(process.env.PORT) || 3000;
