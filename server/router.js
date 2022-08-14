@@ -48,6 +48,7 @@ export default class Router {
 
     router.post('/image/save', images.single('image'), (request, response) => {
       console.log('*** image file: ', request.file);
+      console.log('*** number: ', request.body.number);
       response.send(service.saveImage(request.file));
     });
     
