@@ -30,11 +30,22 @@ const fileFilter = (request, file, callback) => {
 
 export const images = multer({ storage: storage, fileFilter: fileFilter });
 
-export function checkImagesDir(dir) {
+export function makeDir(dir) {
   if (fs.existsSync(dir)){
-    console.log(`*** ${dir} already exists.`);
+    console.log(`*** ${dir} exists.`);
   } else {
     fs.mkdirSync(dir);
     console.log(`*** ${dir} created.`);
   }
+}
+
+export function removeFile(file) {
+  fs.exists(file, function(exists) {
+    if (exists) {
+      console.log(`*** ${file} exists.`);
+    } else {
+      fs.unlinkSync(file);
+      console.log(`*** ${file} removed.`);
+    }
+  });
 }
