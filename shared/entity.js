@@ -107,11 +107,11 @@ export class WorkOrder {
     }    
   }
 
-  static fail(error) {
+  static fail(error, number) {
     return {
       success: false,
       error: error,
-      workorder: {}
+      number: number
     }    
   }
 }
