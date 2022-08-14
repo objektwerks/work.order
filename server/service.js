@@ -137,7 +137,7 @@ export default class Service {
     return status;
   }
 
-  saveImage(image) {
-    // TODO!
+  saveImageUrl(number, url) {
+    // TODO! Add to Store as well!
   }
 }
