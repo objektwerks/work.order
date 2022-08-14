@@ -90,6 +90,12 @@ Date Time
 ---------
 >Use ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ
 
+Photos
+------
+>Supported photo file formats:
+1. **jpeg**
+2. **png**
+
 License
 -------
 > Copyright (c) [2022] [Objektwerks]
