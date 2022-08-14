@@ -27,13 +27,6 @@ Nodejs Hosting Providers
 2. [Digital Ocean](https://www.digitalocean.com/)
 3. [Heroku](https://www.heroku.com/nodejs)
 
-Image Content Delivery Network (CDN)
-------------------------------------
->Required for work order image url. Consider:
-1. [Bunny](https://bunny.net/)
-2. [ImageKit](https://imagekit.io/)
-3. [Cloudinary](https://cloudinary.com/) ( Javascript SDK )
-
 Roles
 -----
 >A role can invoke a set of actions.
