@@ -150,11 +150,11 @@ export default class Service {
         console.log(`*** service.saveImageUrl succeeded for number: ${number} url: ${url}`);
       } else {
         imageUrl = ImageUrl.fail('Save image url failed!', url, number);
-        console.log(`*** service.saveImageUrl failed for number: ${number} url: ${url}`);
+        this.log('saveImageUrl', `failed for number: ${number} url: ${url}`);
       }
     } catch(error) {
       imageUrl = ImageUrl.fail('Save image url failed!', url, number);
-      console.log(`*** service.saveImageUrl failed: ${error}`);
+      this.log('saveImageUrl', error);
     }
     return imageUrl;
   }
