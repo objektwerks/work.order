@@ -145,7 +145,7 @@ export default class Store {
         this.log('saveImageUrl', error);
       } else {
         count = result.affectedRows;
-        this.log('saveImageUrl', `url: ${url} number: ${number}`);
+        this.log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
       }
     });
     return count;

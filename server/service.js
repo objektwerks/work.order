@@ -147,7 +147,7 @@ export default class Service {
       const count = this.store.saveImageUrl(url, number);
       if (count > 0) {
         imageUrl = ImageUrl.success(url, number);
-        console.log(`*** service.saveImageUrl succeeded for number: ${number} url: ${url}`);
+        this.log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
       } else {
         imageUrl = ImageUrl.fail('Save image url failed!', url, number);
         this.log('saveImageUrl', `failed for number: ${number} url: ${url}`);
