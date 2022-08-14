@@ -26,19 +26,19 @@ export default class Model {
 
   bindServiceProvidersToListView(serviceproviders) {
     this.serviceproviders = serviceproviders;
-    // TODO see add service providers to select with options below.
+    // TODO see add service providers to select with options, see below
   }
 
   bindWorkOrdersToListView(workorders) {
     for (const workorder of workorders) {
       this.workorders.set(workorder.number, workorder);
     }
-    // TODO add work orders to workorders-list-id! See common.listIdValues
+    // TODO add work orders to workorders-list-id, see common.listIdValues
   }
 
   bindEmptyWorkOrderToView() {
     setValueById('workorder-number-id', 0);
-    setValueById('workorder-service-provider-id', 0); // TODO add service providers to select with options!
+    setValueById('workorder-service-provider-id', 0); // TODO add service providers to select with options, see above
     setValueById('workorder-title-id', "");
     setValueById('workorder-issue-id', "");
     setValueById('workorder-image-url-id', "");
@@ -51,7 +51,7 @@ export default class Model {
     const wo = this.workorders.get(workorder.number);
     if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
-      setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
+      setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options, see above
       setValueById('workorder-title-id', workorder.title);
       setValueById('workorder-issue-id', workorder.issue);
       setImageUrlById('workorder-image-url-id', workorder.imageUrl);

@@ -58,7 +58,7 @@ export default class WorkOrdersView {
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         console.log(`click li id: ${event.target['id']}`);
-        // TODO bind row to workorders-list-id!
+        // TODO bind row from workorders-list-id to workorder-view-id
       }
     }, false);
   }
