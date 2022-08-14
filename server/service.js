@@ -1,6 +1,6 @@
 // @ts-check
 import { newPin } from './pin.js';
-import { serviceProvider, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from '../shared/entity.js';
+import { ImageUrl, serviceProvider, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from '../shared/entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
@@ -131,13 +131,27 @@ export default class Service {
         console.log(`*** service.saveUser failed!`);
       }
     } catch(error) {
-      status = Status.fail('Save user order failed!');
+      status = Status.fail('Save user failed!');
       console.log(`*** service.saveUser failed: ${error}`);
     }
     return status;
   }
 
-  saveImageUrl(number, url) {
-    // TODO! Add to Store as well!
+  saveImageUrl(url, number) {
+    let imageUrl;
+    try {
+      const count = this.store.saveImageUrl(url, number);
+      if (count > 0) {
+        imageUrl = ImageUrl.success(url, number);
+        console.log(`*** service.saveImageUrl succeeded for number: ${number} url: ${url}`);
+      } else {
+        imageUrl = ImageUrl.fail('Save image url failed!', url, number);
+        console.log(`*** service.saveImageUrl failed for number: ${number} url: ${url}`);
+      }
+    } catch(error) {
+      imageUrl = ImageUrl.fail('Save image url failed!', url, number);
+      console.log(`*** service.saveImageUrl failed: ${error}`);
+    }
+    return imageUrl;
   }
 }

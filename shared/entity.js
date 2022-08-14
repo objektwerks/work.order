@@ -147,18 +147,20 @@ export class User {
 }
 
 export class ImageUrl {
-  static success(url) {
+  static success(url, number) {
     return {
       success: true,
       error: '',
-      url: url
+      url: url,
+      number: number
     }
   }
-  static fail(error) {
+  static fail(error, url, number) {
     return {
       success: false,
       error: error,
-      url: ''
+      url: url,
+      number: number
     }
   }
 }

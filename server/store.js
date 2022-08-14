@@ -137,4 +137,17 @@ export default class Store {
     });
     return count;
   }
+
+  saveImageUrl(url, number) {
+    let count = 0;
+    this.connection.query(`update work_order SET image_url = ${url} where number = ${number}`, (error, result) => {
+      if (error) {
+        this.log('saveImageUrl', error);
+      } else {
+        count = result.affectedRows;
+        console.log(`image url ${url} save count: ${count}`);
+      }
+    });
+    return count;
+  }
 }
