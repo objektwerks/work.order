@@ -40,12 +40,10 @@ export function makeDir(dir) {
 }
 
 export function removeFile(file) {
-  fs.exists(file, function(exists) {
-    if (exists) {
-      console.log(`*** ${file} exists.`);
-    } else {
-      fs.unlinkSync(file);
-      console.log(`*** ${file} removed.`);
-    }
-  });
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+    console.log(`*** ${file} removed.`);
+  } else {
+    console.log(`*** ${file} doesn't exist.`);
+  }
 }
