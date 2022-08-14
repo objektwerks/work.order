@@ -65,10 +65,10 @@ export default class Service {
     try {
       const list = this.store.listWorkOrdersByUserId(id);
       workorders = WorkOrders.success(list);
-      console.log(`*** service.listWorkOrdersByUserId succeeded for user id: ${id}`);
+      this.log('listWorkOrdersByUserId', `succeeded for user id: ${id}`);
     } catch(error) {
       workorders = WorkOrders.fail('List work orders by user id failed!');
-      console.log(`*** service.listWorkOrdersByUserId for user id: ${id} failed: ${error}`);
+      this.log('listWorkOrdersByUserId', `failed for user id: ${id} error: ${error}`);
     }
     return workorders;
   }
