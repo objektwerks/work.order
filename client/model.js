@@ -50,7 +50,7 @@ export default class Model {
 
   bindWorkOrderToView(workorder) {
     const wo = this.workorders.get(workorder.number);
-    if (wo.number === workorder.number) {
+    if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
       setValueById('workorder-homeowner-id', workorder.homeownerId);
       setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options!
@@ -65,7 +65,7 @@ export default class Model {
 
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     const workorder = this.workorders.get(number);
-    if (workorder.number === number) {
+    if (workorder !== undefined && workorder.number === number) {
       workorder.number = number;
       workorder.homeownerId = homeownerId;
       workorder.serviceProviderId = serviceProviderId;
