@@ -28,14 +28,14 @@ export default class Service {
       id = this.store.addUser(user);
       if (id > 0) {
         status = Status.success();
-        console.log(`*** service.register succeeded for: ${registration.emailAddress}`);
+        this.log('register', `succeeded for: ${registration.emailAddress}`);
       } else {
         status = Status.fail(`Register failed for: ${registration.emailAddress}`);
-        console.log(`*** service.register failed for: ${registration.emailAddress}`);
+        this.log('register', `failed for: ${registration.emailAddress}`);
       }
     } catch (error) {
       status = Status.fail(`register failed for ${registration.emailAddress}`);
-      console.log(`*** service.register for ${registration.emailAddress} failed: ${error}`);
+      this.log('register', `failed for ${registration.emailAddress} error: ${error}`);
     }
     return status;
   }
