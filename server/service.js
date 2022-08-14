@@ -111,14 +111,14 @@ export default class Service {
       const count = this.store.saveWorkOrder(workorder);
       if (count > 0) {
         status = Status.success();
-        console.log(`*** service.saveWorkOrder succeeded for id: ${workorder.id}`);
+        this.log('saveWorkOrder', `succeeded for id: ${workorder.id}`);
       } else {
         status = Status.fail('Save work order failed!');
-        console.log(`*** service.saveWorkOrder failed!`);
+        this.log('saveWorkOrder', `failed.`);
       }
     } catch(error) {
       status = Status.fail('Save work order failed!');
-      console.log(`*** service.saveWorkOrder failed: ${error}`);
+      this.log('saveWorkOrder', `failed: ${error}`);
     }
     return status;
   }
