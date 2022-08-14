@@ -15,7 +15,7 @@ export default class Store {
   }
 
   log(method, message) {
-    console.log('*** store.${method}:', message);
+    console.log('*** store.${method}: ', message);
   }
 
   listWorkOrdersByUserId(id) {
