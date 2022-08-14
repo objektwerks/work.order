@@ -64,7 +64,7 @@ Routes
 Sequences
 ---------
 1. **client:register** --- registration --> server --- status ---> client
-2. **client:login** --- credentials --> server --- user, workorders --> client
+2. **client:login** --- credentials --> server --- user, service providers, workorders --> client
 3. **client:add** --- work order --> server --- workorder --> client
 4. **client:save** --- work order --> server --- status --> client
 5. **client:list** --- userid --> server --- workorders --> client
