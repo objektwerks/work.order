@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
       ext = "unknown";
     }
     const filename = file.filename + ext;
+    ifExistsRemoveFile(filename);
     callback(null, filename);
   }
 })
@@ -28,22 +29,22 @@ const fileFilter = (request, file, callback) => {
   }
 }
 
-export const images = multer({ storage: storage, fileFilter: fileFilter });
-
-export function makeDir(dir) {
-  if (fs.existsSync(dir)){
-    console.log(`*** ${dir} exists.`);
-  } else {
-    fs.mkdirSync(dir);
-    console.log(`*** ${dir} created.`);
-  }
-}
-
-export function removeFile(file) {
+function ifExistsRemoveFile(file) {
   if (fs.existsSync(file)) {
     fs.unlinkSync(file);
     console.log(`*** ${file} removed.`);
   } else {
     console.log(`*** ${file} doesn't exist.`);
+  }
+}
+
+export const images = multer({ storage: storage, fileFilter: fileFilter });
+
+export function ifNotExistsMakeDir(dir) {
+  if (fs.existsSync(dir)){
+    console.log(`*** ${dir} exists.`);
+  } else {
+    fs.mkdirSync(dir);
+    console.log(`*** ${dir} created.`);
   }
 }

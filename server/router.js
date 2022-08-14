@@ -1,11 +1,13 @@
 // @ts-check
-import { images } from './images.js';
+import { images, ifNotExistsMakeDir } from './images.js';
 import compression from 'compression';
 import express from 'express';
 
 export default class Router {
   constructor(service) {
     this.service = service;
+
+    ifNotExistsMakeDir('./images');
 
     const router = express();
 
