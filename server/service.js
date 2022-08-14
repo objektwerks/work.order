@@ -50,11 +50,11 @@ export default class Service {
         userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceproviders, workorders);
         this.log('login', `succeeded for: ${credentials.emailAddress}`);
       } else {
-        userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}!`);
+        userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
         this.log('login', `failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {
-      userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
+      userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}`;
       this.log('login', `failed for ${credentials.emailAddress} error: ${error}`);
     }
     return userServiceProvidersWorkOrders;
@@ -67,7 +67,7 @@ export default class Service {
       workorders = WorkOrders.success(list);
       this.log('listWorkOrdersByUserId', `succeeded for user id: ${id}`);
     } catch(error) {
-      workorders = WorkOrders.fail('List work orders by user id failed!');
+      workorders = WorkOrders.fail('List work orders by user id failed.');
       this.log('listWorkOrdersByUserId', `failed for user id: ${id} error: ${error}`);
     }
     return workorders;
@@ -81,11 +81,11 @@ export default class Service {
         workorder = WorkOrder.success(get);
         this.log('getWorkOrderByNumber', `succeeded for number: ${number}`);
       } else {
-        workorder = WorkOrder.fail('Get work order by number failed!', number);
+        workorder = WorkOrder.fail('Get work order by number failed.', number);
         this.log('getWorkOrderByNumber', `succeeded for number: ${number}`);
       }
     } catch(error) {
-      workorder = WorkOrder.fail('Get work order by number failed!', number);
+      workorder = WorkOrder.fail('Get work order by number failed.', number);
       this.log('getWorkOrderByNumber', `failed for number: ${number} error: ${error}`);
     }
     return workorder;
@@ -99,7 +99,7 @@ export default class Service {
       saved = WorkOrder.success(workorder);
       this.log('addWorkOrder', `succeeded for id: ${id}`);
     } catch(error) {
-      saved = WorkOrder.fail('Add work order failed!');
+      saved = WorkOrder.fail('Add work order failed.');
       this.log('addWorkOrder', `failed: ${error}`);
     }
     return saved;
@@ -113,11 +113,11 @@ export default class Service {
         status = Status.success();
         this.log('saveWorkOrder', `succeeded for id: ${workorder.id}`);
       } else {
-        status = Status.fail('Save work order failed!');
+        status = Status.fail('Save work order failed.');
         this.log('saveWorkOrder', `failed.`);
       }
     } catch(error) {
-      status = Status.fail('Save work order failed!');
+      status = Status.fail('Save work order failed.');
       this.log('saveWorkOrder', `failed: ${error}`);
     }
     return status;
@@ -131,7 +131,7 @@ export default class Service {
         status = Status.success();
         this.log('saveUser', `succeeded for id: ${user.id}`);
       } else {
-        status = Status.fail('Save user order failed!');
+        status = Status.fail('Save user order failed.');
         this.log('saveUser', `failed.`);
       }
     } catch(error) {
@@ -149,11 +149,11 @@ export default class Service {
         imageUrl = ImageUrl.success(url, number);
         this.log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
       } else {
-        imageUrl = ImageUrl.fail('Save image url failed!', url, number);
+        imageUrl = ImageUrl.fail('Save image url failed.', url, number);
         this.log('saveImageUrl', `failed for number: ${number} url: ${url}`);
       }
     } catch(error) {
-      imageUrl = ImageUrl.fail('Save image url failed!', url, number);
+      imageUrl = ImageUrl.fail('Save image url failed.', url, number);
       this.log('saveImageUrl', error);
     }
     return imageUrl;
