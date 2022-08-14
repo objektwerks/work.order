@@ -48,14 +48,14 @@ export default class Service {
         const serviceproviders = this.store.listUsersByRole(serviceProvider);
         const workorders = this.store.listWorkOrdersByUserId(user.id);
         userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceproviders, workorders);
-        console.log(`*** service.login succeeded for: ${credentials.emailAddress}`);
+        this.log('login', `succeeded for: ${credentials.emailAddress}`);
       } else {
         userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}!`);
-        console.log(`*** service.login failed for: ${credentials.emailAddress}`);
+        this.log('login', `failed for: ${credentials.emailAddress}`);
       }
     } catch(error) {
       userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}!`;
-      console.log(`*** service.login for ${credentials.emailAddress} failed: ${error}`);
+      this.log('login', `failed for ${credentials.emailAddress} error: ${error}`);
     }
     return userServiceProvidersWorkOrders;
   }
