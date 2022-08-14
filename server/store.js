@@ -93,7 +93,7 @@ export default class Store {
         this.log('addWorkOrder', error);
       } else {
         number = result.insertId;
-        this.log('addWorkOrder', `number: ${number}`);
+        this.log('addWorkOrder', `succeeded for number: ${number}`);
       }
     });
     return number;
@@ -106,7 +106,7 @@ export default class Store {
         this.log('addUser', error);
       } else {
         id = result.insertId;
-        this.log('addUser', `id: ${id}`);
+        this.log('addUser', `succeeded for id: ${id}`);
       }
     });
     return id;
@@ -119,7 +119,7 @@ export default class Store {
         this.log('saveWorkOrder', error);
       } else {
         count = result.affectedRows;
-        this.log('saveWorkOrder', `number ${workorder.number}`);
+        this.log('saveWorkOrder', `succeeded for number ${workorder.number}`);
       }
     });
     return count;
@@ -132,7 +132,7 @@ export default class Store {
         this.log('saveUser', error);
       } else {
         count = result.affectedRows;
-        this.log('saveUser', `id ${user.id}`);
+        this.log('saveUser', `succeeded for id ${user.id}`);
       }
     });
     return count;
