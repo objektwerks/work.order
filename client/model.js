@@ -5,7 +5,7 @@ export default class Model {
   constructor() {
     this.user = {};
     this.serviceproviders = [];
-    this.workorders = [];
+    this.workorders = new Map();
     this.selectedworkorder = {};
   }
 
@@ -30,8 +30,10 @@ export default class Model {
   }
 
   bindWorkOrdersToListView(workorders) {
-    this.workorders = workorders;
-    // TODO add work orders to workorders-list-id! See document listIdValues
+    for ( const workorder of workorders) {
+      this.workorders.set(workorder.number, workorder);
+    }
+    // TODO add work orders to workorders-list-id! See common.listIdValues
   }
 
   bindEmptyWorkOrderToView() {
