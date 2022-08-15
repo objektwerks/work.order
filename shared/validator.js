@@ -33,6 +33,10 @@ function validateGreaterThanZero(number) {
   return number > 0;
 }
 
+function validateGreaterThanOrEqualZero(number) {
+  return number >= 0;
+}
+
 function validateDefined(string) {
   let isDefined;
   try {
@@ -61,7 +65,7 @@ export function validateCredentials(emailAddress, pin) {
 
 export function validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
   const errors = [];
-  if (!validateGreaterThanZero(number)) errors.push(numberInvalidMessage);
+  if (!validateGreaterThanOrEqualZero(number)) errors.push(numberInvalidMessage);
   if (!validateGreaterThanZero(homeownerId)) errors.push(idInvalidMessage);
   if (!validateGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage);
   if (!validateLengthRange(title, 4, 64)) errors.push(definedInvalidMessage);
