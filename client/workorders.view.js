@@ -1,7 +1,7 @@
 // @ts-check
 import { homeowner, serviceProvider } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getFileById, getSelectIndexValueById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
+import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectIndexValueById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -81,9 +81,19 @@ export default class WorkOrdersView {
 
   applyRole(role) {
     if (role === homeowner) {
-
+      disableReadonlyById('workorder-service-provider-id');
+      disableReadonlyById('workorder-title-id');
+      disableReadonlyById('workorder-issue-id');
+      disableReadonlyById('workorder-image-file-id');
+      enableReadonlyById('workorder-resolution-id');
+      enableReadonlyById('workorder-closed-id');
     } else if (role === serviceProvider) {
-
+      enableReadonlyById('workorder-service-provider-id');
+      enableReadonlyById('workorder-title-id');
+      enableReadonlyById('workorder-issue-id');
+      enableReadonlyById('workorder-image-file-id');
+      disableReadonlyById('workorder-resolution-id');
+      disableReadonlyById('workorder-closed-id');
     } else {
 
     }
