@@ -54,7 +54,6 @@ export function show(id) {
 export function listValues(listId, values) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
-  ul.className = '"w3-ul w3-hoverable';
   for (const value of values) {
     let li = document.createElement('li');
     li.appendChild(document.createTextNode(value));
@@ -65,7 +64,6 @@ export function listValues(listId, values) {
 export function listIdValues(listId, idvalues) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
-  ul.className = '"w3-ul w3-hoverable';
   for (const idvalue of idvalues) {
     let li = document.createElement('li');
     li.id = idvalue.id;
@@ -77,7 +75,6 @@ export function listIdValues(listId, idvalues) {
 export function selectIdValues(selectId, idvalues) {
   document.getElementById(selectId).innerHTML = '';
   const select = document.getElementById(selectId);
-  select.className = '"w3-select w3-text-indigo w3-hover-light-blue';
   for (const idvalue of idvalues) {
     let option = document.createElement('option');
     option.id = idvalue.id;
