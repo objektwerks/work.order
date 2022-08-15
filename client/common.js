@@ -24,12 +24,12 @@ export function setImageUrlById(id, url) {
   return document.getElementById(id)['src'] = url;
 }
 
-export function selectOptionById(id) {
-  const select = document.getElementById(id);
+export function selectOptionById(selectId, optionId) {
+  const select = document.getElementById(selectId);
   const options = select['options'];
   let index = 0;
   for (const option of options) {
-    if (option.id === id) {
+    if (option.id === optionId) {
       break;
     } else {
       index += 1;

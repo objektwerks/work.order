@@ -58,7 +58,7 @@ export default class Model {
     const wo = this.workorders.get(workorder.number);
     if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
-      selectOptionById('workorder-service-provider-id');
+      selectOptionById('workorder-service-provider-id', workorder.serviceProviderId);
       setValueById('workorder-title-id', workorder.title);
       setValueById('workorder-issue-id', workorder.issue);
       setImageUrlById('workorder-image-url-id', workorder.imageUrl);
