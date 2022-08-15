@@ -15,7 +15,7 @@ export default class WorkOrdersView {
       hide('workorder-errors-view-id');
 
       const number = getValueById('workorder-number-id');
-      const homeownerId = getValueById('workorder-homeowner-id');
+      const homeownerId = model.user.id;
       const serviceProviderId = getValueById('workorder-service-provider-id');
       const title = getValueById('workorder-title-id');
       const issue = getValueById('workorder-issue-id');
