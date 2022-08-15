@@ -7,6 +7,7 @@ export default class Model {
     this.user = {};
     this.serviceproviders = new Map();
     this.workorders = new Map();
+    this.selectedWorkOrder = {};
   }
 
   bindUserToView(user) {
@@ -55,17 +56,14 @@ export default class Model {
   }
 
   bindWorkOrderToView(workorder) {
-    const wo = this.workorders.get(workorder.number);
-    if (wo !== undefined && wo.number === workorder.number) {
-      setValueById('workorder-number-id', workorder.number);
-      selectOptionById('workorder-service-provider-id', workorder.serviceProviderId);
-      setValueById('workorder-title-id', workorder.title);
-      setValueById('workorder-issue-id', workorder.issue);
-      setImageUrlById('workorder-image-url-id', workorder.imageUrl);
-      setValueById('workorder-resolution-id', workorder.resolution);
-      setValueById('workorder-opened-id', workorder.opened);
-      setValueById('workorder-closed-id', workorder.closed);
-    }
+    setValueById('workorder-number-id', workorder.number);
+    selectOptionById('workorder-service-provider-id', workorder.serviceProviderId);
+    setValueById('workorder-title-id', workorder.title);
+    setValueById('workorder-issue-id', workorder.issue);
+    setImageUrlById('workorder-image-url-id', workorder.imageUrl);
+    setValueById('workorder-resolution-id', workorder.resolution);
+    setValueById('workorder-opened-id', workorder.opened);
+    setValueById('workorder-closed-id', workorder.closed);
   }
 
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {

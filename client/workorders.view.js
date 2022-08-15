@@ -55,11 +55,20 @@ export default class WorkOrdersView {
       displayImage(file, 'workorder-image-url-id');
     }, false);
 
+    getById('workorder-closed-id').addEventListener('change', (event) => {
+
+    }, false);
+
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
-        console.log(`click li id: ${event.target['id']}`);
-        const workorder = model.workorders.get(event.target['id']);
-        model.bindWorkOrderToView(workorder);
+        const id = event.target['id'];
+        const workorder = model.workorders.get(id);
+        if (workorder !== undefined) {
+          model.bindWorkOrderToView(workorder);
+          console.log(`*** workorder selected and bound to view for id: ${id}`);
+        } else {
+          console.log(`*** workorder undefined for id: ${id}`);
+        }
       }
     }, false);
   }
