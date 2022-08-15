@@ -73,3 +73,15 @@ export function listIdValues(listId, idvalues) {
     ul.appendChild(li);
   }
 }
+
+export function selectIdValues(selectId, idvalues) {
+  document.getElementById(selectId).innerHTML = '';
+  const select = document.getElementById(selectId);
+  select.className = '"w3-select w3-text-indigo w3-hover-light-blue';
+  for (const idvalue of idvalues) {
+    let option = document.createElement('option');
+    option.id = idvalue.id;
+    option.appendChild(document.createTextNode(`${idvalue.id} - idvalue.value`));
+    select.appendChild(option);
+  }
+}
