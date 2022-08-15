@@ -8,6 +8,12 @@ export function getFileById(id) {
   return document.getElementById(id)['files'][0];
 }
 
+export function getSelectIndexValueById(selectId) {
+  const select = document.getElementById(selectId);
+  const selectedIndex = select['selectedIndex'];
+  return select['options'][selectedIndex].value;
+}
+
 export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
@@ -24,7 +30,7 @@ export function setImageUrlById(id, url) {
   return document.getElementById(id)['src'] = url;
 }
 
-export function selectOptionById(selectId, optionId) {
+export function setSelectOptionById(selectId, optionId) {
   const select = document.getElementById(selectId);
   const options = select['options'];
   let index = 0;

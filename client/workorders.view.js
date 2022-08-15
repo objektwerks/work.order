@@ -1,6 +1,6 @@
 // @ts-check
 import { validateWorkOrder } from '../shared/validator.js';
-import { getById, getFileById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
+import { getById, getFileById, getSelectIndexValueById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -16,7 +16,7 @@ export default class WorkOrdersView {
 
       const number = getValueById('workorder-number-id');
       const homeownerId = model.user.id;
-      const serviceProviderId = getValueById('workorder-service-provider-id');
+      const serviceProviderId = getSelectIndexValueById('workorder-service-provider-id');
       const title = getValueById('workorder-title-id');
       const issue = getValueById('workorder-issue-id');
       const imageUrl = getValueById('workorder-image-url-id');
