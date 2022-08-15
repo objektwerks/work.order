@@ -19,31 +19,31 @@ export default class Router {
     router.use(express.urlencoded({ extended: true }));
 
     router.post('/register', (request, response) => {
-      response.send(service.register(request.body));
+      response.json(service.register(request.body));
     });
     
     router.post('/login', (request, response) => {
-      response.send(service.login(request.body));
+      response.json(service.login(request.body));
     });
     
     router.post('/workorders/add', (request, response) => {
-      response.send(service.addWorkOrder(request.body));
+      response.json(service.addWorkOrder(request.body));
     });
 
     router.post('/workorders/save', (request, response) => {
-      response.send(service.saveWorkOrder(request.body));
+      response.json(service.saveWorkOrder(request.body));
     });
 
     router.get('/workorders/user/:id', (request, response) => {
-      response.send(service.listWorkOrdersByUserId(request.params.id));
+      response.json(service.listWorkOrdersByUserId(request.params.id));
     });
     
     router.get('/workorders/:number', (request, response) => {
-      response.send(service.getWorkOrderByNumber(request.params.number));
+      response.json(service.getWorkOrderByNumber(request.params.number));
     });
     
     router.post('/users/save', (request, response) => {
-      response.send(service.saveUser(request.body));
+      response.json(service.saveUser(request.body));
     });
 
     router.post('/image/save', images.single('image'), (request, response) => {
@@ -52,7 +52,7 @@ export default class Router {
       console.log('*** image: ', request.file);
       console.log('*** url: ', url);
       console.log('*** number: ', number);
-      response.send(service.saveImage(url, number));
+      response.json(service.saveImage(url, number));
     });
     
     const port = parseInt(process.env.PORT) || 3000;
