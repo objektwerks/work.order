@@ -1,10 +1,10 @@
 // @ts-check
-import { setImageUrlById, setValueById } from './common.js';
+import { listIdValues, selectIdValues, setImageUrlById, setValueById } from './common.js';
 
 export default class Model {
   constructor() {
     this.user = {};
-    this.serviceproviders = [];
+    this.serviceproviders = new Map();
     this.workorders = new Map();
     this.selectedworkorder = {};
   }
@@ -25,15 +25,22 @@ export default class Model {
   }
 
   bindServiceProvidersToListView(serviceproviders) {
-    this.serviceproviders = serviceproviders;
-    // TODO see add service providers to select with options, see below
-  }
+    this.serviceproviders.clear();
+    const idvalues = [];
+    for (const serviceprovider of serviceproviders) {
+      this.serviceproviders.set(serviceprovider.id, serviceprovider);
+      idvalues.push({ id: serviceprovider.id, value: serviceprovider.name })
+    }
+    selectIdValues('workorder-service-provider-id', idvalues);  }
 
   bindWorkOrdersToListView(workorders) {
+    this.workorders.clear();
+    const idvalues = [];
     for (const workorder of workorders) {
       this.workorders.set(workorder.number, workorder);
+      idvalues.push({ id: workorder.number, value: workorder.title })
     }
-    // TODO add work orders to workorders-list-id, see common.listIdValues
+    listIdValues('workorders-list-id', idvalues);
   }
 
   bindEmptyWorkOrderToView() {
