@@ -29,7 +29,7 @@ export default class Model {
     const idvalues = [];
     for (const serviceprovider of serviceproviders) {
       this.serviceproviders.set(serviceprovider.id, serviceprovider);
-      idvalues.push({ id: serviceprovider.id, value: serviceprovider.name })
+      idvalues.push({ id: serviceprovider.id, value: serviceprovider.name });
     }
     selectIdValues('workorder-service-provider-id', idvalues);
   }
@@ -39,14 +39,13 @@ export default class Model {
     const idvalues = [];
     for (const workorder of workorders) {
       this.workorders.set(workorder.number, workorder);
-      idvalues.push({ id: workorder.number, value: workorder.title })
+      idvalues.push({ id: workorder.number, value: workorder.title });
     }
     listIdValues('workorders-list-id', idvalues);
   }
 
   bindEmptyWorkOrderToView() {
     setValueById('workorder-number-id', 0);
-    setValueById('workorder-service-provider-id', 0); // TODO add service providers to select with options, see above
     setValueById('workorder-title-id', "");
     setValueById('workorder-issue-id', "");
     setValueById('workorder-image-url-id', "");
@@ -59,7 +58,7 @@ export default class Model {
     const wo = this.workorders.get(workorder.number);
     if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
-      setValueById('workorder-service-provider-id', workorder.serviceProviderId); // TODO add service providers to select with options, see above
+      // TODO select service provider by id
       setValueById('workorder-title-id', workorder.title);
       setValueById('workorder-issue-id', workorder.issue);
       setImageUrlById('workorder-image-url-id', workorder.imageUrl);
