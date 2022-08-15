@@ -77,6 +77,10 @@ export default class WorkOrdersView {
     }, false);
   }
 
+  applyRole(role) {
+    // TODO - apply role to work order view!
+  }
+
   listErrors(errors) {
     listValues('workorder-errors-list-id', errors);
     show('workorder-errors-view-id');
