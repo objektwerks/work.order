@@ -1,4 +1,5 @@
 // @ts-check
+import { homeowner, serviceProvider } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
 import { getById, getFileById, getSelectIndexValueById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
 
@@ -69,6 +70,7 @@ export default class WorkOrdersView {
         const workorder = model.workorders.get(id);
         if (workorder !== undefined) {
           model.bindWorkOrderToView(workorder);
+          this.applyRole(workorder.role)
           console.log(`*** workorder selected and bound to view for id: ${id}`);
         } else {
           console.log(`*** workorder undefined for id: ${id}`);
@@ -78,7 +80,13 @@ export default class WorkOrdersView {
   }
 
   applyRole(role) {
-    // TODO - apply role to work order view!
+    if (role === homeowner) {
+
+    } else if (role === serviceProvider) {
+
+    } else {
+
+    }
   }
 
   listErrors(errors) {
