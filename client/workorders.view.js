@@ -26,8 +26,8 @@ export default class WorkOrdersView {
 
       const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
       if (errors.length === 0) {
-        model.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-        const status = this.fetcher.saveWorkOrder(model.workorder);
+        const workorder = model.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+        const status = (workorder.number === 0) ? this.fetcher.addWorkOrder(workorder) : this.fetcher.saveWorkOrder(workorder);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);

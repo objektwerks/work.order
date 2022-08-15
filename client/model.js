@@ -1,4 +1,5 @@
 // @ts-check
+import { WorkOrder } from '../shared/entity.js';
 import { listIdValues, selectIdValues, selectOptionById, setImageUrlById, setValueById } from './common.js';
 
 export default class Model {
@@ -67,10 +68,11 @@ export default class Model {
     }
   }
 
-  bindViewToWorkOrder(number, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
-    const workorder = this.workorders.get(number);
+  bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+    let workorder = this.workorders.get(number);
     if (workorder !== undefined && workorder.number === number) {
       workorder.number = number;
+      workorder.homeownerId = homeownerId;
       workorder.serviceProviderId = serviceProviderId;
       workorder.title = title;
       workorder.issue = issue;
@@ -78,6 +80,9 @@ export default class Model {
       workorder.resolution = resolution;
       workorder.opened = opened;
       workorder.closed = closed;
+    } else {
+      workorder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     }
+    return workorder;
   }
 }
