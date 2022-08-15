@@ -18,6 +18,14 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
+export function setInputReadOnlyFalseById(id) {
+  document.getElementById(id).removeAttribute('readonly');
+}
+
+export function setInputReadOnlyTrueById(id) {
+  document.getElementById(id)['readonly']('readonly', true);
+}
+
 export function setTextById(id, text) {
   return document.getElementById(id).innerText = text;
 }
