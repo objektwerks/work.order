@@ -26,7 +26,16 @@ export function setImageUrlById(id, url) {
 
 export function selectOptionById(id) {
   const select = document.getElementById(id);
-
+  const options = select['options'];
+  let index = 0;
+  for (const option of options) {
+    if (option.id === id) {
+      break;
+    } else {
+      index += 1;
+    }
+  }
+  select['selectedIndex'] = index;
 }
 
 export function displayImage(file, imgId) {
