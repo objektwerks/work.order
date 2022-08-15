@@ -6,7 +6,6 @@ export default class Model {
     this.user = {};
     this.serviceproviders = new Map();
     this.workorders = new Map();
-    this.selectedworkorderNumber = 0;
   }
 
   bindUserToView(user) {
@@ -45,7 +44,6 @@ export default class Model {
   }
 
   bindEmptyWorkOrderToView() {
-    this.selectedworkorderNumber = 0;
     setValueById('workorder-number-id', 0);
     setValueById('workorder-title-id', "");
     setValueById('workorder-issue-id', "");
