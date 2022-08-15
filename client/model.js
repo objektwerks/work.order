@@ -6,7 +6,7 @@ export default class Model {
     this.user = {};
     this.serviceproviders = new Map();
     this.workorders = new Map();
-    this.selectedworkorder = {};
+    this.selectedworkorderNumber = 0;
   }
 
   bindUserToView(user) {
