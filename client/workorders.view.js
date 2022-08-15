@@ -68,7 +68,6 @@ export default class WorkOrdersView {
         const id = event.target['id'];
         const workorder = model.workorders.get(id);
         if (workorder !== undefined) {
-          model.selectedWorkOrder = workorder;
           model.bindWorkOrderToView(workorder);
           console.log(`*** workorder selected and bound to view for id: ${id}`);
         } else {

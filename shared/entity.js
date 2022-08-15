@@ -100,7 +100,7 @@ export class WorkOrder {
   }
 
   static empty() {
-    this.create(0, 0, 0, '', '', '', '', new Date().toISOString(), '');
+    return this.create(0, 0, 0, '', '', '', '', new Date().toISOString(), '');
   }
 
   static success(workorder) {
