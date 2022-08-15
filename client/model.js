@@ -45,6 +45,7 @@ export default class Model {
   }
 
   bindEmptyWorkOrderToView() {
+    this.selectedworkorderNumber = 0;
     setValueById('workorder-number-id', 0);
     setValueById('workorder-title-id', "");
     setValueById('workorder-issue-id', "");
