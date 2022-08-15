@@ -18,12 +18,12 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
-export function setInputReadOnlyFalseById(id) {
+export function disableReadonlyById(id) {
   document.getElementById(id).removeAttribute('readonly');
 }
 
-export function setInputReadOnlyTrueById(id) {
-  document.getElementById(id)['readonly']('readonly', true);
+export function enableReadonlyById(id) {
+  document.getElementById(id).setAttribute('readonly', 'readonly');
 }
 
 export function setTextById(id, text) {
