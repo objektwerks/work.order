@@ -58,7 +58,8 @@ export default class WorkOrdersView {
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         console.log(`click li id: ${event.target['id']}`);
-        // TODO bind row from workorders-list-id to workorder-view-id
+        const workorder = model.workorders.get(event.target['id']);
+        model.bindWorkOrderToView(workorder);
       }
     }, false);
   }
