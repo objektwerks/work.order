@@ -25,7 +25,6 @@ export default class Store {
         this.log('listWorkOrdersByUserId', error);
       } else {
         rows.forEach((row) => {
-          console.log(row);
           list.push(
             WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
           )
@@ -42,7 +41,6 @@ export default class Store {
         this.log('listUsersByRole', error);
       } else {
         rows.forEach((row) => {
-          console.log(row);
           list.push(
             User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
           )
@@ -59,7 +57,6 @@ export default class Store {
         this.log('getUserByEmailAddressPin', error);
       } else {
         rows.forEach((row) => {
-          console.log(row);
           list.push(
             User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
           )
@@ -76,7 +73,6 @@ export default class Store {
         this.log('getWorkOrderByNumber', error);
       } else {
         rows.forEach((row) => {
-          console.log(row);
           list.push(
             WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
           )
