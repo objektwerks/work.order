@@ -95,7 +95,7 @@ export default class WorkOrdersView {
       disableReadonlyById('workorder-resolution-id');
       disableReadonlyById('workorder-closed-id');
     } else {
-
+      console.log(`*** applyRole unknown for role: ${role}`);
     }
   }
 
