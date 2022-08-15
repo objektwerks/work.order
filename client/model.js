@@ -1,5 +1,5 @@
 // @ts-check
-import { listIdValues, selectIdValues, setImageUrlById, setValueById } from './common.js';
+import { listIdValues, selectIdValues, selectOptionById, setImageUrlById, setValueById } from './common.js';
 
 export default class Model {
   constructor() {
@@ -58,7 +58,7 @@ export default class Model {
     const wo = this.workorders.get(workorder.number);
     if (wo !== undefined && wo.number === workorder.number) {
       setValueById('workorder-number-id', workorder.number);
-      // TODO select service provider by id
+      selectOptionById('workorder-service-provider-id');
       setValueById('workorder-title-id', workorder.title);
       setValueById('workorder-issue-id', workorder.issue);
       setImageUrlById('workorder-image-url-id', workorder.imageUrl);

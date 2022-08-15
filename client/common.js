@@ -24,6 +24,11 @@ export function setImageUrlById(id, url) {
   return document.getElementById(id)['src'] = url;
 }
 
+export function selectOptionById(id) {
+  const select = document.getElementById(id);
+
+}
+
 export function displayImage(file, imgId) {
   const img = getById(imgId);
   const reader = new FileReader();
