@@ -31,7 +31,8 @@ export default class Model {
       this.serviceproviders.set(serviceprovider.id, serviceprovider);
       idvalues.push({ id: serviceprovider.id, value: serviceprovider.name })
     }
-    selectIdValues('workorder-service-provider-id', idvalues);  }
+    selectIdValues('workorder-service-provider-id', idvalues);
+  }
 
   bindWorkOrdersToListView(workorders) {
     this.workorders.clear();
