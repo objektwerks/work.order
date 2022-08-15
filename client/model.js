@@ -24,7 +24,7 @@ export default class Model {
     this.user.streetAddress = streetAddress;
   }
 
-  bindServiceProvidersToListView(serviceproviders) {
+  bindServiceProvidersToSelectView(serviceproviders) {
     this.serviceproviders.clear();
     const idvalues = [];
     for (const serviceprovider of serviceproviders) {
