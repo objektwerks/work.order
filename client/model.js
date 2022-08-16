@@ -1,6 +1,6 @@
 // @ts-check
 import { WorkOrder } from '../shared/entity.js';
-import { listIdValues, selectIdValues, setSelectOptionById, setImageUrlById, setValueById } from './common.js';
+import { setListIdValues, selectIdValues, setSelectOptionById, setImageUrlById, setValueById } from './common.js';
 
 export default class Model {
   constructor() {
@@ -40,7 +40,7 @@ export default class Model {
       this.workorders.set(workorder.number, workorder);
       idvalues.push({ id: workorder.number, value: workorder.title });
     }
-    listIdValues('workorders-list-id', idvalues);
+    setListIdValues('workorders-list-id', idvalues);
   }
 
   bindEmptyWorkOrderToView() {

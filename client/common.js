@@ -89,7 +89,7 @@ export function setListValues(listId, values) {
   }
 }
 
-export function listIdValues(listId, idvalues) {
+export function setListIdValues(listId, idvalues) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
   for (const idvalue of idvalues) {
