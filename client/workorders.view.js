@@ -9,14 +9,14 @@ export default class WorkOrdersView {
     this.model = model;
 
     getById('workorder-new-command-id').addEventListener('click', () => {
-      model.bindEmptyWorkOrderToView();
+      this.model.bindEmptyWorkOrderToView();
     }, false);
 
     getById('workorder-save-command-id').addEventListener('click', () => {
       hide('workorder-errors-view-id');
 
       const number = getValueById('workorder-number-id');
-      const homeownerId = model.user.id;
+      const homeownerId = this.model.user.id;
       const serviceProviderId = getSelectedIndexId('workorder-service-provider-id');
       const title = getValueById('workorder-title-id');
       const issue = getValueById('workorder-issue-id');
@@ -77,9 +77,9 @@ export default class WorkOrdersView {
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
-        const workorder = model.workorders.get(number);
+        const workorder = this.model.workorders.get(number);
         if (workorder !== undefined) {
-          model.bindWorkOrderToView(workorder);
+          this.model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role)
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
