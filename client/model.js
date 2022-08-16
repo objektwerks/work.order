@@ -7,7 +7,6 @@ export default class Model {
     this.user = {};
     this.serviceproviders = [];
     this.workorders = new Map();
-    this.selectedWorkOrder = WorkOrder.empty();
   }
 
   bindUserToView(user) {
@@ -45,7 +44,6 @@ export default class Model {
     setValueById('workorder-resolution-id', "");
     setValueById('workorder-opened-id', "");
     setValueById('workorder-closed-id', "");
-    this.selectedWorkOrder = WorkOrder.empty();
   }
 
   bindWorkOrderToView(workorder) {
@@ -57,23 +55,5 @@ export default class Model {
     setValueById('workorder-resolution-id', workorder.resolution);
     setValueById('workorder-opened-id', workorder.opened);
     setValueById('workorder-closed-id', workorder.closed);
-    this.selectedWorkOrder = workorder;
-  }
-
-  bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
-    if (number > 0) { // save
-      this.selectedWorkOrder.number = number;
-      this.selectedWorkOrder.homeownerId = homeownerId;
-      this.selectedWorkOrder.serviceProviderId = serviceProviderId;
-      this.selectedWorkOrder.title = title;
-      this.selectedWorkOrder.issue = issue;
-      this.selectedWorkOrder.imageUrl = imageUrl;
-      this.selectedWorkOrder.resolution = resolution;
-      this.selectedWorkOrder.opened = opened;
-      this.selectedWorkOrder.closed = closed;
-    } else { // add
-      this.selectedWorkOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-    }
-    return this.selectedWorkOrder;
   }
 }

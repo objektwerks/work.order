@@ -1,5 +1,5 @@
 // @ts-check
-import { homeowner, serviceProvider } from '../shared/entity.js';
+import { homeowner, serviceProvider, WorkOrder } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
 import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById } from './common.js';
 
@@ -27,13 +27,23 @@ export default class WorkOrdersView {
 
       const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
       if (errors.length === 0) {
-        const workorder = model.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-        const status = (workorder.number === 0) ? this.fetcher.addWorkOrder(workorder) : this.fetcher.saveWorkOrder(workorder);
-        if (!status.success) {
-          errors.push(status.error);
-          this.listErrors(errors);
-        } else {          
-          show('workorder-dialog-id');
+        let workorder = this.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+        if (workorder.number > 0) { // save
+          let status = this.fetcher.saveWorkOrder(workorder);
+          if (!status.success) {
+            errors.push(status.error);
+            this.listErrors(errors);
+          } else {          
+            show('workorder-dialog-id');
+          }
+        } else { // add
+          let status = this.fetcher.addWorkOrder(workorder);
+          if (!status.success) {
+            errors.push(status.error);
+            this.listErrors(errors);
+          } else {
+            this.model.workorders.set(status.workorder.number, status.workorder);
+          }
         }
       } else {
         this.listErrors(errors);
@@ -96,6 +106,24 @@ export default class WorkOrdersView {
       disableReadonlyById('workorder-closed-id');
     } else {
       console.log(`*** applyRole unknown for role: ${role}`);
+    }
+  }
+
+  bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+    if (number > 0) { // save
+      const workorder = this.model.workorders.get(number);
+      workorder.number = number;
+      workorder.homeownerId = homeownerId;
+      workorder.serviceProviderId = serviceProviderId;
+      workorder.title = title;
+      workorder.issue = issue;
+      workorder.imageUrl = imageUrl;
+      workorder.resolution = resolution;
+      workorder.opened = opened;
+      workorder.closed = closed;
+      return workorder;
+    } else { // add
+      return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     }
   }
 
