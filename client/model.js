@@ -5,7 +5,7 @@ import { listIdValues, selectIdValues, setSelectOptionById, setImageUrlById, set
 export default class Model {
   constructor() {
     this.user = {};
-    this.serviceproviders = new Map();
+    this.serviceproviders = [];
     this.workorders = new Map();
     this.selectedWorkOrder = WorkOrder.empty();
   }
@@ -26,10 +26,8 @@ export default class Model {
   }
 
   bindServiceProvidersToSelectView(serviceproviders) {
-    this.serviceproviders.clear();
     const idvalues = [];
     for (const serviceprovider of serviceproviders) {
-      this.serviceproviders.set(serviceprovider.id, serviceprovider);
       idvalues.push({ id: serviceprovider.id, value: serviceprovider.name });
     }
     selectIdValues('workorder-service-provider-id', idvalues);
