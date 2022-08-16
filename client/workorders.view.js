@@ -112,14 +112,11 @@ export default class WorkOrdersView {
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     if (number > 0) { // save
       const workorder = this.model.workorders.get(number);
-      workorder.number = number;
-      workorder.homeownerId = homeownerId;
       workorder.serviceProviderId = serviceProviderId;
       workorder.title = title;
       workorder.issue = issue;
       workorder.imageUrl = imageUrl;
       workorder.resolution = resolution;
-      workorder.opened = opened;
       workorder.closed = closed;
       return workorder;
     } else { // add
