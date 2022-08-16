@@ -71,9 +71,9 @@ export default class WorkOrdersView {
         if (workorder !== undefined) {
           model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role)
-          console.log(`*** workorder selected and bound to view for id: ${id}`);
+          console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
-          console.log(`*** workorder undefined for id: ${id}`);
+          console.log(`*** workorder undefined for number: ${number}`);
         }
       }
     }, false);
