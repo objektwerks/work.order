@@ -79,13 +79,27 @@ export default class WorkOrdersView {
       }
     }, false);
 
-    getById('workorders-list-id').addEventListener('click', (event) => {
+    getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
         const workorder = this.model.workorders.get(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role)
+          console.log(`*** workorder selected and bound to view for number: ${number}`);
+        } else {
+          console.log(`*** workorder undefined for number: ${number}`);
+        }
+      }
+    }, false);
+
+    getById('workorders-list-closed-view-id').addEventListener('click', (event) => {
+      if(event.target && event.target['nodeName'] === "li") {
+        const number = event.target['id'];
+        const workorder = this.model.workorders.get(number);
+        if (workorder !== undefined) {
+          this.model.bindWorkOrderToView(workorder);
+           // readonly for all ! this.applyRole(workorder.role)
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
           console.log(`*** workorder undefined for number: ${number}`);
