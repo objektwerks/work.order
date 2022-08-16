@@ -11,6 +11,8 @@ export default class Model {
 
   addWorkOrder(workorder) {
     this.workorders.set(workorder.number, workorder);
+    const sorted = Array.from(this.workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+    this.bindWorkOrdersToListView(sorted);
   }
 
   bindUserToView(user) {
