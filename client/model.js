@@ -11,8 +11,12 @@ export default class Model {
 
   addWorkOrder(workorder) {
     this.workorders.set(workorder.number, workorder);
-    const sorted = Array.from(this.workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-    this.bindWorkOrdersToListView(sorted);
+    const sortedWorkOrders = Array.from(this.workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+    const idvalues = [];
+    for (const workorder of sortedWorkOrders) {
+      idvalues.push({ id: workorder.number, value: workorder.title });
+    }
+    setListIdValues('workorders-list-id', idvalues);
   }
 
   bindUserToView(user) {
