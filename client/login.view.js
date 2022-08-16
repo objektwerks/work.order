@@ -26,9 +26,9 @@ export default class LoginView {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
-          model.bindUserToView(userServiceProvidersWorkOrders.user);
-          model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceproviders);
-          model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
+          this.model.bindUserToView(userServiceProvidersWorkOrders.user);
+          this.model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceproviders);
+          this.model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
 
           hide('login-view-id');
           hide('register-view-id"');
