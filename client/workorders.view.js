@@ -1,7 +1,7 @@
 // @ts-check
 import { homeowner, serviceProvider } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
-import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectIndexValueById, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
+import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -17,7 +17,7 @@ export default class WorkOrdersView {
 
       const number = getValueById('workorder-number-id');
       const homeownerId = model.user.id;
-      const serviceProviderId = getSelectIndexValueById('workorder-service-provider-id');
+      const serviceProviderId = getSelectedIndexId('workorder-service-provider-id');
       const title = getValueById('workorder-title-id');
       const issue = getValueById('workorder-issue-id');
       const imageUrl = getValueById('workorder-image-url-id');

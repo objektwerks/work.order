@@ -8,10 +8,10 @@ export function getFileById(id) {
   return document.getElementById(id)['files'][0];
 }
 
-export function getSelectIndexValueById(selectId) {
+export function getSelectedIndexId(selectId) {
   const select = document.getElementById(selectId);
   const selectedIndex = select['selectedIndex'];
-  return select['options'][selectedIndex].value;
+  return select['options'][selectedIndex].id;
 }
 
 export function getValueById(id) {
