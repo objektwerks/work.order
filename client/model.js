@@ -22,8 +22,8 @@ export default class Model {
     for (const wo of closed) {
       closedList.push({ id: wo.number, value: wo.title });
     }
-    setListIdValues('workorders-list-opened-id"', openList);
-    setListIdValues('workorders-list-closed-id"', closedList);
+    setListIdValues(listIdA, openList);
+    setListIdValues(listIdB, closedList);
   }
 
   addWorkOrder(workorder) {
