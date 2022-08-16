@@ -19,7 +19,7 @@ export default class UserView {
       const errors = validateUserView(name, emailAddress, streetAddress);
       if (errors.length === 0) {
         this.bindViewToUser(name, emailAddress, streetAddress);
-        const status = this.fetcher.saveUser(model.user);
+        const status = this.fetcher.saveUser(this.model.user);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
