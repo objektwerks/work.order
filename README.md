@@ -10,6 +10,7 @@ Todo
 4. open work orders tab, on click -> enable new and save buttons, apply role to fields
 5. closed work orders tab, on click -> disable new and save buttons, make fields readonly
 6. login, if successful, add user welcome to ui
+7. add refresh button to work orders
 
 Doc
 ---
