@@ -42,7 +42,7 @@ export default class WorkOrdersView {
             errors.push(status.error);
             this.listErrors(errors);
           } else {
-            this.model.workorders.set(status.workorder.number, status.workorder);
+            this.model.addWorkOrder(status.workorder);
           }
         }
       } else {

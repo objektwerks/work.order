@@ -9,6 +9,10 @@ export default class Model {
     this.workorders = new Map();
   }
 
+  addWorkOrder(workorder) {
+    this.workorders.set(workorder.number, workorder);
+  }
+
   bindUserToView(user) {
     this.user = user;
     setValueById('user-role-id', user.role);
