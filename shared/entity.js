@@ -99,10 +99,6 @@ export class WorkOrder {
     }
   }
 
-  static empty() {
-    return this.create(0, 0, 0, '', '', '', '', new Date().toISOString(), '');
-  }
-
   static success(workorder) {
     return {
       success: true,
