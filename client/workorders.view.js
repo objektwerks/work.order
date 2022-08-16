@@ -99,7 +99,7 @@ export default class WorkOrdersView {
         const workorder = this.model.workorders.get(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
-           // readonly for all ! this.applyRole(workorder.role)
+          this.applyRole('readonly')
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
           console.log(`*** workorder undefined for number: ${number}`);
@@ -124,7 +124,12 @@ export default class WorkOrdersView {
       disableReadonlyById('workorder-resolution-id');
       disableReadonlyById('workorder-closed-id');
     } else {
-      console.log(`*** applyRole unknown for role: ${role}`);
+      disableReadonlyById('workorder-service-provider-id');
+      disableReadonlyById('workorder-title-id');
+      disableReadonlyById('workorder-issue-id');
+      disableReadonlyById('workorder-image-file-id');
+      disableReadonlyById('workorder-resolution-id');
+      disableReadonlyById('workorder-closed-id');   
     }
   }
 
