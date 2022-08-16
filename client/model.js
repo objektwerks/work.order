@@ -29,11 +29,7 @@ export default class Model {
   addWorkOrder(workorder) {
     this.workorders.set(workorder.number, workorder);
     const sortedWorkOrders = Array.from(this.workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-    const idvalues = [];
-    for (const workorder of sortedWorkOrders) {
-      idvalues.push({ id: workorder.number, value: workorder.title });
-    }
-    setListIdValues('workorders-list-opened-id"', idvalues); // split
+    this.splitWorkOrders(this.workorders, 'workorders-list-opened-id', 'workorders-list-closed-id')
   }
 
   bindUserToView(user) {
@@ -55,12 +51,10 @@ export default class Model {
 
   bindWorkOrdersToListView(workorders) {
     this.workorders.clear();
-    const idvalues = [];
     for (const workorder of workorders) {
       this.workorders.set(workorder.number, workorder);
-      idvalues.push({ id: workorder.number, value: workorder.title });
     }
-    setListIdValues('workorders-list-opened-id"', idvalues); // split
+    this.splitWorkOrders(workorders, 'workorders-list-opened-id', 'workorders-list-closed-id')
   }
 
   bindEmptyWorkOrderToView() {
