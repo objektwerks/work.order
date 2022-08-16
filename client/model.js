@@ -42,7 +42,7 @@ export default class Model {
     setValueById('workorder-issue-id', "");
     setValueById('workorder-image-url-id', "");
     setValueById('workorder-resolution-id', "");
-    setValueById('workorder-opened-id', "");
+    setValueById('workorder-opened-id', new Date().toISOString());
     setValueById('workorder-closed-id', "");
   }
 
