@@ -1,7 +1,7 @@
 // @ts-check
 import { homeowner, serviceProvider } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
-import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, listValues, show, setTextById } from './common.js';
+import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -100,7 +100,7 @@ export default class WorkOrdersView {
   }
 
   listErrors(errors) {
-    listValues('workorder-errors-list-id', errors);
+    setListValues('workorder-errors-list-id', errors);
     show('workorder-errors-view-id');
   }
 }

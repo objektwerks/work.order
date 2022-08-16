@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, listValues, show } from './common.js';
+import { getById, getValueById, hide, setListValues, show } from './common.js';
 
 // @ts-ignore
 import { validateUserView } from './validator.js';
@@ -33,7 +33,7 @@ export default class UserView {
   }
 
   listErrors(errors) {
-    listValues('user-errors-list-id', errors);
+    setListValues('user-errors-list-id', errors);
     show('user-errors-view-id');
   }
 }

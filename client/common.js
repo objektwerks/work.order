@@ -79,7 +79,7 @@ export function show(id) {
   document.getElementById(id).style.display = 'block';
 }
 
-export function listValues(listId, values) {
+export function setListValues(listId, values) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
   for (const value of values) {

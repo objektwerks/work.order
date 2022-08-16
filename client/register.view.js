@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, listValues, show } from './common.js';
+import { getById, getValueById, hide, setListValues, show } from './common.js';
 
 // @ts-ignore
 import { validateRegistration } from './validator.js';
@@ -39,7 +39,7 @@ export default class RegisterView {
   }
 
   listErrors(errors) {
-    listValues('register-errors-list-id', errors);
+    setListValues('register-errors-list-id', errors);
     show('register-errors-view-id');
   }
 }

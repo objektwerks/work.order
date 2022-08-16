@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, listValues, show } from './common.js';
+import { getById, getValueById, hide, setListValues, show } from './common.js';
 
 // @ts-ignore
 import { Credentials } from './entity.js';
@@ -48,7 +48,7 @@ export default class LoginView {
   }
 
   listErrors(errors) {
-    listValues('login-errors-list-id', errors);
+    setListValues('login-errors-list-id', errors);
     show('login-errors-view-id');
   }
 }
