@@ -1,7 +1,7 @@
 // @ts-check
 import { homeowner, serviceProvider, WorkOrder } from '../shared/entity.js';
 import { validateWorkOrder } from '../shared/validator.js';
-import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById } from './common.js';
+import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -66,11 +66,11 @@ export default class WorkOrdersView {
       displayImage(file, 'workorder-image-url-id');
     }, false);
 
-    getById('workorder-closed-id').addEventListener('change', (event) => {
+    getById('workorder-closed-check-id').addEventListener('change', (event) => {
       if (event.target['checked']) {
-        model.selectedWorkOrder.closed = new Date().toISOString();
+        setValueById('workorder-closed-id', new Date().toISOString());
       } else {
-        model.selectedWorkOrder.closed = '';
+        setValueById('workorder-closed-id', '');
       }
     }, false);
 
