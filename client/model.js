@@ -19,12 +19,6 @@ export default class Model {
     setValueById('user-registered-id', user.registered);
   }
 
-  bindViewToUser(name, emailAddress, streetAddress) {
-    this.user.name = name;
-    this.user.emailAddress = emailAddress;
-    this.user.streetAddress = streetAddress;
-  }
-
   bindServiceProvidersToSelectView(serviceproviders) {
     const idvalues = [];
     for (const serviceprovider of serviceproviders) {

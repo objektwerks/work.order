@@ -18,7 +18,7 @@ export default class UserView {
 
       const errors = validateUserView(name, emailAddress, streetAddress);
       if (errors.length === 0) {
-        model.bindViewToUser(name, emailAddress, streetAddress);
+        this.bindViewToUser(name, emailAddress, streetAddress);
         const status = this.fetcher.saveUser(model.user);
         if (!status.success) {
           errors.push(status.error);
@@ -30,6 +30,12 @@ export default class UserView {
         this.listErrors(errors);
       }      
     }, false);
+  }
+
+  bindViewToUser(name, emailAddress, streetAddress) {
+    this.model.user.name = name;
+    this.model.user.emailAddress = emailAddress;
+    this.model.user.streetAddress = streetAddress;
   }
 
   listErrors(errors) {
