@@ -11,6 +11,13 @@ export default class Model {
     this.workorders = new Map();
   }
 
+  split(source, aTargeListId, bTargetListId) {
+    const targetA = source.filter();
+    const targetB = source.filter();
+    setListIdValues(aTargeListId, targetA);
+    setListIdValues(bTargetListId, targetB);
+  }
+
   addWorkOrder(workorder) {
     this.workorders.set(workorder.number, workorder);
     const sortedWorkOrders = Array.from(this.workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
