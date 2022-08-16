@@ -7,8 +7,8 @@ Todo
 1. build 2 filtered arrays of 1) opened and 2) closed work orders
 2. build 2 ui lists for 1) opened and 2) closed work orders
 3. build 2 tabs for 1) opened and 2) closed work orders
-4. on open work orders tab clicked -> enable new and save buttons
-5. on closed work orders tab clicke -> disable new and save buttons
+4. on open work orders tab clicked -> enable new and save buttons, apply role to all fields
+5. on closed work orders tab clicke -> disable new and save buttons, make all field readonly
 
 Doc
 ---
