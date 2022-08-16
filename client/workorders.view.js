@@ -1,6 +1,11 @@
 // @ts-check
-import { homeowner, serviceProvider, WorkOrder } from '../shared/entity.js';
-import { validateWorkOrder } from '../shared/validator.js';
+
+// @ts-ignore
+import { validateWorkOrder } from './validator.js';
+
+// @ts-ignore
+import { homeowner, serviceProvider, WorkOrder } from './entity.js';
+
 import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {

@@ -1,6 +1,8 @@
 // @ts-check
-import { WorkOrder } from '../shared/entity.js';
 import { setListIdValues, setSelectIdValues, setSelectOptionById, setImageUrlById, setValueById } from './common.js';
+
+// @ts-ignore
+import { WorkOrder } from './entity.js';
 
 export default class Model {
   constructor() {
