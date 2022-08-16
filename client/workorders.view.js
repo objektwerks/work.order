@@ -66,8 +66,8 @@ export default class WorkOrdersView {
 
     getById('workorders-list-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
-        const id = event.target['id'];
-        const workorder = model.workorders.get(id);
+        const number = event.target['id'];
+        const workorder = model.workorders.get(number);
         if (workorder !== undefined) {
           model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role)
