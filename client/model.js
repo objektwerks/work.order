@@ -18,7 +18,7 @@ export default class Model {
     for (const workorder of sortedWorkOrders) {
       idvalues.push({ id: workorder.number, value: workorder.title });
     }
-    setListIdValues('workorders-list-opened-id"', idvalues);
+    setListIdValues('workorders-list-opened-id"', idvalues); // split
   }
 
   bindUserToView(user) {
@@ -45,7 +45,7 @@ export default class Model {
       this.workorders.set(workorder.number, workorder);
       idvalues.push({ id: workorder.number, value: workorder.title });
     }
-    setListIdValues('workorders-list-opened-id"', idvalues);
+    setListIdValues('workorders-list-opened-id"', idvalues); // split
   }
 
   bindEmptyWorkOrderToView() {
