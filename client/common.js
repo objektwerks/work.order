@@ -100,7 +100,7 @@ export function setListIdValues(listId, idvalues) {
   }
 }
 
-export function selectIdValues(selectId, idvalues) {
+export function setSelectIdValues(selectId, idvalues) {
   document.getElementById(selectId).innerHTML = '';
   const select = document.getElementById(selectId);
   for (const idvalue of idvalues) {
