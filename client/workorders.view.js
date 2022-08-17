@@ -82,10 +82,14 @@ export default class WorkOrdersView {
 
     getById('workorders-list-opened-tab-id').addEventListener('click', () => {
       this.selectTab('workorders-list-opened-view-id')
+      show('workorder-new-command-id');
+      show('workorder-save-command-id');
     }, false);
     
     getById('workorders-list-closed-tab-id').addEventListener('click', () => {
       this.selectTab('workorders-list-closed-view-id')
+      hide('workorder-new-command-id');
+      hide('workorder-save-command-id');
     }, false);
 
     getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
