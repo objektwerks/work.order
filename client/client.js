@@ -5,7 +5,7 @@ import fetcher from './fetcher.js';
 import registerview from './register.view.js';
 import loginview from './login.view.js';
 import workordersview from './workorders.view.js';
-import UserView from './user.view.js';
+import userview from './user.view.js';
 
 export default () => {
   menu();
@@ -14,6 +14,6 @@ export default () => {
   registerview();
   loginview();
   workordersview();
-  const userView = new UserView();
+  userview();
   console.log('*** client running, with root url: ' + 'https://' + window.location.host);
 }
