@@ -60,14 +60,6 @@ export default class Fetcher {
     return await this.call(this.saveWorkOrderUrl, this.post, this.headers, workorder, () => Status.fail('Save work order failed!'));
   }
 
-  async getWorkOrderByNumber(number) {
-    return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
-  }
-
-  async listWorkOrdersByUserId(id) {
-    return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
-  }
-
   async saveUser(user) {
     return await this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
   }
@@ -78,5 +70,13 @@ export default class Fetcher {
     formdata.append('number', number);
     formdata.append('image', file, filename);
     return await this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
+  }
+
+  async getWorkOrderByNumber(number) {
+    return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
+  }
+
+  async listWorkOrdersByUserId(id) {
+    return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
   }
 }
