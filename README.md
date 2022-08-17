@@ -10,8 +10,8 @@ Todo
 - [x] open work orders tab, on click -> show new and save buttons, apply role to work order fields
 - [x] closed work orders tab, on click -> hide new and save buttons, apply readonly role to work order fields
 - [x] check full url vs relative url
-- [ ] implement work order refresh button event listener ( getWorkOrderByNumber )
-- [ ] implement work orders refresh button event listener ( listWorkOrdersByUserId )
+- [ ] implement work order refresh button event listener
+- [ ] implement work orders refresh button event listener
 
 Doc
 ---
