@@ -1,5 +1,5 @@
 // @ts-check
-import Menu from './menu.js';
+import menu from './menu.js';
 import Model from './model.js';
 import Fetcher from './fetcher.js';
 import LoginView from './login.view.js';
@@ -9,7 +9,7 @@ import UserView from './user.view.js';
 
 export default class Client {
   constructor() {
-    this.menu = new Menu();
+    menu();
     this.model = new Model();
     this.fetcher = new Fetcher();
     this.loginView = new LoginView(this.fetcher, this.model);
