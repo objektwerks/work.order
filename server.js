@@ -1,11 +1,10 @@
 // @ts-check
-import Store from './server/store.js';
+import store from './server/store.js';
 import Emailer from './server/emailer.js';
 import Service from './server/service.js';
 import Router from './server/router.js';
 
-const url = process.env.DATABASE_URL;
-const store = new Store(url);
+store();
 
 const host = process.env.EMAIL_HOST;
 const port = process.env.EMAIL_PORT;
