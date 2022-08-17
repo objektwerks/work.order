@@ -118,8 +118,8 @@ export default class WorkOrdersView {
 
   selectTab(tabviewId) {
     const tabviews = getByClass('tabview');
-    for (const view of tabviews) {
-      view['style'].display = 'none';
+    for (const tabview of tabviews) {
+      tabview['style'].display = 'none';
     }
     show(tabviewId);
   }
