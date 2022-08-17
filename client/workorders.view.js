@@ -6,7 +6,7 @@ import { validateWorkOrder } from './validator.js';
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 
-import { getByClass, disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -126,26 +126,26 @@ export default class WorkOrdersView {
 
   applyRole(role) {
     if (role === homeowner) {
-      disableReadonlyById('workorder-service-provider-id');
-      disableReadonlyById('workorder-title-id');
-      disableReadonlyById('workorder-issue-id');
-      disableReadonlyById('workorder-image-file-id');
-      enableReadonlyById('workorder-resolution-id');
-      enableReadonlyById('workorder-closed-id');
+      removeReadonlyById('workorder-service-provider-id');
+      removeReadonlyById('workorder-title-id');
+      removeReadonlyById('workorder-issue-id');
+      removeReadonlyById('workorder-image-file-id');
+      addReadonlyById('workorder-resolution-id');
+      addReadonlyById('workorder-closed-id');
     } else if (role === serviceProvider) {
-      enableReadonlyById('workorder-service-provider-id');
-      enableReadonlyById('workorder-title-id');
-      enableReadonlyById('workorder-issue-id');
-      enableReadonlyById('workorder-image-file-id');
-      disableReadonlyById('workorder-resolution-id');
-      disableReadonlyById('workorder-closed-id');
-    } else {
-      disableReadonlyById('workorder-service-provider-id');
-      disableReadonlyById('workorder-title-id');
-      disableReadonlyById('workorder-issue-id');
-      disableReadonlyById('workorder-image-file-id');
-      disableReadonlyById('workorder-resolution-id');
-      disableReadonlyById('workorder-closed-id');   
+      addReadonlyById('workorder-service-provider-id');
+      addReadonlyById('workorder-title-id');
+      addReadonlyById('workorder-issue-id');
+      addReadonlyById('workorder-image-file-id');
+      removeReadonlyById('workorder-resolution-id');
+      removeReadonlyById('workorder-closed-id');
+    } else { // closed tab clicked, all readonly
+      addReadonlyById('workorder-service-provider-id');
+      addReadonlyById('workorder-title-id');
+      addReadonlyById('workorder-issue-id');
+      addReadonlyById('workorder-image-file-id');
+      addReadonlyById('workorder-resolution-id');
+      addReadonlyById('workorder-closed-id');   
     }
   }
 

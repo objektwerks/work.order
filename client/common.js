@@ -18,11 +18,11 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
-export function disableReadonlyById(id) {
+export function removeReadonlyById(id) {
   document.getElementById(id).removeAttribute('readonly');
 }
 
-export function enableReadonlyById(id) {
+export function addReadonlyById(id) {
   document.getElementById(id).setAttribute('readonly', 'readonly');
 }
 
