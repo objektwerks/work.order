@@ -1,4 +1,5 @@
 // @ts-check
+import * as model from './model.js';
 
 // @ts-ignore
 import { validateWorkOrder } from './validator.js';
@@ -9,20 +10,19 @@ import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
-  constructor(fetcher, model) {
+  constructor(fetcher) {
     this.fetcher = fetcher;
-    this.model = model;
     this.readonlyRole = 'readonly'
 
     getById('workorder-new-command-id').addEventListener('click', () => {
-      this.model.bindEmptyWorkOrderToView();
+      model.bindEmptyWorkOrderToView();
     }, false);
 
     getById('workorder-save-command-id').addEventListener('click', () => {
       hide('workorder-errors-view-id');
 
       const number = getValueById('workorder-number-id');
-      const homeownerId = this.model.user.id;
+      const homeownerId = model.getUserId();
       const serviceProviderId = getSelectedIndexId('workorder-service-provider-id');
       const title = getValueById('workorder-title-id');
       const issue = getValueById('workorder-issue-id');
@@ -48,7 +48,7 @@ export default class WorkOrdersView {
             errors.push(status.error);
             this.listErrors(errors);
           } else {
-            this.model.addWorkOrder(status.workorder);
+            model.addWorkOrder(status.workorder);
           }
         }
       } else {
@@ -103,9 +103,9 @@ export default class WorkOrdersView {
     getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
-        const workorder = this.model.getWorkOrderByNumber(number);
+        const workorder = model.getWorkOrderByNumber(number);
         if (workorder !== undefined) {
-          this.model.bindWorkOrderToView(workorder);
+          model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role);
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
@@ -117,9 +117,9 @@ export default class WorkOrdersView {
     getById('workorders-list-closed-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
-        const workorder = this.model.getWorkOrderByNumber(number);
+        const workorder = model.getWorkOrderByNumber(number);
         if (workorder !== undefined) {
-          this.model.bindWorkOrderToView(workorder);
+          model.bindWorkOrderToView(workorder);
           this.applyRole(this.readonlyRole);
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
@@ -173,7 +173,7 @@ export default class WorkOrdersView {
 
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     if (number > 0) { // save
-      const workorder = this.model.getWorkOrderByNumber(number);
+      const workorder = model.getWorkOrderByNumber(number);
       workorder.serviceProviderId = serviceProviderId;
       workorder.title = title;
       workorder.issue = issue;

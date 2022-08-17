@@ -1,5 +1,6 @@
 // @ts-check
 import { getById, getValueById, hide, setListValues, show } from './common.js';
+import * as model from './model.js';
 
 // @ts-ignore
 import { Credentials } from './entity.js';
@@ -8,9 +9,8 @@ import { Credentials } from './entity.js';
 import { validateCredentials } from './validator.js';
 
 export default class LoginView {
-  constructor(fetcher, model) {
+  constructor(fetcher) {
     this.fetcher = fetcher;
-    this.model = model;
 
     getById('login-command-id').addEventListener('click', () => {
       hide('login-errors-view-id');
@@ -26,9 +26,9 @@ export default class LoginView {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);
         } else {
-          this.model.bindUserToView(userServiceProvidersWorkOrders.user);
-          this.model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceproviders);
-          this.model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
+          model.bindUserToView(userServiceProvidersWorkOrders.user);
+          model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceproviders);
+          model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
 
           hide('login-view-id');
           hide('register-view-id"');
