@@ -72,6 +72,24 @@ export default class Service {
     return workorders;
   }
 
+  getWorkOrderByNumber(number) {
+    let workorder;
+    try {
+      const get = this.store.getWorkOrderByNumber(number);
+      if (Object.entries(get).length > 0) {
+        workorder = WorkOrder.success(get);
+        this.log('getWorkOrderByNumber', `succeeded for number: ${number}`);
+      } else {
+        workorder = WorkOrder.fail('Get work order by number failed.', number);
+        this.log('getWorkOrderByNumber', `succeeded for number: ${number}`);
+      }
+    } catch(error) {
+      workorder = WorkOrder.fail('Get work order by number failed.', number);
+      this.log('getWorkOrderByNumber', `failed for number: ${number} error: ${error}`);
+    }
+    return workorder;
+  }
+
   addWorkOrder(workorder) {
     let saved;
     try {

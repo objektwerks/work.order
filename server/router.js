@@ -38,6 +38,10 @@ export default class Router {
       response.json(service.listWorkOrdersByUserId(request.params.id) );
     });
     
+    router.get('/workorders/:number', async (request, response) => {
+      response.json( await service.getWorkOrderByNumber(request.params.number) );
+    });
+    
     router.post('/users/save', async (request, response) => {
       response.json( await service.saveUser(request.body) );
     });

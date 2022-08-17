@@ -50,7 +50,8 @@ Features [ Role ]
 3. **add work order** — [ homeowner ]
 4. **edit work order** — [ homeowner, service provider ]
 5. **list work orders by user** - [ homeowner, service provider ]
-6. **edit user** — [ homeowner, service provider ]
+6. **get work order by number** - [ homeowner, service provider ]
+7. **edit user** — [ homeowner, service provider ]
 
 Forms
 -----
@@ -66,8 +67,9 @@ Routes
 3. post - /workorders/add
 4. post - /workorders/save
 5. get  - /workorders/user/:id
-6. post - /users/save
-7. post - /image/save
+6. get  - /workorders/:number
+7. post - /users/save
+8. post - /image/save
 
 Sequences
 ---------
