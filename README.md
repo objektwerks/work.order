@@ -11,6 +11,7 @@ Todo
 - [x] closed work orders tab, on click -> hide new and save buttons, apply readonly role to work order fields
 - [ ] add work order refresh button
 - [ ] add work orders refresh button
+- [ ] check full url vs relative url
 
 Doc
 ---
