@@ -75,8 +75,4 @@ export default class Fetcher {
   async getWorkOrderByNumber(number) {
     return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
-
-  async listWorkOrdersByUserId(id) {
-    return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
-  }
 }
