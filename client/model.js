@@ -11,19 +11,19 @@ export default class Model {
     this.workorders = new Map();
   }
 
-  splitWorkOrders(workorders, listIdA, listIdB) {
+  splitWorkOrders(workorders, openedListId, closedListId) {
     const opened = workorders.filter((wo) => { wo.closed.length === 0});
     const closed = workorders.filter((wo) => { wo.closed.length > 0});
-    let openList = {};
+    let openedList = [];
     for (const wo of opened) {
-      openList.push({ id: wo.number, value: wo.title });
+      openedList.push({ id: wo.number, value: wo.title });
     }
-    let closedList = {};
+    let closedList = [];
     for (const wo of closed) {
       closedList.push({ id: wo.number, value: wo.title });
     }
-    setListIdValues(listIdA, openList);
-    setListIdValues(listIdB, closedList);
+    setListIdValues(openedListId, openedList);
+    setListIdValues(closedListId, closedList);
   }
 
   addWorkOrder(workorder) {
