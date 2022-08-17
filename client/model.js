@@ -34,6 +34,7 @@ export default class Model {
 
   bindUserToView(user) {
     this.user = user;
+    setValueById('workorder-homeowner-id', user.name);
     setValueById('user-role-id', user.role);
     setValueById('user-name-id', user.name);
     setValueById('user-email-address-id', user.emailAddress);
