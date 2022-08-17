@@ -12,6 +12,7 @@ export default class WorkOrdersView {
   constructor(fetcher, model) {
     this.fetcher = fetcher;
     this.model = model;
+    this.readonlyRole = 'readonly'
 
     getById('workorder-new-command-id').addEventListener('click', () => {
       this.model.bindEmptyWorkOrderToView();
@@ -93,7 +94,7 @@ export default class WorkOrdersView {
         const workorder = this.model.workorders.get(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
-          this.applyRole(workorder.role)
+          this.applyRole(workorder.role);
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
           console.log(`*** workorder undefined for number: ${number}`);
@@ -107,7 +108,7 @@ export default class WorkOrdersView {
         const workorder = this.model.workorders.get(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
-          this.applyRole('readonly')
+          this.applyRole(this.readonlyRole);
           console.log(`*** workorder selected and bound to view for number: ${number}`);
         } else {
           console.log(`*** workorder undefined for number: ${number}`);
@@ -126,26 +127,32 @@ export default class WorkOrdersView {
 
   applyRole(role) {
     if (role === homeowner) {
+      removeReadonlyById('workorder-number-id');
       removeReadonlyById('workorder-service-provider-id');
       removeReadonlyById('workorder-title-id');
       removeReadonlyById('workorder-issue-id');
       removeReadonlyById('workorder-image-file-id');
       addReadonlyById('workorder-resolution-id');
+      addReadonlyById('workorder-opened-id');
       addReadonlyById('workorder-closed-id');
     } else if (role === serviceProvider) {
+      addReadonlyById('workorder-number-id');
       addReadonlyById('workorder-service-provider-id');
       addReadonlyById('workorder-title-id');
       addReadonlyById('workorder-issue-id');
       addReadonlyById('workorder-image-file-id');
       removeReadonlyById('workorder-resolution-id');
+      addReadonlyById('workorder-opened-id');
       removeReadonlyById('workorder-closed-id');
-    } else { // closed tab clicked, all readonly
+    } else if (role === this.readonlyRole) {
+      addReadonlyById('workorder-number-id');
       addReadonlyById('workorder-service-provider-id');
       addReadonlyById('workorder-title-id');
       addReadonlyById('workorder-issue-id');
       addReadonlyById('workorder-image-file-id');
       addReadonlyById('workorder-resolution-id');
-      addReadonlyById('workorder-closed-id');   
+      addReadonlyById('workorder-opened-id');
+      addReadonlyById('workorder-closed-id');
     }
   }
 
