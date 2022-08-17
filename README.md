@@ -9,7 +9,8 @@ Todo
 - [x] build 2 tabs for 1) opened and 2) closed work orders
 - [x] open work orders tab, on click -> show new and save buttons, apply role to work order fields
 - [x] closed work orders tab, on click -> hide new and save buttons, apply readonly role to work order fields
-- [ ] add refresh button to work orders
+- [ ] add work order refresh button
+- [ ] add work orders refresh button
 
 Doc
 ---
