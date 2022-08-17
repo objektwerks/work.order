@@ -4,8 +4,8 @@
 import { toJson, toObject, ImageUrl, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 export default class Fetcher {
-  constructor(rootUrl) {
-    this.rootUrl = rootUrl
+  constructor() {
+    const rootUrl = 'https://' + window.location.host;
     this.registerUrl = rootUrl + '/register';
     this.loginUrl = rootUrl + '/login';
     this.addWorkOrderUrl = rootUrl + '/workorders/add';

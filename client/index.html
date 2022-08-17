@@ -180,10 +180,8 @@
 
         <!-- Script -->
         <script type="module">
-            const url = 'https://' + window.location.host;
-            console.log('server: ' + url);
             import Client from './client.js';
-            new Client(url);
+            new Client();
         </script>
     </body>
 </html>

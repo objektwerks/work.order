@@ -8,15 +8,14 @@ import WorkOrdersView from './workorders.view.js';
 import UserView from './user.view.js';
 
 export default class Client {
-  constructor(url) {
-    this.url = url;
-    this.fetcher = new Fetcher(this.url);
+  constructor() {
+    this.fetcher = new Fetcher();
     this.model = new Model();
     this.menu = new Menu();
     this.loginView = new LoginView(this.fetcher, this.model);
     this.registerView = new RegisterView(this.fetcher);
     this.workordersView = new WorkOrdersView(this.fetcher, this.model);
     this.userView = new UserView(this.fetcher, this.model);
-    console.log('*** client running ...');
+    console.log('*** client running, with root url: ' + 'https://' + window.location.host);
   }
 }
