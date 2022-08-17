@@ -10,11 +10,11 @@ export default class Fetcher {
     this.loginUrl = rootUrl + '/login';
     this.addWorkOrderUrl = rootUrl + '/workorders/add';
     this.saveWorkOrderUrl = rootUrl + '/workorders/save';
-    this.getWorkOrderByNumberUrl = rootUrl + '/workorders/';
-    this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
     this.saveUserUrl = rootUrl + '/users/save';
     this.listUsersByRoleUrl = rootUrl + '/users/';
     this.saveImageUrl = rootUrl + '/image/save';
+    this.getWorkOrderByNumberUrl = rootUrl + '/workorders/';
+    this.listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
     this.get = 'GET';
     this.post = 'POST';
     this.headers = {
@@ -70,6 +70,10 @@ export default class Fetcher {
     formdata.append('number', number);
     formdata.append('image', file, filename);
     return await this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
+  }
+
+  async getWorkOrderByNumber(number) {
+    return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
   }
 
   async listWorkOrdersByUserId(id) {
