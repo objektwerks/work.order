@@ -103,7 +103,7 @@ export default class WorkOrdersView {
     getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
-        const workorder = this.model.workorders.get(number);
+        const workorder = this.model.getWorkOrderByNumber(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
           this.applyRole(workorder.role);
@@ -117,7 +117,7 @@ export default class WorkOrdersView {
     getById('workorders-list-closed-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
-        const workorder = this.model.workorders.get(number);
+        const workorder = this.model.getWorkOrderByNumber(number);
         if (workorder !== undefined) {
           this.model.bindWorkOrderToView(workorder);
           this.applyRole(this.readonlyRole);
@@ -173,7 +173,7 @@ export default class WorkOrdersView {
 
   bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     if (number > 0) { // save
-      const workorder = this.model.workorders.get(number);
+      const workorder = this.model.getWorkOrderByNumber(number);
       workorder.serviceProviderId = serviceProviderId;
       workorder.title = title;
       workorder.issue = issue;
