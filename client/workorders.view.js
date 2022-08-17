@@ -33,9 +33,9 @@ export default class WorkOrdersView {
 
       const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
       if (errors.length === 0) {
-        let workorder = this.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+        const workorder = this.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
         if (workorder.number > 0) { // save
-          let status = this.fetcher.saveWorkOrder(workorder);
+          const status = this.fetcher.saveWorkOrder(workorder);
           if (!status.success) {
             errors.push(status.error);
             this.listErrors(errors);
@@ -43,7 +43,7 @@ export default class WorkOrdersView {
             show('workorder-dialog-id');
           }
         } else { // add
-          let status = this.fetcher.addWorkOrder(workorder);
+          const status = this.fetcher.addWorkOrder(workorder);
           if (!status.success) {
             errors.push(status.error);
             this.listErrors(errors);
