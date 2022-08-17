@@ -4,10 +4,16 @@ import * as service from './service.js';
 import compression from 'compression';
 import express from 'express';
 
+const port = parseInt(process.env.PORT) || 3000;
+const host = process.env.BIND_IP || '127.0.0.1';
+
+let router;
+let http;
+
 export default () => {
   ifNotExistsMakeDir('./images');
 
-  const router = express();
+  router = express();
   router.use(compression());
   router.use(express.static('client'));
   router.use(express.static('shared'));
@@ -52,9 +58,7 @@ export default () => {
     response.json( await service.saveImageUrl(url, number) );
   });
   
-  const port = parseInt(process.env.PORT) || 3000;
-  const host = process.env.BIND_IP || '127.0.0.1';
-  const http = router.listen(port, host, () =>
+  http = router.listen(port, host, () =>
     console.log(`*** server listening on http://${host}:${port}/`)
   );
   
