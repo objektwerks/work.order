@@ -43,16 +43,16 @@ Roles
 1. **homeowner** — add, select and edit *work orders*
 2. **service provider** — select and edit *work orders*
 
-Features [ Role ] ( Actions )
------------------------------
->A feature maps to a set of roles and actions.
-1. **register user** — [ homeowner, service provider ] ( register )
-2. **login user** — [ homeowner, service provider ] ( login )
-3. **add work order** — [ homeowner ] ( add )
-4. **edit work order** — [ homeowner, service provider ] ( edit )
-5. **list work orders by user** - [ homeowner, service provider ] ( list )
-6. **get work order by number** - [ homeowner, service provider ] ( get )
-7. **edit user** — [ homeowner, service provider ] ( edit )
+Features [ Role ]
+-----------------
+>A feature maps to a set of roles.
+1. **register user** — [ homeowner, service provider ]
+2. **login user** — [ homeowner, service provider ]
+3. **add work order** — [ homeowner ]
+4. **edit work order** — [ homeowner, service provider ]
+5. **list work orders by user** - [ homeowner, service provider ]
+6. **get work order by number** - [ homeowner, service provider ]
+7. **edit user** — [ homeowner, service provider ]
 
 Forms
 -----
