@@ -56,6 +56,14 @@ export default class WorkOrdersView {
       }  
     }, false);
 
+    getById('workorder-refresh-command-id').addEventListener('click', () => {
+      // TODO
+    }, false);
+
+    getById('workorders-refresh-command-id').addEventListener('click', () => {
+      // TODO
+    }, false);
+
     getById('workorder-image-file-id').addEventListener('change', (event) => {
       const number = getValueById('workorder-number-id');
       const file = getFileById('workorder-image-file-id');
