@@ -10,6 +10,8 @@ import { Credentials } from './entity.js';
 import { validateCredentials } from './validator.js';
 
 export default () => {
+  console.log('*** login view init ...');
+
   getById('login-command-id').addEventListener('click', () => {
     hide('login-errors-view-id');
 

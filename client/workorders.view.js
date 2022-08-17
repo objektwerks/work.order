@@ -11,6 +11,8 @@ import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default () => {
+  console.log('*** workorders view init ...');
+
   const readonlyRole = 'readonly'
 
   getById('workorder-new-command-id').addEventListener('click', () => {

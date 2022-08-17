@@ -7,6 +7,8 @@ import * as model from './model.js';
 import { validateUserView } from './validator.js';
 
 export default () => {
+  console.log('*** user view init ...');
+
   getById('user-save-command-id').addEventListener('click', () => {
     hide('user-errors-view-id');
 

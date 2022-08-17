@@ -9,6 +9,8 @@ import { validateRegistration } from './validator.js';
 import { Registration } from "./entity.js";
 
 export default () => {
+  console.log('*** register view init ...');
+
   getById('register-command-id').addEventListener('click', () => {
     hide('register-errors-view-id');
 
