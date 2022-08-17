@@ -4,7 +4,7 @@ import { setListIdValues, setSelectIdValues, setSelectOptionById, setImageUrlByI
 // @ts-ignore
 import { WorkOrder } from './entity.js';
 
-export default function init() {
+export default () => {
   console.log('*** model init ...');
 }
 

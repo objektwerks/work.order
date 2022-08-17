@@ -1,7 +1,7 @@
 // @ts-check
 import { getById, getByClass, show } from './common.js';
 
-export default function init() {
+export default () => {
   getById('login-menu-id').addEventListener('click', () => {
     selectMenuItem('login-view-id')
   }, false);
