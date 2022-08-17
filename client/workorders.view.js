@@ -132,6 +132,7 @@ export default class WorkOrdersView {
   applyRole(role) {
     if (role === homeowner) {
       // always readonly removeReadonlyById('workorder-number-id');
+      // always readonly removeReadonlyById('workorder-homeowner-id');
       removeReadonlyById('workorder-service-provider-id');
       removeReadonlyById('workorder-title-id');
       removeReadonlyById('workorder-issue-id');
@@ -141,6 +142,7 @@ export default class WorkOrdersView {
       addReadonlyById('workorder-closed-id');
     } else if (role === serviceProvider) {
       // always readonly addReadonlyById('workorder-number-id');
+      // always readonly addReadonlyById('workorder-homeowner-id');
       addReadonlyById('workorder-service-provider-id');
       addReadonlyById('workorder-title-id');
       addReadonlyById('workorder-issue-id');
@@ -150,6 +152,7 @@ export default class WorkOrdersView {
       removeReadonlyById('workorder-closed-id');
     } else if (role === this.readonlyRole) {
       // always readonly addReadonlyById('workorder-number-id');
+      // always readonly addReadonlyById('workorder-homeowner-id');
       addReadonlyById('workorder-service-provider-id');
       addReadonlyById('workorder-title-id');
       addReadonlyById('workorder-issue-id');
