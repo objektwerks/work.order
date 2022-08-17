@@ -12,6 +12,7 @@ Todo
 - [x] check full url vs relative url
 - [ ] implement work order refresh button event listener
 - [ ] implement work orders refresh button event listener
+- [ ] replace classes with module/functions where possible
 
 Doc
 ---
