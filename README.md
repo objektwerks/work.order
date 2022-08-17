@@ -7,8 +7,8 @@ Todo
 - [x] build 2 ui/li lists for 1) opened and 2) closed work orders
 - [x] build 2 filtered arrays of 1) opened and 2) closed work orders
 - [x] build 2 tabs for 1) opened and 2) closed work orders
-- [ ] open work orders tab, on click -> show new and save buttons, apply role to fields
-- [ ] closed work orders tab, on click -> hide new and save buttons, make fields readonly
+- [x] open work orders tab, on click -> show new and save buttons, apply role to fields
+- [x] closed work orders tab, on click -> hide new and save buttons, make fields readonly via readonly role
 - [ ] login, if successful, add user welcome to ui
 - [ ] add refresh button to work orders
 
