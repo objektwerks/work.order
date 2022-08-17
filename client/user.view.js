@@ -1,14 +1,13 @@
 // @ts-check
 import { getById, getValueById, hide, setListValues, show } from './common.js';
+import * as fetcher from './fetcher.js';
+import * as model from './model.js';
 
 // @ts-ignore
 import { validateUserView } from './validator.js';
 
 export default class UserView {
-  constructor(fetcher, model) {
-    this.fetcher = fetcher;
-    this.model = model;
-
+  constructor() {
     getById('user-save-command-id').addEventListener('click', () => {
       hide('user-errors-view-id');
 
@@ -19,7 +18,7 @@ export default class UserView {
       const errors = validateUserView(name, emailAddress, streetAddress);
       if (errors.length === 0) {
         this.bindViewToUser(name, emailAddress, streetAddress);
-        const status = this.fetcher.saveUser(this.model.user);
+        const status = fetcher.saveUser(model.getUser());
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);
@@ -33,9 +32,7 @@ export default class UserView {
   }
 
   bindViewToUser(name, emailAddress, streetAddress) {
-    this.model.user.name = name;
-    this.model.user.emailAddress = emailAddress;
-    this.model.user.streetAddress = streetAddress;
+    model.setUser(name, emailAddress, streetAddress);
   }
 
   listErrors(errors) {

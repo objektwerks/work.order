@@ -1,5 +1,6 @@
 // @ts-check
 import { getById, getValueById, hide, setListValues, show } from './common.js';
+import * as fetcher from './fetcher.js';
 import * as model from './model.js';
 
 // @ts-ignore
@@ -9,8 +10,7 @@ import { Credentials } from './entity.js';
 import { validateCredentials } from './validator.js';
 
 export default class LoginView {
-  constructor(fetcher) {
-    this.fetcher = fetcher;
+  constructor() {
 
     getById('login-command-id').addEventListener('click', () => {
       hide('login-errors-view-id');
@@ -21,7 +21,7 @@ export default class LoginView {
       const errors = validateCredentials(emailAddress, pin);
       if (errors.length === 0) {
         const credentials = Credentials.create(emailAddress, pin);
-        const userServiceProvidersWorkOrders = this.fetcher.login(credentials);
+        const userServiceProvidersWorkOrders = fetcher.login(credentials);
         if (!userServiceProvidersWorkOrders.success) {
           errors.push(userServiceProvidersWorkOrders.error);
           this.listErrors(errors);

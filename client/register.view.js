@@ -1,5 +1,6 @@
 // @ts-check
 import { getById, getValueById, hide, setListValues, show } from './common.js';
+import * as fetcher from './fetcher.js';
 
 // @ts-ignore
 import { validateRegistration } from './validator.js';
@@ -8,9 +9,7 @@ import { validateRegistration } from './validator.js';
 import { Registration } from "./entity.js";
 
 export default class RegisterView {
-  constructor(fetcher) {
-    this.fetcher = fetcher;
-
+  constructor() {
     getById('register-command-id').addEventListener('click', () => {
       hide('register-errors-view-id');
 
@@ -22,7 +21,7 @@ export default class RegisterView {
       const errors = validateRegistration(role, name, emailAddress, streetAddress);
       if (errors.length === 0) {
         const registration = Registration.create(role, name, emailAddress, streetAddress);
-        const status = this.fetcher.register(registration);
+        const status = fetcher.register(registration);
         if (!status.success) {
           errors.push(status.error);
           this.listErrors(errors);

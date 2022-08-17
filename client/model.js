@@ -31,6 +31,16 @@ export function getUserId() {
   return user.id;
 }
 
+export function getUser() {
+  return user;
+}
+
+export function setUser(name, emailAddress, streetAddress) {
+  user.name = name;
+  user.emailAddress = emailAddress;
+  user.streetAddress = streetAddress;
+}
+
 export function getWorkOrderByNumber(number) {
   return workorders.get(number);
 }

@@ -1,4 +1,5 @@
 // @ts-check
+import * as fetcher from './fetcher.js';
 import * as model from './model.js';
 
 // @ts-ignore
@@ -10,8 +11,7 @@ import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
-  constructor(fetcher) {
-    this.fetcher = fetcher;
+  constructor() {
     this.readonlyRole = 'readonly'
 
     getById('workorder-new-command-id').addEventListener('click', () => {
@@ -35,7 +35,7 @@ export default class WorkOrdersView {
       if (errors.length === 0) {
         const workorder = this.bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
         if (workorder.number > 0) { // save
-          const status = this.fetcher.saveWorkOrder(workorder);
+          const status = fetcher.saveWorkOrder(workorder);
           if (!status.success) {
             errors.push(status.error);
             this.listErrors(errors);
@@ -43,7 +43,7 @@ export default class WorkOrdersView {
             show('workorder-dialog-id');
           }
         } else { // add
-          const status = this.fetcher.addWorkOrder(workorder);
+          const status = fetcher.addWorkOrder(workorder);
           if (!status.success) {
             errors.push(status.error);
             this.listErrors(errors);
@@ -68,7 +68,7 @@ export default class WorkOrdersView {
       const number = getValueById('workorder-number-id');
       const file = getFileById('workorder-image-file-id');
       const filename = `${number}-image`;
-      const imageUrl = this.fetcher.saveImage(number, file, filename);
+      const imageUrl = fetcher.saveImage(number, file, filename);
       if (!imageUrl.success) {
         const errors = []
         errors.push(imageUrl.error);

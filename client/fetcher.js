@@ -45,38 +45,38 @@ async function call(url, method, headers, entity, fault, asJson = true) {
   return result;
 }
 
-export async function register(registration) {
-  return await this.call(this.registerUrl, this.post, this.headers, registration, () => Status.fail('Register failed.'));
+export function register(registration) {
+  return this.call(this.registerUrl, this.post, this.headers, registration, () => Status.fail('Register failed.'));
 }
 
-export async function login(credentials) {
-  return await this.call(this.loginUrl, this.post, this.headers, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
+export function login(credentials) {
+  return this.call(this.loginUrl, this.post, this.headers, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
 }
 
-export async function addWorkOrder(workorder) {
-  return await this.call(this.addWorkOrderUrl, this.post, this.headers, workorder, () => WorkOrder.fail('Add work order failed!'));
+export function addWorkOrder(workorder) {
+  return this.call(this.addWorkOrderUrl, this.post, this.headers, workorder, () => WorkOrder.fail('Add work order failed!'));
 }
 
-export async function saveWorkOrder(workorder) {
-  return await this.call(this.saveWorkOrderUrl, this.post, this.headers, workorder, () => Status.fail('Save work order failed!'));
+export function saveWorkOrder(workorder) {
+  return this.call(this.saveWorkOrderUrl, this.post, this.headers, workorder, () => Status.fail('Save work order failed!'));
 }
 
-export async function saveUser(user) {
-  return await this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
+export function saveUser(user) {
+  return this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
 }
 
-export async function saveImage(number, file, filename) {
+export function saveImage(number, file, filename) {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData();
   formdata.append('number', number);
   formdata.append('image', file, filename);
-  return await this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
+  return this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
 }
 
-export async function getWorkOrderByNumber(number) {
-  return await this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
+export function getWorkOrderByNumber(number) {
+  return this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
 }
 
-export async function listWorkOrdersByUserId(id) {
-  return await this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
+export function listWorkOrdersByUserId(id) {
+  return this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
 }
