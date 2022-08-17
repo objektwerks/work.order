@@ -9,11 +9,15 @@ const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
 
 export default () => {
-  console.log('*** service is running ...');
+  console.log('*** service running ...');
 }
 
 function log(method, message) {
   console.log('*** service.${method}: ', message);
+}
+
+export function shutdown() {
+  store.disconnect();
 }
 
 export function register(registration) {

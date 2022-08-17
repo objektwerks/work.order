@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export default () => {
-  console.log('*** emailer is connected ...');
+  console.log('*** emailer connected ...');
 }
 
 export function send(recipient, pin, subject, text) {

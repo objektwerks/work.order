@@ -6,16 +6,12 @@ const url = process.env.DATABASE_URL;
 const connection = mysql.createPool(url);
 
 export default () => {
-  console.log('*** connected to store ...');
+  console.log('*** store connected ...');
 }
 
-function disconnect() {
-  this.connection.end();
-  console.log('*** disconnected from store.');
-}
-
-function log(method, message) {
-  console.log('*** store.${method}: ', message);
+export function disconnect() {
+  connection.end();
+  console.log('*** store disconnected from database.');
 }
 
 export function listWorkOrdersByUserId(id) {
@@ -145,4 +141,8 @@ export function saveImageUrl(url, number) {
     }
   });
   return count;
+}
+
+function log(method, message) {
+  console.log('*** store.${method}: ', message);
 }
