@@ -57,11 +57,11 @@ export default class WorkOrdersView {
     }, false);
 
     getById('workorder-refresh-command-id').addEventListener('click', () => {
-      // TODO
+      // TODO getWorkOrderByNumber
     }, false);
 
     getById('workorders-refresh-command-id').addEventListener('click', () => {
-      // TODO
+      // TODO listWorkOrdersByUserId
     }, false);
 
     getById('workorder-image-file-id').addEventListener('change', (event) => {
