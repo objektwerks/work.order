@@ -66,22 +66,6 @@ export default class Store {
     return (list.length > 0) ? list[0] : {};
   }
 
-  getWorkOrderByNumber(number) {
-    let list = [];
-    this.connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
-      if (error) {
-        this.log('getWorkOrderByNumber', error);
-      } else {
-        rows.forEach((row) => {
-          list.push(
-            WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
-          )
-        });
-      }
-    });
-    return (list.length > 0) ? list[0] : {};
-  }
-
   addWorkOrder(workorder) {
     let number = 0;
     this.connection.query('insert into work_order set ?', workorder, (error, result) => {
