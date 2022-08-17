@@ -11,6 +11,10 @@ export default class Model {
     this.workorders = new Map();
   }
 
+  getWorkOrderByNumber(number) {
+    this.workorders.get(number);
+  }
+
   splitWorkOrders(workorders, openedListId, closedListId) {
     const openedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length === 0});
     const closedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length > 0});
