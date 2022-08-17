@@ -6,7 +6,7 @@ import { validateWorkOrder } from './validator.js';
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 
-import { disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
+import { getByClass, disableReadonlyById, enableReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
 
 export default class WorkOrdersView {
   constructor(fetcher, model) {
@@ -79,6 +79,14 @@ export default class WorkOrdersView {
       }
     }, false);
 
+    getById('workorders-list-opened-tab-id').addEventListener('click', () => {
+      this.selectTab('workorders-list-opened-view-id')
+    }, false);
+    
+    getById('workorders-list-closed-tab-id').addEventListener('click', () => {
+      this.selectTab('workorders-list-closed-view-id')
+    }, false);
+
     getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
       if(event.target && event.target['nodeName'] === "li") {
         const number = event.target['id'];
@@ -106,6 +114,14 @@ export default class WorkOrdersView {
         }
       }
     }, false);
+  }
+
+  selectTab(tabviewId) {
+    const tabviews = getByClass('tabview');
+    for (const view of tabviews) {
+      view['style'].display = 'none';
+    }
+    show(tabviewId);
   }
 
   applyRole(role) {
