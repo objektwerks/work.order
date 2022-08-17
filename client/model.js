@@ -12,14 +12,14 @@ export default class Model {
   }
 
   splitWorkOrders(workorders, openedListId, closedListId) {
-    const opened = workorders.values().filter((workorder) => { workorder.closed.length === 0});
-    const closed = workorders.values().filter((workorder) => { workorder.closed.length > 0});
+    const openedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length === 0});
+    const closedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length > 0});
     let openedList = [];
-    for (const workorder of opened) {
+    for (const workorder of openedWorkOrders) {
       openedList.push({ id: workorder.number, value: workorder.title });
     }
     let closedList = [];
-    for (const workorder of closed) {
+    for (const workorder of closedWorkOrders) {
       closedList.push({ id: workorder.number, value: workorder.title });
     }
     setListIdValues(openedListId, openedList);
