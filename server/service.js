@@ -38,7 +38,7 @@ export function register(registration) {
     }
   } catch (error) {
     status = Status.fail(`register failed for ${registration.emailAddress}`);
-    log('register', `failed for ${registration.emailAddress} error: ${error}`);
+    log('register', `failed error: ${error} for ${registration.emailAddress}`);
   }
   return status;
 }
