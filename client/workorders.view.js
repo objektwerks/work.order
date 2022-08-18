@@ -74,7 +74,8 @@ export default () => {
       listError(workorders.error);
     } else {
       model.bindWorkOrdersToListView(workorders);
-    }  }, false);
+    }  
+  }, false);
 
   getById('workorder-image-file-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id');
