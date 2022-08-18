@@ -31,6 +31,10 @@ export function getUserId() {
   return user.id;
 }
 
+export function getUserRole() {
+  return user.role;
+}
+
 export function getUser() {
   return user;
 }

@@ -117,7 +117,7 @@ export default () => {
       const workOrder = model.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
         model.bindWorkOrderToView(workOrder);
-        applyRole(model.getUser().role);
+        applyRole(model.getUserRole());
         console.log(`*** work order selected and bound to view for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
