@@ -102,7 +102,7 @@ export function addWorkOrder(workorder) {
     saved = WorkOrder.success(workorder);
     log('addWorkOrder', `succeeded for id: ${id}`);
   } catch(error) {
-    saved = WorkOrder.fail('Add work order failed.');
+    saved = WorkOrder.fail('Add work order failed.', workorder.number);
     log('addWorkOrder', `failed: ${error}`);
   }
   return saved;
