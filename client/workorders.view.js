@@ -58,7 +58,15 @@ export default () => {
   }, false);
 
   getById('workorder-refresh-command-id').addEventListener('click', () => {
-    // TODO getWorkOrderByNumber
+    const number = getValueById('workorder-number-id');
+    const workorder = fetcher.getWorkOrderByNumber(number);
+    if (!workorder.success) {
+      const errors = [];
+      errors.push(workorder.error);
+      listErrors(errors);
+    } else {
+      model.bindWorkOrderToView(workorder);
+    }
   }, false);
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
