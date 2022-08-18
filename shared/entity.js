@@ -62,10 +62,10 @@ export class UserServiceProvidersWorkOrders {
 }
 
 export class WorkOrders {
-  static success(workorders) {
+  static success(workOrders) {
     return {
       success: true,
-      workorders: workorders
+      workOrders: workOrders
     }    
   }
 
@@ -92,10 +92,10 @@ export class WorkOrder {
     }
   }
 
-  static success(workorder) {
+  static success(workOrder) {
     return {
       success: true,
-      workorder: workorder
+      workOrder: workOrder
     }    
   }
 

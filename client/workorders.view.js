@@ -34,9 +34,9 @@ export default () => {
 
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     if (errors.length === 0) {
-      const workorder = bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-      if (workorder.number > 0) { // save
-        const status = fetcher.saveWorkOrder(workorder);
+      const workOrder = bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+      if (workOrder.number > 0) { // save
+        const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
           listErrors(errors);
@@ -44,7 +44,7 @@ export default () => {
           show('workorder-dialog-id');
         }
       } else { // add
-        const status = fetcher.addWorkOrder(workorder);
+        const status = fetcher.addWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
           listErrors(errors);
@@ -59,21 +59,21 @@ export default () => {
 
   getById('workorder-refresh-command-id').addEventListener('click', () => {
     const number = getValueById('workorder-number-id');
-    const workorder = fetcher.getWorkOrderByNumber(number);
-    if (!workorder.success) {
-      listError(workorder.error);
+    const workOrder = fetcher.getWorkOrderByNumber(number);
+    if (!workOrder.success) {
+      listError(workOrder.error);
     } else {
-      model.bindWorkOrderToView(workorder);
+      model.bindWorkOrderToView(workOrder);
     }
   }, false);
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
     const id = model.getUserId()
-    const workorders = fetcher.listWorkOrdersByUserId(id);
-    if (!workorders.success) {
-      listError(workorders.error);
+    const workOrders = fetcher.listWorkOrdersByUserId(id);
+    if (!workOrders.success) {
+      listError(workOrders.error);
     } else {
-      model.bindWorkOrdersToListView(workorders);
+      model.bindWorkOrdersToListView(workOrders);
     }  
   }, false);
 
@@ -114,13 +114,13 @@ export default () => {
   getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
     if(event.target && event.target['nodeName'] === "li") {
       const number = event.target['id'];
-      const workorder = model.getWorkOrderByNumber(number);
-      if (workorder !== undefined) {
-        model.bindWorkOrderToView(workorder);
-        applyRole(workorder.role);
-        console.log(`*** workorder selected and bound to view for number: ${number}`);
+      const workOrder = model.getWorkOrderByNumber(number);
+      if (workOrder !== undefined) {
+        model.bindWorkOrderToView(workOrder);
+        applyRole(model.getUser().role);
+        console.log(`*** work order selected and bound to view for number: ${number}`);
       } else {
-        console.log(`*** workorder undefined for number: ${number}`);
+        console.log(`*** work order undefined for number: ${number}`);
       }
     }
   }, false);
@@ -132,9 +132,9 @@ export default () => {
       if (workorder !== undefined) {
         model.bindWorkOrderToView(workorder);
         applyRole(readonlyRole);
-        console.log(`*** workorder selected and bound to view for number: ${number}`);
+        console.log(`*** work order selected and bound to view for number: ${number}`);
       } else {
-        console.log(`*** workorder undefined for number: ${number}`);
+        console.log(`*** work order undefined for number: ${number}`);
       }
     }
   }, false);
@@ -183,14 +183,14 @@ export default () => {
 
   function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
     if (number > 0) { // save
-      const workorder = model.getWorkOrderByNumber(number);
-      workorder.serviceProviderId = serviceProviderId;
-      workorder.title = title;
-      workorder.issue = issue;
-      workorder.imageUrl = imageUrl;
-      workorder.resolution = resolution;
-      workorder.closed = closed;
-      return workorder;
+      const workOrder = model.getWorkOrderByNumber(number);
+      workOrder.serviceProviderId = serviceProviderId;
+      workOrder.title = title;
+      workOrder.issue = issue;
+      workOrder.imageUrl = imageUrl;
+      workOrder.resolution = resolution;
+      workOrder.closed = closed;
+      return workOrder;
     } else { // add
       return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     }
