@@ -83,9 +83,7 @@ export default () => {
     const filename = `${number}-image`;
     const imageUrl = fetcher.saveImage(number, file, filename);
     if (!imageUrl.success) {
-      const errors = []
-      errors.push(imageUrl.error);
-      listErrors(errors);
+      listError(imageUrl.error);
     } else {          
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
       show('workorder-dialog-id');
