@@ -9,8 +9,8 @@ export default () => {
 }
 
 let user = {};
-let serviceproviders = [];
-let workorders = new Map();
+let serviceProviders = [];
+let workOrders = new Map();
 
 function splitWorkOrders(workorders, openedListId, closedListId) {
   const openedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length === 0});
@@ -42,13 +42,13 @@ export function setUser(name, emailAddress, streetAddress) {
 }
 
 export function getWorkOrderByNumber(number) {
-  return workorders.get(number);
+  return workOrders.get(number);
 }
 
 export function addWorkOrder(workorder) {
-  workorders.set(workorder.number, workorder);
-  const sortedWorkOrders = Array.from(workorders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(workorders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  workOrders.set(workorder.number, workorder);
+  const sortedWorkOrders = Array.from(workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }
 
 export function bindUserToView(user) {
@@ -61,20 +61,20 @@ export function bindUserToView(user) {
   setValueById('user-registered-id', user.registered);
 }
 
-export function bindServiceProvidersToSelectView(serviceproviders) {
+export function bindServiceProvidersToSelectView(serviceProviders) {
   const idvalues = [];
-  for (const serviceprovider of serviceproviders) {
-    idvalues.push({ id: serviceprovider.id, value: serviceprovider.name });
+  for (const serviceProvider of serviceProviders) {
+    idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
   }
   setSelectIdValues('workorder-service-provider-id', idvalues);
 }
 
-export function bindWorkOrdersToListView(workorders) {
-  workorders.clear();
-  for (const workorder of workorders) {
-    workorders.set(workorder.number, workorder);
+export function bindWorkOrdersToListView(workOrders) {
+  workOrders.clear();
+  for (const workOrder of workOrders) {
+    workOrders.set(workOrder.number, workOrder);
   }
-  splitWorkOrders(workorders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }
 
 export function bindEmptyWorkOrderToView() {
@@ -87,13 +87,13 @@ export function bindEmptyWorkOrderToView() {
   setValueById('workorder-closed-id', "");
 }
 
-export function bindWorkOrderToView(workorder) {
-  setValueById('workorder-number-id', workorder.number);
-  setSelectOptionById('workorder-service-provider-id', workorder.serviceProviderId);
-  setValueById('workorder-title-id', workorder.title);
-  setValueById('workorder-issue-id', workorder.issue);
-  setImageUrlById('workorder-image-url-id', workorder.imageUrl);
-  setValueById('workorder-resolution-id', workorder.resolution);
-  setValueById('workorder-opened-id', workorder.opened);
-  setValueById('workorder-closed-id', workorder.closed);
+export function bindWorkOrderToView(workOrder) {
+  setValueById('workorder-number-id', workOrder.number);
+  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
+  setValueById('workorder-title-id', workOrder.title);
+  setValueById('workorder-issue-id', workOrder.issue);
+  setImageUrlById('workorder-image-url-id', workOrder.imageUrl);
+  setValueById('workorder-resolution-id', workOrder.resolution);
+  setValueById('workorder-opened-id', workOrder.opened);
+  setValueById('workorder-closed-id', workOrder.closed);
 }
