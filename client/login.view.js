@@ -40,7 +40,6 @@ export default () => {
         show(`user-menu-id`);
 
         show('workorders-view-id');
-        show('workorders-list-bar-id'); // Bug! Should not show inside workorders-view-id!
       }
     } else {
       listErrors(errors);
