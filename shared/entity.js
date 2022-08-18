@@ -45,12 +45,12 @@ export class Status {
 }
 
 export class UserServiceProvidersWorkOrders {
-  static success(user, serviceproviders, workorders) {
+  static success(user, serviceProviders, workOrders) {
     return {
       success: true,
       user: user,
-      serviceproviders: serviceproviders,
-      workorders: workorders
+      serviceProviders: serviceProviders,
+      workOrders: workOrders
     }    
   }
   static fail(error) {
