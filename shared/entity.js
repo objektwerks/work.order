@@ -33,8 +33,7 @@ export class Credentials {
 export class Status {
   static success() {
     return {
-      success: true,
-      error: ''
+      success: true
     }
   }
   static fail(error) {
@@ -49,7 +48,6 @@ export class UserServiceProvidersWorkOrders {
   static success(user, serviceproviders, workorders) {
     return {
       success: true,
-      error: '',
       user: user,
       serviceproviders: serviceproviders,
       workorders: workorders
@@ -58,10 +56,7 @@ export class UserServiceProvidersWorkOrders {
   static fail(error) {
     return {
       success: false,
-      error: error,
-      user: {},
-      serviceproviders: [],
-      workorders: []
+      error: error
     }    
   }
 }
@@ -70,7 +65,6 @@ export class WorkOrders {
   static success(workorders) {
     return {
       success: true,
-      error: '',
       workorders: workorders
     }    
   }
@@ -78,8 +72,7 @@ export class WorkOrders {
   static fail(error) {
     return {
       success: false,
-      error: error,
-      workorders: []
+      error: error
     }    
   }
 }
@@ -102,7 +95,6 @@ export class WorkOrder {
   static success(workorder) {
     return {
       success: true,
-      error: '',
       workorder: workorder
     }    
   }
@@ -132,7 +124,6 @@ export class User {
   static success(user) {
     return {
       success: true,
-      error: '',
       user: user
     }    
   }
@@ -140,8 +131,7 @@ export class User {
   static fail(error) {
     return {
       success: false,
-      error: error,
-      user: {}
+      error: error
     }    
   }
 }
@@ -150,7 +140,6 @@ export class ImageUrl {
   static success(url, number) {
     return {
       success: true,
-      error: '',
       url: url,
       number: number
     }
