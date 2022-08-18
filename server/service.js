@@ -139,7 +139,7 @@ export function saveUser(user) {
     }
   } catch(error) {
     status = Status.fail('Save user failed.');
-    log('saveUser', `failed: ${error}`);
+    log('saveUser', `failed: ${error} for ${user}`);
   }
   return status;
 }
