@@ -61,17 +61,20 @@ export default () => {
     const number = getValueById('workorder-number-id');
     const workorder = fetcher.getWorkOrderByNumber(number);
     if (!workorder.success) {
-      const errors = [];
-      errors.push(workorder.error);
-      listErrors(errors);
+      listError(workorder.error);
     } else {
       model.bindWorkOrderToView(workorder);
     }
   }, false);
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
-    // TODO listWorkOrdersByUserId
-  }, false);
+    const id = model.getUserId()
+    const workorders = fetcher.listWorkOrdersByUserId(id);
+    if (!workorders.success) {
+      listError(workorders.error);
+    } else {
+      model.bindWorkOrdersToListView(workorders);
+    }  }, false);
 
   getById('workorder-image-file-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id');
@@ -192,6 +195,12 @@ export default () => {
     } else { // add
       return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     }
+  }
+
+  function listError(error) {
+    const errors = [];
+    errors.push(error);
+    listErrors(errors);
   }
 
   function listErrors(errors) {
