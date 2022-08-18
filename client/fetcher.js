@@ -41,7 +41,7 @@ async function call(url, method, headers, entity, fault, asJson = true) {
     console.log(`*** fetcher.call -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
     result = fault();
   }
-  console.log(`*** fetcher:call -> url: ${url} result: `, result);
+  console.log(`*** fetcher:call -> url: ${url} result: ${result}`);
   return result;
 }
 
