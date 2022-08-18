@@ -48,9 +48,9 @@ export function login(credentials) {
   try {
     const user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
     if (Object.entries(user).length > 0) {
-      const serviceproviders = store.listUsersByRole(serviceProvider);
-      const workorders = store.listWorkOrdersByUserId(user.id);
-      userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceproviders, workorders);
+      const serviceProviders = store.listUsersByRole(serviceProvider);
+      const workOrders = store.listWorkOrdersByUserId(user.id);
+      userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceProviders, workOrders);
       log('login', `succeeded for: ${credentials.emailAddress}`);
     } else {
       userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
@@ -64,64 +64,64 @@ export function login(credentials) {
 }
 
 export function listWorkOrdersByUserId(id) {
-  let workorders;
+  let workOrders;
   try {
     const list = store.listWorkOrdersByUserId(id);
-    workorders = WorkOrders.success(list);
+    workOrders = WorkOrders.success(list);
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`);
   } catch(error) {
-    workorders = WorkOrders.fail('List work orders by user id failed.');
+    workOrders = WorkOrders.fail('List work orders by user id failed.');
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`);
   }
-  return workorders;
+  return workOrders;
 }
 
 export function getWorkOrderByNumber(number) {
-  let workorder;
+  let workOrder;
   try {
     const get = store.getWorkOrderByNumber(number);
     if (Object.entries(get).length > 0) {
-      workorder = WorkOrder.success(get);
+      workOrder = WorkOrder.success(get);
       log('getWorkOrderByNumber', `succeeded for number: ${number}`);
     } else {
-      workorder = WorkOrder.fail('Get work order by number failed.', number);
+      workOrder = WorkOrder.fail('Get work order by number failed.', number);
       log('getWorkOrderByNumber', `succeeded for number: ${number}`);
     }
   } catch(error) {
-    workorder = WorkOrder.fail('Get work order by number failed.', number);
+    workOrder = WorkOrder.fail('Get work order by number failed.', number);
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`);
   }
-  return workorder;
+  return workOrder;
 }
 
-export function addWorkOrder(workorder) {
+export function addWorkOrder(workOrder) {
   let saved;
   try {
-    const id = store.addWorkOrder(workorder);
-    workorder.id = id
-    saved = WorkOrder.success(workorder);
+    const id = store.addWorkOrder(workOrder);
+    workOrder.id = id
+    saved = WorkOrder.success(workOrder);
     log('addWorkOrder', `succeeded for id: ${id}`);
   } catch(error) {
-    saved = WorkOrder.fail('Add work order failed.', workorder.number);
-    log('addWorkOrder', `failed: ${error} for ${workorder}`);
+    saved = WorkOrder.fail('Add work order failed.', workOrder.number);
+    log('addWorkOrder', `failed: ${error} for ${workOrder}`);
   }
   return saved;
 }
 
-export function saveWorkOrder(workorder) {
+export function saveWorkOrder(workOrder) {
   let status;
   try {
-    const count = store.saveWorkOrder(workorder);
+    const count = store.saveWorkOrder(workOrder);
     if (count > 0) {
       status = Status.success();
-      log('saveWorkOrder', `succeeded for id: ${workorder.id}`);
+      log('saveWorkOrder', `succeeded for id: ${workOrder.id}`);
     } else {
       status = Status.fail('Save work order failed.');
       log('saveWorkOrder', `failed.`);
     }
   } catch(error) {
     status = Status.fail('Save work order failed.');
-    log('saveWorkOrder', `failed: ${error} for ${workorder}`);
+    log('saveWorkOrder', `failed: ${error} for ${workOrder}`);
   }
   return status;
 }
