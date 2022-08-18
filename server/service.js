@@ -121,7 +121,7 @@ export function saveWorkOrder(workorder) {
     }
   } catch(error) {
     status = Status.fail('Save work order failed.');
-    log('saveWorkOrder', `failed: ${error}`);
+    log('saveWorkOrder', `failed: ${error} for ${workorder}`);
   }
   return status;
 }
