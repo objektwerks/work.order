@@ -15,5 +15,6 @@ export default () => {
   loginview();
   workordersview();
   userview();
-  console.log('*** client running, with root url: ' + 'https://' + window.location.host);
+  console.log('*** client running ...');
+  console.log('*** server url: ' + 'https://' + window.location.host);
 }
