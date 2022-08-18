@@ -8,12 +8,12 @@ import { ImageUrl, serviceProvider, Status, User, UserServiceProvidersWorkOrders
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
 
-export default () => {
-  console.log('*** service running ...');
-}
-
 function log(method, message) {
   console.log('*** service.${method}: ', message);
+}
+
+export default () => {
+  console.log('*** service running ...');
 }
 
 export function shutdown() {
