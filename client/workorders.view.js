@@ -103,12 +103,14 @@ export default () => {
     selectTab('workorders-list-opened-view-id')
     show('workorder-new-command-id');
     show('workorder-save-command-id');
+    show('workorder-refresh-command-id');
   }, false);
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-closed-view-id')
     hide('workorder-new-command-id');
     hide('workorder-save-command-id');
+    hide('workorder-refresh-command-id');
   }, false);
 
   getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
