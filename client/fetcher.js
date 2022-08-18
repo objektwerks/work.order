@@ -35,10 +35,10 @@ async function call(url, method, headers, entity, fault, asJson = true) {
     if (response.ok) {
       result = toObject( await response.json() );
     } else {
-      throw `*** ${url} failed with status code: ${response.status} status text: ${response.statusText}`;
+      throw `failed with status code: ${response.status} status text: ${response.statusText}`;
     }
   } catch (error) {
-    console.log(`*** fetfher.call url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
+    console.log(`*** fetcher.call url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
     result = fault();
   }
   console.log(`*** fetcher:call -> url: ${url} result: `, result);
