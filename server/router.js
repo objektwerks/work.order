@@ -6,13 +6,14 @@ import express from 'express';
 
 const port = parseInt(process.env.PORT) || 3000;
 const host = process.env.BIND_IP || '127.0.0.1';
-const router = express();
 
+let router;
 let http;
 
 export default () => {
   ifNotExistsMakeDir('./images');
 
+  router = express();
   router.use(compression());
   router.use(express.static('client'));
   router.use(express.static('shared'));
