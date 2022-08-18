@@ -24,29 +24,21 @@ export default () => {
   console.log('*** fetcher init ...');
 }
 
-function toJson(object) {
-  return JSON.stringify(object);
-}
-
-function toObject(json) {
-  return JSON.parse(json);
-}
-
 async function call(url, method, headers, entity, fault, asJson = true) {
   let result;
   try {
     let response = await fetch(url, {
       method: method,
       headers: headers,
-      body: asJson ? toJson(entity) : entity
+      body: asJson ? JSON.stringify(entity) : entity
     });
     if (response.ok) {
-      result = toObject( await response.json() );
+      result = JSON.parse( await response.json() );
     } else {
       throw `failed with status code: ${response.status} status text: ${response.statusText}`;
     }
   } catch (error) {
-    console.log(`*** fetcher.call url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
+    console.log(`*** fetcher.call -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
     result = fault();
   }
   console.log(`*** fetcher:call -> url: ${url} result: `, result);
