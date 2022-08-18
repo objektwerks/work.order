@@ -4,7 +4,7 @@ Work order web app using javascript, html, css, w3c.css, express, nodemailer, my
 
 Doc
 ---
->See **doc** folder for images of UI.
+>See **doc** folder for ui images.
 
 Install
 -------
