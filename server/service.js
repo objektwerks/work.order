@@ -71,7 +71,7 @@ export function listWorkOrdersByUserId(id) {
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`);
   } catch(error) {
     workorders = WorkOrders.fail('List work orders by user id failed.');
-    log('listWorkOrdersByUserId', `failed for user id: ${id} error: ${error}`);
+    log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`);
   }
   return workorders;
 }
