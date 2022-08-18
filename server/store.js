@@ -78,9 +78,9 @@ export function getWorkOrderByNumber(number) {
   return (list.length > 0) ? list[0] : {};
 }
 
-export function addWorkOrder(workorder) {
+export function addWorkOrder(workOrder) {
   let number = 0;
-  connection.query('insert into work_order set ?', workorder, (error, result) => {
+  connection.query('insert into work_order set ?', workOrder, (error, result) => {
     if (error) {
       log('addWorkOrder', error);
     } else {
@@ -104,14 +104,14 @@ export function addUser(user) {
   return id;
 }
 
-export function saveWorkOrder(workorder) {
+export function saveWorkOrder(workOrder) {
   let count = 0;
-  connection.query('update work_order SET ? where number = ?', [workorder, workorder.number], (error, result) => {
+  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error, result) => {
     if (error) {
       log('saveWorkOrder', error);
     } else {
       count = result.affectedRows;
-      log('saveWorkOrder', `succeeded for number ${workorder.number}`);
+      log('saveWorkOrder', `succeeded for number ${workOrder.number}`);
     }
   });
   return count;
