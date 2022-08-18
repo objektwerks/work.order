@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { toJson, toObject, ImageUrl, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { ImageUrl, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 const rootUrl = 'https://' + window.location.host;
 const registerUrl = rootUrl + '/register';
