@@ -89,7 +89,7 @@ export function getWorkOrderByNumber(number) {
     }
   } catch(error) {
     workorder = WorkOrder.fail('Get work order by number failed.', number);
-    log('getWorkOrderByNumber', `failed for number: ${number} error: ${error}`);
+    log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`);
   }
   return workorder;
 }
