@@ -24,6 +24,14 @@ export default () => {
   console.log('*** fetcher init ...');
 }
 
+function toJson(object) {
+  return JSON.stringify(object);
+}
+
+function toObject(json) {
+  return JSON.parse(json);
+}
+
 async function call(url, method, headers, entity, fault, asJson = true) {
   let result;
   try {
