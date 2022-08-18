@@ -38,7 +38,7 @@ async function call(url, method, headers, entity, fault, asJson = true) {
       throw `*** ${url} failed with status code: ${response.status} status text: ${response.statusText}`;
     }
   } catch (error) {
-    console.log(error);
+    console.log(`*** fetfher.call url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`);
     result = fault();
   }
   console.log(`*** fetcher:call -> url: ${url} result: `, result);
