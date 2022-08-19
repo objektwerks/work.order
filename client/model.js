@@ -1,15 +1,11 @@
 // @ts-check
 import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-// @ts-ignore
-import { WorkOrder } from './entity.js';
-
 export default () => {
   console.log('*** model init ...');
 }
 
 let user = {};
-let serviceProviders = [];
 let workOrders = new Map();
 
 function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
