@@ -48,7 +48,7 @@ export function getWorkOrderByNumber(number) {
 export function addWorkOrder(workorder) {
   workOrders.set(workorder.number, workorder);
   const sortedWorkOrders = Array.from(workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
 export function bindUserToView(user) {
@@ -74,5 +74,5 @@ export function bindWorkOrdersToListView(workOrders) {
   for (const workOrder of workOrders) {
     workOrders.set(workOrder.number, workOrder);
   }
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
