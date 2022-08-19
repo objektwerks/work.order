@@ -5,6 +5,10 @@ import { User, WorkOrder } from '../shared/entity.js';
 const url = process.env.DATABASE_URL;
 const connection = mysql.createPool(url);
 
+function log(method, message) {
+  console.log('*** store.${method}: ', message);
+}
+
 export default () => {
   console.log('*** store connected ...');
 }
@@ -141,8 +145,4 @@ export function saveImageUrl(url, number) {
     }
   });
   return count;
-}
-
-function log(method, message) {
-  console.log('*** store.${method}: ', message);
 }
