@@ -6,6 +6,10 @@ import * as model from './model.js';
 // @ts-ignore
 import { validateUserView } from './validator.js';
 
+function bindViewToUser(name, emailAddress, streetAddress) {
+  model.setUser(name, emailAddress, streetAddress);
+}
+
 export default () => {
   console.log('*** user view init ...');
 
@@ -30,8 +34,4 @@ export default () => {
       setErrorsList(errors, 'user-errors-list-id', 'user-errors-view-id');
     }      
   }, false);
-}
-
-function bindViewToUser(name, emailAddress, streetAddress) {
-  model.setUser(name, emailAddress, streetAddress);
 }
