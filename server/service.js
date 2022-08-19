@@ -133,8 +133,8 @@ export function saveUser(user) {
       status = Status.success();
       log('saveUser', `succeeded for id: ${user.id}`);
     } else {
-      status = Status.fail('Save user order failed.');
-      log('saveUser', `failed.`);
+      status = Status.fail('Save user failed.');
+      log('saveUser', `failed for user: ${user}`);
     }
   } catch(error) {
     status = Status.fail('Save user failed.');
