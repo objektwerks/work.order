@@ -1,15 +1,14 @@
 // @ts-check
 import * as fetcher from './fetcher.js';
 import * as model from './model.js';
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage,
+hide, show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
 
 // @ts-ignore
 import { validateWorkOrder } from './validator.js';
 
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js';
-
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage,
-hide, show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
 
 const readonlyRole = 'readonly';
 
