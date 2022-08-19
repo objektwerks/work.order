@@ -1,5 +1,5 @@
 // @ts-check
-import { setListIdValues, setSelectIdValues, setSelectOptionById, setImageUrlById, setValueById } from './common.js';
+import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
 // @ts-ignore
 import { WorkOrder } from './entity.js';
@@ -79,25 +79,4 @@ export function bindWorkOrdersToListView(workOrders) {
     workOrders.set(workOrder.number, workOrder);
   }
   splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
-}
-
-export function bindEmptyWorkOrderToView() {
-  setValueById('workorder-number-id', 0);
-  setValueById('workorder-title-id', "");
-  setValueById('workorder-issue-id', "");
-  setValueById('workorder-image-url-id', "");
-  setValueById('workorder-resolution-id', "");
-  setValueById('workorder-opened-id', new Date().toISOString());
-  setValueById('workorder-closed-id', "");
-}
-
-export function bindWorkOrderToView(workOrder) {
-  setValueById('workorder-number-id', workOrder.number);
-  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
-  setValueById('workorder-title-id', workOrder.title);
-  setValueById('workorder-issue-id', workOrder.issue);
-  setImageUrlById('workorder-image-url-id', workOrder.imageUrl);
-  setValueById('workorder-resolution-id', workOrder.resolution);
-  setValueById('workorder-opened-id', workOrder.opened);
-  setValueById('workorder-closed-id', workOrder.closed);
 }

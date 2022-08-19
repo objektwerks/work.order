@@ -8,7 +8,7 @@ import { validateWorkOrder } from './validator.js';
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setTextById, setValueById } from './common.js';
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
 
 export default () => {
   console.log('*** workorders view init ...');
@@ -16,7 +16,7 @@ export default () => {
   const readonlyRole = 'readonly'
 
   getById('workorder-new-command-id').addEventListener('click', () => {
-    model.bindEmptyWorkOrderToView();
+    bindEmptyWorkOrderToView();
   }, false);
 
   getById('workorder-save-command-id').addEventListener('click', () => {
@@ -63,7 +63,7 @@ export default () => {
     if (!workOrder.success) {
       listError(workOrder.error);
     } else {
-      model.bindWorkOrderToView(workOrder);
+      bindWorkOrderToView(workOrder);
     }
   }, false);
 
@@ -101,16 +101,12 @@ export default () => {
 
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-opened-view-id')
-    show('workorder-new-command-id');
-    show('workorder-save-command-id');
-    show('workorder-refresh-command-id');
+    applyRole(model.getUserRole());
   }, false);
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-closed-view-id')
-    hide('workorder-new-command-id');
-    hide('workorder-save-command-id');
-    hide('workorder-refresh-command-id');
+    applyRole(readonlyRole);
   }, false);
 
   getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
@@ -118,7 +114,7 @@ export default () => {
       const number = event.target['id'];
       const workOrder = model.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
-        model.bindWorkOrderToView(workOrder);
+        bindWorkOrderToView(workOrder);
         applyRole(model.getUserRole());
         console.log(`*** work order selected and bound to view for number: ${number}`);
       } else {
@@ -132,7 +128,7 @@ export default () => {
       const number = event.target['id'];
       const workorder = model.getWorkOrderByNumber(number);
       if (workorder !== undefined) {
-        model.bindWorkOrderToView(workorder);
+        bindWorkOrderToView(workorder);
         applyRole(readonlyRole);
         console.log(`*** work order selected and bound to view for number: ${number}`);
       } else {
@@ -160,6 +156,9 @@ export default () => {
       addReadonlyById('workorder-resolution-id');
       // always readonly addReadonlyById('workorder-opened-id');
       addReadonlyById('workorder-closed-id');
+      show('workorder-new-command-id');
+      show('workorder-save-command-id');
+      show('workorder-refresh-command-id');
     } else if (role === serviceProvider) {
       // always readonly addReadonlyById('workorder-number-id');
       // always readonly addReadonlyById('workorder-homeowner-id');
@@ -170,6 +169,9 @@ export default () => {
       removeReadonlyById('workorder-resolution-id');
       // always readonly addReadonlyById('workorder-opened-id');
       removeReadonlyById('workorder-closed-id');
+      hide('workorder-new-command-id');
+      show('workorder-save-command-id');
+      show('workorder-refresh-command-id');
     } else if (role === readonlyRole) {
       // always readonly addReadonlyById('workorder-number-id');
       // always readonly addReadonlyById('workorder-homeowner-id');
@@ -180,7 +182,31 @@ export default () => {
       addReadonlyById('workorder-resolution-id');
       // always readonly addReadonlyById('workorder-opened-id');
       addReadonlyById('workorder-closed-id');
+      hide('workorder-new-command-id');
+      hide('workorder-save-command-id');
+      hide('workorder-refresh-command-id');
     }
+  }
+
+  function bindEmptyWorkOrderToView() {
+    setValueById('workorder-number-id', 0);
+    setValueById('workorder-title-id', "");
+    setValueById('workorder-issue-id', "");
+    setValueById('workorder-image-url-id', "");
+    setValueById('workorder-resolution-id', "");
+    setValueById('workorder-opened-id', new Date().toISOString());
+    setValueById('workorder-closed-id', "");
+  }
+  
+  function bindWorkOrderToView(workOrder) {
+    setValueById('workorder-number-id', workOrder.number);
+    setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
+    setValueById('workorder-title-id', workOrder.title);
+    setValueById('workorder-issue-id', workOrder.issue);
+    setImageUrlById('workorder-image-url-id', workOrder.imageUrl);
+    setValueById('workorder-resolution-id', workOrder.resolution);
+    setValueById('workorder-opened-id', workOrder.opened);
+    setValueById('workorder-closed-id', workOrder.closed);
   }
 
   function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {

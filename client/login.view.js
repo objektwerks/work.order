@@ -4,7 +4,7 @@ import * as fetcher from './fetcher.js';
 import * as model from './model.js';
 
 // @ts-ignore
-import { Credentials } from './entity.js';
+import { serviceProvider, Credentials } from './entity.js';
 
 // @ts-ignore
 import { validateCredentials } from './validator.js';
@@ -39,6 +39,9 @@ export default () => {
         show(`workorders-menu-id`);
         show(`user-menu-id`);
 
+        if (model.getUserRole === serviceProvider) {
+          hide('workorder-new-command-id');
+        }
         show('workorders-view-id');
       }
     } else {
