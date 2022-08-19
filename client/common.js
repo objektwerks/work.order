@@ -1,5 +1,24 @@
 // @ts-check
 
+export function displayImage(file, imgId) {
+  const img = getById(imgId);
+  const reader = new FileReader();
+  reader.onload = function() {
+    var dataURL = reader.result;
+    // @ts-ignore
+    img.src = dataURL;
+  };
+  reader.readAsDataURL(file);
+}
+
+export function disabled(id, isDisabled) {
+  document.getElementById(id)['disabled'] = isDisabled;
+}
+
+export function getByClass(name) {
+  return document.getElementsByClassName(name);
+}
+
 export function getById(id) {
   return document.getElementById(id);
 }
@@ -18,12 +37,20 @@ export function getValueById(id) {
   return document.getElementById(id)['value'];
 }
 
-export function removeReadonlyById(id) {
-  document.getElementById(id).removeAttribute('readonly');
+export function hide(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+export function show(id) {
+  document.getElementById(id).style.display = 'block';
 }
 
 export function addReadonlyById(id) {
   document.getElementById(id).setAttribute('readonly', 'readonly');
+}
+
+export function removeReadonlyById(id) {
+  document.getElementById(id).removeAttribute('readonly');
 }
 
 export function setTextById(id, text) {
@@ -50,33 +77,6 @@ export function setSelectOptionById(selectId, optionId) {
     }
   }
   select['selectedIndex'] = index;
-}
-
-export function displayImage(file, imgId) {
-  const img = getById(imgId);
-  const reader = new FileReader();
-  reader.onload = function() {
-    var dataURL = reader.result;
-    // @ts-ignore
-    img.src = dataURL;
-  };
-  reader.readAsDataURL(file);
-}
-
-export function getByClass(name) {
-  return document.getElementsByClassName(name);
-}
-
-export function disabled(id, isDisabled) {
-  document.getElementById(id)['disabled'] = isDisabled;
-}
-
-export function hide(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
-export function show(id) {
-  document.getElementById(id).style.display = 'block';
 }
 
 export function setErrorList(error, errorsListId, errorsViewId) {
