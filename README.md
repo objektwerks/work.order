@@ -1,6 +1,6 @@
 Work Order
 ----------
-Work order web app using javascript, html, css, w3c.css, express, nodemailer, mysql and nodejs.
+Work order web app linking homeowners and service providers, using javascript, html, css, w3c.css, express, nodemailer, mysql and nodejs.
 
 Doc
 ---
