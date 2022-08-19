@@ -1,12 +1,12 @@
 // @ts-check
 
-export function displayImage(file, imgId) {
-  const img = getById(imgId);
+export function displayImage(file, imageId) {
+  const image = getById(imageId);
   const reader = new FileReader();
   reader.onload = function() {
     var dataURL = reader.result;
     // @ts-ignore
-    img.src = dataURL;
+    image.src = dataURL;
   };
   reader.readAsDataURL(file);
 }
