@@ -116,7 +116,7 @@ export function saveWorkOrder(workOrder) {
       log('saveWorkOrder', `succeeded for id: ${workOrder.id}`);
     } else {
       status = Status.fail('Save work order failed.');
-      log('saveWorkOrder', `failed.`);
+      log('saveWorkOrder', `failed for ${workOrder}`);
     }
   } catch(error) {
     status = Status.fail('Save work order failed.');
