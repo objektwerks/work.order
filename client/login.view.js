@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, setListValues, show } from './common.js';
+import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
 import * as model from './model.js';
 
@@ -24,7 +24,7 @@ export default () => {
       const userServiceProvidersWorkOrders = fetcher.login(credentials);
       if (!userServiceProvidersWorkOrders.success) {
         errors.push(userServiceProvidersWorkOrders.error);
-        listErrors(errors);
+        setErrorsList(errors, 'login-errors-list-id', 'login-errors-view-id');
       } else {
         model.bindUserToView(userServiceProvidersWorkOrders.user);
         model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceProviders);
@@ -45,12 +45,7 @@ export default () => {
         show('workorders-view-id');
       }
     } else {
-      listErrors(errors);
+      setErrorsList(errors, 'login-errors-list-id', 'login-errors-view-id');
     }
   }, false);
-}
-
-function listErrors(errors) {
-  setListValues('login-errors-list-id', errors);
-  show('login-errors-view-id');
 }
