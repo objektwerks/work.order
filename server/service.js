@@ -156,7 +156,7 @@ export function saveImageUrl(url, number) {
     }
   } catch(error) {
     imageUrl = ImageUrl.fail('Save image url failed.', url, number);
-    log('saveImageUrl', error);
+    log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`);
   }
   return imageUrl;
 }
