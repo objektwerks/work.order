@@ -30,13 +30,13 @@ export default () => {
       listErrors(errors);
     }      
   }, false);
+}
 
-  function bindViewToUser(name, emailAddress, streetAddress) {
-    model.setUser(name, emailAddress, streetAddress);
-  }
+function bindViewToUser(name, emailAddress, streetAddress) {
+  model.setUser(name, emailAddress, streetAddress);
+}
 
-  function listErrors(errors) {
-    setListValues('user-errors-list-id', errors);
-    show('user-errors-view-id');
-  }
+function listErrors(errors) {
+  setListValues('user-errors-list-id', errors);
+  show('user-errors-view-id');
 }
