@@ -48,9 +48,9 @@ export default () => {
       listErrors(errors);
     }
   }, false);
+}
 
-  function listErrors(errors) {
-    setListValues('login-errors-list-id', errors);
-    show('login-errors-view-id');
-  }
+function listErrors(errors) {
+  setListValues('login-errors-list-id', errors);
+  show('login-errors-view-id');
 }
