@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, setListValues, show } from './common.js';
+import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
 
 // @ts-ignore
@@ -25,7 +25,7 @@ export default () => {
       const status = fetcher.register(registration);
       if (!status.success) {
         errors.push(status.error);
-        listErrors(errors);
+        setErrorsList(errors, 'register-errors-list-id', 'register-errors-view-id');
       } else {
         hide('register-view-id"');
         hide('register-menu-id');
@@ -33,12 +33,7 @@ export default () => {
         show('register-dialog-id');
       }
     } else {
-      listErrors(errors);
+      setErrorsList(errors, 'register-errors-list-id', 'register-errors-view-id');
     }
   }, false);
-}
-
-function listErrors(errors) {
-  setListValues('register-errors-list-id', errors);
-  show('register-errors-view-id');
 }
