@@ -79,6 +79,17 @@ export function show(id) {
   document.getElementById(id).style.display = 'block';
 }
 
+export function setErrorList(error, errorsListId, errorsViewId) {
+  const errors = [];
+  errors.push(error);
+  setErrorsList(errors, errorsListId, errorsViewId);
+}
+
+export function setErrorsList(errors, errorsListId, errorsViewId) {
+  setListValues(errorsListId, errors);
+  show(errorsViewId);
+}
+
 export function setListValues(listId, values) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
