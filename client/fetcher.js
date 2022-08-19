@@ -20,10 +20,6 @@ const headers = {
   'Accept': 'application/json'
 }
 
-export default () => {
-  console.log('*** fetcher init ...');
-}
-
 async function call(url, method, headers, entity, fault, asJson = true) {
   let result;
   try {
@@ -43,6 +39,10 @@ async function call(url, method, headers, entity, fault, asJson = true) {
   }
   console.log(`*** fetcher:call -> url: ${url} result: ${result}`);
   return result;
+}
+
+export default () => {
+  console.log('*** fetcher init ...');
 }
 
 export function register(registration) {
