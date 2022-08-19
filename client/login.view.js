@@ -27,8 +27,8 @@ export default () => {
         listErrors(errors);
       } else {
         model.bindUserToView(userServiceProvidersWorkOrders.user);
-        model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceproviders);
-        model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workorders);
+        model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceProviders);
+        model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workOrders);
 
         hide('login-view-id');
         hide('register-view-id"');
