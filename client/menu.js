@@ -1,6 +1,14 @@
 // @ts-check
 import { getById, getByClass, show } from './common.js';
 
+function selectMenuItem(viewId) {
+  const views = getByClass('view');
+  for (const view of views) {
+    view['style'].display = 'none';
+  }
+  show(viewId);
+}
+
 export default () => {
   getById('login-menu-id').addEventListener('click', () => {
     selectMenuItem('login-view-id')
@@ -19,12 +27,4 @@ export default () => {
   }, false);
 
   console.log('*** menu init ...');
-}
-
-function selectMenuItem(viewId) {
-  const views = getByClass('view');
-  for (const view of views) {
-    view['style'].display = 'none';
-  }
-  show(viewId);
 }
