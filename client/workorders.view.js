@@ -8,7 +8,8 @@ import { validateWorkOrder } from './validator.js';
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage, hide, setListValues, show, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, displayImage,
+hide, show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
 
 const readonlyRole = 'readonly';
 
@@ -39,7 +40,7 @@ export default () => {
         const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
-          listErrors(errors);
+          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
         } else {          
           show('workorder-dialog-id');
         }
@@ -47,13 +48,13 @@ export default () => {
         const status = fetcher.addWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
-          listErrors(errors);
+          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
         } else {
           model.addWorkOrder(status.workorder);
         }
       }
     } else {
-      listErrors(errors);
+      setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
     }  
   }, false);
 
@@ -61,7 +62,7 @@ export default () => {
     const number = getValueById('workorder-number-id');
     const workOrder = fetcher.getWorkOrderByNumber(number);
     if (!workOrder.success) {
-      listError(workOrder.error);
+      setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
     } else {
       bindWorkOrderToView(workOrder);
     }
@@ -71,7 +72,7 @@ export default () => {
     const id = model.getUserId()
     const workOrders = fetcher.listWorkOrdersByUserId(id);
     if (!workOrders.success) {
-      listError(workOrders.error);
+      setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
     } else {
       model.bindWorkOrdersToListView(workOrders);
     }  
@@ -83,7 +84,7 @@ export default () => {
     const filename = `${number}-image`;
     const imageUrl = fetcher.saveImage(number, file, filename);
     if (!imageUrl.success) {
-      listError(imageUrl.error);
+      setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
     } else {          
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
       show('workorder-dialog-id');
@@ -223,15 +224,4 @@ function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issu
   } else { // add
     return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
   }
-}
-
-function listError(error) {
-  const errors = [];
-  errors.push(error);
-  listErrors(errors);
-}
-
-function listErrors(errors) {
-  setListValues('workorder-errors-list-id', errors);
-  show('workorder-errors-view-id');
 }
