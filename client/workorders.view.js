@@ -12,6 +12,93 @@ import { homeowner, serviceProvider, WorkOrder } from './entity.js';
 
 const readonlyRole = 'readonly';
 
+function selectTab(tabviewId) {
+  const tabviews = getByClass('tabview');
+  for (const tabview of tabviews) {
+    tabview['style'].display = 'none';
+  }
+  show(tabviewId);
+}
+
+function applyRole(role) {
+  if (role === homeowner) {
+    // always readonly removeReadonlyById('workorder-number-id');
+    // always readonly removeReadonlyById('workorder-homeowner-id');
+    removeReadonlyById('workorder-service-provider-id');
+    removeReadonlyById('workorder-title-id');
+    removeReadonlyById('workorder-issue-id');
+    removeReadonlyById('workorder-image-file-id');
+    addReadonlyById('workorder-resolution-id');
+    // always readonly addReadonlyById('workorder-opened-id');
+    addReadonlyById('workorder-closed-id');
+    show('workorder-new-command-id');
+    show('workorder-save-command-id');
+    show('workorder-refresh-command-id');
+  } else if (role === serviceProvider) {
+    // always readonly addReadonlyById('workorder-number-id');
+    // always readonly addReadonlyById('workorder-homeowner-id');
+    addReadonlyById('workorder-service-provider-id');
+    addReadonlyById('workorder-title-id');
+    addReadonlyById('workorder-issue-id');
+    addReadonlyById('workorder-image-file-id');
+    removeReadonlyById('workorder-resolution-id');
+    // always readonly addReadonlyById('workorder-opened-id');
+    removeReadonlyById('workorder-closed-id');
+    hide('workorder-new-command-id');
+    show('workorder-save-command-id');
+    show('workorder-refresh-command-id');
+  } else if (role === readonlyRole) {
+    // always readonly addReadonlyById('workorder-number-id');
+    // always readonly addReadonlyById('workorder-homeowner-id');
+    addReadonlyById('workorder-service-provider-id');
+    addReadonlyById('workorder-title-id');
+    addReadonlyById('workorder-issue-id');
+    addReadonlyById('workorder-image-file-id');
+    addReadonlyById('workorder-resolution-id');
+    // always readonly addReadonlyById('workorder-opened-id');
+    addReadonlyById('workorder-closed-id');
+    hide('workorder-new-command-id');
+    hide('workorder-save-command-id');
+    hide('workorder-refresh-command-id');
+  }
+}
+
+function bindEmptyWorkOrderToView() {
+  setValueById('workorder-number-id', 0);
+  setValueById('workorder-title-id', "");
+  setValueById('workorder-issue-id', "");
+  setValueById('workorder-image-url-id', "");
+  setValueById('workorder-resolution-id', "");
+  setValueById('workorder-opened-id', new Date().toISOString());
+  setValueById('workorder-closed-id', "");
+}
+
+function bindWorkOrderToView(workOrder) {
+  setValueById('workorder-number-id', workOrder.number);
+  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
+  setValueById('workorder-title-id', workOrder.title);
+  setValueById('workorder-issue-id', workOrder.issue);
+  setImageUrlById('workorder-image-url-id', workOrder.imageUrl);
+  setValueById('workorder-resolution-id', workOrder.resolution);
+  setValueById('workorder-opened-id', workOrder.opened);
+  setValueById('workorder-closed-id', workOrder.closed);
+}
+
+function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+  if (number > 0) { // save
+    const workOrder = model.getWorkOrderByNumber(number);
+    workOrder.serviceProviderId = serviceProviderId;
+    workOrder.title = title;
+    workOrder.issue = issue;
+    workOrder.imageUrl = imageUrl;
+    workOrder.resolution = resolution;
+    workOrder.closed = closed;
+    return workOrder;
+  } else { // add
+    return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+  }
+}
+
 export default () => {
   console.log('*** workorders view init ...');
 
@@ -136,91 +223,4 @@ export default () => {
       }
     }
   }, false);
-}
-
-function selectTab(tabviewId) {
-  const tabviews = getByClass('tabview');
-  for (const tabview of tabviews) {
-    tabview['style'].display = 'none';
-  }
-  show(tabviewId);
-}
-
-function applyRole(role) {
-  if (role === homeowner) {
-    // always readonly removeReadonlyById('workorder-number-id');
-    // always readonly removeReadonlyById('workorder-homeowner-id');
-    removeReadonlyById('workorder-service-provider-id');
-    removeReadonlyById('workorder-title-id');
-    removeReadonlyById('workorder-issue-id');
-    removeReadonlyById('workorder-image-file-id');
-    addReadonlyById('workorder-resolution-id');
-    // always readonly addReadonlyById('workorder-opened-id');
-    addReadonlyById('workorder-closed-id');
-    show('workorder-new-command-id');
-    show('workorder-save-command-id');
-    show('workorder-refresh-command-id');
-  } else if (role === serviceProvider) {
-    // always readonly addReadonlyById('workorder-number-id');
-    // always readonly addReadonlyById('workorder-homeowner-id');
-    addReadonlyById('workorder-service-provider-id');
-    addReadonlyById('workorder-title-id');
-    addReadonlyById('workorder-issue-id');
-    addReadonlyById('workorder-image-file-id');
-    removeReadonlyById('workorder-resolution-id');
-    // always readonly addReadonlyById('workorder-opened-id');
-    removeReadonlyById('workorder-closed-id');
-    hide('workorder-new-command-id');
-    show('workorder-save-command-id');
-    show('workorder-refresh-command-id');
-  } else if (role === readonlyRole) {
-    // always readonly addReadonlyById('workorder-number-id');
-    // always readonly addReadonlyById('workorder-homeowner-id');
-    addReadonlyById('workorder-service-provider-id');
-    addReadonlyById('workorder-title-id');
-    addReadonlyById('workorder-issue-id');
-    addReadonlyById('workorder-image-file-id');
-    addReadonlyById('workorder-resolution-id');
-    // always readonly addReadonlyById('workorder-opened-id');
-    addReadonlyById('workorder-closed-id');
-    hide('workorder-new-command-id');
-    hide('workorder-save-command-id');
-    hide('workorder-refresh-command-id');
-  }
-}
-
-function bindEmptyWorkOrderToView() {
-  setValueById('workorder-number-id', 0);
-  setValueById('workorder-title-id', "");
-  setValueById('workorder-issue-id', "");
-  setValueById('workorder-image-url-id', "");
-  setValueById('workorder-resolution-id', "");
-  setValueById('workorder-opened-id', new Date().toISOString());
-  setValueById('workorder-closed-id', "");
-}
-
-function bindWorkOrderToView(workOrder) {
-  setValueById('workorder-number-id', workOrder.number);
-  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
-  setValueById('workorder-title-id', workOrder.title);
-  setValueById('workorder-issue-id', workOrder.issue);
-  setImageUrlById('workorder-image-url-id', workOrder.imageUrl);
-  setValueById('workorder-resolution-id', workOrder.resolution);
-  setValueById('workorder-opened-id', workOrder.opened);
-  setValueById('workorder-closed-id', workOrder.closed);
-}
-
-function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
-  if (number > 0) { // save
-    const workOrder = model.getWorkOrderByNumber(number);
-    workOrder.serviceProviderId = serviceProviderId;
-    workOrder.title = title;
-    workOrder.issue = issue;
-    workOrder.imageUrl = imageUrl;
-    workOrder.resolution = resolution;
-    workOrder.closed = closed;
-    return workOrder;
-  } else { // add
-    return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-  }
 }
