@@ -36,9 +36,9 @@ export default () => {
       listErrors(errors);
     }
   }, false);
+}
 
-  function listErrors(errors) {
-    setListValues('register-errors-list-id', errors);
-    show('register-errors-view-id');
-  }
+function listErrors(errors) {
+  setListValues('register-errors-list-id', errors);
+  show('register-errors-view-id');
 }
