@@ -2,8 +2,7 @@
 import { newPin } from './pin.js';
 import * as store from './store.js';
 import * as emailer from './emailer.js';
-
-import { ImageUrl, serviceProvider, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from '../shared/entity.js';
+import { serviceProvider, ImageUrl, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from '../shared/entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
