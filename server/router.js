@@ -10,6 +10,15 @@ const host = process.env.BIND_IP ?? '127.0.0.1';
 let router;
 let http;
 
+function shutdown(signal) {
+  http.close(() => {
+    console.log(`*** [${signal}] server and router shutting down ...`);
+    service.shutdown();
+    console.log('*** server and router shutdown.');
+    process.exit();
+  });
+}
+
 export default () => {
   ifNotExistsMakeDir('./images');
 
@@ -69,13 +78,4 @@ export default () => {
   process.on('SIGTERM', () => {
     shutdown('sigterm');
   });
-
-  function shutdown(signal) {
-    http.close(() => {
-      console.log(`*** [${signal}] server and router shutting down ...`);
-      service.shutdown();
-      console.log('*** server and router shutdown.');
-      process.exit();
-    });
-  }
 }
