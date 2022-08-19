@@ -30,9 +30,9 @@ export function register(registration) {
     id = store.addUser(user);
     if (id > 0) {
       status = Status.success();
-      log('register', `succeeded for: ${registration.emailAddress}`);
+      log('register', `succeeded for ${registration.emailAddress}`);
     } else {
-      status = Status.fail(`Register failed for: ${registration.emailAddress}`);
+      status = Status.fail(`Register failed for ${registration.emailAddress}`);
       log('register', `failed for: ${registration.emailAddress}`);
     }
   } catch (error) {
@@ -50,10 +50,10 @@ export function login(credentials) {
       const serviceProviders = store.listUsersByRole(serviceProvider);
       const workOrders = store.listWorkOrdersByUserId(user.id);
       userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceProviders, workOrders);
-      log('login', `succeeded for: ${credentials.emailAddress}`);
+      log('login', `succeeded for ${credentials.emailAddress}`);
     } else {
       userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
-      log('login', `failed for: ${credentials.emailAddress}`);
+      log('login', `failed for ${credentials.emailAddress}`);
     }
   } catch(error) {
     userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}`;
@@ -134,7 +134,7 @@ export function saveUser(user) {
       log('saveUser', `succeeded for id: ${user.id}`);
     } else {
       status = Status.fail('Save user failed.');
-      log('saveUser', `failed for user: ${user}`);
+      log('saveUser', `failed for ${user}`);
     }
   } catch(error) {
     status = Status.fail('Save user failed.');
