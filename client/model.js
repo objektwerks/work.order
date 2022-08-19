@@ -12,19 +12,19 @@ let user = {};
 let serviceProviders = [];
 let workOrders = new Map();
 
-function splitWorkOrders(workorders, openedListId, closedListId) {
-  const openedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length === 0});
-  const closedWorkOrders = workorders.values().filter((workorder) => { workorder.closed.length > 0});
-  let openedList = [];
-  for (const workorder of openedWorkOrders) {
-    openedList.push({ id: workorder.number, value: workorder.title });
+function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
+  const openedWorkOrders = workOrders.values().filter((workOrder) => { workOrder.closed.length === 0});
+  const closedWorkOrders = workOrders.values().filter((workorder) => { workorder.closed.length > 0});
+  let openedWorkOrdersList = [];
+  for (const workOrder of openedWorkOrders) {
+    openedWorkOrdersList.push({ id: workOrder.number, value: workOrder.title });
   }
-  let closedList = [];
-  for (const workorder of closedWorkOrders) {
-    closedList.push({ id: workorder.number, value: workorder.title });
+  let closedWorkOrdersList = [];
+  for (const workOrder of closedWorkOrders) {
+    closedWorkOrdersList.push({ id: workOrder.number, value: workOrder.title });
   }
-  setListIdValues(openedListId, openedList);
-  setListIdValues(closedListId, closedList);
+  setListIdValues(openedWorkOrdersListId, openedWorkOrdersList);
+  setListIdValues(closedWorkOrdersListId, closedWorkOrdersList);
 }
 
 export function getUserId() {
