@@ -1,5 +1,5 @@
 // @ts-check
-import { getById, getValueById, hide, setListValues, show } from './common.js';
+import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
 import * as model from './model.js';
 
@@ -22,21 +22,16 @@ export default () => {
       const status = fetcher.saveUser(model.getUser());
       if (!status.success) {
         errors.push(status.error);
-        listErrors(errors);
+        setErrorsList(errors, 'user-errors-list-id', 'user-errors-view-id');
       } else {          
         show('user-dialog-id');
       }
     } else {
-      listErrors(errors);
+      setErrorsList(errors, 'user-errors-list-id', 'user-errors-view-id');
     }      
   }, false);
 }
 
 function bindViewToUser(name, emailAddress, streetAddress) {
   model.setUser(name, emailAddress, streetAddress);
-}
-
-function listErrors(errors) {
-  setListValues('user-errors-list-id', errors);
-  show('user-errors-view-id');
 }
