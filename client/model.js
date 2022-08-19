@@ -1,10 +1,6 @@
 // @ts-check
 import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-export default () => {
-  console.log('*** model init ...');
-}
-
 let user = {};
 let workOrders = new Map();
 
@@ -21,6 +17,10 @@ function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersLis
   }
   setListIdValues(openedWorkOrdersListId, openedWorkOrdersList);
   setListIdValues(closedWorkOrdersListId, closedWorkOrdersList);
+}
+
+export default () => {
+  console.log('*** model init ...');
 }
 
 export function getUserId() {
