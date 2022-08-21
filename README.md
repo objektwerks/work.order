@@ -4,8 +4,8 @@ Work order web app linking homeowners and service providers, using javascript, h
 
 Todo
 ----
-1. update open work order list item text by id ( document.getElementById(wo-id)).children[0].innerHTML = "new title"; )
-
+1. update open work order li text by id ( getById(wo-number)).children[0].innerHTML = "new title"; )
+2. test ui
 
 Doc
 ---
