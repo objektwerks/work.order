@@ -167,7 +167,7 @@ export default () => {
   getById('workorder-title-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id');
     const title = getValueById('workorder-title-id');
-    if (number > 0 && title.length >= 4) { // is work order and title valid?
+    if (number > 0 && title.length >= 4) { // is work order number and title valid?
       getById(number).children[0].innerHTML = title; // set new title to corresponding work orders list item
     }
   }, false);
