@@ -1,189 +1,189 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Work Order</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Work Orders">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="#4b0082">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="w3c.css">
-    </head>
-    <body>
-        <!-- Header -->
-        <header class="w3-container w3-indigo">
-            <img src="logo.png" alt="Work Order">
-            <label>Work Order</label>
-        </header>
+  <head>
+    <title>Work Order</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Work Orders">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4b0082">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="w3c.css">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="w3-container w3-indigo">
+      <img src="logo.png" alt="Work Order">
+      <label>Work Order</label>
+    </header>
 
-        <!-- Content Begin -->
-        <div id="content" class="w3-container w3-padding">
+    <!-- Content Begin -->
+    <div id="content" class="w3-container w3-padding">
 
-            <!-- Menu > Login | Register | Work Orders | Profile -->
-            <div id="menu-id" class="w3-bar">
-                <a id="login-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue">Login</a>
-                <a id="register-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue">Register</a>
-                <a id="workorders-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue" style="display:none">Work Orders</a>
-                <a id="user-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue" style="display:none">Profile</a>
-            </div>
+      <!-- Menu > Login | Register | Work Orders | Profile -->
+      <div id="menu-id" class="w3-bar">
+        <a id="login-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue">Login</a>
+        <a id="register-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue">Register</a>
+        <a id="workorders-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue" style="display:none">Work Orders</a>
+        <a id="user-menu-id" href="#" class="w3-bar-item w3-button w3-indigo w3-hover-light-blue" style="display:none">Profile</a>
+      </div>
 
-            <!-- Login -->
-            <div id="login-view-id" class="view w3-container" style="display:none">
-                <h3 class="w3-text-indigo">Login</h3>
-                <div id="login-errors-view-id" class="w3-panel w3-red" style="display:none">
-                    <ul id="login-errors-list-id" class="w3-ul"></ul>
-                </div>
-                <label for="login-email-address-id" class="w3-text-indigo">Email Address:</label>
-                <input id="login-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
-                <label for="login-pin-id" class="w3-text-indigo">Pin:</label>
-                <input id="login-pin-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="7" maxlength="7" required></input>
-                <div class="w3-bar w3-center w3-padding">
-                    <button id="login-command-id" class="w3-btn w3-indigo w3-round w3-center">Login</button>
-                </div>
-            </div>
-
-            <!-- Register -->
-            <div id="register-view-id" class="view w3-container" style="display:none">
-                <h3 class="w3-text-indigo">Register</h3>
-                <div id="register-errors-view-id" class="w3-panel w3-red" style="display:none">
-                    <ul id="register-errors-list-id" class="w3-ul"></ul>
-                </div>
-                <label for="register-role-id" class="w3-text-indigo">Role:</label>
-                <select id="register-role-id" class="w3-select w3-text-indigo w3-hover-light-blue" required>
-                    <option value="homeowner">Homeowner</option>
-                    <option value="serviceprovider">Service Provider</option>
-                </select>
-                <label for="register-name-id" class="w3-text-indigo">Name:</label>
-                <input id="register-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required></input>
-                <label for="register-email-address-id" class="w3-text-indigo">Email Address:</label>
-                <input id="register-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
-                <label for="register-street-address-id" class="w3-text-indigo">Street Address:</label>
-                <input id="register-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
-                <div class="w3-bar w3-center w3-padding">
-                    <button id="register-command-id" class="w3-btn w3-indigo w3-round w3-center">Register</button>
-                </div>
-            </div>
-
-            <!-- Register Dialog -->
-            <div id="register-dialog-id" class="w3-model w3-indigo" style="display:none">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
-                        <span onclick="document.getElementById('register-dialog-id').style.display='none'"
-                            class="w3-button w3-display-topright">&times;</span>
-                        <h3 class="w3-indigo">Register</h3>
-                        <p>Check your email for your new login pin. Then select Login.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Work Orders -->
-            <div id="workorders-view-id" class="view w3-container" style="display:none">
-                <h3 class="w3-text-indigo">Work Orders</h3>
-                <div id="workorder-view-id" class=" w3-container">
-                    <div id="workorder-errors-view-id" class="w3-panel w3-red" style="display:none">
-                        <ul id="workorder-errors-list-id" class="w3-ul"></ul>
-                    </div>
-                    <label for="workorder-number-id" class="w3-text-indigo">Number:</label>
-                    <input id="workorder-number-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
-                    <label for="workorder-homeowner-id" class="w3-text-indigo">Homeowner:</label>
-                    <input id="workorder-homeowner-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
-                    <label for="workorder-service-provider-id" class="w3-text-indigo">Service Provider:</label>
-                    <select id="workorder-service-provider-id" class="w3-select w3-text-indigo w3-hover-light-blue" required></select>
-                    <label for="workorder-title-id" class="w3-text-indigo">Title:</label>
-                    <input id="workorder-title-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="64" required></input>
-                    <label for="workorder-issue-id" class="w3-text-indigo">Issue:</label>
-                    <textarea id="workorder-issue-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255" required></textarea>
-                    <label for="workorder-image-url-id" class="w3-text-indigo">Photo:</label>
-                    <img id="workorder-image-url-id" src="" alt="No image provided." width="200" height="200">
-                    <label for="workorder-image-file-id" class="w3-text-indigo">Upload Photo:</label>
-                    <input id="workorder-image-file-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="file" accept="image/jpeg, image/png"></input>
-                    <label for="workorder-resolution-id" class="w3-text-indigo">Resolution:</label>
-                    <textarea id="workorder-resolution-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255"></textarea>
-                    <label for="workorder-open-id" class="w3-text-indigo">Open:</label>
-                    <input id="workorder-open-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
-                    <label for="workorder-closed-id" class="w3-text-indigo">Closed:</label>
-                    <input id="workorder-closed-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="hidden"></input>
-                    <input id="workorder-closed-check-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="checkbox"></input>
-                    <div class="w3-bar w3-center w3-padding">
-                        <button id="workorder-new-command-id" class="w3-btn w3-indigo w3-round w3-center">New</button>
-                        <button id="workorder-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
-                        <button id="workorder-refresh-command-id" class="w3-btn w3-indigo w3-round w3-center">Refresh</button>
-                    </div>
-                </div>
-                <div id=""workorders-list-view-id class="w3-container">
-                    <div id="workorders-list-tab-view-id" class="w3-bar w3-indigo">
-                        <button id="workorders-list-opened-tab-id" class="w3-bar-item w3-button">Opened</button>
-                        <button id="workorders-list-closed-tab-id" class="w3-bar-item w3-button">Closed</button>
-                    </div>
-                    <div id="workorders-list-opened-view-id" class="tabview w3-container w3-padding w3-indigo">
-                        <ul id="workorders-list-opened-id" class="w3-ul w3-hoverable"></ul>
-                    </div>
-                    <div id="workorders-list-closed-view-id" class="tabview w3-container w3-padding w3-indigo" style="display:none"></div>
-                        <ul id="workorders-list-closed-id" class="w3-ul w3-hoverable"></ul>
-                    </div>
-                    <div class="w3-bar w3-center w3-padding">
-                        <button id="workorders-refresh-command-id" class="w3-btn w3-indigo w3-round w3-center">Refresh</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Work Order Dialog -->
-            <div id="workorder-dialog-id" class="w3-model w3-indigo" style="display:none">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
-                        <span onclick="document.getElementById('workorder-dialog-id').style.display='none'"
-                                class="w3-button w3-display-topright">&times;</span>
-                        <h3 class="w3-indigo">Work Order</h3>
-                        <p id="workorder-dialog-message">Work order saved successfully.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- User ( Profile ) -->
-            <div id="user-view-id" class="view w3-container" style="display:none">
-                <h3 class="w3-text-indigo">Profile</h3>
-                <div id="user-errors-view-id" class="w3-panel w3-red" style="display:none">
-                    <ul id="user-errors-list-id" class="w3-ul"></ul>
-                </div>
-                <label for="user-role-id" class="w3-text-indigo">Role:</label>
-                <input id="user-role-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
-                <label for="user-name-id" class="w3-text-indigo">Name:</label>
-                <input id="user-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required></input>
-                <label for="user-email-address-id" class="w3-text-indigo">Email Address:</label>
-                <input id="user-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
-                <label for="user-street-address-id" class="w3-text-indigo">Street Address:</label>
-                <input id="user-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
-                <label for="user-registered-id" class="w3-text-indigo">Registered:</label>
-                <input id="user-registered-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
-                <div class="w3-bar w3-center w3-padding">
-                    <button id="user-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
-                </div>
-            </div>
-
-            <!-- User ( Profile ) Dialog -->
-            <div id="user-dialog-id" class="w3-model w3-indigo" style="display:none">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
-                        <span onclick="document.getElementById('user-dialog-id').style.display='none'"
-                        class="w3-button w3-display-topright">&times;</span>
-                        <h3 class="w3-indigo">Profile</h3>
-                        <p>Profile saved successfully.</p>
-                    </div>
-                </div>
-            </div>
-
+      <!-- Login -->
+      <div id="login-view-id" class="view w3-container" style="display:none">
+        <h3 class="w3-text-indigo">Login</h3>
+        <div id="login-errors-view-id" class="w3-panel w3-red" style="display:none">
+          <ul id="login-errors-list-id" class="w3-ul"></ul>
         </div>
-        <!-- Content End -->
+        <label for="login-email-address-id" class="w3-text-indigo">Email Address:</label>
+        <input id="login-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
+        <label for="login-pin-id" class="w3-text-indigo">Pin:</label>
+        <input id="login-pin-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="7" maxlength="7" required></input>
+        <div class="w3-bar w3-center w3-padding">
+          <button id="login-command-id" class="w3-btn w3-indigo w3-round w3-center">Login</button>
+        </div>
+      </div>
 
-        <!-- Footer -->
-        <footer class="w3-container w3-indigo">
-            <label>&copy; 2022 Objektwerks</label>
-        </footer>
+      <!-- Register -->
+      <div id="register-view-id" class="view w3-container" style="display:none">
+        <h3 class="w3-text-indigo">Register</h3>
+        <div id="register-errors-view-id" class="w3-panel w3-red" style="display:none">
+          <ul id="register-errors-list-id" class="w3-ul"></ul>
+        </div>
+        <label for="register-role-id" class="w3-text-indigo">Role:</label>
+        <select id="register-role-id" class="w3-select w3-text-indigo w3-hover-light-blue" required>
+          <option value="homeowner">Homeowner</option>
+          <option value="serviceprovider">Service Provider</option>
+        </select>
+        <label for="register-name-id" class="w3-text-indigo">Name:</label>
+        <input id="register-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required></input>
+        <label for="register-email-address-id" class="w3-text-indigo">Email Address:</label>
+        <input id="register-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
+        <label for="register-street-address-id" class="w3-text-indigo">Street Address:</label>
+        <input id="register-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
+        <div class="w3-bar w3-center w3-padding">
+          <button id="register-command-id" class="w3-btn w3-indigo w3-round w3-center">Register</button>
+        </div>
+      </div>
 
-        <!-- Script -->
-        <script type="module">
-            import client from './client.js';
-            client();
-        </script>
-    </body>
+      <!-- Register Dialog -->
+      <div id="register-dialog-id" class="w3-model w3-indigo" style="display:none">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('register-dialog-id').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+            <h3 class="w3-indigo">Register</h3>
+            <p>Check your email for your new login pin. Then select Login.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Orders -->
+      <div id="workorders-view-id" class="view w3-container" style="display:none">
+        <h3 class="w3-text-indigo">Work Orders</h3>
+        <div id="workorder-view-id" class=" w3-container">
+          <div id="workorder-errors-view-id" class="w3-panel w3-red" style="display:none">
+            <ul id="workorder-errors-list-id" class="w3-ul"></ul>
+          </div>
+          <label for="workorder-number-id" class="w3-text-indigo">Number:</label>
+          <input id="workorder-number-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+          <label for="workorder-homeowner-id" class="w3-text-indigo">Homeowner:</label>
+          <input id="workorder-homeowner-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+          <label for="workorder-service-provider-id" class="w3-text-indigo">Service Provider:</label>
+          <select id="workorder-service-provider-id" class="w3-select w3-text-indigo w3-hover-light-blue" required></select>
+          <label for="workorder-title-id" class="w3-text-indigo">Title:</label>
+          <input id="workorder-title-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="64" required></input>
+          <label for="workorder-issue-id" class="w3-text-indigo">Issue:</label>
+          <textarea id="workorder-issue-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255" required></textarea>
+          <label for="workorder-image-url-id" class="w3-text-indigo">Photo:</label>
+          <img id="workorder-image-url-id" src="" alt="No image provided." width="200" height="200">
+          <label for="workorder-image-file-id" class="w3-text-indigo">Upload Photo:</label>
+          <input id="workorder-image-file-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="file" accept="image/jpeg, image/png"></input>
+          <label for="workorder-resolution-id" class="w3-text-indigo">Resolution:</label>
+          <textarea id="workorder-resolution-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255"></textarea>
+          <label for="workorder-open-id" class="w3-text-indigo">Open:</label>
+          <input id="workorder-open-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+          <label for="workorder-closed-id" class="w3-text-indigo">Closed:</label>
+          <input id="workorder-closed-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="hidden"></input>
+          <input id="workorder-closed-check-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="checkbox"></input>
+          <div class="w3-bar w3-center w3-padding">
+            <button id="workorder-new-command-id" class="w3-btn w3-indigo w3-round w3-center">New</button>
+            <button id="workorder-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
+            <button id="workorder-refresh-command-id" class="w3-btn w3-indigo w3-round w3-center">Refresh</button>
+          </div>
+        </div>
+        <div id=""workorders-list-view-id class="w3-container">
+          <div id="workorders-list-tab-view-id" class="w3-bar w3-indigo">
+            <button id="workorders-list-opened-tab-id" class="w3-bar-item w3-button">Opened</button>
+            <button id="workorders-list-closed-tab-id" class="w3-bar-item w3-button">Closed</button>
+          </div>
+          <div id="workorders-list-opened-view-id" class="tabview w3-container w3-padding w3-indigo">
+            <ul id="workorders-list-opened-id" class="w3-ul w3-hoverable"></ul>
+          </div>
+          <div id="workorders-list-closed-view-id" class="tabview w3-container w3-padding w3-indigo" style="display:none"></div>
+            <ul id="workorders-list-closed-id" class="w3-ul w3-hoverable"></ul>
+          </div>
+          <div class="w3-bar w3-center w3-padding">
+            <button id="workorders-refresh-command-id" class="w3-btn w3-indigo w3-round w3-center">Refresh</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Order Dialog -->
+      <div id="workorder-dialog-id" class="w3-model w3-indigo" style="display:none">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('workorder-dialog-id').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+            <h3 class="w3-indigo">Work Order</h3>
+            <p id="workorder-dialog-message">Work order saved successfully.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- User ( Profile ) -->
+      <div id="user-view-id" class="view w3-container" style="display:none">
+        <h3 class="w3-text-indigo">Profile</h3>
+        <div id="user-errors-view-id" class="w3-panel w3-red" style="display:none">
+          <ul id="user-errors-list-id" class="w3-ul"></ul>
+        </div>
+        <label for="user-role-id" class="w3-text-indigo">Role:</label>
+        <input id="user-role-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+        <label for="user-name-id" class="w3-text-indigo">Name:</label>
+        <input id="user-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required></input>
+        <label for="user-email-address-id" class="w3-text-indigo">Email Address:</label>
+        <input id="user-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required></input>
+        <label for="user-street-address-id" class="w3-text-indigo">Street Address:</label>
+        <input id="user-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
+        <label for="user-registered-id" class="w3-text-indigo">Registered:</label>
+        <input id="user-registered-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
+        <div class="w3-bar w3-center w3-padding">
+          <button id="user-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
+        </div>
+      </div>
+
+      <!-- User ( Profile ) Dialog -->
+      <div id="user-dialog-id" class="w3-model w3-indigo" style="display:none">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('user-dialog-id').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            <h3 class="w3-indigo">Profile</h3>
+            <p>Profile saved successfully.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Content End -->
+
+    <!-- Footer -->
+    <footer class="w3-container w3-indigo">
+      <label>&copy; 2022 Objektwerks</label>
+    </footer>
+
+    <!-- Script -->
+    <script type="module">
+      import client from './client.js';
+      client();
+    </script>
+  </body>
 </html>
