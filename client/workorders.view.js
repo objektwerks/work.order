@@ -164,11 +164,13 @@ export default () => {
     }  
   }, false);
 
-  getById('workorder-title-id').addEventListener('change', (event) => {
-    const number = getValueById('workorder-number-id');
-    const title = getValueById('workorder-title-id');
-    if (number > 0 && title.length >= 4) { // is work order number and title valid?
-      getById(number).children[0].innerHTML = title; // set new title to corresponding work orders list item
+  getById('workorder-title-id').addEventListener('input', (event) => {
+    const title = event.target['value'];
+    if (title.length >= 4) { // is title valid?
+      const number = getValueById('workorder-number-id');
+      if (number > 0) { // is number valid?
+        getById(number).children[0].innerHTML = title; // set new title to corresponding work orders list item
+      }
     }
   }, false);
 
