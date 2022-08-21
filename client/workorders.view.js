@@ -164,6 +164,10 @@ export default () => {
     }  
   }, false);
 
+  getById('workorder-title-id').addEventListener('chance', (event) => {
+    // TODO!
+  }, false);
+
   getById('workorder-image-file-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id');
     const file = getFileById('workorder-image-file-id');
