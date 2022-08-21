@@ -2,6 +2,11 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers, using javascript, html, css, w3c.css, express, nodemailer, mysql and nodejs.
 
+Todo
+----
+1. update open work order list item text by id ( document.getElementById(wo-id)).children[0].innerHTML = "new title"; )
+
+
 Doc
 ---
 >See **doc** folder for ui images.
