@@ -181,10 +181,8 @@ export default () => {
     const imageUrl = fetcher.saveImage(number, file, filename);
     if (!imageUrl.success) {
       setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
-    } else {          
-      const workOrder = model.getWorkOrderByNumber(number);
-      workOrder.imageUrl = imageUrl.url;
-      bindWorkOrderToView(workOrder);
+    } else {
+      setImageUrlById('workorder-image-url-id', imageUrl.url);
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
       show('workorder-dialog-id');
     }
