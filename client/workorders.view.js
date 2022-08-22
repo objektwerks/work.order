@@ -177,7 +177,7 @@ export default () => {
   getById('workorder-image-file-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id');
     const file = getFileById('workorder-image-file-id');
-    const filename = `${number}-image`;
+    const filename = `${number}-${new Date().toISOString()}`;
     const imageUrl = fetcher.saveImage(number, file, filename);
     if (!imageUrl.success) {
       setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
