@@ -129,19 +129,19 @@ export class User {
 }
 
 export class ImageUrl {
-  static success(url, number) {
+  static success(number, url) {
     return {
       success: true,
-      url: url,
-      number: number
+      number: number,
+      url: url
     }
   }
-  static fail(error, url, number) {
+  static fail(error, number, url) {
     return {
       success: false,
       error: error,
-      url: url,
-      number: number
+      number: number,
+      url: url
     }
   }
 }
