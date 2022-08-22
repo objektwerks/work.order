@@ -134,7 +134,7 @@ export function saveUser(user) {
   return count;
 }
 
-export function saveImageUrl(url, number) {
+export function saveImageUrl(number, url) {
   let count = 0;
   connection.query(`update work_order SET image_url = ${url} where number = ${number}`, (error, result) => {
     if (error) {

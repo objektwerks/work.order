@@ -60,10 +60,8 @@ export default () => {
 
   router.post('/image/save', images.single('image'), async (request, response) => {
     const number = request.body.number;
-    const filename = request.file.filename;
-    const url = `/images/${number}/${filename}`;
-    console.log('*** router : /image/save -> url: ', url);
-    response.json( await service.saveImageUrl(url, number) );
+    const url = request.body.url;
+    response.json( await service.saveImageUrl(number, url) );
   });
   
   http = router.listen(port, host, () =>

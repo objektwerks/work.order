@@ -65,10 +65,12 @@ export function saveUser(user) {
   return this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
 }
 
-export function saveImage(number, file, filename) {
+export function saveImage(number, url, file, filename) {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData();
   formdata.append('number', number);
+  formdata.append('url', url);
+  formdata.append('imagename', filename);
   formdata.append('image', file, filename);
   return this.call(this.saveImageUrl, this.post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
 }

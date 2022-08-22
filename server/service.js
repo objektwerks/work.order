@@ -143,10 +143,10 @@ export function saveUser(user) {
   return status;
 }
 
-export function saveImageUrl(url, number) {
+export function saveImageUrl(number, url) {
   let imageUrl;
   try {
-    const count = store.saveImageUrl(url, number);
+    const count = store.saveImageUrl(number, url);
     if (count > 0) {
       imageUrl = ImageUrl.success(url, number);
       log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
