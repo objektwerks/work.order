@@ -9,6 +9,9 @@ const storage = multer.diskStorage({
     ifExistsRemoveDir(dir);
     ifNotExistsMakeDir(dir);
     callback(null, dir);
+  },
+  filename: function (request, file, callback) {
+    callback(null, request.file.filename);
   }
 })
 
