@@ -5,7 +5,7 @@ import multer from 'multer';
 const storage = multer.diskStorage({
   destination: function (request, file, callback) {
     const number = request.body.number;
-    const dir = `./images/${number}`;
+    const dir = `${imagesDir}/${number}`;
     ifExistsRemoveDir(dir);
     ifNotExistsMakeDir(dir);
     callback(null, dir);
@@ -35,6 +35,7 @@ function ifExistsRemoveDir(dir) {
 }
 
 export const images = multer({ storage: storage, fileFilter: fileFilter });
+export const imagesDir = './images';
 
 export function ifNotExistsMakeDir(dir) {
   if (fs.existsSync(dir)){

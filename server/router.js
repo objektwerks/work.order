@@ -1,5 +1,5 @@
 // @ts-check
-import { images, ifNotExistsMakeDir } from './images.js';
+import { images, imagesDir, ifNotExistsMakeDir } from './images.js';
 import * as service from './service.js';
 import compression from 'compression';
 import express from 'express';
@@ -20,7 +20,7 @@ function shutdown(signal) {
 }
 
 export default () => {
-  ifNotExistsMakeDir('./images');
+  ifNotExistsMakeDir(imagesDir);
 
   router = express();
   router.use(compression());
