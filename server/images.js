@@ -4,16 +4,11 @@ import multer from 'multer';
 
 const storage = multer.diskStorage({
   destination: function (request, file, callback) {
-    callback(null, 'images')
-  },
-  filename: function (request, file, callback) {
     const number = request.body.number;
     const dir = `./images/${number}`;
+    ifExistsRemoveDir(dir);
     ifNotExistsMakeDir(dir);
-
-    const filename = file.filename;
-    ifExistsRemoveFile(`${dir}/${filename}`);
-    callback(null, filename);
+    callback(null, dir);
   }
 })
 
@@ -28,10 +23,21 @@ const fileFilter = (request, file, callback) => {
 function ifExistsRemoveFile(file) {
   if (fs.existsSync(file)) {
     fs.unlinkSync(file);
-    console.log(`*** ${file} removed.`);
+    console.log(`*** ifExistsRemoveFile -> ${file} removed.`);
     return true;
   } else {
-    console.log(`*** ${file} doesn't exist.`);
+    console.log(`*** ifExistsRemoveFile -> ${file} doesn't exist.`);
+    return false;
+  }
+}
+
+function ifExistsRemoveDir(dir) {
+  if (fs.existsSync(dir)){
+    fs.rmSync(dir, { recursive: true });
+    console.log(`*** ifExistsRemoveDir -> ${dir} removed.`);
+    return true;
+  } else {
+    console.log(`*** ifExistsRemoveDir -> ${dir} does not exist.`);
     return false;
   }
 }
@@ -40,11 +46,11 @@ export const images = multer({ storage: storage, fileFilter: fileFilter });
 
 export function ifNotExistsMakeDir(dir) {
   if (fs.existsSync(dir)){
-    console.log(`*** ${dir} exists.`);
+    console.log(`*** ifNotExistsMakeDir -> ${dir} exists.`);
     return false;
   } else {
     fs.mkdirSync(dir);
-    console.log(`*** ${dir} created.`);
+    console.log(`*** ifNotExistsMakeDir -> ${dir} created.`);
     return true;
   }
 }
