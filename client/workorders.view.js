@@ -183,7 +183,6 @@ export default () => {
       setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
     } else {          
       setImageUrlById('workorder-image-url-id', imageUrl.url);
-      // Why? Just use img > src! displayImage(file, 'workorder-image-url-id');
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
       show('workorder-dialog-id');
     }
