@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     } else if (file.mimetype === 'image/png') {
       ext = '.png';
     } else {
-      ext = "unknown";
+      ext = ".unknown";
     }
     const filename = file.filename + ext;
     ifExistsRemoveFile(filename);
