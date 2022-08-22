@@ -20,17 +20,6 @@ const fileFilter = (request, file, callback) => {
   }
 }
 
-function ifExistsRemoveFile(file) {
-  if (fs.existsSync(file)) {
-    fs.unlinkSync(file);
-    console.log(`*** ifExistsRemoveFile -> ${file} removed.`);
-    return true;
-  } else {
-    console.log(`*** ifExistsRemoveFile -> ${file} doesn't exist.`);
-    return false;
-  }
-}
-
 function ifExistsRemoveDir(dir) {
   if (fs.existsSync(dir)){
     fs.rmSync(dir, { recursive: true });
