@@ -29,8 +29,10 @@ function ifExistsRemoveFile(file) {
   if (fs.existsSync(file)) {
     fs.unlinkSync(file);
     console.log(`*** ${file} removed.`);
+    return true;
   } else {
     console.log(`*** ${file} doesn't exist.`);
+    return false;
   }
 }
 
@@ -39,8 +41,10 @@ export const images = multer({ storage: storage, fileFilter: fileFilter });
 export function ifNotExistsMakeDir(dir) {
   if (fs.existsSync(dir)){
     console.log(`*** ${dir} exists.`);
+    return false;
   } else {
     fs.mkdirSync(dir);
     console.log(`*** ${dir} created.`);
+    return true;
   }
 }
