@@ -182,10 +182,11 @@ export default () => {
     if (!imageUrl.success) {
       setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
     } else {          
+      setImageUrlById('workorder-image-url-id', imageUrl.url);
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
       show('workorder-dialog-id');
     }
-    displayImage(file, 'workorder-image-url-id');
+    // Why? Just use img > src ! displayImage(file, 'workorder-image-url-id');
   }, false);
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
