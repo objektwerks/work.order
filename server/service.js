@@ -148,14 +148,14 @@ export function saveImageUrl(number, url) {
   try {
     const count = store.saveImageUrl(number, url);
     if (count > 0) {
-      imageUrl = ImageUrl.success(url, number);
+      imageUrl = ImageUrl.success(number, url);
       log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
     } else {
-      imageUrl = ImageUrl.fail('Save image url failed.', url, number);
+      imageUrl = ImageUrl.fail('Save image url failed.', number, url);
       log('saveImageUrl', `failed for number: ${number} url: ${url}`);
     }
   } catch(error) {
-    imageUrl = ImageUrl.fail('Save image url failed.', url, number);
+    imageUrl = ImageUrl.fail('Save image url failed.', number, url);
     log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`);
   }
   return imageUrl;
