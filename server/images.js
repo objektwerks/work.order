@@ -7,13 +7,13 @@ const storage = multer.diskStorage({
     callback(null, 'images')
   },
   filename: function (request, file, callback) {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      const filename = file.filename;
-      ifExistsRemoveFile(filename);
-      callback(null, filename);
-    } else {
-      callback(new Error(`Invalid file: ${file.filename}`), null);
-    }
+    const number = request.body.number;
+    const dir = `./images/${number}`;
+    ifNotExistsMakeDir(dir);
+
+    const filename = file.filename;
+    ifExistsRemoveFile(`${dir}/${filename}`);
+    callback(null, filename);
   }
 })
 

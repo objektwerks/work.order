@@ -59,11 +59,12 @@ export default () => {
   });
 
   router.post('/image/save', images.single('image'), async (request, response) => {
-    const url = '/images/' + request.file.filename
     const number = request.body.number;
-    console.log('*** image: ', request.file);
-    console.log('*** url: ', url);
+    const filename = request.file.filename;
+    const url = `/images/${number}/${filename}`;
     console.log('*** number: ', number);
+    console.log('*** filename: ', filename);
+    console.log('*** url: ', url);
     response.json( await service.saveImageUrl(url, number) );
   });
   
