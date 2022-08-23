@@ -63,7 +63,7 @@ function applyRole(role) {
   }
 }
 
-function bindEmptyWorkOrderToView() {
+function bindEmptyWorkOrderToForm() {
   setValueById('workorder-number-id', 0);
   setValueById('workorder-title-id', "");
   setValueById('workorder-issue-id', "");
@@ -73,7 +73,7 @@ function bindEmptyWorkOrderToView() {
   setValueById('workorder-closed-id', "");
 }
 
-function bindWorkOrderToView(workOrder) {
+function bindWorkOrderToForm(workOrder) {
   setValueById('workorder-number-id', workOrder.number);
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
   setValueById('workorder-title-id', workOrder.title);
@@ -84,7 +84,7 @@ function bindWorkOrderToView(workOrder) {
   setValueById('workorder-closed-id', workOrder.closed);
 }
 
-function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+function bindFormToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
   if (number > 0) { // save
     const workOrder = model.getWorkOrderByNumber(number);
     workOrder.serviceProviderId = serviceProviderId;
@@ -103,7 +103,7 @@ export default () => {
   console.log('*** workorders form init ...');
 
   getById('workorder-new-command-id').addEventListener('click', () => {
-    bindEmptyWorkOrderToView();
+    bindEmptyWorkOrderToForm();
   }, false);
 
   getById('workorder-form-id').addEventListener('submit', (event) => {
@@ -122,7 +122,7 @@ export default () => {
 
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     if (errors.length === 0) {
-      const workOrder = bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+      const workOrder = bindFormToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
       if (workOrder.number > 0) { // save
         const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
@@ -151,7 +151,7 @@ export default () => {
     if (!workOrder.success) {
       setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
-      bindWorkOrderToView(workOrder);
+      bindWorkOrderToForm(workOrder);
     }
   }, false);
 
@@ -215,7 +215,7 @@ export default () => {
       const number = event.target['id'];
       const workOrder = model.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
-        bindWorkOrderToView(workOrder);
+        bindWorkOrderToForm(workOrder);
         applyRole(model.getUserRole());
         console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
@@ -229,7 +229,7 @@ export default () => {
       const number = event.target['id'];
       const workorder = model.getWorkOrderByNumber(number);
       if (workorder !== undefined) {
-        bindWorkOrderToView(workorder);
+        bindWorkOrderToForm(workorder);
         applyRole(readonlyRole);
         console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
