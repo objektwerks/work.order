@@ -65,13 +65,13 @@ Routes
 Sequences
 ---------
 1. **client:register** --- registration --> server --- status ---> client
-2. **client:login** --- credentials --> server --- user, service providers, workorders --> client
-3. **client:add** --- work order --> server --- workorder --> client
-4. **client:save** --- work order --> server --- status --> client
-5. **client:list** --- userid --> server --- workorders --> client
-6. **client:get** --- number --> server --- workorder --> client
+2. **client:login** --- credentials --> server --- user, service providers, work orders --> client
+3. **client:add** --- work order --> server --- work order --> client
+4. **client:save** --- work order --> server --- work order --> client
+5. **client:list** --- userid --> server --- work orders --> client
+6. **client:get** --- number --> server --- work order --> client
 7. **client:save** --- user --> server --- status --> client
-8. **client:save** --- image --> server --- imageurl --> client
+8. **client:save** --- image --> server --- imageUrl --> client
 
 Schema
 ------
