@@ -2,7 +2,7 @@
 import { newPin } from './pin.js';
 import * as store from './store.js';
 import * as emailer from './emailer.js';
-import { serviceProvider, ImageUrl, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders, Registration } from '../shared/entity.js';
+import { serviceProvider, ImageUrl, User, UsersWorkOrders, WorkOrder, WorkOrders, Registration } from '../shared/entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
@@ -49,14 +49,14 @@ export function login(credentials) {
     if (Object.entries(user).length > 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider);
       const workOrders = store.listWorkOrdersByUserId(user.id);
-      status = UserServiceProvidersWorkOrders.success(user, serviceProviders, workOrders);
+      status = UsersWorkOrders.success(user, serviceProviders, workOrders);
       log('login', `succeeded for ${credentials.emailAddress}`);
     } else {
-      status = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
+      status = UsersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
       log('login', `failed for ${credentials.emailAddress}`);
     }
   } catch(error) {
-    status = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
+    status = UsersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
     log('login', `failed error: ${error} for ${credentials.emailAddress}`);
   }
   return status;

@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { ImageUrl, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { ImageUrl, Status, User, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 const rootUrl = 'https://' + window.location.host;
 const registerUrl = rootUrl + '/register';
@@ -50,7 +50,7 @@ export function register(registration) {
 }
 
 export function login(credentials) {
-  return this.call(this.loginUrl, this.post, this.headers, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
+  return this.call(this.loginUrl, this.post, this.headers, credentials, () => UsersWorkOrders.fail('Login failed.'));
 }
 
 export function addWorkOrder(workOrder) {

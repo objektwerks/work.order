@@ -33,7 +33,7 @@ export class Credentials {
   }
 }
 
-export class UserServiceProvidersWorkOrders {
+export class UsersWorkOrders {
   static success(user, serviceProviders, workOrders) {
     return {
       success: true,

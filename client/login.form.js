@@ -23,14 +23,14 @@ export default () => {
     const errors = validateCredentials(emailAddress, pin);
     if (errors.length === 0) {
       const credentials = Credentials.create(emailAddress, pin);
-      const userServiceProvidersWorkOrders = fetcher.login(credentials);
-      if (!userServiceProvidersWorkOrders.success) {
-        errors.push(userServiceProvidersWorkOrders.error);
+      const usersWorkOrders = fetcher.login(credentials);
+      if (!usersWorkOrders.success) {
+        errors.push(usersWorkOrders.error);
         setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id');
       } else {
-        model.bindUserToForm(userServiceProvidersWorkOrders.user);
-        model.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
-        model.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
+        model.bindUserToForm(usersWorkOrders.user);
+        model.bindServiceProvidersToSelect(usersWorkOrders.serviceProviders);
+        model.bindWorkOrdersToList(usersWorkOrders.workOrders);
 
         hide('login-form-id');
         hide('register-form-id"');
