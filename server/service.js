@@ -96,10 +96,10 @@ export function getWorkOrderByNumber(number) {
 export function addWorkOrder(workOrder) {
   let saved;
   try {
-    const id = store.addWorkOrder(workOrder);
-    workOrder.id = id
+    const number = store.addWorkOrder(workOrder);
+    workOrder.number = number
     saved = WorkOrder.success(workOrder);
-    log('addWorkOrder', `succeeded for id: ${id}`);
+    log('addWorkOrder', `succeeded for id: ${number}`);
   } catch(error) {
     saved = WorkOrder.fail('Add work order failed.', workOrder.number);
     log('addWorkOrder', `failed: ${error} for ${workOrder}`);
