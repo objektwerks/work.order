@@ -12,7 +12,7 @@ import { validateCredentials } from './validator.js';
 export default () => {
   console.log('*** login view init ...');
 
-  getById('login-command-id').addEventListener('submit', (event) => {
+  getById('login-view-id').addEventListener('submit', (event) => {
     event.preventDefault();
     hide('login-errors-view-id');
 
