@@ -6,6 +6,6 @@
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": ["./server.js", "./client/*.js", "./server/*.js", "./shared/*.js"],
+  "include": ["./server.js", "./client/*.js", "./server/*.js", "./shared/*.js", "client/client.ts", "client/common.ts", "server/emailer.ts", "server/images.ts", "server/pin.ts", "server/router.ts", "server/service.ts", "server/store.ts", "shared/validator.ts", "shared/entity.ts", "client/work.orders.form.ts", "client/user.form.ts", "client/register.form.ts", "client/model.ts", "client/menu.ts", "client/login.form.ts", "client/fetcher.ts"],
   "exclude": ["node_modules"]
 }
