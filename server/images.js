@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
   destination: function (request, file, callback) {
     const number = request.body.number;
     const dir = `${imagesDir}/${number}`;
-    ifExistsRemoveDir(dir);
+    ifExistsRemoveDir(dir); // only 1 image per work order!
     ifNotExistsMakeDir(dir);
     callback(null, dir);
   },
