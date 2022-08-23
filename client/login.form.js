@@ -1,7 +1,7 @@
 // @ts-check
 import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
-import * as state from './state.js';
+import * as model from './model.js';
 
 // @ts-ignore
 import { serviceProvider, Credentials } from './entity.js';
@@ -14,7 +14,7 @@ export default () => {
 
   getById('login-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
-    
+
     hide('login-errors-form-id');
 
     const emailAddress = getValueById('login-email-address-id');
@@ -28,9 +28,9 @@ export default () => {
         errors.push(userServiceProvidersWorkOrders.error);
         setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id');
       } else {
-        state.bindUserToForm(userServiceProvidersWorkOrders.user);
-        state.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
-        state.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
+        model.bindUserToForm(userServiceProvidersWorkOrders.user);
+        model.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
+        model.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
 
         hide('login-form-id');
         hide('register-form-id"');
@@ -41,7 +41,7 @@ export default () => {
         show(`workorders-menu-id`);
         show(`user-menu-id`);
 
-        if (state.getUserRole === serviceProvider) {
+        if (model.getUserRole === serviceProvider) {
           hide('workorder-new-command-id');
         }
         show('workorders-form-id');

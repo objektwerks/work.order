@@ -1,13 +1,13 @@
 // @ts-check
 import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
-import * as state from './state.js';
+import * as model from './model.js';
 
 // @ts-ignore
 import { validateUserInfo } from './validator.js';
 
 function bindFormToUser(name, emailAddress, streetAddress) {
-  state.setUser(name, emailAddress, streetAddress);
+  model.setUser(name, emailAddress, streetAddress);
 }
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
 
   getById('user-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
-    
+
     hide('user-errors-form-id');
 
     const name = getValueById('user-name-id');
@@ -25,7 +25,7 @@ export default () => {
     const errors = validateUserInfo(name, emailAddress, streetAddress);
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress);
-      const status = fetcher.saveUser(state.getUser());
+      const status = fetcher.saveUser(model.getUser());
       if (!status.success) {
         errors.push(status.error);
         setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');

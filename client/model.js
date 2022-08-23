@@ -1,7 +1,7 @@
 // @ts-check
 import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-const state = {
+const model = {
   user: {},
   serviceProviders: [],
   workOrders: []
@@ -23,35 +23,35 @@ export default () => {
 }
 
 export function getUserId() {
-  return state.user.id;
+  return model.user.id;
 }
 
 export function getUserRole() {
-  return state.user.role;
+  return model.user.role;
 }
 
 export function getUser() {
-  return state.user;
+  return model.user;
 }
 
 export function setUser(name, emailAddress, streetAddress) {
-  state.user.name = name;
-  state.user.emailAddress = emailAddress;
-  state.user.streetAddress = streetAddress;
+  model.user.name = name;
+  model.user.emailAddress = emailAddress;
+  model.user.streetAddress = streetAddress;
 }
 
 export function getWorkOrderByNumber(number) {
-  return state.workOrders.find(workOrder => workOrder.number === number);
+  return model.workOrders.find(workOrder => workOrder.number === number);
 }
 
 export function addWorkOrder(workOrder) {
-  state.workOrders.push(workOrder);
-  const sortedWorkOrders = state.workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  model.workOrders.push(workOrder);
+  const sortedWorkOrders = model.workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
 export function bindUserToForm(user) {
-  state.user = user;
+  model.user = user;
   setValueById('workorder-homeowner-id', user.id);
   setValueById('user-role-id', user.role);
   setValueById('user-name-id', user.name);
@@ -61,7 +61,7 @@ export function bindUserToForm(user) {
 }
 
 export function bindServiceProvidersToSelect(serviceProviders) {
-  state.serviceProviders = serviceProviders;
+  model.serviceProviders = serviceProviders;
   const idvalues = [];
   for (const serviceProvider of serviceProviders) {
     idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
@@ -70,6 +70,6 @@ export function bindServiceProvidersToSelect(serviceProviders) {
 }
 
 export function bindWorkOrdersToList(workOrders) {
-  state.workOrders = workOrders;
-  splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  model.workOrders = workOrders;
+  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
