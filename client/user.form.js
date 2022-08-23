@@ -1,13 +1,13 @@
 // @ts-check
 import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
-import * as model from './model.js';
+import * as state from './state.js';
 
 // @ts-ignore
 import { validateUserView } from './validator.js';
 
 function bindViewToUser(name, emailAddress, streetAddress) {
-  model.setUser(name, emailAddress, streetAddress);
+  state.setUser(name, emailAddress, streetAddress);
 }
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
     const errors = validateUserView(name, emailAddress, streetAddress);
     if (errors.length === 0) {
       bindViewToUser(name, emailAddress, streetAddress);
-      const status = fetcher.saveUser(model.getUser());
+      const status = fetcher.saveUser(state.getUser());
       if (!status.success) {
         errors.push(status.error);
         setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');

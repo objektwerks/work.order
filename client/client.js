@@ -1,6 +1,6 @@
 // @ts-check
 import menu from './menu.js';
-import model from './model.js';
+import model from './state.js';
 import fetcher from './fetcher.js';
 import registerview from './register.form.js';
 import loginview from './login.form.js';

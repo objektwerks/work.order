@@ -1,7 +1,7 @@
 // @ts-check
 import { getById, getValueById, hide, setErrorsList, show } from './common.js';
 import * as fetcher from './fetcher.js';
-import * as model from './model.js';
+import * as state from './state.js';
 
 // @ts-ignore
 import { serviceProvider, Credentials } from './entity.js';
@@ -27,9 +27,9 @@ export default () => {
         errors.push(userServiceProvidersWorkOrders.error);
         setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id');
       } else {
-        model.bindUserToForm(userServiceProvidersWorkOrders.user);
-        model.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
-        model.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
+        state.bindUserToForm(userServiceProvidersWorkOrders.user);
+        state.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
+        state.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
 
         hide('login-form-id');
         hide('register-form-id"');
@@ -40,7 +40,7 @@ export default () => {
         show(`workorders-menu-id`);
         show(`user-menu-id`);
 
-        if (model.getUserRole === serviceProvider) {
+        if (state.getUserRole === serviceProvider) {
           hide('workorder-new-command-id');
         }
         show('workorders-form-id');

@@ -1,6 +1,6 @@
 // @ts-check
 import * as fetcher from './fetcher.js';
-import * as model from './model.js';
+import * as state from './state.js';
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide, show,
          setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js';
 
@@ -86,7 +86,7 @@ function bindWorkOrderToForm(workOrder) {
 
 function bindFormToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
   if (number > 0) { // save
-    const workOrder = model.getWorkOrderByNumber(number);
+    const workOrder = state.getWorkOrderByNumber(number);
     workOrder.serviceProviderId = serviceProviderId;
     workOrder.title = title;
     workOrder.issue = issue;
@@ -111,7 +111,7 @@ export default () => {
     hide('workorder-errors-form-id');
 
     const number = getValueById('workorder-number-id');
-    const homeownerId = model.getUserId();
+    const homeownerId = state.getUserId();
     const serviceProviderId = getSelectedIndexId('workorder-service-provider-id');
     const title = getValueById('workorder-title-id');
     const issue = getValueById('workorder-issue-id');
@@ -137,7 +137,7 @@ export default () => {
           errors.push(status.error);
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id');
         } else {
-          model.addWorkOrder(status.workorder);
+          state.addWorkOrder(status.workorder);
         }
       }
     } else {
@@ -156,12 +156,12 @@ export default () => {
   }, false);
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
-    const id = model.getUserId()
+    const id = state.getUserId()
     const workOrders = fetcher.listWorkOrdersByUserId(id);
     if (!workOrders.success) {
       setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
-      model.bindWorkOrdersToList(workOrders);
+      state.bindWorkOrdersToList(workOrders);
     }  
   }, false);
 
@@ -202,7 +202,7 @@ export default () => {
 
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-opened-form-id');
-    applyRole(model.getUserRole());
+    applyRole(state.getUserRole());
   }, false);
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
@@ -213,10 +213,10 @@ export default () => {
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
     if(event.target && event.target['nodeName'] === "li") {
       const number = event.target['id'];
-      const workOrder = model.getWorkOrderByNumber(number);
+      const workOrder = state.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
         bindWorkOrderToForm(workOrder);
-        applyRole(model.getUserRole());
+        applyRole(state.getUserRole());
         console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
@@ -227,7 +227,7 @@ export default () => {
   getById('workorders-list-closed-form-id').addEventListener('click', (event) => {
     if(event.target && event.target['nodeName'] === "li") {
       const number = event.target['id'];
-      const workorder = model.getWorkOrderByNumber(number);
+      const workorder = state.getWorkOrderByNumber(number);
       if (workorder !== undefined) {
         bindWorkOrderToForm(workorder);
         applyRole(readonlyRole);
