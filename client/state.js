@@ -3,20 +3,23 @@ import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
 const state = {
   user: {},
-  workOrders: new Map()
+  workOrders: []
 }
 
 function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
-  const openedWorkOrders = workOrders.values().filter((workOrder) => { workOrder.closed.length === 0});
-  const closedWorkOrders = workOrders.values().filter((workorder) => { workorder.closed.length > 0});
+  const openedWorkOrders = workOrders.filter((workOrder) => workOrder.closed.length === 0);
+  const closedWorkOrders = workOrders.filter((workorder) => workorder.closed.length > 0);
+
   let openedWorkOrdersList = [];
   for (const workOrder of openedWorkOrders) {
-    openedWorkOrdersList.push({ id: workOrder.number, value: workOrder.title });
+    openedWorkOrdersList.push( { id: workOrder.number, value: workOrder.title } );
   }
+
   let closedWorkOrdersList = [];
   for (const workOrder of closedWorkOrders) {
-    closedWorkOrdersList.push({ id: workOrder.number, value: workOrder.title });
+    closedWorkOrdersList.push( { id: workOrder.number, value: workOrder.title } );
   }
+  
   setListIdValues(openedWorkOrdersListId, openedWorkOrdersList);
   setListIdValues(closedWorkOrdersListId, closedWorkOrdersList);
 }
@@ -44,12 +47,12 @@ export function setUser(name, emailAddress, streetAddress) {
 }
 
 export function getWorkOrderByNumber(number) {
-  return state.workOrders.get(number);
+  return state.workOrders.find(workOrder => workOrder.number === number);
 }
 
 export function addWorkOrder(workOrder) {
-  state.workOrders.set(workOrder.number, workOrder);
-  const sortedWorkOrders = Array.from(state.workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  state.workOrders.push(workOrder);
+  const sortedWorkOrders = state.workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
   splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
@@ -72,9 +75,6 @@ export function bindServiceProvidersToSelect(serviceProviders) {
 }
 
 export function bindWorkOrdersToList(workOrders) {
-  state.workOrders.clear();
-  for (const workOrder of workOrders) {
-    state.workOrders.set(workOrder.number, workOrder);
-  }
+  state.workOrders = workOrders;
   splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
