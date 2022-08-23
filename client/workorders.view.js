@@ -100,15 +100,15 @@ function bindViewToWorkOrder(number, homeownerId, serviceProviderId, title, issu
 }
 
 export default () => {
-  console.log('*** workorders view init ...');
+  console.log('*** workorders form init ...');
 
   getById('workorder-new-command-id').addEventListener('click', () => {
     bindEmptyWorkOrderToView();
   }, false);
 
-  getById('workorder-view-id').addEventListener('submit', (event) => {
+  getById('workorder-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
-    hide('workorder-errors-view-id');
+    hide('workorder-errors-form-id');
 
     const number = getValueById('workorder-number-id');
     const homeownerId = model.getUserId();
@@ -127,7 +127,7 @@ export default () => {
         const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
-          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
+          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id');
         } else {          
           show('workorder-dialog-id');
         }
@@ -135,13 +135,13 @@ export default () => {
         const status = fetcher.addWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
-          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
+          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id');
         } else {
           model.addWorkOrder(status.workorder);
         }
       }
     } else {
-      setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-view-id');
+      setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id');
     }  
   }, false);
 
@@ -149,7 +149,7 @@ export default () => {
     const number = getValueById('workorder-number-id');
     const workOrder = fetcher.getWorkOrderByNumber(number);
     if (!workOrder.success) {
-      setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
+      setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
       bindWorkOrderToView(workOrder);
     }
@@ -159,7 +159,7 @@ export default () => {
     const id = model.getUserId()
     const workOrders = fetcher.listWorkOrdersByUserId(id);
     if (!workOrders.success) {
-      setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
+      setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
       model.bindWorkOrdersToListView(workOrders);
     }  
@@ -184,7 +184,7 @@ export default () => {
     const url = `/images/${number}/${filename}`;
     const imageUrl = fetcher.saveImage(number, url, file, filename);
     if (!imageUrl.success) {
-      setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-view-id');
+      setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
       setImageUrlById('workorder-image-url-id', imageUrl.url);
       setTextById('workorder-dialog-message', 'Photo saved successfully.');
@@ -201,37 +201,37 @@ export default () => {
   }, false);
 
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
-    selectTab('workorders-list-opened-view-id');
+    selectTab('workorders-list-opened-form-id');
     applyRole(model.getUserRole());
   }, false);
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
-    selectTab('workorders-list-closed-view-id');
+    selectTab('workorders-list-closed-form-id');
     applyRole(readonlyRole);
   }, false);
 
-  getById('workorders-list-opened-view-id').addEventListener('click', (event) => {
+  getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
     if(event.target && event.target['nodeName'] === "li") {
       const number = event.target['id'];
       const workOrder = model.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
         bindWorkOrderToView(workOrder);
         applyRole(model.getUserRole());
-        console.log(`*** work order selected and bound to view for number: ${number}`);
+        console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
       }
     }
   }, false);
 
-  getById('workorders-list-closed-view-id').addEventListener('click', (event) => {
+  getById('workorders-list-closed-form-id').addEventListener('click', (event) => {
     if(event.target && event.target['nodeName'] === "li") {
       const number = event.target['id'];
       const workorder = model.getWorkOrderByNumber(number);
       if (workorder !== undefined) {
         bindWorkOrderToView(workorder);
         applyRole(readonlyRole);
-        console.log(`*** work order selected and bound to view for number: ${number}`);
+        console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
       }
