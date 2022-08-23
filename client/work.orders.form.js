@@ -20,7 +20,7 @@ function selectTab(tabviewId) {
   show(tabviewId);
 }
 
-function applyRole(role) {
+function applyRoleToForm(role) {
   if (role === homeowner) {
     // always readonly removeReadonlyById('workorder-number-id');
     // always readonly removeReadonlyById('workorder-homeowner-id');
@@ -202,12 +202,12 @@ export default () => {
 
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-opened-form-id');
-    applyRole(state.getUserRole());
+    applyRoleToForm(state.getUserRole());
   }, false);
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-closed-form-id');
-    applyRole(readonlyRole);
+    applyRoleToForm(readonlyRole);
   }, false);
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
@@ -216,7 +216,7 @@ export default () => {
       const workOrder = state.getWorkOrderByNumber(number);
       if (workOrder !== undefined) {
         bindWorkOrderToForm(workOrder);
-        applyRole(state.getUserRole());
+        applyRoleToForm(state.getUserRole());
         console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
@@ -230,7 +230,7 @@ export default () => {
       const workorder = state.getWorkOrderByNumber(number);
       if (workorder !== undefined) {
         bindWorkOrderToForm(workorder);
-        applyRole(readonlyRole);
+        applyRoleToForm(readonlyRole);
         console.log(`*** work order selected and bound to form for number: ${number}`);
       } else {
         console.log(`*** work order undefined for number: ${number}`);
