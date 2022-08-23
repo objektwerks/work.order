@@ -12,7 +12,8 @@ import { validateCredentials } from './validator.js';
 export default () => {
   console.log('*** login view init ...');
 
-  getById('login-command-id').addEventListener('click', () => {
+  getById('login-command-id').addEventListener('submit', (event) => {
+    event.preventDefault();
     hide('login-errors-view-id');
 
     const emailAddress = getValueById('login-email-address-id');
