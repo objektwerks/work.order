@@ -1,29 +1,29 @@
 // @ts-check
 import { getById, getByClass, show } from './common.js';
 
-function selectMenuItem(viewId) {
-  const views = getByClass('view');
-  for (const view of views) {
-    view['style'].display = 'none';
+function selectMenuItem(formId) {
+  const forms = getByClass('form');
+  for (const form of forms) {
+    form['style'].display = 'none';
   }
-  show(viewId);
+  show(formId);
 }
 
 export default () => {
   getById('login-menu-id').addEventListener('click', () => {
-    selectMenuItem('login-view-id')
+    selectMenuItem('login-form-id')
   }, false);
   
   getById('register-menu-id').addEventListener('click', () => {
-    selectMenuItem('register-view-id')
+    selectMenuItem('register-form-id')
   }, false);
   
   getById('workorders-menu-id').addEventListener('click', () => {
-    selectMenuItem('workorders-view-id')
+    selectMenuItem('workorders-form-id')
   }, false);
   
   getById('user-menu-id').addEventListener('click', () => {
-    selectMenuItem('user-view-id')
+    selectMenuItem('user-form-id')
   }, false);
 
   console.log('*** menu init ...');
