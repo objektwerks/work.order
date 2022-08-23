@@ -6,7 +6,7 @@ import * as state from './state.js';
 // @ts-ignore
 import { validateUserView } from './validator.js';
 
-function bindViewToUser(name, emailAddress, streetAddress) {
+function bindFormToUser(name, emailAddress, streetAddress) {
   state.setUser(name, emailAddress, streetAddress);
 }
 
@@ -23,7 +23,7 @@ export default () => {
 
     const errors = validateUserView(name, emailAddress, streetAddress);
     if (errors.length === 0) {
-      bindViewToUser(name, emailAddress, streetAddress);
+      bindFormToUser(name, emailAddress, streetAddress);
       const status = fetcher.saveUser(state.getUser());
       if (!status.success) {
         errors.push(status.error);
