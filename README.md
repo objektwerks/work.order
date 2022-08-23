@@ -97,6 +97,7 @@ Photos
 >Supported photo file formats:
 1. **jpeg**
 2. **png**
+>Note, only 1 image per work order allowed at this time.
 
 License
 -------
