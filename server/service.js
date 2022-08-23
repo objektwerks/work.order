@@ -119,7 +119,7 @@ export function saveWorkOrder(workOrder) {
       log('saveWorkOrder', `failed for ${workOrder}`);
     }
   } catch(error) {
-    status = Status.fail('Save work order failed.');
+    status = WorkOrder.fail('Save work order failed.', workOrder);
     log('saveWorkOrder', `failed: ${error} for ${workOrder}`);
   }
   return status;
@@ -137,7 +137,7 @@ export function saveUser(user) {
       log('saveUser', `failed for ${user}`);
     }
   } catch(error) {
-    status = Status.fail('Save user failed.');
+    status = User.fail('Save user failed.', user);
     log('saveUser', `failed: ${error} for ${user}`);
   }
   return status;
