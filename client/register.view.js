@@ -9,11 +9,11 @@ import { validateRegistration } from './validator.js';
 import { Registration } from "./entity.js";
 
 export default () => {
-  console.log('*** register view init ...');
+  console.log('*** register form init ...');
 
   getById('register-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
-    hide('register-errors-view-id');
+    hide('register-errors-form-id');
 
     const role = getValueById('register-role-id');
     const name = getValueById('register-name-id');
@@ -26,15 +26,15 @@ export default () => {
       const status = fetcher.register(registration);
       if (!status.success) {
         errors.push(status.error);
-        setErrorsList(errors, 'register-errors-list-id', 'register-errors-view-id');
+        setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id');
       } else {
-        hide('register-view-id"');
+        hide('register-form-id"');
         hide('register-menu-id');
         
         show('register-dialog-id');
       }
     } else {
-      setErrorsList(errors, 'register-errors-list-id', 'register-errors-view-id');
+      setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id');
     }
   }, false);
 }
