@@ -1,8 +1,10 @@
 // @ts-check
 import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-let user = {};
-let workOrders = new Map();
+const model = {
+  user: {},
+  workOrders: new Map()
+}
 
 function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
   const openedWorkOrders = workOrders.values().filter((workOrder) => { workOrder.closed.length === 0});
@@ -24,35 +26,35 @@ export default () => {
 }
 
 export function getUserId() {
-  return user.id;
+  return model.user.id;
 }
 
 export function getUserRole() {
-  return user.role;
+  return model.user.role;
 }
 
 export function getUser() {
-  return user;
+  return model.user;
 }
 
 export function setUser(name, emailAddress, streetAddress) {
-  user.name = name;
-  user.emailAddress = emailAddress;
-  user.streetAddress = streetAddress;
+  model.user.name = name;
+  model.user.emailAddress = emailAddress;
+  model.user.streetAddress = streetAddress;
 }
 
 export function getWorkOrderByNumber(number) {
-  return workOrders.get(number);
+  return model.workOrders.get(number);
 }
 
-export function addWorkOrder(workorder) {
-  workOrders.set(workorder.number, workorder);
-  const sortedWorkOrders = Array.from(workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+export function addWorkOrder(workOrder) {
+  model.workOrders.set(workOrder.number, workOrder);
+  const sortedWorkOrders = Array.from(model.workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
 export function bindUserToForm(user) {
-  user = user;
+  model.user = user;
   setValueById('workorder-homeowner-id', user.name);
   setValueById('user-role-id', user.role);
   setValueById('user-name-id', user.name);
@@ -70,9 +72,9 @@ export function bindServiceProvidersToSelect(serviceProviders) {
 }
 
 export function bindWorkOrdersToList(workOrders) {
-  workOrders.clear();
+  model.workOrders.clear();
   for (const workOrder of workOrders) {
-    workOrders.set(workOrder.number, workOrder);
+    model.workOrders.set(workOrder.number, workOrder);
   }
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
