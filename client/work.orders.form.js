@@ -86,21 +86,6 @@ function bindWorkOrderToForm(workOrder) {
   setValueById('workorder-closed-id', workOrder.closed);
 }
 
-function bindFormToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
-  if (number > 0) { // save
-    const workOrder = model.getWorkOrderByNumber(number);
-    workOrder.serviceProviderId = serviceProviderId;
-    workOrder.title = title;
-    workOrder.issue = issue;
-    workOrder.imageUrl = imageUrl;
-    workOrder.resolution = resolution;
-    workOrder.closed = closed;
-    return workOrder;
-  } else { // add
-    return WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-  }
-}
-
 export default () => {
   console.log('*** workorders form init ...');
 
@@ -123,9 +108,21 @@ export default () => {
     const opened = getValueById('workorder-opened-id');
     const closed = getValueById('workorder-closed-id');
 
+    let workOrder;
+    if (number > 0) { // save
+      workOrder = model.getWorkOrderByNumber(number);
+      workOrder.serviceProviderId = serviceProviderId;
+      workOrder.title = title;
+      workOrder.issue = issue;
+      workOrder.imageUrl = imageUrl;
+      workOrder.resolution = resolution;
+      workOrder.closed = closed;
+    } else { // add
+      workOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
+    }
+
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     if (errors.length === 0) {
-      const workOrder = bindFormToWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
       if (workOrder.number > 0) { // save
         const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
