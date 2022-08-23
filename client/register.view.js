@@ -11,7 +11,8 @@ import { Registration } from "./entity.js";
 export default () => {
   console.log('*** register view init ...');
 
-  getById('register-command-id').addEventListener('click', () => {
+  getById('register-command-id').addEventListener('submit', (event) => {
+    event.preventDefault();
     hide('register-errors-view-id');
 
     const role = getValueById('register-role-id');
