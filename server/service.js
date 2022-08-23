@@ -43,54 +43,54 @@ export function register(registration) {
 }
 
 export function login(credentials) {
-  let userServiceProvidersWorkOrders;
+  let status;
   try {
     const user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
     if (Object.entries(user).length > 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider);
       const workOrders = store.listWorkOrdersByUserId(user.id);
-      userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.success(user, serviceProviders, workOrders);
+      status = UserServiceProvidersWorkOrders.success(user, serviceProviders, workOrders);
       log('login', `succeeded for ${credentials.emailAddress}`);
     } else {
-      userServiceProvidersWorkOrders = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
+      status = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
       log('login', `failed for ${credentials.emailAddress}`);
     }
   } catch(error) {
-    userServiceProvidersWorkOrders.error = `Login failed for ${credentials.emailAddress}`;
+    status.error = `Login failed for ${credentials.emailAddress}`;
     log('login', `failed error: ${error} for ${credentials.emailAddress}`);
   }
-  return userServiceProvidersWorkOrders;
+  return status;
 }
 
 export function listWorkOrdersByUserId(id) {
-  let workOrders;
+  let status;
   try {
     const list = store.listWorkOrdersByUserId(id);
-    workOrders = WorkOrders.success(list);
+    status = WorkOrders.success(list);
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`);
   } catch(error) {
-    workOrders = WorkOrders.fail('List work orders by user id failed.');
+    status = WorkOrders.fail('List work orders by user id failed.');
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`);
   }
-  return workOrders;
+  return status;
 }
 
 export function getWorkOrderByNumber(number) {
-  let workOrder;
+  let status;
   try {
     const get = store.getWorkOrderByNumber(number);
     if (Object.entries(get).length > 0) {
-      workOrder = WorkOrder.success(get);
+      status = WorkOrder.success(get);
       log('getWorkOrderByNumber', `succeeded for number: ${number}`);
     } else {
-      workOrder = WorkOrder.fail('Get work order by number failed.', number);
+      status = WorkOrder.fail('Get work order by number failed.', number);
       log('getWorkOrderByNumber', `succeeded for number: ${number}`);
     }
   } catch(error) {
-    workOrder = WorkOrder.fail('Get work order by number failed.', number);
+    status = WorkOrder.fail('Get work order by number failed.', number);
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`);
   }
-  return workOrder;
+  return status;
 }
 
 export function addWorkOrder(workOrder) {
