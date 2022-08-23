@@ -7,14 +7,14 @@ const state = {
 }
 
 function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
-  const openedWorkOrders = workOrders.filter((workOrder) => workOrder.closed.length === 0);
-  const closedWorkOrders = workOrders.filter((workorder) => workorder.closed.length > 0);
-
-  const openedWorkOrdersList = openedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
-  const closedWorkOrdersList = closedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
-  
-  setListIdValues(openedWorkOrdersListId, openedWorkOrdersList);
-  setListIdValues(closedWorkOrdersListId, closedWorkOrdersList);
+  const openedWorkOrders = workOrders
+    .filter((workOrder) => workOrder.closed.length === 0) // opened
+    .map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
+  const closedWorkOrders = workOrders
+    .filter((workorder) => workorder.closed.length > 0) // closed
+    .closedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
+  setListIdValues(openedWorkOrdersListId, openedWorkOrders);
+  setListIdValues(closedWorkOrdersListId, closedWorkOrders);
 }
 
 export default () => {
