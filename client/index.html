@@ -29,7 +29,7 @@
       </div>
 
       <!-- Login -->
-      <div id="login-view-id" class="view w3-container" style="display:none">
+      <form id="login-view-id" class="view w3-container" style="display:none">
         <h3 class="w3-text-indigo">Login</h3>
         <div id="login-errors-view-id" class="w3-panel w3-red" style="display:none">
           <ul id="login-errors-list-id" class="w3-ul"></ul>
@@ -39,12 +39,12 @@
         <label for="login-pin-id" class="w3-text-indigo">Pin:</label>
         <input id="login-pin-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="7" maxlength="7" required></input>
         <div class="w3-bar w3-center w3-padding">
-          <button id="login-command-id" class="w3-btn w3-indigo w3-round w3-center">Login</button>
+          <button id="login-command-id" class="w3-btn w3-indigo w3-round w3-center" type="submit">Login</button>
         </div>
-      </div>
+      </form>
 
       <!-- Register -->
-      <div id="register-view-id" class="view w3-container" style="display:none">
+      <form id="register-view-id" class="view w3-container" style="display:none">
         <h3 class="w3-text-indigo">Register</h3>
         <div id="register-errors-view-id" class="w3-panel w3-red" style="display:none">
           <ul id="register-errors-list-id" class="w3-ul"></ul>
@@ -61,9 +61,9 @@
         <label for="register-street-address-id" class="w3-text-indigo">Street Address:</label>
         <input id="register-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required></input>
         <div class="w3-bar w3-center w3-padding">
-          <button id="register-command-id" class="w3-btn w3-indigo w3-round w3-center">Register</button>
+          <button id="register-command-id" class="w3-btn w3-indigo w3-round w3-center" type="submit">Register</button>
         </div>
-      </div>
+      </form>
 
       <!-- Register Dialog -->
       <div id="register-dialog-id" class="w3-model w3-indigo" style="display:none">
@@ -80,7 +80,7 @@
       <!-- Work Orders -->
       <div id="workorders-view-id" class="view w3-container" style="display:none">
         <h3 class="w3-text-indigo">Work Orders</h3>
-        <div id="workorder-view-id" class=" w3-container">
+        <form id="workorder-view-id" class=" w3-container">
           <div id="workorder-errors-view-id" class="w3-panel w3-red" style="display:none">
             <ul id="workorder-errors-list-id" class="w3-ul"></ul>
           </div>
@@ -107,10 +107,10 @@
           <input id="workorder-closed-check-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="checkbox"></input>
           <div class="w3-bar w3-center w3-padding">
             <button id="workorder-new-command-id" class="w3-btn w3-indigo w3-round w3-center">New</button>
-            <button id="workorder-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
+            <button id="workorder-save-command-id" class="w3-btn w3-indigo w3-round w3-center" type="submit">Save</button>
             <button id="workorder-refresh-command-id" class="w3-btn w3-indigo w3-round w3-center">Refresh</button>
           </div>
-        </div>
+        </form>
         <div id=""workorders-list-view-id class="w3-container">
           <div id="workorders-list-tab-view-id" class="w3-bar w3-indigo">
             <button id="workorders-list-opened-tab-id" class="w3-bar-item w3-button">Opened</button>
@@ -141,7 +141,7 @@
       </div>
 
       <!-- User ( Profile ) -->
-      <div id="user-view-id" class="view w3-container" style="display:none">
+      <form id="user-view-id" class="view w3-container" style="display:none">
         <h3 class="w3-text-indigo">Profile</h3>
         <div id="user-errors-view-id" class="w3-panel w3-red" style="display:none">
           <ul id="user-errors-list-id" class="w3-ul"></ul>
@@ -157,9 +157,9 @@
         <label for="user-registered-id" class="w3-text-indigo">Registered:</label>
         <input id="user-registered-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly></input>
         <div class="w3-bar w3-center w3-padding">
-          <button id="user-save-command-id" class="w3-btn w3-indigo w3-round w3-center">Save</button>
+          <button id="user-save-command-id" class="w3-btn w3-indigo w3-round w3-center" type="submit">Save</button>
         </div>
-      </div>
+      </form>
 
       <!-- User ( Profile ) Dialog -->
       <div id="user-dialog-id" class="w3-model w3-indigo" style="display:none">
