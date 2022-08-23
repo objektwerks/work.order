@@ -108,6 +108,7 @@ export default () => {
 
   getById('workorder-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
+    
     hide('workorder-errors-form-id');
 
     const number = getValueById('workorder-number-id');

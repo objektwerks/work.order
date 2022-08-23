@@ -15,6 +15,7 @@ export default () => {
 
   getById('user-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
+    
     hide('user-errors-form-id');
 
     const name = getValueById('user-name-id');

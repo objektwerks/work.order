@@ -13,6 +13,7 @@ export default () => {
 
   getById('register-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
+    
     hide('register-errors-form-id');
 
     const role = getValueById('register-role-id');

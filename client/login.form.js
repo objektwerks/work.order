@@ -14,6 +14,7 @@ export default () => {
 
   getById('login-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
+    
     hide('login-errors-form-id');
 
     const emailAddress = getValueById('login-email-address-id');
