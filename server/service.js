@@ -94,17 +94,17 @@ export function getWorkOrderByNumber(number) {
 }
 
 export function addWorkOrder(workOrder) {
-  let saved;
+  let status;
   try {
     const number = store.addWorkOrder(workOrder);
     workOrder.number = number
-    saved = WorkOrder.success(workOrder);
+    status = WorkOrder.success(workOrder);
     log('addWorkOrder', `succeeded for number: ${number}`);
   } catch(error) {
-    saved = WorkOrder.fail('Add work order failed.', workOrder.number);
+    status = WorkOrder.fail('Add work order failed.', workOrder.number);
     log('addWorkOrder', `failed: ${error} for ${workOrder}`);
   }
-  return saved;
+  return status;
 }
 
 export function saveWorkOrder(workOrder) {
@@ -112,10 +112,10 @@ export function saveWorkOrder(workOrder) {
   try {
     const count = store.saveWorkOrder(workOrder);
     if (count > 0) {
-      status = Status.success();
-      log('saveWorkOrder', `succeeded for id: ${workOrder.id}`);
+      status = WorkOrder.success(workOrder);
+      log('saveWorkOrder', `succeeded for number: ${workOrder.number}`);
     } else {
-      status = Status.fail('Save work order failed.');
+      status = WorkOrder.fail('Save work order failed.', workOrder);
       log('saveWorkOrder', `failed for ${workOrder}`);
     }
   } catch(error) {
@@ -144,19 +144,19 @@ export function saveUser(user) {
 }
 
 export function saveImageUrl(number, url) {
-  let imageUrl;
+  let status;
   try {
     const count = store.saveImageUrl(number, url);
     if (count > 0) {
-      imageUrl = ImageUrl.success(number, url);
+      status = ImageUrl.success(number, url);
       log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
     } else {
-      imageUrl = ImageUrl.fail('Save image url failed.', number, url);
+      status = ImageUrl.fail('Save image url failed.', number, url);
       log('saveImageUrl', `failed for number: ${number} url: ${url}`);
     }
   } catch(error) {
-    imageUrl = ImageUrl.fail('Save image url failed.', number, url);
+    status = ImageUrl.fail('Save image url failed.', number, url);
     log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`);
   }
-  return imageUrl;
+  return status;
 }
