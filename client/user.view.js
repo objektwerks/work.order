@@ -11,11 +11,11 @@ function bindViewToUser(name, emailAddress, streetAddress) {
 }
 
 export default () => {
-  console.log('*** user view init ...');
+  console.log('*** user form init ...');
 
-  getById('user-view-id').addEventListener('submit', (event) => {
+  getById('user-form-id').addEventListener('submit', (event) => {
     event.preventDefault();
-    hide('user-errors-view-id');
+    hide('user-errors-form-id');
 
     const name = getValueById('user-name-id');
     const emailAddress = getValueById('user-email-address-id');
@@ -27,12 +27,12 @@ export default () => {
       const status = fetcher.saveUser(model.getUser());
       if (!status.success) {
         errors.push(status.error);
-        setErrorsList(errors, 'user-errors-list-id', 'user-errors-view-id');
+        setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');
       } else {          
         show('user-dialog-id');
       }
     } else {
-      setErrorsList(errors, 'user-errors-list-id', 'user-errors-view-id');
+      setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');
     }      
   }, false);
 }
