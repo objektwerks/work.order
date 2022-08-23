@@ -10,15 +10,8 @@ function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersLis
   const openedWorkOrders = workOrders.filter((workOrder) => workOrder.closed.length === 0);
   const closedWorkOrders = workOrders.filter((workorder) => workorder.closed.length > 0);
 
-  let openedWorkOrdersList = [];
-  for (const workOrder of openedWorkOrders) {
-    openedWorkOrdersList.push( { id: workOrder.number, value: workOrder.title } );
-  }
-
-  let closedWorkOrdersList = [];
-  for (const workOrder of closedWorkOrders) {
-    closedWorkOrdersList.push( { id: workOrder.number, value: workOrder.title } );
-  }
+  const openedWorkOrdersList = openedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
+  const closedWorkOrdersList = closedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
   
   setListIdValues(openedWorkOrdersListId, openedWorkOrdersList);
   setListIdValues(closedWorkOrdersListId, closedWorkOrdersList);
