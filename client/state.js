@@ -3,6 +3,7 @@ import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
 const state = {
   user: {},
+  serviceProviders: [],
   workOrders: []
 }
 
@@ -60,6 +61,7 @@ export function bindUserToForm(user) {
 }
 
 export function bindServiceProvidersToSelect(serviceProviders) {
+  state.serviceProviders = serviceProviders;
   const idvalues = [];
   for (const serviceProvider of serviceProviders) {
     idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
