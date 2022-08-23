@@ -13,7 +13,8 @@ function bindViewToUser(name, emailAddress, streetAddress) {
 export default () => {
   console.log('*** user view init ...');
 
-  getById('user-save-command-id').addEventListener('click', () => {
+  getById('user-save-command-id').addEventListener('submit', (event) => {
+    event.preventDefault();
     hide('user-errors-view-id');
 
     const name = getValueById('user-name-id');
