@@ -106,7 +106,8 @@ export default () => {
     bindEmptyWorkOrderToView();
   }, false);
 
-  getById('workorder-save-command-id').addEventListener('click', () => {
+  getById('workorder-save-command-id').addEventListener('submit', (event) => {
+    event.preventDefault();
     hide('workorder-errors-view-id');
 
     const number = getValueById('workorder-number-id');
