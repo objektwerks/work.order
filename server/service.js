@@ -2,7 +2,7 @@
 import { newPin } from './pin.js';
 import * as store from './store.js';
 import * as emailer from './emailer.js';
-import { serviceProvider, ImageUrl, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from '../shared/entity.js';
+import { serviceProvider, ImageUrl, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders, Registration } from '../shared/entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
@@ -29,14 +29,14 @@ export function register(registration) {
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration);
     id = store.addUser(user);
     if (id > 0) {
-      status = Status.success();
+      status = Registration.success();
       log('register', `succeeded for ${registration.emailAddress}`);
     } else {
-      status = Status.fail(`Register failed for ${registration.emailAddress}`);
+      status = Registration.fail(`Register failed for ${registration.emailAddress}`);
       log('register', `failed for: ${registration.emailAddress}`);
     }
   } catch (error) {
-    status = Status.fail(`register failed for ${registration.emailAddress}`);
+    status = Registration.fail(`register failed for ${registration.emailAddress}`);
     log('register', `failed error: ${error} for ${registration.emailAddress}`);
   }
   return status;

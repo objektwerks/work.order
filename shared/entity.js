@@ -11,18 +11,6 @@ export class Registration {
       streetAddress: streetAddress
     }    
   }
-}
-
-export class Credentials {
-  static create(emailAddress, pin) {
-    return {
-      emailAddress: emailAddress,
-      pin: pin
-    }    
-  }
-}
-
-export class Status {
   static success() {
     return {
       success: true
@@ -33,6 +21,15 @@ export class Status {
       success: false,
       error: error
     }
+  }
+}
+
+export class Credentials {
+  static create(emailAddress, pin) {
+    return {
+      emailAddress: emailAddress,
+      pin: pin
+    }    
   }
 }
 
