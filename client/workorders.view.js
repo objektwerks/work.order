@@ -179,8 +179,8 @@ export default () => {
     const number = getValueById('workorder-number-id');
     const file = getFileById('workorder-image-file-id');
     const datetime = new Date().toISOString();
-    const ext = file['type'] === 'image/jpeg' ? '.jpeg' : '.png';
-    const filename = `${number}-${datetime}${ext}`;
+    const ext = file['type'] === 'image/jpeg' ? 'jpeg' : 'png';
+    const filename = `${number}-${datetime}.${ext}`;
     const url = `/images/${number}/${filename}`;
     const imageUrl = fetcher.saveImage(number, url, file, filename);
     if (!imageUrl.success) {
