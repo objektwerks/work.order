@@ -5,7 +5,7 @@ import fetcher from './fetcher.js';
 import registerview from './register.form.js';
 import loginview from './login.form.js';
 import workordersview from './workorders.view.js';
-import userview from './user.view.js';
+import userview from './user.form.js';
 
 export default () => {
   menu();
