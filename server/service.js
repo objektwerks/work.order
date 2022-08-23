@@ -56,7 +56,7 @@ export function login(credentials) {
       log('login', `failed for ${credentials.emailAddress}`);
     }
   } catch(error) {
-    status.error = `Login failed for ${credentials.emailAddress}`;
+    status = UserServiceProvidersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`);
     log('login', `failed error: ${error} for ${credentials.emailAddress}`);
   }
   return status;
