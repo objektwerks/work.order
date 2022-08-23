@@ -120,10 +120,11 @@ export class User {
     }    
   }
 
-  static fail(error) {
+  static fail(error, user) {
     return {
       success: false,
-      error: error
+      error: error,
+      user: user
     }    
   }
 }

@@ -130,10 +130,10 @@ export function saveUser(user) {
   try {
     const count = store.saveUser(user);
     if (count > 0) {
-      status = Status.success();
+      status = User.success(user);
       log('saveUser', `succeeded for id: ${user.id}`);
     } else {
-      status = Status.fail('Save user failed.');
+      status = User.fail('Save user failed.', user);
       log('saveUser', `failed for ${user}`);
     }
   } catch(error) {
