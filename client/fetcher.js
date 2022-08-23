@@ -46,23 +46,23 @@ export default () => {
 }
 
 export function register(registration) {
-  return call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'));
+  return this.call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'));
 }
 
 export function login(credentials) {
-  return call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'));
+  return this.call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'));
 }
 
 export function addWorkOrder(workOrder) {
-  return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder));
+  return this.call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder));
 }
 
 export function saveWorkOrder(workOrder) {
-  return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder));
+  return this.call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder));
 }
 
 export function saveUser(user) {
-  return call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user));
+  return this.call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user));
 }
 
 export function saveImage(number, url, file, filename) {
@@ -72,13 +72,13 @@ export function saveImage(number, url, file, filename) {
   formdata.append('url', url);
   formdata.append('imagefilename', filename);
   formdata.append('image', file, filename);
-  return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false);
+  return this.call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false);
 }
 
 export function getWorkOrderByNumber(number) {
-  return call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`));
+  return this.call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`));
 }
 
 export function listWorkOrdersByUserId(id) {
-  return call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`));
+  return this.call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`));
 }
