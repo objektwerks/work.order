@@ -65,6 +65,7 @@ function applyRoleToForm(role) {
 
 function bindEmptyWorkOrderToForm() {
   setValueById('workorder-number-id', 0);
+  setValueById('workorder-homeowner-id', model.getUserId);
   setValueById('workorder-title-id', "");
   setValueById('workorder-issue-id', "");
   setValueById('workorder-image-url-id', "");
@@ -75,6 +76,7 @@ function bindEmptyWorkOrderToForm() {
 
 function bindWorkOrderToForm(workOrder) {
   setValueById('workorder-number-id', workOrder.number);
+  setValueById('workorder-homeowner-id', workOrder.homeownerId);
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId);
   setValueById('workorder-title-id', workOrder.title);
   setValueById('workorder-issue-id', workOrder.issue);
