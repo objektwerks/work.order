@@ -51,7 +51,7 @@ export function addWorkOrder(workOrder) {
 
 export function bindUserToForm(user) {
   state.user = user;
-  setValueById('workorder-homeowner-id', user.name);
+  setValueById('workorder-homeowner-id', user.id);
   setValueById('user-role-id', user.role);
   setValueById('user-name-id', user.name);
   setValueById('user-email-address-id', user.emailAddress);
