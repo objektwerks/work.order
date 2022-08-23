@@ -1,7 +1,7 @@
 // @ts-check
 import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-const model = {
+const state = {
   user: {},
   workOrders: new Map()
 }
@@ -26,35 +26,35 @@ export default () => {
 }
 
 export function getUserId() {
-  return model.user.id;
+  return state.user.id;
 }
 
 export function getUserRole() {
-  return model.user.role;
+  return state.user.role;
 }
 
 export function getUser() {
-  return model.user;
+  return state.user;
 }
 
 export function setUser(name, emailAddress, streetAddress) {
-  model.user.name = name;
-  model.user.emailAddress = emailAddress;
-  model.user.streetAddress = streetAddress;
+  state.user.name = name;
+  state.user.emailAddress = emailAddress;
+  state.user.streetAddress = streetAddress;
 }
 
 export function getWorkOrderByNumber(number) {
-  return model.workOrders.get(number);
+  return state.workOrders.get(number);
 }
 
 export function addWorkOrder(workOrder) {
-  model.workOrders.set(workOrder.number, workOrder);
-  const sortedWorkOrders = Array.from(model.workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  state.workOrders.set(workOrder.number, workOrder);
+  const sortedWorkOrders = Array.from(state.workOrders.values()).sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
 export function bindUserToForm(user) {
-  model.user = user;
+  state.user = user;
   setValueById('workorder-homeowner-id', user.name);
   setValueById('user-role-id', user.role);
   setValueById('user-name-id', user.name);
@@ -72,9 +72,9 @@ export function bindServiceProvidersToSelect(serviceProviders) {
 }
 
 export function bindWorkOrdersToList(workOrders) {
-  model.workOrders.clear();
+  state.workOrders.clear();
   for (const workOrder of workOrders) {
-    model.workOrders.set(workOrder.number, workOrder);
+    state.workOrders.set(workOrder.number, workOrder);
   }
-  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  splitWorkOrders(state.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
