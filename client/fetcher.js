@@ -72,7 +72,7 @@ export function saveImage(number, url, file, filename) {
   formdata.append('url', url);
   formdata.append('imagefilename', filename);
   formdata.append('image', file, filename);
-  return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.'), false);
+  return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false);
 }
 
 export function getWorkOrderByNumber(number) {
