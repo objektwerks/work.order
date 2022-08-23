@@ -85,7 +85,7 @@ export function validateUser(id, role, name, emailAddress, streetAddress, regist
   return errors;
 }
 
-export function validateUserView(name, emailAddress, streetAddress) {
+export function validateUserInfo(name, emailAddress, streetAddress) {
   const errors = [];
   if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
   if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);

@@ -4,7 +4,7 @@ import * as fetcher from './fetcher.js';
 import * as state from './state.js';
 
 // @ts-ignore
-import { validateUserView } from './validator.js';
+import { validateUserInfo } from './validator.js';
 
 function bindFormToUser(name, emailAddress, streetAddress) {
   state.setUser(name, emailAddress, streetAddress);
@@ -21,7 +21,7 @@ export default () => {
     const emailAddress = getValueById('user-email-address-id');
     const streetAddress = getValueById('user-street-address-id');
 
-    const errors = validateUserView(name, emailAddress, streetAddress);
+    const errors = validateUserInfo(name, emailAddress, streetAddress);
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress);
       const status = fetcher.saveUser(state.getUser());
