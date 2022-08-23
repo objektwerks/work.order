@@ -51,7 +51,7 @@ export function addWorkOrder(workorder) {
   splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
-export function bindUserToView(user) {
+export function bindUserToForm(user) {
   user = user;
   setValueById('workorder-homeowner-id', user.name);
   setValueById('user-role-id', user.role);
@@ -61,7 +61,7 @@ export function bindUserToView(user) {
   setValueById('user-registered-id', user.registered);
 }
 
-export function bindServiceProvidersToSelectView(serviceProviders) {
+export function bindServiceProvidersToSelect(serviceProviders) {
   const idvalues = [];
   for (const serviceProvider of serviceProviders) {
     idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
@@ -69,7 +69,7 @@ export function bindServiceProvidersToSelectView(serviceProviders) {
   setSelectIdValues('workorder-service-provider-id', idvalues);
 }
 
-export function bindWorkOrdersToListView(workOrders) {
+export function bindWorkOrdersToList(workOrders) {
   workOrders.clear();
   for (const workOrder of workOrders) {
     workOrders.set(workOrder.number, workOrder);

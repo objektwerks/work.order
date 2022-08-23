@@ -27,9 +27,9 @@ export default () => {
         errors.push(userServiceProvidersWorkOrders.error);
         setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id');
       } else {
-        model.bindUserToView(userServiceProvidersWorkOrders.user);
-        model.bindServiceProvidersToSelectView(userServiceProvidersWorkOrders.serviceProviders);
-        model.bindWorkOrdersToListView(userServiceProvidersWorkOrders.workOrders);
+        model.bindUserToForm(userServiceProvidersWorkOrders.user);
+        model.bindServiceProvidersToSelect(userServiceProvidersWorkOrders.serviceProviders);
+        model.bindWorkOrdersToList(userServiceProvidersWorkOrders.workOrders);
 
         hide('login-form-id');
         hide('register-form-id"');

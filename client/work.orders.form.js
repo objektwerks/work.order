@@ -161,7 +161,7 @@ export default () => {
     if (!workOrders.success) {
       setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id');
     } else {
-      model.bindWorkOrdersToListView(workOrders);
+      model.bindWorkOrdersToList(workOrders);
     }  
   }, false);
 
