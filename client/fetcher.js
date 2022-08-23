@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { ImageUrl, Status, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
+import { ImageUrl, Status, User, UserServiceProvidersWorkOrders, WorkOrder, WorkOrders } from './entity.js';
 
 const rootUrl = 'https://' + window.location.host;
 const registerUrl = rootUrl + '/register';
@@ -53,16 +53,16 @@ export function login(credentials) {
   return this.call(this.loginUrl, this.post, this.headers, credentials, () => UserServiceProvidersWorkOrders.fail('Login failed.'));
 }
 
-export function addWorkOrder(workorder) {
-  return this.call(this.addWorkOrderUrl, this.post, this.headers, workorder, () => WorkOrder.fail('Add work order failed!'));
+export function addWorkOrder(workOrder) {
+  return this.call(this.addWorkOrderUrl, this.post, this.headers, workOrder, () => WorkOrder.fail('Add work order failed!'));
 }
 
-export function saveWorkOrder(workorder) {
-  return this.call(this.saveWorkOrderUrl, this.post, this.headers, workorder, () => Status.fail('Save work order failed!'));
+export function saveWorkOrder(workOrder) {
+  return this.call(this.saveWorkOrderUrl, this.post, this.headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder));
 }
 
 export function saveUser(user) {
-  return this.call(this.saveUserUrl, this.post, this.headers, user, () => Status.fail('Save user failed.'));
+  return this.call(this.saveUserUrl, this.post, this.headers, user, () => User.fail('Save user failed.', user));
 }
 
 export function saveImage(number, url, file, filename) {

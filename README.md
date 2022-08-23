@@ -70,7 +70,7 @@ Sequences
 4. **client:save** --- work order --> server --- work order --> client
 5. **client:list** --- userid --> server --- work orders --> client
 6. **client:get** --- number --> server --- work order --> client
-7. **client:save** --- user --> server --- status --> client
+7. **client:save** --- user --> server --- user --> client
 8. **client:save** --- image --> server --- imageUrl --> client
 
 Schema
