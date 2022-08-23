@@ -1,8 +1,10 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "checkJs": true,
     "module": "es6",
-    "target": "es6"
+    "target": "es6",
+    "outDir": "dist",
+    "sourceMap": true
   },
   "include": ["./server.js", "./client/*.js", "./server/*.js", "./shared/*.js"],
   "exclude": ["node_modules"]
