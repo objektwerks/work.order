@@ -54,7 +54,7 @@ export function login(credentials) {
 }
 
 export function addWorkOrder(workOrder) {
-  return this.call(this.addWorkOrderUrl, this.post, this.headers, workOrder, () => WorkOrder.fail('Add work order failed!'));
+  return this.call(this.addWorkOrderUrl, this.post, this.headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder));
 }
 
 export function saveWorkOrder(workOrder) {
@@ -76,9 +76,9 @@ export function saveImage(number, url, file, filename) {
 }
 
 export function getWorkOrderByNumber(number) {
-  return this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail('Get work order by number failed!'));
+  return this.call(this.getWorkOrderByNumberUrl + number, this.get, this.headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`));
 }
 
 export function listWorkOrdersByUserId(id) {
-  return this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail('List work orders by user failed!'));
+  return this.call(this.listWorkOrdersByUserIdUrl + id, this.get, this.headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`));
 }
