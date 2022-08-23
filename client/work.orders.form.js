@@ -99,7 +99,7 @@ export default () => {
     hide('workorder-errors-form-id');
 
     const number = getValueById('workorder-number-id');
-    const homeownerId = model.getUserId();
+    const homeownerId = getValueById('workorder-homeowner-id');
     const serviceProviderId = getSelectedIndexId('workorder-service-provider-id');
     const title = getValueById('workorder-title-id');
     const issue = getValueById('workorder-issue-id');
@@ -108,22 +108,18 @@ export default () => {
     const opened = getValueById('workorder-opened-id');
     const closed = getValueById('workorder-closed-id');
 
-    let workOrder;
-    if (number > 0) { // save
-      workOrder = model.getWorkOrderByNumber(number);
-      workOrder.serviceProviderId = serviceProviderId;
-      workOrder.title = title;
-      workOrder.issue = issue;
-      workOrder.imageUrl = imageUrl;
-      workOrder.resolution = resolution;
-      workOrder.closed = closed;
-    } else { // add
-      workOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
-    }
-
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
     if (errors.length === 0) {
-      if (workOrder.number > 0) { // save
+      let workOrder;
+      if (number > 0) { // save
+        workOrder = model.getWorkOrderByNumber(number);
+        workOrder.homeownerId = homeownerId;
+        workOrder.serviceProviderId = serviceProviderId;
+        workOrder.title = title;
+        workOrder.issue = issue;
+        workOrder.imageUrl = imageUrl;
+        workOrder.resolution = resolution;
+        workOrder.closed = closed;
         const status = fetcher.saveWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
@@ -132,12 +128,14 @@ export default () => {
           show('workorder-dialog-id');
         }
       } else { // add
+        workOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed);
         const status = fetcher.addWorkOrder(workOrder);
         if (!status.success) {
           errors.push(status.error);
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id');
         } else {
           model.addWorkOrder(status.workorder);
+          show('workorder-dialog-id');
         }
       }
     } else {
