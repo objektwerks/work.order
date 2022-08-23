@@ -9,7 +9,6 @@ const loginUrl = rootUrl + '/login';
 const addWorkOrderUrl = rootUrl + '/workorders/add';
 const saveWorkOrderUrl = rootUrl + '/workorders/save';
 const saveUserUrl = rootUrl + '/users/save';
-const listUsersByRoleUrl = rootUrl + '/users/';
 const saveImageUrl = rootUrl + '/image/save';
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/';
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/';
