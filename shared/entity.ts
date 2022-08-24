@@ -87,11 +87,11 @@ export class WorkOrders {
 }
 
 export class ImageUrl {
-  success: boolean
-  error: string
   number: number
   url: string
-
+  success: boolean
+  error: string
+  
   constructor(number: number, url: string, success: boolean = true, error: string = ''){
     this.number = number
     this.url = url
