@@ -3,7 +3,7 @@ export const homeowner = 'homeowner';
 export const serviceProvider = 'serviceprovider';
 
 export class Registration {
-  static create(role, name, emailAddress, streetAddress) {
+  static create(role: string, name: string, emailAddress: string, streetAddress: string) {
     return {
       role: role,
       name: name,
@@ -16,7 +16,7 @@ export class Registration {
       success: true
     }
   }
-  static fail(error) {
+  static fail(error: string) {
     return {
       success: false,
       error: error
@@ -25,7 +25,7 @@ export class Registration {
 }
 
 export class Credentials {
-  static create(emailAddress, pin) {
+  static create(emailAddress: string, pin: string) {
     return {
       emailAddress: emailAddress,
       pin: pin
@@ -34,7 +34,7 @@ export class Credentials {
 }
 
 export class UsersWorkOrders {
-  static success(user, serviceProviders, workOrders) {
+  static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
     return {
       success: true,
       user: user,
@@ -42,7 +42,7 @@ export class UsersWorkOrders {
       workOrders: workOrders
     }    
   }
-  static fail(error) {
+  static fail(error: string) {
     return {
       success: false,
       error: error
@@ -51,14 +51,14 @@ export class UsersWorkOrders {
 }
 
 export class WorkOrders {
-  static success(workOrders) {
+  static success(workOrders: WorkOrder[]) {
     return {
       success: true,
       workOrders: workOrders
     }    
   }
 
-  static fail(error) {
+  static fail(error: string) {
     return {
       success: false,
       error: error
@@ -67,7 +67,7 @@ export class WorkOrders {
 }
 
 export class WorkOrder {
-  static create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+  static create(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
     return {
       number: number,
       homeownerId: homeownerId,
@@ -81,14 +81,14 @@ export class WorkOrder {
     }
   }
 
-  static success(workOrder) {
+  static success(workOrder: WorkOrder) {
     return {
       success: true,
       workOrder: workOrder
     }    
   }
 
-  static fail(error, workOrder) {
+  static fail(error: string, workOrder: WorkOrder) {
     return {
       success: false,
       error: error,
@@ -98,7 +98,7 @@ export class WorkOrder {
 }
 
 export class User {
-  static create(id, role, name, emailAddress, streetAddress, registered) {
+  static create(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
     return {
       id: id,
       role: role,
@@ -110,14 +110,14 @@ export class User {
     }
   }
 
-  static success(user) {
+  static success(user: User) {
     return {
       success: true,
       user: user
     }    
   }
 
-  static fail(error, user) {
+  static fail(error: string, user: User) {
     return {
       success: false,
       error: error,
@@ -127,14 +127,14 @@ export class User {
 }
 
 export class ImageUrl {
-  static success(number, url) {
+  static success(number: number, url: string) {
     return {
       success: true,
       number: number,
       url: url
     }
   }
-  static fail(error, number, url) {
+  static fail(error: string, number: number, url: string) {
     return {
       success: false,
       error: error,

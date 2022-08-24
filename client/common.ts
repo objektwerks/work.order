@@ -1,6 +1,6 @@
 // @ts-check
 
-export function displayImage(imageId, file) {
+export function displayImage(imageId: string, file) {
   const image = getById(imageId);
   const reader = new FileReader();
   reader.onload = function() {
