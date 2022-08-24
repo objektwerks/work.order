@@ -1,8 +1,8 @@
 // @ts-check
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide, show,
-         setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
+import { isDefined, getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
+         show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
 
 // @ts-ignore
 import { validateWorkOrder } from './validator.js'
@@ -211,10 +211,13 @@ export default () => {
   }, false)
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
-    if(event.target && event.target['nodeName'] === "li") {
-      const number = event.target['id']
-      const workOrder = model.getWorkOrderByNumber(number)
-      if (workOrder !== undefined) {
+    const isLi = ( event.target as Node ).nodeName === 'li'
+    const number = ( event.target as HTMLInputElement ).id
+
+    if(isLi) {
+      const number = ( event.target as HTMLInputElement ).id
+      const workOrder = model.getWorkOrderByNumber( parseInt(number) )
+      if ( isDefined(workOrder) ) {
         bindWorkOrderToForm(workOrder)
         applyRoleToForm(model.getUserRole())
         console.log(`*** work order selected and bound to form for number: ${number}`)
