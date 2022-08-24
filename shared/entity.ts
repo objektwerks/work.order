@@ -51,7 +51,7 @@ export class UsersWorkOrders {
   success: boolean
   error: string
 
-  constructor(user: User, serviceProviders: User[], workOrders: WorkOrder[], success: boolean = true, error: string = ''){
+  constructor(user: User, serviceProviders: User[], workOrders: WorkOrder[], success: boolean = true, error: string = '') {
     this.user = user
     this.serviceProviders = serviceProviders
     this.workOrders = workOrders
@@ -69,22 +69,24 @@ export class UsersWorkOrders {
 }
 
 export class WorkOrders {
+  userId: number
   workOrders: WorkOrder[]
   success: boolean
   error: string
 
-  constructor(workOrders: WorkOrder[], success: boolean = true, error: string = ''){
+  constructor(userId: number, workOrders: WorkOrder[], success: boolean = true, error: string = '') {
+    this.userId = userId
     this.workOrders = workOrders
     this.success = success
     this.error = error
   }
 
-  static success(workOrders: WorkOrder[]) {
-    return new WorkOrders(workOrders)
+  static success(userId: number, workOrders: WorkOrder[]) {
+    return new WorkOrders(userId, workOrders)
   }
 
-  static fail(error: string) {
-    return new WorkOrders([WorkOrder.empty()], false, error)
+  static fail(error: string, userId: number) {
+    return new WorkOrders(userId, [WorkOrder.empty()], false, error)
   }
 }
 
@@ -94,7 +96,7 @@ export class ImageUrl {
   success: boolean
   error: string
 
-  constructor(number: number, url: string, success: boolean = true, error: string = ''){
+  constructor(number: number, url: string, success: boolean = true, error: string = '') {
     this.number = number
     this.url = url
     this.success = success

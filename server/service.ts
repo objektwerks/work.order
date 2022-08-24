@@ -78,10 +78,10 @@ export function listWorkOrdersByUserId(id: number): WorkOrders {
   let status: WorkOrders
   try {
     const list = store.listWorkOrdersByUserId(id)
-    status = WorkOrders.success(list)
+    status = WorkOrders.success(id, list)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
   } catch(error) {
-    status = WorkOrders.fail('List work orders by user id failed.')
+    status = WorkOrders.fail('List work orders by user id failed.', id)
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
   }
   return status
