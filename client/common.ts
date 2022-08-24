@@ -23,10 +23,11 @@ export function getFileById(id: string): File {
   return input.files?[0]
 }
 
-export function getSelectedIndexId(selectId: string) {
-  const select = document.getElementById(selectId);
-  const selectedIndex = select['selectedIndex'];
-  return select['options'][selectedIndex].id;
+export function getSelectedIndexId(selectId: string): string {
+  const select = getById(selectId) as HTMLSelectElement
+  const options = select.selectedOptions
+  const selectedId = options.item(0)?.id
+  return selectedId === undefined || selectId === null ? '' : selectId
 }
 
 export function getValueById(id: string) {
