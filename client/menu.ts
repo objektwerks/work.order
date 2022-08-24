@@ -1,10 +1,11 @@
 // @ts-check
-import { getById, getByClass, show } from './common.js';
+import { getById, getByClass, show } from './common.js'
 
-function selectMenuItem(formId) {
-  const forms = getByClass('form');
-  for (const form of forms) {
-    form['style'].display = 'none';
+function selectMenuItem(formId: string) {
+  const forms = getByClass('form') as HTMLFormControlsCollection
+  for (let i = 0; i < forms.length; i++) {
+    const form = forms.item(i) as HTMLFormElement
+    form.style.display = 'none'
   }
   show(formId);
 }
@@ -12,19 +13,19 @@ function selectMenuItem(formId) {
 export default () => {
   getById('login-menu-id').addEventListener('click', () => {
     selectMenuItem('login-form-id')
-  }, false);
+  }, false)
   
   getById('register-menu-id').addEventListener('click', () => {
     selectMenuItem('register-form-id')
-  }, false);
+  }, false)
   
   getById('workorders-menu-id').addEventListener('click', () => {
     selectMenuItem('workorders-form-id')
-  }, false);
+  }, false)
   
   getById('user-menu-id').addEventListener('click', () => {
     selectMenuItem('user-form-id')
-  }, false);
+  }, false)
 
-  console.log('*** menu init ...');
+  console.log('*** menu init ...')
 }

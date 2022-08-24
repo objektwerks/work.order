@@ -54,17 +54,17 @@ export function show(id: string): void {
 
 export function addReadonlyById(id: string): void {
   const element = getById(id) as HTMLElement
-  element.setAttribute('readonly', 'readonly');
+  element.setAttribute('readonly', 'readonly')
 }
 
 export function removeReadonlyById(id: string): void {
   const element = getById(id) as HTMLElement
-  element.removeAttribute('readonly');
+  element.removeAttribute('readonly')
 }
 
 export function setTextById(id: string, text: string): void {
   const element = getById(id) as HTMLElement
-  element.innerText = text;
+  element.innerText = text
 }
 
 export function setValueById(id: string, value: string): void {
@@ -84,29 +84,29 @@ export function setSelectOptionById(selectId: string, optionId: string): void {
     const option = options.item(i)
     if (option !== null && option.id === optionId) {
       select.selectedIndex = i
-      break;
+      break
     }
   }
 }
 
 export function setErrorList(error: string, errorsListId: string, errorsViewId: string): void {
-  const errors = [];
-  errors.push(error);
-  setErrorsList(errors, errorsListId, errorsViewId);
+  const errors = []
+  errors.push(error)
+  setErrorsList(errors, errorsListId, errorsViewId)
 }
 
 export function setErrorsList(errors: string[], errorsListId: string, errorsViewId: string): void {
-  setListValues(errorsListId, errors);
-  show(errorsViewId);
+  setListValues(errorsListId, errors)
+  show(errorsViewId)
 }
 
 export function setListValues(listId: string, values: string[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
   for (const value of values) {
-    let li = document.createElement('li');
-    li.appendChild(document.createTextNode(value));
-    ul.appendChild(li);
+    let li = document.createElement('li')
+    li.appendChild(document.createTextNode(value))
+    ul.appendChild(li)
   }
 }
 
@@ -114,10 +114,10 @@ export function setListIdValues(listId: string, idValues: IdValue[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
   for (const idValue of idValues) {
-    let li = document.createElement('li');
-    li.id = idValue.id;
-    li.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`));
-    ul.appendChild(li);
+    let li = document.createElement('li')
+    li.id = idValue.id
+    li.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
+    ul.appendChild(li)
   }
 }
 
@@ -125,9 +125,9 @@ export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
   const select = getById(selectId) as HTMLSelectElement
   select.innerHTML = ''
   for (const idValue of idValues) {
-    let option = document.createElement('option');
-    option.id = idValue.id;
-    option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`));
-    select.appendChild(option);
+    let option = document.createElement('option')
+    option.id = idValue.id
+    option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
+    select.appendChild(option)
   }
 }
