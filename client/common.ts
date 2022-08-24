@@ -82,20 +82,20 @@ export function setSelectOptionById(selectId: string, optionId: string): void {
   }
 }
 
-export function setErrorList(error: string, errorsListId: string, errorsViewId: string) {
+export function setErrorList(error: string, errorsListId: string, errorsViewId: string): void {
   const errors = [];
   errors.push(error);
   setErrorsList(errors, errorsListId, errorsViewId);
 }
 
-export function setErrorsList(errors: string, errorsListId: string, errorsViewId: string) {
+export function setErrorsList(errors: string[], errorsListId: string, errorsViewId: string): void {
   setListValues(errorsListId, errors);
   show(errorsViewId);
 }
 
-export function setListValues(listId: string, values: string) {
-  document.getElementById(listId).innerHTML = '';
-  const ul = document.getElementById(listId);
+export function setListValues(listId: string, values: string[]) {
+  const ul = getById(listId) as HTMLUListElement
+  ul.innerHTML = ''
   for (const value of values) {
     let li = document.createElement('li');
     li.appendChild(document.createTextNode(value));
