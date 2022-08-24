@@ -48,23 +48,23 @@ export function register(registration: Registration): Status {
   return call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'))
 }
 
-export function login(credentials: Credentials) {
+export function login(credentials: Credentials): UsersWorkOrders {
   return call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
 }
 
-export function addWorkOrder(workOrder: WorkOrder) {
+export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
   return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder))
 }
 
-export function saveWorkOrder(workOrder: WorkOrder) {
+export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
   return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder))
 }
 
-export function saveUser(user: User) {
+export function saveUser(user: User): User {
   return call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user))
 }
 
-export function saveImage(number: string, url: string, file: File, filename: string) {
+export function saveImage(number: string, url: string, file: File, filename: string): ImageUrl {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
   formdata.append('number', number)
@@ -74,10 +74,10 @@ export function saveImage(number: string, url: string, file: File, filename: str
   return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
 }
 
-export function getWorkOrderByNumber(number: string) {
+export function getWorkOrderByNumber(number: string): WorkOrder {
   return call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
 }
 
-export function listWorkOrdersByUserId(id: string) {
+export function listWorkOrdersByUserId(id: string): WorkOrders {
   return call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
 }
