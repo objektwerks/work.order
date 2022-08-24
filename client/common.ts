@@ -1,16 +1,5 @@
 // @ts-check
 
-export function displayImage(imageId: string, file: string) {
-  const image = getById(imageId);
-  const reader = new FileReader();
-  reader.onload = function() {
-    var dataURL = reader.result;
-    // @ts-ignore
-    image.src = dataURL;
-  };
-  reader.readAsDataURL(file);
-}
-
 export function getByClass(name: string) {
   return document.getElementsByClassName(name);
 }
