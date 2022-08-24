@@ -163,15 +163,7 @@ export class WorkOrder {
 }
 
 export class UserStatus {
-  id: number
-  success: boolean
-  error: string
-
-  constructor(id: number, success: boolean = true, error: string = '') {
-    this.id = id
-    this.success = success
-    this.error = error
-  }
+  constructor(public id: number, public success: boolean = true, public error: string = '') {}
 
   static success(id: number) {
     return new UserStatus(id)
