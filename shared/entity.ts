@@ -119,11 +119,11 @@ export class WorkOrder {
     }    
   }
 
-  static fail(error: string, workOrder: WorkOrder) {
+  static fail(error: string, number: number) {
     return {
       success: false,
       error: error,
-      workOrder: workOrder
+      number: number
     }    
   }
 }
@@ -135,14 +135,16 @@ export class User {
   emailAddress: string
   streetAddress: string
   registered: string
+  pin: string
 
-  constructor(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
+  constructor(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string, pin: string) {
     this.id = id
     this.role = role
     this.name = name
     this.emailAddress = emailAddress
     this.streetAddress = streetAddress
     this.registered = registered
+    this.pin = pin
   }
 
   static success(user: User) {

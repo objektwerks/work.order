@@ -34,7 +34,7 @@ export function register(registration: Registration) {
     const pin = newPin();
     let id = 0;
     const registered = new Date().toISOString();
-    const user = User.create(id, registration.role, registration.name. registration.emailAdress, registration.streetAddress, registered, pin);
+    const user = new User(id, registration.role, registration.name, registration.emailAddress, registration.streetAddress, registered, pin);
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration);
     id = store.addUser(user);
     if (id > 0) {
@@ -54,7 +54,7 @@ export function register(registration: Registration) {
 export function login(credentials: Credentials) {
   let status;
   try {
-    const user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
+    const user = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin);
     if (Object.entries(user).length > 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider);
       const workOrders = store.listWorkOrdersByUserId(user.id);
@@ -71,7 +71,7 @@ export function login(credentials: Credentials) {
   return status;
 }
 
-export function listWorkOrdersByUserId(id) {
+export function listWorkOrdersByUserId(id: number) {
   let status;
   try {
     const list = store.listWorkOrdersByUserId(id);
@@ -84,7 +84,7 @@ export function listWorkOrdersByUserId(id) {
   return status;
 }
 
-export function getWorkOrderByNumber(number) {
+export function getWorkOrderByNumber(number: number) {
   let status;
   try {
     const get = store.getWorkOrderByNumber(number);
@@ -124,11 +124,11 @@ export function saveWorkOrder(workOrder: WorkOrder) {
       status = WorkOrder.success(workOrder);
       log('saveWorkOrder', `succeeded for number: ${workOrder.number}`);
     } else {
-      status = WorkOrder.fail('Save work order failed.', workOrder);
+      status = WorkOrder.fail('Save work order failed.', workOrder.number);
       log('saveWorkOrder', `failed for ${workOrder}`);
     }
   } catch(error) {
-    status = WorkOrder.fail('Save work order failed.', workOrder);
+    status = WorkOrder.fail('Save work order failed.', workOrder.number);
     log('saveWorkOrder', `failed: ${error} for ${workOrder}`);
   }
   return status;
