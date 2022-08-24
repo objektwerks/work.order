@@ -60,8 +60,9 @@ export function setTextById(id: string, text: string): void {
   element.innerText = text;
 }
 
-export function setValueById(id: string, value: string) {
-  return document.getElementById(id)['value'] = value;
+export function setValueById(id: string, value: string): void {
+  const input = getById(id) as HTMLInputElement
+  input.value = value
 }
 
 export function setImageUrlById(id: string, url: string) {
