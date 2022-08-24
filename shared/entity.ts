@@ -133,41 +133,17 @@ export class WorkOrderStatus {
 }
 
 export class WorkOrder {
-  number: number
-  homeownerId: number
-  serviceProviderId: number
-  title: string
-  issue: string
-  imageUrl: string
-  resolution: string
-  opened: string
-  closed: string
-  success: boolean
-  error: string
-
-  constructor(number: number,
-              homeownerId: number, 
-              serviceProviderId: number, 
-              title: string, 
-              issue: string, 
-              imageUrl: string, 
-              resolution: string, 
-              opened: string, 
-              closed: string,
-              success: boolean = true,
-              error: string = '') {
-    this.number = number
-    this.homeownerId = homeownerId
-    this.serviceProviderId = serviceProviderId
-    this.title = title
-    this.issue = issue
-    this.imageUrl = imageUrl
-    this.resolution = resolution
-    this.opened = opened
-    this.closed = closed
-    this.success = success
-    this.error = error
-  }
+  constructor(public number: number,
+              public homeownerId: number, 
+              public serviceProviderId: number, 
+              public title: string, 
+              public issue: string, 
+              public imageUrl: string, 
+              public resolution: string, 
+              public opened: string, 
+              public closed: string,
+              public success: boolean = true,
+              public error: string = '') {}
 
   static empty() {
     return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
