@@ -1,8 +1,8 @@
 // @ts-check
-import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js';
+import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js'
 
 // @ts-ignore
-import { User, WorkOrder } from './entity.js';
+import { User, WorkOrder } from './entity.js'
 
 let user: User
 let serviceProviders: User[]
@@ -11,65 +11,65 @@ let workOrders: WorkOrder[]
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string) {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
-    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) });
+    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) })
   const closedWorkOrders = workOrders
     .filter((workorder) => workorder.closed.length > 0) // closed
-    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) });
-  setListIdValues(openedWorkOrdersListId, openedWorkOrders);
-  setListIdValues(closedWorkOrdersListId, closedWorkOrders);
+    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) })
+  setListIdValues(openedWorkOrdersListId, openedWorkOrders)
+  setListIdValues(closedWorkOrdersListId, closedWorkOrders)
 }
 
 export default () => {
-  console.log('*** model init ...');
+  console.log('*** model init ...')
 }
 
 export function getUserId() {
-  return user.id;
+  return user.id
 }
 
 export function getUserRole() {
-  return user.role;
+  return user.role
 }
 
 export function getUser() {
-  return user;
+  return user
 }
 
 export function setUser(name: string, emailAddress: string, streetAddress: string) {
-  user.name = name;
-  user.emailAddress = emailAddress;
-  user.streetAddress = streetAddress;
+  user.name = name
+  user.emailAddress = emailAddress
+  user.streetAddress = streetAddress
 }
 
 export function getWorkOrderByNumber(number: number) {
-  return workOrders.find(workOrder => workOrder.number === number);
+  return workOrders.find(workOrder => workOrder.number === number)
 }
 
 export function addWorkOrder(workOrder: WorkOrder) {
-  workOrders.push(workOrder);
-  const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  workOrders.push(workOrder)
+  const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened))
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }
 
 export function bindUserToForm(newUser: User) {
-  user = newUser;
-  setValueById('user-role-id', user.role);
-  setValueById('user-name-id', user.name);
-  setValueById('user-email-address-id', user.emailAddress);
-  setValueById('user-street-address-id', user.streetAddress);
-  setValueById('user-registered-id', user.registered);
+  user = newUser
+  setValueById('user-role-id', user.role)
+  setValueById('user-name-id', user.name)
+  setValueById('user-email-address-id', user.emailAddress)
+  setValueById('user-street-address-id', user.streetAddress)
+  setValueById('user-registered-id', user.registered)
 }
 
 export function bindServiceProvidersToSelect(newServiceProviders: User[]) {
-  serviceProviders = newServiceProviders;
-  const idvalues = [];
+  serviceProviders = newServiceProviders
+  const idvalues = []
   for (const serviceProvider of serviceProviders) {
-    idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
+    idvalues.push({ id: serviceProvider.id, value: serviceProvider.name })
   }
-  setSelectIdValues('workorder-service-provider-id', idvalues);
+  setSelectIdValues('workorder-service-provider-id', idvalues)
 }
 
 export function bindWorkOrdersToList(newWorkOrders: WorkOrder[]) {
-  workOrders = newWorkOrders;
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+  workOrders = newWorkOrders
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }

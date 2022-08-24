@@ -1,41 +1,41 @@
 // @ts-check
-import { getById, getValueById, hide, setErrorsList, show } from './common.js';
-import * as fetcher from './fetcher.js';
+import { getById, getValueById, hide, setErrorsList, show } from './common.js'
+import * as fetcher from './fetcher.js'
 
 // @ts-ignore
-import { validateRegistration } from './validator.js';
+import { validateRegistration } from './validator.js'
 
 // @ts-ignore
-import { Registration } from "./entity.js";
+import { Registration } from "./entity.js"
 
 export default () => {
-  console.log('*** register form init ...');
+  console.log('*** register form init ...')
 
   getById('register-form-id').addEventListener('submit', (event) => {
-    event.preventDefault();
+    event.preventDefault()
     
-    hide('register-errors-form-id');
+    hide('register-errors-form-id')
 
-    const role = getValueById('register-role-id');
-    const name = getValueById('register-name-id');
-    const emailAddress = getValueById('register-email-address-id');
-    const streetAddress = getValueById('register-street-address-id');
+    const role = getValueById('register-role-id')
+    const name = getValueById('register-name-id')
+    const emailAddress = getValueById('register-email-address-id')
+    const streetAddress = getValueById('register-street-address-id')
 
-    const errors = validateRegistration(role, name, emailAddress, streetAddress);
+    const errors = validateRegistration(role, name, emailAddress, streetAddress)
     if (errors.length === 0) {
-      const registration = Registration.create(role, name, emailAddress, streetAddress);
-      const status = fetcher.register(registration);
+      const registration = Registration.create(role, name, emailAddress, streetAddress)
+      const status = fetcher.register(registration)
       if (!status.success) {
-        errors.push(status.error);
-        setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id');
+        errors.push(status.error)
+        setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
       } else {
-        hide('register-form-id"');
-        hide('register-menu-id');
+        hide('register-form-id"')
+        hide('register-menu-id')
         
-        show('register-dialog-id');
+        show('register-dialog-id')
       }
     } else {
-      setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id');
+      setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
     }
-  }, false);
+  }, false)
 }

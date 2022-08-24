@@ -1,39 +1,39 @@
 // @ts-check
-import { getById, getValueById, hide, setErrorsList, show } from './common.js';
-import * as fetcher from './fetcher.js';
-import * as model from './model.js';
+import { getById, getValueById, hide, setErrorsList, show } from './common.js'
+import * as fetcher from './fetcher.js'
+import * as model from './model.js'
 
 // @ts-ignore
-import { validateUserInfo } from './validator.js';
+import { validateUserInfo } from './validator.js'
 
 function bindFormToUser(name, emailAddress, streetAddress) {
-  model.setUser(name, emailAddress, streetAddress);
+  model.setUser(name, emailAddress, streetAddress)
 }
 
 export default () => {
-  console.log('*** user form init ...');
+  console.log('*** user form init ...')
 
   getById('user-form-id').addEventListener('submit', (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    hide('user-errors-form-id');
+    hide('user-errors-form-id')
 
-    const name = getValueById('user-name-id');
-    const emailAddress = getValueById('user-email-address-id');
-    const streetAddress = getValueById('user-street-address-id');
+    const name = getValueById('user-name-id')
+    const emailAddress = getValueById('user-email-address-id')
+    const streetAddress = getValueById('user-street-address-id')
 
-    const errors = validateUserInfo(name, emailAddress, streetAddress);
+    const errors = validateUserInfo(name, emailAddress, streetAddress)
     if (errors.length === 0) {
-      bindFormToUser(name, emailAddress, streetAddress);
-      const status = fetcher.saveUser(model.getUser());
+      bindFormToUser(name, emailAddress, streetAddress)
+      const status = fetcher.saveUser(model.getUser())
       if (!status.success) {
-        errors.push(status.error);
-        setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');
+        errors.push(status.error)
+        setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
       } else {          
-        show('user-dialog-id');
+        show('user-dialog-id')
       }
     } else {
-      setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id');
+      setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
     }      
-  }, false);
+  }, false)
 }

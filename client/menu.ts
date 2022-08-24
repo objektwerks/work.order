@@ -7,7 +7,7 @@ function selectMenuItem(formId: string) {
     const form = forms.item(i) as HTMLFormElement
     form.style.display = 'none'
   }
-  show(formId);
+  show(formId)
 }
 
 export default () => {
