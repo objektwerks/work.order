@@ -4,7 +4,7 @@ import * as service from './service.js';
 import compression from 'compression';
 import express from 'express';
 
-const port = parseInt(process.env.PORT) || 3000;
+const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP ?? '127.0.0.1';
 
 let router;

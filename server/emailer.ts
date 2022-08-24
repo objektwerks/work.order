@@ -1,19 +1,17 @@
 // @ts-check
 import nodemailer from 'nodemailer';
+import Mail from "nodemailer/lib/mailer";
 
-const host = process.env.EMAIL_HOST;
-const port = process.env.EMAIL_PORT;
-const sender = process.env.EMAIL_SENDER;
-const password = process.env.EMAIL_PASSWORD;
-const transporter = nodemailer.createTransport({
-  host: host,
-  port: port,
+const config = {
+  host: process.env.EMAIL_HOST,
+  port: parseInt(process.env.EMAIL_PORT ?? 587),
   secure: true,
   auth: {
-    user: sender,
-    pass: password,
-  },
-});
+    user: process.env.EMAIL_SENDER,
+    pass: process.env.EMAIL_PASSWORD,
+  }
+}
+const transporter: Mail = nodemailer.createTransport();
 
 export default () => {
   console.log('*** emailer connected ...');
