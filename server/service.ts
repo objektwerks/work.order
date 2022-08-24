@@ -30,7 +30,7 @@ export function shutdown() {
 }
 
 export function register(registration: Registration): Status {
-  let status
+  let status: Status
   try {
     const pin = newPin()
     let id = 0
@@ -53,7 +53,7 @@ export function register(registration: Registration): Status {
 }
 
 export function login(credentials: Credentials): UsersWorkOrders {
-  let status
+  let status: UsersWorkOrders
   try {
     const user: User = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin)
     if (Object.entries(user).length > 0) {
@@ -73,7 +73,7 @@ export function login(credentials: Credentials): UsersWorkOrders {
 }
 
 export function listWorkOrdersByUserId(id: number): WorkOrders {
-  let status
+  let status: WorkOrders
   try {
     const list = store.listWorkOrdersByUserId(id)
     status = WorkOrders.success(list)
@@ -86,7 +86,7 @@ export function listWorkOrdersByUserId(id: number): WorkOrders {
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrder {
-  let status
+  let status: WorkOrder
   try {
     const workOrder = store.getWorkOrderByNumber(number)
     if (Object.entries(workOrder).length > 0) {
@@ -104,7 +104,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
 }
 
 export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
-  let status
+  let status: WorkOrder
   try {
     const number = store.addWorkOrder(workOrder)
     workOrder.number = number
@@ -118,7 +118,7 @@ export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
 }
 
 export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
-  let status
+  let status: WorkOrder
   try {
     const count = store.saveWorkOrder(workOrder)
     if (count > 0) {
@@ -136,7 +136,7 @@ export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
 }
 
 export function saveUser(user: User): User {
-  let status
+  let status: User
   try {
     const count = store.saveUser(user)
     if (count > 0) {
@@ -154,7 +154,7 @@ export function saveUser(user: User): User {
 }
 
 export function saveImageUrl(number: number, url: string): ImageUrl {
-  let status
+  let status: ImageUrl
   try {
     const count = store.saveImageUrl(number, url)
     if (count > 0) {
