@@ -162,6 +162,28 @@ export class WorkOrder {
   }
 }
 
+export class UserStatus {
+  id: number
+  emailAddress: string
+  success: boolean
+  error: string
+
+  constructor(id: number, emailAddress: string, success: boolean = true, error: string = '') {
+    this.id = id
+    this.emailAddress = emailAddress
+    this.success = success
+    this.error = error
+  }
+
+  static success(id: number, emailAddress: string) {
+    return new UserStatus(id, emailAddress)
+  }
+
+  static fail(error: string, id: number, emailAddress: string) {
+    return new UserStatus(id, emailAddress, false, error)
+  }
+}
+
 export class User {
   id: number
   role: string
@@ -195,17 +217,5 @@ export class User {
 
   static empty() {
     return new User(0, '', '', '', '', '', '')
-  }
-
-  static success(user: User) {
-    return user
-  }
-
-  static fail(error: string, emailAddress: string) {
-    let user = User.empty()
-    user.emailAddress = emailAddress
-    user.success = false
-    user.error = error
-    return user 
   }
 }
