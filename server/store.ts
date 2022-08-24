@@ -20,11 +20,11 @@ export function disconnect() {
 
 export function listWorkOrdersByUserId(id: number) {
   let list: WorkOrder[] = [];
-  connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: MysqlError, rows) => {
+  connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: MysqlError, rows: any) => {
     if (error) {
       log('listWorkOrdersByUserId', error.message);
     } else {
-      rows.forEach((row) => {
+      rows.forEach((row: any) => {
         list.push(
           new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
         )
@@ -36,11 +36,11 @@ export function listWorkOrdersByUserId(id: number) {
 
 export function listUsersByRole(role: string) {
   let list: User[] = [];
-  connection.query(`select * from user where role = ${role} order by name asc`, (error: MysqlError, rows) => {
+  connection.query(`select * from user where role = ${role} order by name asc`, (error: MysqlError, rows: any) => {
     if (error) {
       log('listUsersByRole', error.message);
     } else {
-      rows.forEach((row) => {
+      rows.forEach((row: any) => {
         list.push(
           new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
         )
@@ -52,11 +52,11 @@ export function listUsersByRole(role: string) {
 
 export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
   let list: User[] = [];
-  connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: MysqlError, rows) => {
+  connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: MysqlError, rows: any) => {
     if (error) {
       log('getUserByEmailAddressPin', error.message);
     } else {
-      rows.forEach((row) => {
+      rows.forEach((row: any) => {
         list.push(
           new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
         )
@@ -68,11 +68,11 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
 
 export function getWorkOrderByNumber(number: number) {
   let list: WorkOrder[] = [];
-  connection.query(`select * from work_order where number = ${number}`, (error: MysqlError, rows) => {
+  connection.query(`select * from work_order where number = ${number}`, (error: MysqlError, rows: any) => {
     if (error) {
       log('getWorkOrderByNumber', error.message);
     } else {
-      rows.forEach((row) => {
+      rows.forEach((row: any) => {
         list.push(
           new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
         )
@@ -84,7 +84,7 @@ export function getWorkOrderByNumber(number: number) {
 
 export function addWorkOrder(workOrder: WorkOrder) {
   let number: number = 0;
-  connection.query('insert into work_order set ?', workOrder, (error: MysqlError, result) => {
+  connection.query('insert into work_order set ?', [workOrder], (error: MysqlError | null, result: any) => {
     if (error) {
       log('addWorkOrder', error.message);
     } else {
@@ -97,7 +97,7 @@ export function addWorkOrder(workOrder: WorkOrder) {
 
 export function addUser(user: User) {
   let id: number = 0;
-  connection.query('insert into user set ?', user, (error: MysqlError, result) => {
+  connection.query('insert into user set ?', [user], (error: MysqlError | null, result: any) => {
     if (error) {
       log('addUser', error.message);
     } else {
@@ -110,7 +110,7 @@ export function addUser(user: User) {
 
 export function saveWorkOrder(workOrder: WorkOrder) {
   let count: number = 0;
-  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError, result) => {
+  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError | null, result: any) => {
     if (error) {
       log('saveWorkOrder', error.message);
     } else {
@@ -123,7 +123,7 @@ export function saveWorkOrder(workOrder: WorkOrder) {
 
 export function saveUser(user: User) {
   let count: number = 0;
-  connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError, result) => {
+  connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError | null, result: any) => {
     if (error) {
       log('saveUser', error.message);
     } else {
@@ -136,7 +136,7 @@ export function saveUser(user: User) {
 
 export function saveImageUrl(number: number, url: string) {
   let count: number = 0;
-  connection.query(`update work_order SET image_url = ${url} where number = ${number}`, (error: MysqlError, result) => {
+  connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: MysqlError | null, result: any) => {
     if (error) {
       log('saveImageUrl', error.message);
     } else {
