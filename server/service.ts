@@ -6,6 +6,7 @@ import {
   serviceProvider,
   Credentials,
   ImageUrl,
+  Status,
   User,
   UsersWorkOrders,
   WorkOrder,
@@ -28,7 +29,7 @@ export function shutdown() {
   store.disconnect()
 }
 
-export function register(registration: Registration) {
+export function register(registration: Registration): Status {
   let status
   try {
     const pin = newPin()
@@ -51,7 +52,7 @@ export function register(registration: Registration) {
   return status
 }
 
-export function login(credentials: Credentials) {
+export function login(credentials: Credentials): UsersWorkOrders {
   let status
   try {
     const user: User = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin)
@@ -71,7 +72,7 @@ export function login(credentials: Credentials) {
   return status
 }
 
-export function listWorkOrdersByUserId(id: number) {
+export function listWorkOrdersByUserId(id: number): WorkOrders {
   let status
   try {
     const list = store.listWorkOrdersByUserId(id)
@@ -84,7 +85,7 @@ export function listWorkOrdersByUserId(id: number) {
   return status
 }
 
-export function getWorkOrderByNumber(number: number) {
+export function getWorkOrderByNumber(number: number): WorkOrder {
   let status
   try {
     const workOrder = store.getWorkOrderByNumber(number)
@@ -102,7 +103,7 @@ export function getWorkOrderByNumber(number: number) {
   return status
 }
 
-export function addWorkOrder(workOrder: WorkOrder) {
+export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
   let status
   try {
     const number = store.addWorkOrder(workOrder)
@@ -116,7 +117,7 @@ export function addWorkOrder(workOrder: WorkOrder) {
   return status
 }
 
-export function saveWorkOrder(workOrder: WorkOrder) {
+export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
   let status
   try {
     const count = store.saveWorkOrder(workOrder)
@@ -134,7 +135,7 @@ export function saveWorkOrder(workOrder: WorkOrder) {
   return status
 }
 
-export function saveUser(user: User) {
+export function saveUser(user: User): User {
   let status
   try {
     const count = store.saveUser(user)
@@ -152,7 +153,7 @@ export function saveUser(user: User) {
   return status
 }
 
-export function saveImageUrl(number: number, url: string) {
+export function saveImageUrl(number: number, url: string): ImageUrl {
   let status
   try {
     const count = store.saveImageUrl(number, url)
