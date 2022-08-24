@@ -2,17 +2,17 @@
 import { images, imagesDir, ifNotExistsMakeDir } from './images.js';
 import * as service from './service.js';
 import compression from 'compression';
-import express from 'express';
+import express, { Express } from 'express';
 import { Server } from 'http';
 
 const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP ?? '127.0.0.1';
 
-let router;
-let http: Server;
+let router: Express;
+let server: Server;
 
 function shutdown(signal: string) {
-  http.close(() => {
+  server.close(() => {
     console.log(`*** [${signal}] server and router shutting down ...`);
     service.shutdown();
     console.log('*** server and router shutdown.');
@@ -65,7 +65,7 @@ export default () => {
     response.json( await service.saveImageUrl(number, url) );
   });
   
-  http = router.listen(port, host, () =>
+  server = router.listen(port, host, () =>
     console.log(`*** server listening on https://${host}:${port}/`)
   );
   
