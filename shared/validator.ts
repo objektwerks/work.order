@@ -13,31 +13,31 @@ const idInvalidMessage = 'An id must be greater than 0.'
 const numberInvalidMessage = 'A number must be greater than 0.'
 const definedInvalidMessage = 'This field may be empty, but must be defined.';
 
-function validateRole(role) {
+function validateRole(role: string) {
   return role === homeowner || role === serviceProvider;
 }
 
-function validateEmailAddress(emailAddress) {
+function validateEmailAddress(emailAddress: string) {
   return validateLengthRange(emailAddress, 3, 128) && emailAddress.includes('@');
 }
 
-function validateLength(string, length) {
+function validateLength(string: string, length: number) {
   return string.length === length;
 }
 
-function validateLengthRange(string, lower, upper) {
+function validateLengthRange(string: string, lower: number, upper: number) {
   return string.length >= lower && string.length <= upper;
 }
 
-function validateGreaterThanZero(number) {
+function validateGreaterThanZero(number: number) {
   return number > 0;
 }
 
-function validateGreaterThanOrEqualZero(number) {
+function validateGreaterThanOrEqualZero(number: number) {
   return number >= 0;
 }
 
-function validateDefined(string) {
+function validateDefined(string: string) {
   let isDefined;
   try {
     isDefined = string !== undefined && string !== null && string.length >= 0;
@@ -47,7 +47,7 @@ function validateDefined(string) {
   return isDefined;
 }
 
-export function validateRegistration(role, name, emailAddress, streetAddress) {
+export function validateRegistration(role: string, name: string, emailAddress: string, streetAddress: string) {
   const errors = [];
   if (!validateRole(role)) errors.push(roleInvalidMessage);
   if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
@@ -56,14 +56,14 @@ export function validateRegistration(role, name, emailAddress, streetAddress) {
   return errors;
 }
 
-export function validateCredentials(emailAddress, pin) {
+export function validateCredentials(emailAddress: string, pin: string) {
   const errors = [];
   if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
   if (!validateLength(pin, 7)) errors.push(pinInvalidMessage);
   return errors;
 }
 
-export function validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) {
+export function validateWorkOrder(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
   const errors = [];
   if (!validateGreaterThanOrEqualZero(number)) errors.push(numberInvalidMessage);
   if (!validateGreaterThanZero(homeownerId)) errors.push(idInvalidMessage);
@@ -77,7 +77,7 @@ export function validateWorkOrder(number, homeownerId, serviceProviderId, title,
   return errors;
 }
 
-export function validateUser(id, role, name, emailAddress, streetAddress, registered) {
+export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
   const errors = [];
   if (!validateGreaterThanZero(id)) errors.push(idInvalidMessage);
   if (!validateLength(registered, 24)) errors.push(datetimeInvalidMessage);
@@ -85,7 +85,7 @@ export function validateUser(id, role, name, emailAddress, streetAddress, regist
   return errors;
 }
 
-export function validateUserInfo(name, emailAddress, streetAddress) {
+export function validateUserInfo(name: string, emailAddress: string, streetAddress: string) {
   const errors = [];
   if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage);
   if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage);
