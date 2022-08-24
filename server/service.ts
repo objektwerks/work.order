@@ -11,6 +11,7 @@ import {
   UserStatus,
   UsersWorkOrders,
   WorkOrder,
+  WorkOrderStatus,
   WorkOrders,
   Registration
 } from '../shared/entity.js'
@@ -104,33 +105,33 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
   return status
 }
 
-export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
-  let status: WorkOrder
+export function addWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
+  let status: WorkOrderStatus
   try {
     const number = store.addWorkOrder(workOrder)
     workOrder.number = number
-    status = WorkOrder.success(workOrder)
+    status = WorkOrderStatus.success(workOrder.number)
     log('addWorkOrder', `succeeded for number: ${number}`)
   } catch(error) {
-    status = WorkOrder.fail('Add work order failed.', workOrder.number)
+    status = WorkOrderStatus.fail('Add work order failed.', workOrder.number)
     log('addWorkOrder', `failed: ${error} for ${workOrder}`)
   }
   return status
 }
 
-export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
-  let status: WorkOrder
+export function saveWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
+  let status: WorkOrderStatus
   try {
     const count = store.saveWorkOrder(workOrder)
     if (count > 0) {
-      status = WorkOrder.success(workOrder)
+      status = WorkOrderStatus.success(workOrder.number)
       log('saveWorkOrder', `succeeded for number: ${workOrder.number}`)
     } else {
-      status = WorkOrder.fail('Save work order failed.', workOrder.number)
+      status = WorkOrderStatus.fail('Save work order failed.', workOrder.number)
       log('saveWorkOrder', `failed for ${workOrder}`)
     }
   } catch(error) {
-    status = WorkOrder.fail('Save work order failed.', workOrder.number)
+    status = WorkOrderStatus.fail('Save work order failed.', workOrder.number)
     log('saveWorkOrder', `failed: ${error} for ${workOrder}`)
   }
   return status

@@ -8,7 +8,7 @@ let user: User
 let serviceProviders: User[]
 let workOrders: WorkOrder[]
 
-function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string) {
+function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
     .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) })
@@ -23,25 +23,25 @@ export default () => {
   console.log('*** model init ...')
 }
 
-export function getUserId() {
+export function getUserId(): number {
   return user.id
 }
 
-export function getUserRole() {
+export function getUserRole(): string {
   return user.role
 }
 
-export function getUser() {
+export function getUser(): User {
   return user
 }
 
-export function setUser(name: string, emailAddress: string, streetAddress: string) {
+export function setUser(name: string, emailAddress: string, streetAddress: string): void {
   user.name = name
   user.emailAddress = emailAddress
   user.streetAddress = streetAddress
 }
 
-export function getWorkOrderByNumber(number: number) {
+export function getWorkOrderByNumber(number: number): WorkOrder {
   return workOrders.find(workOrder => workOrder.number === number)
 }
 
@@ -51,7 +51,7 @@ export function addWorkOrder(workOrder: WorkOrder) {
   splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }
 
-export function bindUserToForm(newUser: User) {
+export function bindUserToForm(newUser: User): void {
   user = newUser
   setValueById('user-role-id', user.role)
   setValueById('user-name-id', user.name)
@@ -60,7 +60,7 @@ export function bindUserToForm(newUser: User) {
   setValueById('user-registered-id', user.registered)
 }
 
-export function bindServiceProvidersToSelect(newServiceProviders: User[]) {
+export function bindServiceProvidersToSelect(newServiceProviders: User[]): void {
   serviceProviders = newServiceProviders
   const idvalues = []
   for (const serviceProvider of serviceProviders) {
@@ -69,7 +69,7 @@ export function bindServiceProvidersToSelect(newServiceProviders: User[]) {
   setSelectIdValues('workorder-service-provider-id', idvalues)
 }
 
-export function bindWorkOrdersToList(newWorkOrders: WorkOrder[]) {
+export function bindWorkOrdersToList(newWorkOrders: WorkOrder[]): void {
   workOrders = newWorkOrders
   splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }

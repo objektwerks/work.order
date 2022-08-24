@@ -9,6 +9,7 @@ import { validateWorkOrder } from './validator.js'
 
 // @ts-ignore
 import { homeowner, serviceProvider, WorkOrder } from './entity.js'
+import { WorkOrderStatus } from '../shared/entity.js'
 
 const readonlyRole = 'readonly'
 
@@ -111,9 +112,8 @@ export default () => {
 
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
     if (errors.length === 0) {
-      let workOrder: WorkOrder
       if (number > 0) { // save
-        workOrder = model.getWorkOrderByNumber(number)
+        const workOrder: WorkOrder = model.getWorkOrderByNumber(number)
         workOrder.homeownerId = homeownerId
         workOrder.serviceProviderId = serviceProviderId
         workOrder.title = title
@@ -121,20 +121,21 @@ export default () => {
         workOrder.imageUrl = imageUrl
         workOrder.resolution = resolution
         workOrder.closed = closed
-        workOrder = fetcher.saveWorkOrder(workOrder)
-        if (!workOrder.success) {
-          errors.push(workOrder.error)
+        const workOrderStatus: WorkOrderStatus = fetcher.saveWorkOrder(workOrder)
+        if (!workOrderStatus.success) {
+          errors.push(workOrderStatus.error)
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {          
           show('workorder-dialog-id')
         }
       } else { // add
-        workOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
-        workOrder = fetcher.addWorkOrder(workOrder)
-        if (!workOrder.success) {
-          errors.push(workOrder.error)
+        const workOrder: WorkOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
+        const workOrderStatus: WorkOrderStatus = fetcher.addWorkOrder(workOrder)
+        if (!workOrderStatus.success) {
+          errors.push(workOrderStatus.error)
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {
+          workOrder.number = workOrderStatus.number
           model.addWorkOrder(workOrder)
           show('workorder-dialog-id')
         }
@@ -155,7 +156,7 @@ export default () => {
   }, false)
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
-    const id = model.getUserId()
+    const id = model.getUserId().toString()
     const workOrders = fetcher.listWorkOrdersByUserId(id)
     if (!workOrders.success) {
       setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')

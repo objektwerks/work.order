@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
+import { Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
 
 const rootUrl = 'https://' + window.location.host
 const registerUrl = rootUrl + '/register'
@@ -52,12 +52,12 @@ export function login(credentials: Credentials): UsersWorkOrders {
   return call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
 }
 
-export function addWorkOrder(workOrder: WorkOrder): WorkOrder {
-  return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder))
+export function addWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
+  return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
 }
 
-export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
-  return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder))
+export function saveWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
+  return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
 }
 
 export function saveUser(user: User): UserStatus {
