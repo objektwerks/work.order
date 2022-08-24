@@ -2,6 +2,16 @@
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
+export class Status {
+  success: boolean
+  error: string
+
+  constructor(success: boolean = true, error: string = '') {
+    this.success = success
+    this.error = error
+  }
+}
+
 export class Registration {
   role: string
   name: string
@@ -15,16 +25,11 @@ export class Registration {
     this.streetAddress = streetAddress
   }
 
-  static success() {
-    return {
-      success: true
-    }
+  static success(): Status {
+    return new Status()
   }
-  static fail(error: string) {
-    return {
-      success: false,
-      error: error
-    }
+  static fail(error: string): Status {
+    return new Status(false, error)
   }
 }
 

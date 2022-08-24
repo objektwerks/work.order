@@ -182,7 +182,8 @@ export default () => {
     const filename = `${number}-${datetime}.${ext}`
     const url = `/images/${number}/${filename}`
     if ( isDefined(file) ) {
-      const imageUrl = fetcher.saveImage(number, url, file, filename)
+      // @ts-ignore
+      const imageUrl = fetcher.saveImage(number, url, file, filename) // file may be undefined or null!
       if (!imageUrl.success) {
         setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
       } else {
