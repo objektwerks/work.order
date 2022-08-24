@@ -183,35 +183,15 @@ export class UserStatus {
 }
 
 export class User {
-  id: number
-  role: string
-  name: string
-  emailAddress: string
-  streetAddress: string
-  registered: string
-  pin: string
-  success: boolean
-  error: string
-
-  constructor(id: number, 
-              role: string, 
-              name: string, 
-              emailAddress: string, 
-              streetAddress: string, 
-              registered: string, 
-              pin: string,
-              success: boolean = true,
-              error: string = '') {
-    this.id = id
-    this.role = role
-    this.name = name
-    this.emailAddress = emailAddress
-    this.streetAddress = streetAddress
-    this.registered = registered
-    this.pin = pin
-    this.success = success
-    this.error = error
-  }
+  constructor(public id: number, 
+              public role: string, 
+              public name: string, 
+              public emailAddress: string, 
+              public streetAddress: string, 
+              public registered: string, 
+              public pin: string,
+              public success: boolean = true,
+              public error: string = '') {}
 
   static empty() {
     return new User(0, '', '', '', '', '', '')
