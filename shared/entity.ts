@@ -28,6 +28,7 @@ export class Registration {
   static success(): Status {
     return new Status()
   }
+  
   static fail(error: string): Status {
     return new Status(false, error)
   }
@@ -61,6 +62,7 @@ export class UsersWorkOrders {
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
     return new UsersWorkOrders(user, serviceProviders, workOrders)  
   }
+
   static fail(error: string) {
     return new UsersWorkOrders(User.empty(), [User.empty()], [WorkOrder.empty()], false, error)  
   }
