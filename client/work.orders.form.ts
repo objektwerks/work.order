@@ -174,7 +174,7 @@ export default () => {
     }
   }, false)
 
-  getById('workorder-image-file-id').addEventListener('change', (event) => {
+  getById('workorder-image-file-id').addEventListener('change', () => {
     const number = getValueById('workorder-number-id')
     const file = getFileById('workorder-image-file-id')
     const datetime = new Date().toISOString()
@@ -217,7 +217,6 @@ export default () => {
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
-    const number = ( event.target as HTMLInputElement ).id
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
