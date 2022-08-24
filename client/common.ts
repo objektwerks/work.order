@@ -20,7 +20,12 @@ export function getById(id: string): HTMLElement {
 
 export function getFileById(id: string): File {
   const input = getById(id) as HTMLInputElement
-  return input.files?[0]
+  const file = input.files?.item(0)
+  if (file === undefined || file === null) {
+    throw new Error(`File IO error on id: ${id}`)
+  } else {
+    return file
+  }
 }
 
 export function getSelectedIndexId(selectId: string): string {
@@ -114,13 +119,13 @@ export function setListIdValues(listId: string, idValues: IdValue[]): void {
   }
 }
 
-export function setSelectIdValues(selectId: string, idvalues: IdValue[]) {
-  document.getElementById(selectId).innerHTML = '';
-  const select = document.getElementById(selectId);
-  for (const idvalue of idvalues) {
+export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
+  const select = getById(selectId) as HTMLSelectElement
+  select.innerHTML = ''
+  for (const idValue of idValues) {
     let option = document.createElement('option');
-    option.id = idvalue.id;
-    option.appendChild(document.createTextNode(`${idvalue.id} - ${idvalue.value}`));
+    option.id = idValue.id;
+    option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`));
     select.appendChild(option);
   }
 }
