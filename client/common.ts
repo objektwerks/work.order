@@ -30,8 +30,9 @@ export function getSelectedIndexId(selectId: string): string {
   return selectedId === undefined || selectId === null ? '' : selectId
 }
 
-export function getValueById(id: string) {
-  return document.getElementById(id)['value'];
+export function getValueById(id: string): string {
+  const input = getById(id) as HTMLInputElement
+  return input.value
 }
 
 export function hide(id: string) {
