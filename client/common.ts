@@ -35,28 +35,29 @@ export function getValueById(id: string): string {
   return input.value
 }
 
-export function hide(id: string) {
+export function hide(id: string): void {
   const element = getById(id) as HTMLElement
   element.style.display = 'none'
 }
 
-export function show(id: string) {
+export function show(id: string): void {
   const element = getById(id) as HTMLElement
   element.style.display = 'block'
 }
 
-export function addReadonlyById(id: string) {
+export function addReadonlyById(id: string): void {
   const element = getById(id) as HTMLElement
   element.setAttribute('readonly', 'readonly');
 }
 
-export function removeReadonlyById(id: string) {
+export function removeReadonlyById(id: string): void {
   const element = getById(id) as HTMLElement
   element.removeAttribute('readonly');
 }
 
-export function setTextById(id: string, text: string) {
-  return document.getElementById(id).innerText = text;
+export function setTextById(id: string, text: string): void {
+  const element = getById(id) as HTMLElement
+  element.innerText = text;
 }
 
 export function setValueById(id: string, value: string) {
