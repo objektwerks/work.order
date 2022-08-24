@@ -1,25 +1,25 @@
 // @ts-check
 
 // @ts-ignore
-import { ImageUrl, Status, User, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
+import { Credentials, ImageUrl, Registration, Status, User, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
 
-const rootUrl = 'https://' + window.location.host
-const registerUrl = rootUrl + '/register'
-const loginUrl = rootUrl + '/login'
-const addWorkOrderUrl = rootUrl + '/workorders/add'
-const saveWorkOrderUrl = rootUrl + '/workorders/save'
-const saveUserUrl = rootUrl + '/users/save'
-const saveImageUrl = rootUrl + '/image/save'
-const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
-const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
-const get = 'GET'
-const post = 'POST'
-const headers = {
+const rootUrl: string = 'https://' + window.location.host
+const registerUrl: string = rootUrl + '/register'
+const loginUrl: string = rootUrl + '/login'
+const addWorkOrderUrl: string = rootUrl + '/workorders/add'
+const saveWorkOrderUrl: string = rootUrl + '/workorders/save'
+const saveUserUrl: string = rootUrl + '/users/save'
+const saveImageUrl: string = rootUrl + '/image/save'
+const getWorkOrderByNumberUrl: string = rootUrl + '/workorders/'
+const listWorkOrdersByUserIdUrl: string = rootUrl + '/workorders/user/'
+const get: string = 'GET'
+const post: string = 'POST'
+const headers: any = {
   "Content-Type": "application/json charset=utf-8",
   'Accept': 'application/json'
 }
 
-async function call(url, method, headers, entity, fault, asJson = true) {
+async function call(url: string, method: string, headers: any, entity: any, fault: () => object, asJson = true) {
   let result
   try {
     let response = await fetch(url, {
@@ -44,40 +44,40 @@ export default () => {
   console.log('*** fetcher init ...')
 }
 
-export function register(registration) {
-  return this.call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'))
+export function register(registration: Registration) {
+  return call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'))
 }
 
-export function login(credentials) {
-  return this.call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
+export function login(credentials: Credentials) {
+  return call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
 }
 
-export function addWorkOrder(workOrder) {
-  return this.call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder))
+export function addWorkOrder(workOrder: WorkOrder) {
+  return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Add work order failed!', workOrder))
 }
 
-export function saveWorkOrder(workOrder) {
-  return this.call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder))
+export function saveWorkOrder(workOrder: WorkOrder) {
+  return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder))
 }
 
-export function saveUser(user) {
-  return this.call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user))
+export function saveUser(user: User) {
+  return call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user))
 }
 
-export function saveImage(number, url, file, filename) {
+export function saveImage(number: string, url: string, file: File, filename: string) {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
   formdata.append('number', number)
   formdata.append('url', url)
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)
-  return this.call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
+  return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
 }
 
-export function getWorkOrderByNumber(number) {
-  return this.call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
+export function getWorkOrderByNumber(number: string) {
+  return call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
 }
 
-export function listWorkOrdersByUserId(id) {
-  return this.call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
+export function listWorkOrdersByUserId(id: string) {
+  return call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
 }
