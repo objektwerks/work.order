@@ -6,7 +6,7 @@ const letters = "abcdefghijklmnopqrstuvwxyz"
 
 const shuffle = (str: string) => [...str].sort( () => Math.random() - .5 ).join('')
 
-export function newPin() {
+export function newPin(): string {
   const first = shuffle(specialChars).charAt(0)
   const left = shuffle(letters).charAt(0)
   const middle = crypto.getRandomValues(new Uint16Array(7))[0].toString().slice(0, 3)
