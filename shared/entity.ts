@@ -3,14 +3,18 @@ export const homeowner = 'homeowner';
 export const serviceProvider = 'serviceprovider';
 
 export class Registration {
-  static create(role: string, name: string, emailAddress: string, streetAddress: string) {
-    return {
-      role: role,
-      name: name,
-      emailAddress: emailAddress,
-      streetAddress: streetAddress
-    }    
+  role: string
+  name: string
+  emailAddress: string
+  streetAddress: string
+
+  constructor(role: string, name: string, emailAddress: string, streetAddress: string) {
+    this.role = role
+    this.name = name
+    this.emailAddress = emailAddress
+    this.streetAddress = streetAddress
   }
+
   static success() {
     return {
       success: true
@@ -25,11 +29,12 @@ export class Registration {
 }
 
 export class Credentials {
-  static create(emailAddress: string, pin: string) {
-    return {
-      emailAddress: emailAddress,
-      pin: pin
-    }    
+  emailAddress: string
+  pin: string
+
+  constructor(emailAddress: string, pin: string) {
+    this.emailAddress = emailAddress
+    this.pin = pin
   }
 }
 
@@ -66,19 +71,45 @@ export class WorkOrders {
   }
 }
 
-export class WorkOrder {
-  static create(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
+export class ImageUrl {
+  static success(number: number, url: string) {
     return {
+      success: true,
       number: number,
-      homeownerId: homeownerId,
-      serviceProviderId: serviceProviderId,
-      title: title,
-      issue: issue,
-      imageUrl: imageUrl,
-      resolution: resolution,
-      opened: opened,
-      closed: closed
+      url: url
     }
+  }
+  static fail(error: string, number: number, url: string) {
+    return {
+      success: false,
+      error: error,
+      number: number,
+      url: url
+    }
+  }
+}
+
+export class WorkOrder {
+  number: number
+  homeownerId: number
+  serviceProviderId: number
+  title: string
+  issue: string
+  imageUrl: string
+  resolution: string
+  opened: string
+  closed: string
+
+  constructor(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
+    this.number = number
+    this.homeownerId = homeownerId
+    this.serviceProviderId = serviceProviderId
+    this.title = title
+    this.issue = issue
+    this.imageUrl = imageUrl
+    this.resolution = resolution
+    this.opened = opened
+    this.closed = closed
   }
 
   static success(workOrder: WorkOrder) {
@@ -98,16 +129,20 @@ export class WorkOrder {
 }
 
 export class User {
-  static create(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
-    return {
-      id: id,
-      role: role,
-      name: name,
-      emailAddress: emailAddress,
-      streetAddress: streetAddress,
-      registered: registered,
-      pin: ''
-    }
+  id: number
+  role: string
+  name: string
+  emailAddress: string
+  streetAddress: string
+  registered: string
+
+  constructor(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
+    this.id = id
+    this.role = role
+    this.name = name
+    this.emailAddress = emailAddress
+    this.streetAddress = streetAddress
+    this.registered = registered
   }
 
   static success(user: User) {
@@ -123,23 +158,5 @@ export class User {
       error: error,
       user: user
     }    
-  }
-}
-
-export class ImageUrl {
-  static success(number: number, url: string) {
-    return {
-      success: true,
-      number: number,
-      url: url
-    }
-  }
-  static fail(error: string, number: number, url: string) {
-    return {
-      success: false,
-      error: error,
-      number: number,
-      url: url
-    }
   }
 }

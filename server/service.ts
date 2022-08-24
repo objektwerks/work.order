@@ -2,12 +2,21 @@
 import { newPin } from './pin.js';
 import * as store from './store.js';
 import * as emailer from './emailer.js';
-import { serviceProvider, ImageUrl, User, UsersWorkOrders, WorkOrder, WorkOrders, Registration } from '../shared/entity.js';
+import {
+  serviceProvider,
+  Credentials,
+  ImageUrl,
+  User,
+  UsersWorkOrders,
+  WorkOrder,
+  WorkOrders,
+  Registration
+} from '../shared/entity.js';
 
 const subjectRegistration = `Work Order Registration`;
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`;
 
-function log(method, message) {
+function log(method: string, message:  string) {
   console.log('*** service.${method}: ', message);
 }
 
@@ -19,7 +28,7 @@ export function shutdown() {
   store.disconnect();
 }
 
-export function register(registration) {
+export function register(registration: Registration) {
   let status;
   try {
     const pin = newPin();
@@ -42,7 +51,7 @@ export function register(registration) {
   return status;
 }
 
-export function login(credentials) {
+export function login(credentials: Credentials) {
   let status;
   try {
     const user = store.getUserByEmailAddressPin(credentials.emailAdress, credentials.pin);
@@ -93,7 +102,7 @@ export function getWorkOrderByNumber(number) {
   return status;
 }
 
-export function addWorkOrder(workOrder) {
+export function addWorkOrder(workOrder: WorkOrder) {
   let status;
   try {
     const number = store.addWorkOrder(workOrder);
@@ -107,7 +116,7 @@ export function addWorkOrder(workOrder) {
   return status;
 }
 
-export function saveWorkOrder(workOrder) {
+export function saveWorkOrder(workOrder: WorkOrder) {
   let status;
   try {
     const count = store.saveWorkOrder(workOrder);
@@ -125,7 +134,7 @@ export function saveWorkOrder(workOrder) {
   return status;
 }
 
-export function saveUser(user) {
+export function saveUser(user: User) {
   let status;
   try {
     const count = store.saveUser(user);
@@ -143,7 +152,7 @@ export function saveUser(user) {
   return status;
 }
 
-export function saveImageUrl(number, url) {
+export function saveImageUrl(number: number, url: string) {
   let status;
   try {
     const count = store.saveImageUrl(number, url);
