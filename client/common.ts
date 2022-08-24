@@ -65,23 +65,21 @@ export function setValueById(id: string, value: string): void {
   input.value = value
 }
 
-export function setImageUrlById(id: string, url: string) {
+export function setImageUrlById(id: string, url: string): void {
   const img = getById(id) as HTMLImageElement
   img.src = url
 }
 
-export function setSelectOptionById(selectId: string, optionId: string) {
-  const select = document.getElementById(selectId);
-  const options = select['options'];
-  let index = 0;
-  for (const option of options) {
-    if (option.id === optionId) {
+export function setSelectOptionById(selectId: string, optionId: string): void {
+  const select = getById(selectId) as HTMLSelectElement
+  const options = select.options
+  for (let i = 0; i < options.length; i++) {
+    const option = options.item(i)
+    if (option !== null && option.id === optionId) {
+      select.selectedIndex = i
       break;
-    } else {
-      index += 1;
     }
   }
-  select['selectedIndex'] = index;
 }
 
 export function setErrorList(error: string, errorsListId: string, errorsViewId: string) {
