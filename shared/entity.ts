@@ -91,7 +91,7 @@ export class ImageUrl {
   url: string
   success: boolean
   error: string
-  
+
   constructor(number: number, url: string, success: boolean = true, error: string = ''){
     this.number = number
     this.url = url
@@ -118,8 +118,20 @@ export class WorkOrder {
   resolution: string
   opened: string
   closed: string
+  success: boolean
+  error: string
 
-  constructor(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
+  constructor(number: number,
+              homeownerId: number, 
+              serviceProviderId: number, 
+              title: string, 
+              issue: string, 
+              imageUrl: string, 
+              resolution: string, 
+              opened: string, 
+              closed: string,
+              success: boolean = true,
+              error: string = '') {
     this.number = number
     this.homeownerId = homeownerId
     this.serviceProviderId = serviceProviderId
@@ -129,6 +141,8 @@ export class WorkOrder {
     this.resolution = resolution
     this.opened = opened
     this.closed = closed
+    this.success = success
+    this.error = error
   }
 
   static empty() {
@@ -136,18 +150,25 @@ export class WorkOrder {
   }
 
   static success(workOrder: WorkOrder) {
-    return {
-      success: true,
-      workOrder: workOrder
-    }    
+    return new WorkOrder(
+      workOrder.number,
+      workOrder.homeownerId,
+      workOrder.serviceProviderId,
+      workOrder.title,
+      workOrder.issue,
+      workOrder.imageUrl,
+      workOrder.resolution,
+      workOrder.opened,
+      workOrder.closed
+    )
   }
 
   static fail(error: string, number: number) {
-    return {
-      success: false,
-      error: error,
-      number: number
-    }    
+    let workOrder = WorkOrder.empty()
+    workOrder.number = number
+    workOrder.success = false
+    workOrder.error = error
+    return workOrder 
   }
 }
 
