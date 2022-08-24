@@ -3,13 +3,7 @@ export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
 export class Status {
-  success: boolean
-  error: string
-
-  constructor(success: boolean = true, error: string = '') {
-    this.success = success
-    this.error = error
-  }
+  constructor(public success: boolean = true, public error: string = '') {}
 }
 
 export class Registration {
