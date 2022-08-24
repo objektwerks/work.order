@@ -46,11 +46,13 @@ export function show(id: string) {
 }
 
 export function addReadonlyById(id: string) {
-  document.getElementById(id).setAttribute('readonly', 'readonly');
+  const element = getById(id) as HTMLElement
+  element.setAttribute('readonly', 'readonly');
 }
 
 export function removeReadonlyById(id: string) {
-  document.getElementById(id).removeAttribute('readonly');
+  const element = getById(id) as HTMLElement
+  element.removeAttribute('readonly');
 }
 
 export function setTextById(id: string, text: string) {
