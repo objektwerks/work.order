@@ -8,6 +8,7 @@ import {
   ImageUrl,
   Status,
   User,
+  UserStatus,
   UsersWorkOrders,
   WorkOrder,
   WorkOrders,
@@ -135,19 +136,19 @@ export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
   return status
 }
 
-export function saveUser(user: User): User {
-  let status: User
+export function saveUser(user: User): UserStatus {
+  let status: UserStatus
   try {
     const count = store.saveUser(user)
     if (count > 0) {
-      status = User.success(user)
+      status = UserStatus.success(user.id, user.emailAddress)
       log('saveUser', `succeeded for id: ${user.id}`)
     } else {
-      status = User.fail('Save user failed.', user.emailAddress)
+      status = UserStatus.fail('Save user failed.', user.id, user.emailAddress)
       log('saveUser', `failed for ${user}`)
     }
   } catch(error) {
-    status = User.fail('Save user failed.', user.emailAddress)
+    status = UserStatus.fail('Save user failed.', user.id, user.emailAddress)
     log('saveUser', `failed: ${error} for ${user}`)
   }
   return status

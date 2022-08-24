@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { Credentials, ImageUrl, Registration, Status, User, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
+import { Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
 
 const rootUrl = 'https://' + window.location.host
 const registerUrl = rootUrl + '/register'
@@ -60,8 +60,8 @@ export function saveWorkOrder(workOrder: WorkOrder): WorkOrder {
   return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrder.fail('Save work order failed!', workOrder))
 }
 
-export function saveUser(user: User): User {
-  return call(saveUserUrl, post, headers, user, () => User.fail('Save user failed.', user))
+export function saveUser(user: User): UserStatus {
+  return call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user))
 }
 
 export function saveImage(number: string, url: string, file: File, filename: string): ImageUrl {
