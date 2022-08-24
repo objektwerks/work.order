@@ -6,7 +6,7 @@ import * as model from './model.js'
 // @ts-ignore
 import { validateUserInfo } from './validator.js'
 
-function bindFormToUser(name, emailAddress, streetAddress) {
+function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
   model.setUser(name, emailAddress, streetAddress)
 }
 

@@ -2,7 +2,7 @@
 import { getById, getByClass, show } from './common.js'
 
 function selectMenuItem(formId: string) {
-  const forms = getByClass('form') as HTMLFormControlsCollection
+  const forms = getByClass('form') as HTMLCollectionOf<Element>
   for (let i = 0; i < forms.length; i++) {
     const form = forms.item(i) as HTMLFormElement
     form.style.display = 'none'

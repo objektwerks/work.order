@@ -12,15 +12,16 @@ import { homeowner, serviceProvider, WorkOrder } from './entity.js'
 
 const readonlyRole = 'readonly'
 
-function selectTab(tabviewId) {
-  const tabviews = getByClass('tabview')
-  for (const tabview of tabviews) {
-    tabview['style'].display = 'none'
+function selectTab(tabviewId: string) {
+  const tabviews = getByClass('tabview') as HTMLCollectionOf<Element>
+  for (let i = 0; i < tabviews.length; i++) {
+    const tabview = tabviews.item(i) as HTMLFormElement
+    tabview.style.display = 'none'
   }
   show(tabviewId)
 }
 
-function applyRoleToForm(role) {
+function applyRoleToForm(role: string) {
   if (role === homeowner) {
     // always readonly removeReadonlyById('workorder-number-id')
     // always readonly removeReadonlyById('workorder-homeowner-id')
@@ -64,8 +65,8 @@ function applyRoleToForm(role) {
 }
 
 function bindEmptyWorkOrderToForm() {
-  setValueById('workorder-number-id', 0)
-  setValueById('workorder-homeowner-id', model.getUserId)
+  setValueById('workorder-number-id', '0')
+  setValueById('workorder-homeowner-id', model.getUserId.toString())
   setValueById('workorder-title-id', "")
   setValueById('workorder-issue-id', "")
   setValueById('workorder-image-url-id', "")
@@ -74,7 +75,7 @@ function bindEmptyWorkOrderToForm() {
   setValueById('workorder-closed-id', "")
 }
 
-function bindWorkOrderToForm(workOrder) {
+function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-number-id', workOrder.number)
   setValueById('workorder-homeowner-id', workOrder.homeownerId)
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId)
@@ -98,7 +99,7 @@ export default () => {
 
     hide('workorder-errors-form-id')
 
-    const number = getValueById('workorder-number-id')
+    const number = parseInt( getValueById('workorder-number-id') )
     const homeownerId = getValueById('workorder-homeowner-id')
     const serviceProviderId = getSelectedIndexId('workorder-service-provider-id')
     const title = getValueById('workorder-title-id')
