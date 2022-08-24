@@ -1,5 +1,5 @@
 // @ts-check
-import mysql, { MysqlError, Pool } from 'mysql';
+import mysql, { MysqlError, OkPacket, Pool } from 'mysql';
 import { User, WorkOrder } from '../shared/entity.js';
 
 const url: string = process.env.DATABASE_URL as string;
@@ -84,7 +84,7 @@ export function getWorkOrderByNumber(number: number) {
 
 export function addWorkOrder(workOrder: WorkOrder) {
   let number: number = 0;
-  connection.query('insert into work_order set ?', [workOrder], (error: MysqlError | null, result: any) => {
+  connection.query('insert into work_order set ?', [workOrder], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('addWorkOrder', error.message);
     } else {
@@ -97,7 +97,7 @@ export function addWorkOrder(workOrder: WorkOrder) {
 
 export function addUser(user: User) {
   let id: number = 0;
-  connection.query('insert into user set ?', [user], (error: MysqlError | null, result: any) => {
+  connection.query('insert into user set ?', [user], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('addUser', error.message);
     } else {
