@@ -69,17 +69,7 @@ export class UsersWorkOrders {
 }
 
 export class WorkOrders {
-  userId: number
-  workOrders: WorkOrder[]
-  success: boolean
-  error: string
-
-  constructor(userId: number, workOrders: WorkOrder[], success: boolean = true, error: string = '') {
-    this.userId = userId
-    this.workOrders = workOrders
-    this.success = success
-    this.error = error
-  }
+  constructor(public userId: number, public workOrders: WorkOrder[], public success: boolean = true, public error: string = '') {}
 
   static success(userId: number, workOrders: WorkOrder[]) {
     return new WorkOrders(userId, workOrders)
