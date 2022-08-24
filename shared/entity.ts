@@ -3,11 +3,15 @@ export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
 export class Status {
-  constructor(public success: boolean = true, public error: string = '') {}
+  constructor(public success: boolean = true, 
+              public error: string = '') {}
 }
 
 export class Registration {
-  constructor(public role: string, public name: string, public emailAddress: string, public streetAddress: string) {}
+  constructor(public role: string, 
+              public name: string, 
+              public emailAddress: string, 
+              public streetAddress: string) {}
 
   static success(): Status {
     return new Status()
@@ -19,11 +23,16 @@ export class Registration {
 }
 
 export class Credentials {
-  constructor(public emailAddress: string, public pin: string) {}
+  constructor(public emailAddress: string, 
+              public pin: string) {}
 }
 
 export class UsersWorkOrders {
-  constructor(public user: User, public serviceProviders: User[], public workOrders: WorkOrder[], public success: boolean = true, public error: string = '') {}
+  constructor(public user: User, 
+              public serviceProviders: User[], 
+              public workOrders: WorkOrder[], 
+              public success: boolean = true, 
+              public error: string = '') {}
 
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
     return new UsersWorkOrders(user, serviceProviders, workOrders)  
@@ -35,7 +44,10 @@ export class UsersWorkOrders {
 }
 
 export class WorkOrders {
-  constructor(public userId: number, public workOrders: WorkOrder[], public success: boolean = true, public error: string = '') {}
+  constructor(public userId: number, 
+              public workOrders: WorkOrder[], 
+              public success: boolean = true, 
+              public error: string = '') {}
 
   static success(userId: number, workOrders: WorkOrder[]) {
     return new WorkOrders(userId, workOrders)
@@ -47,7 +59,10 @@ export class WorkOrders {
 }
 
 export class ImageUrl {
-  constructor(public number: number, public url: string, public success: boolean = true, public error: string = '') {}
+  constructor(public number: number, 
+              public url: string, 
+              public success: boolean = true, 
+              public error: string = '') {}
 
   static success(number: number, url: string) {
     return new ImageUrl(number, url)
@@ -59,7 +74,9 @@ export class ImageUrl {
 }
 
 export class WorkOrderStatus {
-  constructor(public number: number, public success: boolean = true, public error: string = '') {}
+  constructor(public number: number, 
+              public success: boolean = true, 
+              public error: string = '') {}
 
   static success(number: number) {
     return new WorkOrderStatus(number)
@@ -101,7 +118,9 @@ export class WorkOrder {
 }
 
 export class UserStatus {
-  constructor(public id: number, public success: boolean = true, public error: string = '') {}
+  constructor(public id: number, 
+              public success: boolean = true, 
+              public error: string = '') {}
 
   static success(id: number) {
     return new UserStatus(id)
