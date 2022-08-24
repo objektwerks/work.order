@@ -11,7 +11,7 @@ const host: string = process.env.BIND_IP ?? '127.0.0.1'
 let router: Express
 let server: Server
 
-function shutdown(signal: string) {
+function shutdown(signal: string): void {
   server.close(() => {
     console.log(`*** [${signal}] server and router shutting down ...`)
     service.shutdown()
