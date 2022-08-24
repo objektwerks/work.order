@@ -1,6 +1,6 @@
 // @ts-check
-import nodemailer from 'nodemailer';
-import Mail from "nodemailer/lib/mailer";
+import nodemailer from 'nodemailer'
+import Mail from "nodemailer/lib/mailer"
 
 const sender: string = process.env.EMAIL_SENDER as string
 const config: object = {
@@ -14,10 +14,10 @@ const config: object = {
   },
   logger:true
 }
-const transporter: Mail = nodemailer.createTransport(config);
+const transporter: Mail = nodemailer.createTransport(config)
 
 export default () => {
-  console.log('*** emailer connected ...');
+  console.log('*** emailer connected ...')
 }
 
 export function send(recipient: string, pin: string, subject: string, text: string) {
@@ -26,14 +26,14 @@ export function send(recipient: string, pin: string, subject: string, text: stri
     to: recipient,
     subject: subject,
     text: `${pin} ${text}`
-  };
+  }
   // @ts-ignore
   transporter.sendMail(message, (error: Error, info: SentMessageInfo) => {
     if (error) {
-      console.log(`*** emailer failed: ${error}`);
-      throw error;
+      console.log(`*** emailer failed: ${error}`)
+      throw error
     } else {
-      console.log(`*** emailer sent: ${info.messageId} to: ${message.to}`);
+      console.log(`*** emailer sent: ${info.messageId} to: ${message.to}`)
     }
-  });
+  })
 }

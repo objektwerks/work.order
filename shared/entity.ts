@@ -112,6 +112,10 @@ export class WorkOrder {
     this.closed = closed
   }
 
+  static empty() {
+    return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
+  }
+
   static success(workOrder: WorkOrder) {
     return {
       success: true,
@@ -145,6 +149,10 @@ export class User {
     this.streetAddress = streetAddress
     this.registered = registered
     this.pin = pin
+  }
+
+  static empty() {
+    return new User(0, '', '', '', '', '', '')
   }
 
   static success(user: User) {
