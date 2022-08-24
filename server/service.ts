@@ -141,14 +141,14 @@ export function saveUser(user: User): UserStatus {
   try {
     const count = store.saveUser(user)
     if (count > 0) {
-      status = UserStatus.success(user.id, user.emailAddress)
+      status = UserStatus.success(user.id)
       log('saveUser', `succeeded for id: ${user.id}`)
     } else {
-      status = UserStatus.fail('Save user failed.', user.id, user.emailAddress)
+      status = UserStatus.fail('Save user failed.', user.id)
       log('saveUser', `failed for ${user}`)
     }
   } catch(error) {
-    status = UserStatus.fail('Save user failed.', user.id, user.emailAddress)
+    status = UserStatus.fail('Save user failed.', user.id)
     log('saveUser', `failed: ${error} for ${user}`)
   }
   return status
