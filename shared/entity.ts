@@ -108,6 +108,26 @@ export class ImageUrl {
   }
 }
 
+export class WorkOrderStatus {
+  number: number
+  success: boolean
+  error: string
+
+  constructor(number: number, success: boolean = true, error: string = '') {
+    this.number = number
+    this.success = success
+    this.error = error
+  }
+
+  static success(number: number) {
+    return new WorkOrderStatus(number)
+  }
+
+  static fail(error: string, number: number) {
+    return new WorkOrderStatus(number, false, error)
+  }
+}
+
 export class WorkOrder {
   number: number
   homeownerId: number
