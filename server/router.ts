@@ -3,14 +3,15 @@ import { images, imagesDir, ifNotExistsMakeDir } from './images.js';
 import * as service from './service.js';
 import compression from 'compression';
 import express from 'express';
+import { Server } from 'http';
 
 const port = process.env.PORT || 3000;
 const host = process.env.BIND_IP ?? '127.0.0.1';
 
 let router;
-let http;
+let http: Server;
 
-function shutdown(signal) {
+function shutdown(signal: string) {
   http.close(() => {
     console.log(`*** [${signal}] server and router shutting down ...`);
     service.shutdown();
@@ -65,7 +66,7 @@ export default () => {
   });
   
   http = router.listen(port, host, () =>
-    console.log(`*** server listening on http://${host}:${port}/`)
+    console.log(`*** server listening on https://${host}:${port}/`)
   );
   
   process.on('SIGINT', () => {
