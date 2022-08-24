@@ -67,18 +67,22 @@ export class UsersWorkOrders {
 }
 
 export class WorkOrders {
+  workOrders: WorkOrder[]
+  success: boolean
+  error: string
+
+  constructor(workOrders: WorkOrder[], success: boolean = true, error: string = ''){
+    this.workOrders = workOrders
+    this.success = true
+    this.error = ''
+  }
+
   static success(workOrders: WorkOrder[]) {
-    return {
-      success: true,
-      workOrders: workOrders
-    }    
+    return new WorkOrders(workOrders)
   }
 
   static fail(error: string) {
-    return {
-      success: false,
-      error: error
-    }    
+    return new WorkOrders([WorkOrder.empty()], false, error)
   }
 }
 
