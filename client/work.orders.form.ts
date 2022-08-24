@@ -176,7 +176,7 @@ export default () => {
 
   getById('workorder-image-file-id').addEventListener('change', (event) => {
     const number = getValueById('workorder-number-id')
-    const file = getFileById('workorder-image-file-id')
+    const file: File = getFileById('workorder-image-file-id')
     const datetime = new Date().toISOString()
     const ext = file['type'] === 'image/jpeg' ? 'jpeg' : 'png'
     const filename = `${number}-${datetime}.${ext}`

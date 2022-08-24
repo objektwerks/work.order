@@ -3,17 +3,17 @@
 // @ts-ignore
 import { Credentials, ImageUrl, Registration, Status, User, UsersWorkOrders, WorkOrder, WorkOrders } from './entity.js'
 
-const rootUrl: string = 'https://' + window.location.host
-const registerUrl: string = rootUrl + '/register'
-const loginUrl: string = rootUrl + '/login'
-const addWorkOrderUrl: string = rootUrl + '/workorders/add'
-const saveWorkOrderUrl: string = rootUrl + '/workorders/save'
-const saveUserUrl: string = rootUrl + '/users/save'
-const saveImageUrl: string = rootUrl + '/image/save'
-const getWorkOrderByNumberUrl: string = rootUrl + '/workorders/'
-const listWorkOrdersByUserIdUrl: string = rootUrl + '/workorders/user/'
-const get: string = 'GET'
-const post: string = 'POST'
+const rootUrl = 'https://' + window.location.host
+const registerUrl = rootUrl + '/register'
+const loginUrl = rootUrl + '/login'
+const addWorkOrderUrl = rootUrl + '/workorders/add'
+const saveWorkOrderUrl = rootUrl + '/workorders/save'
+const saveUserUrl = rootUrl + '/users/save'
+const saveImageUrl = rootUrl + '/image/save'
+const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
+const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
+const get = 'GET'
+const post = 'POST'
 const headers: any = {
   "Content-Type": "application/json charset=utf-8",
   'Accept': 'application/json'
