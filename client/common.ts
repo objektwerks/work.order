@@ -66,7 +66,8 @@ export function setValueById(id: string, value: string): void {
 }
 
 export function setImageUrlById(id: string, url: string) {
-  return document.getElementById(id)['src'] = url;
+  const img = getById(id) as HTMLImageElement
+  img.src = url
 }
 
 export function setSelectOptionById(selectId: string, optionId: string) {
