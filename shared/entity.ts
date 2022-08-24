@@ -25,13 +25,7 @@ export class Registration {
 }
 
 export class Credentials {
-  emailAddress: string
-  pin: string
-
-  constructor(emailAddress: string, pin: string) {
-    this.emailAddress = emailAddress
-    this.pin = pin
-  }
+  constructor(public emailAddress: string, public pin: string) {}
 }
 
 export class UsersWorkOrders {
