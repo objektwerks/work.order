@@ -1,6 +1,6 @@
 // @ts-check
-export const homeowner = 'homeowner';
-export const serviceProvider = 'serviceprovider';
+export const homeowner = 'homeowner'
+export const serviceProvider = 'serviceprovider'
 
 export class Registration {
   role: string
