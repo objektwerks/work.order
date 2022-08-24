@@ -36,11 +36,13 @@ export function getValueById(id: string): string {
 }
 
 export function hide(id: string) {
-  document.getElementById(id).style.display = 'none';
+  const element = getById(id) as HTMLElement
+  element.style.display = 'none'
 }
 
 export function show(id: string) {
-  document.getElementById(id).style.display = 'block';
+  const element = getById(id) as HTMLElement
+  element.style.display = 'block'
 }
 
 export function addReadonlyById(id: string) {
