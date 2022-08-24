@@ -44,19 +44,25 @@ export class Credentials {
 }
 
 export class UsersWorkOrders {
+  user: User
+  serviceProviders: User[]
+  workOrders: WorkOrder[]
+  success: boolean
+  error: string
+
+  constructor(user: User, serviceProviders: User[], workOrders: WorkOrder[], success: boolean = true, error: string = ''){
+    this.user = user
+    this.serviceProviders = serviceProviders
+    this.workOrders = workOrders
+    this.success = true
+    this.error = ''
+  }
+
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
-    return {
-      success: true,
-      user: user,
-      serviceProviders: serviceProviders,
-      workOrders: workOrders
-    }    
+    return new UsersWorkOrders(user, serviceProviders, workOrders)  
   }
   static fail(error: string) {
-    return {
-      success: false,
-      error: error
-    }    
+    return new UsersWorkOrders(User.empty(), [User.empty()], [WorkOrder.empty()], false, error)  
   }
 }
 
