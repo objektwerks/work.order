@@ -1,6 +1,6 @@
 // @ts-check
 import mysql, { MysqlError, Pool } from 'mysql';
-import {User, WorkOrder, WorkOrders} from '../shared/entity.js';
+import { User, WorkOrder } from '../shared/entity.js';
 
 const url: string = process.env.DATABASE_URL as string;
 const connection: Pool = mysql.createPool(url);
@@ -26,7 +26,7 @@ export function listWorkOrdersByUserId(id: number) {
     } else {
       rows.forEach((row) => {
         list.push(
-          WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+          new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
         )
       });
     }
@@ -42,7 +42,7 @@ export function listUsersByRole(role: string) {
     } else {
       rows.forEach((row) => {
         list.push(
-          User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
         )
       });
     }
@@ -58,7 +58,7 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
     } else {
       rows.forEach((row) => {
         list.push(
-          User.create(row.id, row.role, row.name, row.email_address, row.street_address, row.registered)
+          new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
         )
       });
     }
@@ -74,7 +74,7 @@ export function getWorkOrderByNumber(number: number) {
     } else {
       rows.forEach((row) => {
         list.push(
-          WorkOrder.create(row.number, row.homeowner_id, row.service_provider_id, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+          new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
         )
       });
     }
