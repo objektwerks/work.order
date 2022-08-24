@@ -19,7 +19,7 @@ const headers: any = {
   'Accept': 'application/json'
 }
 
-async function call(url: string, method: string, headers: any, entity: any, fault: () => object, asJson = true) {
+const call = async (url: string, method: string, headers: any, entity: any, fault: () => object, asJson = true) => {
   let result
   try {
     let response = await fetch(url, {
@@ -44,7 +44,7 @@ export default () => {
   console.log('*** fetcher init ...')
 }
 
-export function register(registration: Registration) {
+export function register(registration: Registration): Status {
   return call(registerUrl, post, headers, registration, () => Status.fail('Register failed.'))
 }
 
