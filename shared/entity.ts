@@ -150,17 +150,7 @@ export class WorkOrder {
   }
 
   static success(workOrder: WorkOrder) {
-    return new WorkOrder(
-      workOrder.number,
-      workOrder.homeownerId,
-      workOrder.serviceProviderId,
-      workOrder.title,
-      workOrder.issue,
-      workOrder.imageUrl,
-      workOrder.resolution,
-      workOrder.opened,
-      workOrder.closed
-    )
+    return workOrder
   }
 
   static fail(error: string, number: number) {
@@ -180,8 +170,18 @@ export class User {
   streetAddress: string
   registered: string
   pin: string
+  success: boolean
+  error: string
 
-  constructor(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string, pin: string) {
+  constructor(id: number, 
+              role: string, 
+              name: string, 
+              emailAddress: string, 
+              streetAddress: string, 
+              registered: string, 
+              pin: string,
+              success: boolean = true,
+              error: string = '') {
     this.id = id
     this.role = role
     this.name = name
@@ -189,6 +189,8 @@ export class User {
     this.streetAddress = streetAddress
     this.registered = registered
     this.pin = pin
+    this.success = success
+    this.error = error
   }
 
   static empty() {
@@ -196,17 +198,14 @@ export class User {
   }
 
   static success(user: User) {
-    return {
-      success: true,
-      user: user
-    }    
+    return user
   }
 
-  static fail(error: string, user: User) {
-    return {
-      success: false,
-      error: error,
-      user: user
-    }    
+  static fail(error: string, emailAddress: string) {
+    let user = User.empty()
+    user.emailAddress = emailAddress
+    user.success = false
+    user.error = error
+    return user 
   }
 }

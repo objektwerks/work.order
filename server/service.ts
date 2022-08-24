@@ -142,11 +142,11 @@ export function saveUser(user: User) {
       status = User.success(user)
       log('saveUser', `succeeded for id: ${user.id}`)
     } else {
-      status = User.fail('Save user failed.', user)
+      status = User.fail('Save user failed.', user.emailAddress)
       log('saveUser', `failed for ${user}`)
     }
   } catch(error) {
-    status = User.fail('Save user failed.', user)
+    status = User.fail('Save user failed.', user.emailAddress)
     log('saveUser', `failed: ${error} for ${user}`)
   }
   return status
