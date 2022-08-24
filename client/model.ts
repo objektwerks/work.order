@@ -1,19 +1,20 @@
 // @ts-check
-import { setListIdValues, setSelectIdValues, setValueById } from './common.js';
+import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js';
 
-const model = {
-  user: {},
-  serviceProviders: [],
-  workOrders: []
-}
+// @ts-ignore
+import { User, WorkOrder } from './entity.js';
 
-function splitWorkOrders(workOrders, openedWorkOrdersListId, closedWorkOrdersListId) {
+let user: User
+let serviceProviders: User[]
+let workOrders: WorkOrder[]
+
+function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string) {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
-    .map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
+    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) });
   const closedWorkOrders = workOrders
     .filter((workorder) => workorder.closed.length > 0) // closed
-    .closedWorkOrders.map((workOrder) => { return { id: workOrder.number, value: workOrder.title } });
+    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) });
   setListIdValues(openedWorkOrdersListId, openedWorkOrders);
   setListIdValues(closedWorkOrdersListId, closedWorkOrders);
 }
@@ -23,35 +24,35 @@ export default () => {
 }
 
 export function getUserId() {
-  return model.user.id;
+  return user.id;
 }
 
 export function getUserRole() {
-  return model.user.role;
+  return user.role;
 }
 
 export function getUser() {
-  return model.user;
+  return user;
 }
 
-export function setUser(name, emailAddress, streetAddress) {
-  model.user.name = name;
-  model.user.emailAddress = emailAddress;
-  model.user.streetAddress = streetAddress;
+export function setUser(name: string, emailAddress: string, streetAddress: string) {
+  user.name = name;
+  user.emailAddress = emailAddress;
+  user.streetAddress = streetAddress;
 }
 
-export function getWorkOrderByNumber(number) {
-  return model.workOrders.find(workOrder => workOrder.number === number);
+export function getWorkOrderByNumber(number: number) {
+  return workOrders.find(workOrder => workOrder.number === number);
 }
 
-export function addWorkOrder(workOrder) {
-  model.workOrders.push(workOrder);
-  const sortedWorkOrders = model.workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
-  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+export function addWorkOrder(workOrder: WorkOrder) {
+  workOrders.push(workOrder);
+  const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened));
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }
 
-export function bindUserToForm(user) {
-  model.user = user;
+export function bindUserToForm(newUser: User) {
+  user = newUser;
   setValueById('user-role-id', user.role);
   setValueById('user-name-id', user.name);
   setValueById('user-email-address-id', user.emailAddress);
@@ -59,8 +60,8 @@ export function bindUserToForm(user) {
   setValueById('user-registered-id', user.registered);
 }
 
-export function bindServiceProvidersToSelect(serviceProviders) {
-  model.serviceProviders = serviceProviders;
+export function bindServiceProvidersToSelect(newServiceProviders: User[]) {
+  serviceProviders = newServiceProviders;
   const idvalues = [];
   for (const serviceProvider of serviceProviders) {
     idvalues.push({ id: serviceProvider.id, value: serviceProvider.name });
@@ -68,7 +69,7 @@ export function bindServiceProvidersToSelect(serviceProviders) {
   setSelectIdValues('workorder-service-provider-id', idvalues);
 }
 
-export function bindWorkOrdersToList(workOrders) {
-  model.workOrders = workOrders;
-  splitWorkOrders(model.workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
+export function bindWorkOrdersToList(newWorkOrders: WorkOrder[]) {
+  workOrders = newWorkOrders;
+  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id');
 }

@@ -1,5 +1,15 @@
 // @ts-check
 
+export class IdValue {
+  id: string
+  value: string
+
+  constructor(id: string, value: string) {
+    this.id = id
+    this.value = value
+  }
+}
+
 export function getByClass(name: string) {
   return document.getElementsByClassName(name);
 }
@@ -8,7 +18,7 @@ export function getById(id: string) {
   return document.getElementById(id);
 }
 
-export function getFileById(id) {
+export function getFileById(id: string) {
   return document.getElementById(id)['files'][0];
 }
 
@@ -85,7 +95,7 @@ export function setListValues(listId: string, values: string) {
   }
 }
 
-export function setListIdValues(listId: string, idvalues: string) {
+export function setListIdValues(listId: string, idvalues: IdValue[]) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
   for (const idvalue of idvalues) {
@@ -96,7 +106,7 @@ export function setListIdValues(listId: string, idvalues: string) {
   }
 }
 
-export function setSelectIdValues(selectId: string, idvalues: string) {
+export function setSelectIdValues(selectId: string, idvalues: IdValue[]) {
   document.getElementById(selectId).innerHTML = '';
   const select = document.getElementById(selectId);
   for (const idvalue of idvalues) {
