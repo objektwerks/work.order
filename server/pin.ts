@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 const specialChars = "~!@#$%^&*-+=<>?/:;";
 const letters = "abcdefghijklmnopqrstuvwxyz";
 
-const shuffle = str => [...str].sort( () => Math.random() - .5 ).join('');
+const shuffle = (str: string) => [...str].sort( () => Math.random() - .5 ).join('');
 
 export function newPin() {
   const first = shuffle(specialChars).charAt(0);
