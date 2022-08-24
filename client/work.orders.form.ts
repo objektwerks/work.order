@@ -213,7 +213,6 @@ export default () => {
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
     const number = ( event.target as HTMLInputElement ).id
-
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
@@ -228,9 +227,10 @@ export default () => {
   }, false)
 
   getById('workorders-list-closed-form-id').addEventListener('click', (event) => {
-    if(event.target && event.target['nodeName'] === "li") {
-      const number = event.target['id']
-      const workorder = model.getWorkOrderByNumber(number)
+    const isLi = ( event.target as Node ).nodeName === 'li'
+    if(isLi) {
+      const number = ( event.target as HTMLInputElement ).id
+      const workorder = model.getWorkOrderByNumber( parseInt(number) )
       if (workorder !== undefined) {
         bindWorkOrderToForm(workorder)
         applyRoleToForm(readonlyRole)
