@@ -1,6 +1,6 @@
 // @ts-check
 
-export function displayImage(imageId: string, file) {
+export function displayImage(imageId: string, file: string) {
   const image = getById(imageId);
   const reader = new FileReader();
   reader.onload = function() {
@@ -11,15 +11,11 @@ export function displayImage(imageId: string, file) {
   reader.readAsDataURL(file);
 }
 
-export function disabled(id, isDisabled) {
-  document.getElementById(id)['disabled'] = isDisabled;
-}
-
-export function getByClass(name) {
+export function getByClass(name: string) {
   return document.getElementsByClassName(name);
 }
 
-export function getById(id) {
+export function getById(id: string) {
   return document.getElementById(id);
 }
 
@@ -27,45 +23,45 @@ export function getFileById(id) {
   return document.getElementById(id)['files'][0];
 }
 
-export function getSelectedIndexId(selectId) {
+export function getSelectedIndexId(selectId: string) {
   const select = document.getElementById(selectId);
   const selectedIndex = select['selectedIndex'];
   return select['options'][selectedIndex].id;
 }
 
-export function getValueById(id) {
+export function getValueById(id: string) {
   return document.getElementById(id)['value'];
 }
 
-export function hide(id) {
+export function hide(id: string) {
   document.getElementById(id).style.display = 'none';
 }
 
-export function show(id) {
+export function show(id: string) {
   document.getElementById(id).style.display = 'block';
 }
 
-export function addReadonlyById(id) {
+export function addReadonlyById(id: string) {
   document.getElementById(id).setAttribute('readonly', 'readonly');
 }
 
-export function removeReadonlyById(id) {
+export function removeReadonlyById(id: string) {
   document.getElementById(id).removeAttribute('readonly');
 }
 
-export function setTextById(id, text) {
+export function setTextById(id: string, text: string) {
   return document.getElementById(id).innerText = text;
 }
 
-export function setValueById(id, value) {
+export function setValueById(id: string, value: string) {
   return document.getElementById(id)['value'] = value;
 }
 
-export function setImageUrlById(id, url) {
+export function setImageUrlById(id: string, url: string) {
   return document.getElementById(id)['src'] = url;
 }
 
-export function setSelectOptionById(selectId, optionId) {
+export function setSelectOptionById(selectId: string, optionId: string) {
   const select = document.getElementById(selectId);
   const options = select['options'];
   let index = 0;
@@ -79,18 +75,18 @@ export function setSelectOptionById(selectId, optionId) {
   select['selectedIndex'] = index;
 }
 
-export function setErrorList(error, errorsListId, errorsViewId) {
+export function setErrorList(error: string, errorsListId: string, errorsViewId: string) {
   const errors = [];
   errors.push(error);
   setErrorsList(errors, errorsListId, errorsViewId);
 }
 
-export function setErrorsList(errors, errorsListId, errorsViewId) {
+export function setErrorsList(errors: string, errorsListId: string, errorsViewId: string) {
   setListValues(errorsListId, errors);
   show(errorsViewId);
 }
 
-export function setListValues(listId, values) {
+export function setListValues(listId: string, values: string) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
   for (const value of values) {
@@ -100,7 +96,7 @@ export function setListValues(listId, values) {
   }
 }
 
-export function setListIdValues(listId, idvalues) {
+export function setListIdValues(listId: string, idvalues: string) {
   document.getElementById(listId).innerHTML = '';
   const ul = document.getElementById(listId);
   for (const idvalue of idvalues) {
@@ -111,7 +107,7 @@ export function setListIdValues(listId, idvalues) {
   }
 }
 
-export function setSelectIdValues(selectId, idvalues) {
+export function setSelectIdValues(selectId: string, idvalues: string) {
   document.getElementById(selectId).innerHTML = '';
   const select = document.getElementById(selectId);
   for (const idvalue of idvalues) {
