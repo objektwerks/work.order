@@ -13,17 +13,7 @@ export class Status {
 }
 
 export class Registration {
-  role: string
-  name: string
-  emailAddress: string
-  streetAddress: string
-
-  constructor(role: string, name: string, emailAddress: string, streetAddress: string) {
-    this.role = role
-    this.name = name
-    this.emailAddress = emailAddress
-    this.streetAddress = streetAddress
-  }
+  constructor(public role: string, public name: string, public emailAddress: string, public streetAddress: string) {}
 
   static success(): Status {
     return new Status()
@@ -45,19 +35,7 @@ export class Credentials {
 }
 
 export class UsersWorkOrders {
-  user: User
-  serviceProviders: User[]
-  workOrders: WorkOrder[]
-  success: boolean
-  error: string
-
-  constructor(user: User, serviceProviders: User[], workOrders: WorkOrder[], success: boolean = true, error: string = '') {
-    this.user = user
-    this.serviceProviders = serviceProviders
-    this.workOrders = workOrders
-    this.success = success
-    this.error = error
-  }
+  constructor(public user: User, public serviceProviders: User[], public workOrders: WorkOrder[], public success: boolean = true, public error: string = '') {}
 
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
     return new UsersWorkOrders(user, serviceProviders, workOrders)  
