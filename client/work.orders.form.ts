@@ -165,11 +165,11 @@ export default () => {
   }, false)
 
   getById('workorder-title-id').addEventListener('input', (event) => {
-    const title = event.target['value']
+    const title = ( event.target as HTMLInputElement ).value
     if (title.length >= 4) { // is title valid?
-      const number = getValueById('workorder-number-id')
+      const number = parseInt( getValueById('workorder-number-id'))
       if (number > 0) { // is number valid?
-        getById(number).children[0].innerHTML = title // set new title to corresponding work orders list item
+        getById(number.toString()).children[0].innerHTML = title // set new title to corresponding work orders list item
       }
     }
   }, false)
@@ -192,7 +192,8 @@ export default () => {
   }, false)
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
-    if (event.target['checked']) {
+    const isChecked = ( event.target as HTMLInputElement ).checked
+    if (isChecked) {
       setValueById('workorder-closed-id', new Date().toISOString())
     } else {
       setValueById('workorder-closed-id', '')
