@@ -111,7 +111,7 @@ export default () => {
 
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
     if (errors.length === 0) {
-      let workOrder
+      let workOrder: WorkOrder
       if (number > 0) { // save
         workOrder = model.getWorkOrderByNumber(number)
         workOrder.homeownerId = homeownerId
@@ -121,21 +121,21 @@ export default () => {
         workOrder.imageUrl = imageUrl
         workOrder.resolution = resolution
         workOrder.closed = closed
-        const status = fetcher.saveWorkOrder(workOrder)
-        if (!status.success) {
-          errors.push(status.error)
+        workOrder = fetcher.saveWorkOrder(workOrder)
+        if (!workOrder.success) {
+          errors.push(workOrder.error)
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {          
           show('workorder-dialog-id')
         }
       } else { // add
         workOrder = WorkOrder.create(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
-        const status = fetcher.addWorkOrder(workOrder)
-        if (!status.success) {
-          errors.push(status.error)
+        workOrder = fetcher.addWorkOrder(workOrder)
+        if (!workOrder.success) {
+          errors.push(workOrder.error)
           setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {
-          model.addWorkOrder(status.workorder)
+          model.addWorkOrder(workOrder)
           show('workorder-dialog-id')
         }
       }
