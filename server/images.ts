@@ -27,7 +27,7 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
   }
 }
 
-function ifExistsRemoveDir(dir: string) {
+function ifExistsRemoveDir(dir: string): boolean {
   if (fs.existsSync(dir)){
     fs.rmSync(dir, { recursive: true })
     console.log(`*** ifExistsRemoveDir -> ${dir} removed.`)
@@ -41,7 +41,7 @@ function ifExistsRemoveDir(dir: string) {
 export const images = multer({ storage: storage, fileFilter: fileFilter })
 export const imagesDir = './images'
 
-export function ifNotExistsMakeDir(dir: string) {
+export function ifNotExistsMakeDir(dir: string): boolean {
   if (fs.existsSync(dir)){
     console.log(`*** ifNotExistsMakeDir -> ${dir} exists.`)
     return false
