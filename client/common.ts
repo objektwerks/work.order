@@ -10,6 +10,14 @@ export class IdValue {
   }
 }
 
+export function isDefined(target: any): boolean {
+  return (target !== undefined && target !== null)
+}
+
+export function isNotDefined(target: any): boolean {
+  return (target === undefined || target === null)
+}
+
 export function getByClass(name: string): HTMLCollectionOf<Element> {
   return document.getElementsByClassName(name)
 }
@@ -18,21 +26,15 @@ export function getById(id: string): HTMLElement {
   return document.getElementById(id) as HTMLElement
 }
 
-export function getFileById(id: string): File {
+export function getFileById(id: string): File | undefined | null {
   const input = getById(id) as HTMLInputElement
-  const file = input.files?.item(0)
-  if (file === undefined || file === null) {
-    throw new Error(`File IO error on id: ${id}`)
-  } else {
-    return file
-  }
+  return input.files?.item(0)
 }
 
-export function getSelectedIndexId(selectId: string): string {
+export function getSelectedIndexId(selectId: string): string | undefined | null {
   const select = getById(selectId) as HTMLSelectElement
-  const options = select.selectedOptions
-  const selectedId = options.item(0)?.id
-  return selectedId === undefined || selectId === null ? '' : selectId
+  const option = select.selectedOptions.item(select.selectedIndex)
+  return option?.id
 }
 
 export function getValueById(id: string): string {
