@@ -5,7 +5,7 @@ import { User, WorkOrder } from '../shared/entity.js'
 const url: string = process.env.DATABASE_URL as string
 const connection: Pool = mysql.createPool(url)
 
-function log(method: string, message: string) {
+function log(method: string, message: string): void {
   console.log('*** store.${method}: ', message)
 }
 
@@ -13,12 +13,12 @@ export default () => {
   console.log('*** store connected ...')
 }
 
-export function disconnect() {
+export function disconnect(): void {
   connection.end()
   console.log('*** store disconnected from database.')
 }
 
-export function listWorkOrdersByUserId(id: number) {
+export function listWorkOrdersByUserId(id: number): WorkOrder[] {
   let list: WorkOrder[] = []
   connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: MysqlError, rows: any) => {
     if (error) {
@@ -34,7 +34,7 @@ export function listWorkOrdersByUserId(id: number) {
   return list
 }
 
-export function listUsersByRole(role: string) {
+export function listUsersByRole(role: string): User[] {
   let list: User[] = []
   connection.query(`select * from user where role = ${role} order by name asc`, (error: MysqlError, rows: any) => {
     if (error) {
@@ -50,7 +50,7 @@ export function listUsersByRole(role: string) {
   return list
 }
 
-export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
+export function getUserByEmailAddressPin(emailAddress: string, pin: string): User {
   let list: User[] = []
   connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: MysqlError, rows: any) => {
     if (error) {
@@ -66,7 +66,7 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
   return (list.length > 0) ? list[0] : User.empty()
 }
 
-export function getWorkOrderByNumber(number: number) {
+export function getWorkOrderByNumber(number: number): WorkOrder {
   let list: WorkOrder[] = []
   connection.query(`select * from work_order where number = ${number}`, (error: MysqlError, rows: any) => {
     if (error) {
@@ -82,7 +82,7 @@ export function getWorkOrderByNumber(number: number) {
   return (list.length > 0) ? list[0] : WorkOrder.empty()
 }
 
-export function addWorkOrder(workOrder: WorkOrder) {
+export function addWorkOrder(workOrder: WorkOrder): number {
   let number: number = 0
   connection.query('insert into work_order set ?', [workOrder], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
@@ -95,7 +95,7 @@ export function addWorkOrder(workOrder: WorkOrder) {
   return number
 }
 
-export function addUser(user: User) {
+export function addUser(user: User): number {
   let id: number = 0
   connection.query('insert into user set ?', [user], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
@@ -108,7 +108,7 @@ export function addUser(user: User) {
   return id
 }
 
-export function saveWorkOrder(workOrder: WorkOrder) {
+export function saveWorkOrder(workOrder: WorkOrder): number {
   let count: number = 0
   connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
@@ -121,7 +121,7 @@ export function saveWorkOrder(workOrder: WorkOrder) {
   return count
 }
 
-export function saveUser(user: User) {
+export function saveUser(user: User): number {
   let count: number = 0
   connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
@@ -134,7 +134,7 @@ export function saveUser(user: User) {
   return count
 }
 
-export function saveImageUrl(number: number, url: string) {
+export function saveImageUrl(number: number, url: string): number {
   let count: number = 0
   connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
