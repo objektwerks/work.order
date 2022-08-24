@@ -110,7 +110,7 @@ export function addUser(user: User) {
 
 export function saveWorkOrder(workOrder: WorkOrder) {
   let count: number = 0;
-  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError | null, result: any) => {
+  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveWorkOrder', error.message);
     } else {
@@ -123,7 +123,7 @@ export function saveWorkOrder(workOrder: WorkOrder) {
 
 export function saveUser(user: User) {
   let count: number = 0;
-  connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError | null, result: any) => {
+  connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveUser', error.message);
     } else {
@@ -136,7 +136,7 @@ export function saveUser(user: User) {
 
 export function saveImageUrl(number: number, url: string) {
   let count: number = 0;
-  connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: MysqlError | null, result: any) => {
+  connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveImageUrl', error.message);
     } else {
