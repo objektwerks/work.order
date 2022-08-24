@@ -1,21 +1,25 @@
 // @ts-check
 import fs from 'fs';
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
+import { Request } from "express";
+
+type DestinationCallback = (error: Error | null, destination: string) => void
+type FileNameCallback = (error: Error | null, filename: string) => void
 
 const storage = multer.diskStorage({
-  destination: (request, file, callback) => {
+  destination: (request: Request, file: Express.Multer.File, callback: DestinationCallback) => {
     const number = request.body.number as number
     const dir = `${imagesDir}/${number}` as string
     ifExistsRemoveDir(dir); // only 1 image per work order!
     ifNotExistsMakeDir(dir);
     callback(null, dir);
   },
-  filename: (request, file, callback) => {
+  filename: (request: Request, file: Express.Multer.File, callback: FileNameCallback) => {
     callback(null, request.body.imagefilename);
   }
 })
 
-const fileFilter = (request, file, callback) => {
+const fileFilter = (request: Request, file: Express.Multer.File, callback: FileFilterCallback) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
       callback(null, true);
   } else {
