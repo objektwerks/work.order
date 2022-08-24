@@ -93,7 +93,7 @@ export function setErrorsList(errors: string[], errorsListId: string, errorsView
   show(errorsViewId);
 }
 
-export function setListValues(listId: string, values: string[]) {
+export function setListValues(listId: string, values: string[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
   for (const value of values) {
@@ -103,13 +103,13 @@ export function setListValues(listId: string, values: string[]) {
   }
 }
 
-export function setListIdValues(listId: string, idvalues: IdValue[]) {
-  document.getElementById(listId).innerHTML = '';
-  const ul = document.getElementById(listId);
-  for (const idvalue of idvalues) {
+export function setListIdValues(listId: string, idValues: IdValue[]): void {
+  const ul = getById(listId) as HTMLUListElement
+  ul.innerHTML = ''
+  for (const idValue of idValues) {
     let li = document.createElement('li');
-    li.id = idvalue.id;
-    li.appendChild(document.createTextNode(`${idvalue.id} - ${idvalue.value}`));
+    li.id = idValue.id;
+    li.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`));
     ul.appendChild(li);
   }
 }
