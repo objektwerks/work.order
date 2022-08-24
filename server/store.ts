@@ -1,11 +1,11 @@
 // @ts-check
-import mysql from 'mysql';
-import { User, WorkOrder } from '../shared/entity.js';
+import mysql, { MysqlError, Pool } from 'mysql';
+import {User, WorkOrder, WorkOrders} from '../shared/entity.js';
 
-const url = process.env.DATABASE_URL;
-const connection = mysql.createPool(url);
+const url: string = process.env.DATABASE_URL as string;
+const connection: Pool = mysql.createPool(url);
 
-function log(method, message) {
+function log(method: string, message: string) {
   console.log('*** store.${method}: ', message);
 }
 
@@ -18,11 +18,11 @@ export function disconnect() {
   console.log('*** store disconnected from database.');
 }
 
-export function listWorkOrdersByUserId(id) {
-  let list = [];
-  connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error, rows) => {
+export function listWorkOrdersByUserId(id: number) {
+  let list: WorkOrder[] = [];
+  connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: MysqlError, rows) => {
     if (error) {
-      log('listWorkOrdersByUserId', error);
+      log('listWorkOrdersByUserId', error.message);
     } else {
       rows.forEach((row) => {
         list.push(
@@ -34,11 +34,11 @@ export function listWorkOrdersByUserId(id) {
   return list;
 }
 
-export function listUsersByRole(role) {
-  let list = [];
-  connection.query(`select * from user where role = ${role} order by name asc`, (error, rows) => {
+export function listUsersByRole(role: string) {
+  let list: User[] = [];
+  connection.query(`select * from user where role = ${role} order by name asc`, (error: MysqlError, rows) => {
     if (error) {
-      log('listUsersByRole', error);
+      log('listUsersByRole', error.message);
     } else {
       rows.forEach((row) => {
         list.push(
@@ -50,11 +50,11 @@ export function listUsersByRole(role) {
   return list;
 }
 
-export function getUserByEmailAddressPin(emailAddress, pin) {
-  let list = [];
-  connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error, rows) => {
+export function getUserByEmailAddressPin(emailAddress: string, pin: string) {
+  let list: User[] = [];
+  connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: MysqlError, rows) => {
     if (error) {
-      log('getUserByEmailAddressPin', error);
+      log('getUserByEmailAddressPin', error.message);
     } else {
       rows.forEach((row) => {
         list.push(
@@ -66,11 +66,11 @@ export function getUserByEmailAddressPin(emailAddress, pin) {
   return (list.length > 0) ? list[0] : {};
 }
 
-export function getWorkOrderByNumber(number) {
-  let list = [];
-  connection.query(`select * from work_order where number = ${number}`, (error, rows) => {
+export function getWorkOrderByNumber(number: number) {
+  let list: WorkOrder[] = [];
+  connection.query(`select * from work_order where number = ${number}`, (error: MysqlError, rows) => {
     if (error) {
-      log('getWorkOrderByNumber', error);
+      log('getWorkOrderByNumber', error.message);
     } else {
       rows.forEach((row) => {
         list.push(
@@ -82,11 +82,11 @@ export function getWorkOrderByNumber(number) {
   return (list.length > 0) ? list[0] : {};
 }
 
-export function addWorkOrder(workOrder) {
-  let number = 0;
-  connection.query('insert into work_order set ?', workOrder, (error, result) => {
+export function addWorkOrder(workOrder: WorkOrder) {
+  let number: number = 0;
+  connection.query('insert into work_order set ?', workOrder, (error: MysqlError, result) => {
     if (error) {
-      log('addWorkOrder', error);
+      log('addWorkOrder', error.message);
     } else {
       number = result.insertId;
       log('addWorkOrder', `succeeded for number: ${number}`);
@@ -95,11 +95,11 @@ export function addWorkOrder(workOrder) {
   return number;
 }
 
-export function addUser(user) {
-  let id = 0;
-  connection.query('insert into user set ?', user, (error, result) => {
+export function addUser(user: User) {
+  let id: number = 0;
+  connection.query('insert into user set ?', user, (error: MysqlError, result) => {
     if (error) {
-      log('addUser', error);
+      log('addUser', error.message);
     } else {
       id = result.insertId;
       log('addUser', `succeeded for id: ${id}`);
@@ -108,11 +108,11 @@ export function addUser(user) {
   return id;
 }
 
-export function saveWorkOrder(workOrder) {
-  let count = 0;
-  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error, result) => {
+export function saveWorkOrder(workOrder: WorkOrder) {
+  let count: number = 0;
+  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError, result) => {
     if (error) {
-      log('saveWorkOrder', error);
+      log('saveWorkOrder', error.message);
     } else {
       count = result.affectedRows;
       log('saveWorkOrder', `succeeded for number ${workOrder.number}`);
@@ -121,11 +121,11 @@ export function saveWorkOrder(workOrder) {
   return count;
 }
 
-export function saveUser(user) {
-  let count = 0;
-  connection.query('update user SET ? where id = ?', [user, user.id], (error, result) => {
+export function saveUser(user: User) {
+  let count: number = 0;
+  connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError, result) => {
     if (error) {
-      log('saveUser', error);
+      log('saveUser', error.message);
     } else {
       count = result.affectedRows;
       log('saveUser', `succeeded for id ${user.id}`);
@@ -134,11 +134,11 @@ export function saveUser(user) {
   return count;
 }
 
-export function saveImageUrl(number, url) {
-  let count = 0;
-  connection.query(`update work_order SET image_url = ${url} where number = ${number}`, (error, result) => {
+export function saveImageUrl(number: number, url: string) {
+  let count: number = 0;
+  connection.query(`update work_order SET image_url = ${url} where number = ${number}`, (error: MysqlError, result) => {
     if (error) {
-      log('saveImageUrl', error);
+      log('saveImageUrl', error.message);
     } else {
       count = result.affectedRows;
       log('saveImageUrl', `succeeded for number: ${number} url: ${url}`);
