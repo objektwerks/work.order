@@ -25,9 +25,9 @@ export default () => {
     const errors = validateUserInfo(name, emailAddress, streetAddress)
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress)
-      const user = fetcher.saveUser(model.getUser())
-      if (!user.success) {
-        errors.push(user.error)
+      const userStatus = fetcher.saveUser(model.getUser())
+      if (!userStatus.success) {
+        errors.push(userStatus.error)
         setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
       } else {          
         show('user-dialog-id')
