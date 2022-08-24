@@ -10,16 +10,17 @@ export class IdValue {
   }
 }
 
-export function getByClass(name: string) {
-  return document.getElementsByClassName(name);
+export function getByClass(name: string): HTMLCollectionOf<Element> {
+  return document.getElementsByClassName(name)
 }
 
-export function getById(id: string) {
-  return document.getElementById(id);
+export function getById(id: string): HTMLElement {
+  return document.getElementById(id) as HTMLElement
 }
 
-export function getFileById(id: string) {
-  return document.getElementById(id)['files'][0];
+export function getFileById(id: string): File {
+  const input = getById(id) as HTMLInputElement
+  return input.files?[0]
 }
 
 export function getSelectedIndexId(selectId: string) {
