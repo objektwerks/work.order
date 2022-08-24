@@ -58,7 +58,7 @@ export function login(credentials: Credentials): UsersWorkOrders {
   let status: UsersWorkOrders
   try {
     const user: User = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin)
-    if (Object.entries(user).length > 0) {
+    if (user.id === 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider)
       const workOrders = store.listWorkOrdersByUserId(user.id)
       status = UsersWorkOrders.success(user, serviceProviders, workOrders)
@@ -91,7 +91,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
   let status: WorkOrder
   try {
     const workOrder = store.getWorkOrderByNumber(number)
-    if (Object.entries(workOrder).length > 0) {
+    if (workOrder.number === 0) {
       status = WorkOrder.success(workOrder)
       log('getWorkOrderByNumber', `succeeded for number: ${number}`)
     } else {
