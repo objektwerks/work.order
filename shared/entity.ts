@@ -54,8 +54,8 @@ export class UsersWorkOrders {
     this.user = user
     this.serviceProviders = serviceProviders
     this.workOrders = workOrders
-    this.success = true
-    this.error = ''
+    this.success = success
+    this.error = error
   }
 
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
@@ -73,8 +73,8 @@ export class WorkOrders {
 
   constructor(workOrders: WorkOrder[], success: boolean = true, error: string = ''){
     this.workOrders = workOrders
-    this.success = true
-    this.error = ''
+    this.success = success
+    this.error = error
   }
 
   static success(workOrders: WorkOrder[]) {
@@ -87,20 +87,24 @@ export class WorkOrders {
 }
 
 export class ImageUrl {
-  static success(number: number, url: string) {
-    return {
-      success: true,
-      number: number,
-      url: url
-    }
+  success: boolean
+  error: string
+  number: number
+  url: string
+
+  constructor(number: number, url: string, success: boolean = true, error: string = ''){
+    this.number = number
+    this.url = url
+    this.success = success
+    this.error = error
   }
+
+  static success(number: number, url: string) {
+    return new ImageUrl(number, url)
+  }
+
   static fail(error: string, number: number, url: string) {
-    return {
-      success: false,
-      error: error,
-      number: number,
-      url: url
-    }
+    return new ImageUrl(number, url, false, error)
   }
 }
 
