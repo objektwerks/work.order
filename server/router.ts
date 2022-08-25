@@ -4,7 +4,7 @@ import * as service from './service.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { toObject, Registration } from '../shared/entity.js'
+import { Credentials, Registration, WorkOrder} from '../shared/entity.js'
 
 const port: number = parseInt( process.env.PORT as string ) ?? 3000
 const host: string = process.env.BIND_IP ?? '127.0.0.1'
@@ -33,15 +33,15 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', async (request, response) => {
-    response.json( await service.register( request.body ) )
+    response.json( await service.register( Registration.fromJson(request.body) ) )
   })
   
   router.post('/login', async (request, response) => {
-    response.json( await service.login(request.body) )
+    response.json( await service.login( Credentials.fromJson(request.body)) )
   })
   
   router.post('/workorders/add', async (request, response) => {
-    response.json( await service.addWorkOrder(request.body) )
+    response.json( await service.addWorkOrder( WorkOrder.fromJson(request.body)) )
   })
 
   router.post('/workorders/save', async (request, response) => {
