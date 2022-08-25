@@ -16,7 +16,7 @@
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "nodemon ./dist/server.js",
+    "dev": "npm run build && nodemon ./dist/server.js",
     "start": "node ./dist/server.js"
   },
   "dependencies": {
