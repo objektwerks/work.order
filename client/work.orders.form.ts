@@ -146,7 +146,7 @@ export default () => {
   }, false)
 
   getById('workorder-refresh-command-id').addEventListener('click', () => {
-    const number = getValueById('workorder-number-id')
+    const number = parseInt( getValueById('workorder-number-id') )
     const workOrder = fetcher.getWorkOrderByNumber(number)
     if (!workOrder.success) {
       setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
@@ -156,7 +156,7 @@ export default () => {
   }, false)
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
-    const id = model.getUserId().toString()
+    const id = model.getUserId()
     const workOrders = fetcher.listWorkOrdersByUserId(id)
     if (!workOrders.success) {
       setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')

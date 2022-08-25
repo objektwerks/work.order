@@ -86,13 +86,13 @@ export function saveImage(number: string, url: string, file: File, filename: str
   )
 }
 
-export function getWorkOrderByNumber(number: string): WorkOrder {
+export function getWorkOrderByNumber(number: number): WorkOrder {
   return WorkOrder.fromObject(
     call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
   )
 }
 
-export function listWorkOrdersByUserId(id: string): WorkOrders {
+export function listWorkOrdersByUserId(id: number): WorkOrders {
   return WorkOrders.fromObject(
     call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
   )
