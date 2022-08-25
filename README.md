@@ -1,6 +1,10 @@
 Work Order
 ----------
-Work order web app linking homeowners and service providers, using typescript, html, css, w3c.css, express, nodemailer, mysql and nodejs.
+Work order web app linking homeowners and service providers.
+
+Technologies
+------------
+>Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
 
 Doc
 ---
