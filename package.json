@@ -9,11 +9,11 @@
     "url": "git+https://github.com/objektwerks/work.order.git"
   },
   "type": "module",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon server.ts",
+    "start": "node server.ts"
   },
   "dependencies": {
     "@types/compression": "^1.7.2",
