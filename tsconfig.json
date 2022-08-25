@@ -1,13 +1,14 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "lib": ["dom"],
     "module": "ES2022",
     "target": "ES2022",
     "outDir": "dist",
     "strict": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "include": ["server.ts", "./client/*.ts", "./server/*.ts", "./shared/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "node_modules/@types", "dist"]
 }
