@@ -37,15 +37,15 @@ export default () => {
   })
   
   router.post('/login', async (request, response) => {
-    response.json( await service.login( Credentials.fromJson(request.body)) )
+    response.json( await service.login( Credentials.fromJson(request.body) ) )
   })
   
   router.post('/workorders/add', async (request, response) => {
-    response.json( await service.addWorkOrder( WorkOrder.fromJson(request.body)) )
+    response.json( await service.addWorkOrder( WorkOrder.fromJson(request.body) ) )
   })
 
   router.post('/workorders/save', async (request, response) => {
-    response.json( await service.saveWorkOrder( WorkOrder.fromJson(request.body)) )
+    response.json( await service.saveWorkOrder( WorkOrder.fromJson(request.body) ) )
   })
 
   router.get('/workorders/user/:id', async (request, response) => {
@@ -57,7 +57,7 @@ export default () => {
   })
   
   router.post('/users/save', async (request, response) => {
-    response.json( await service.saveUser( User.fromJson(request.body)) )
+    response.json( await service.saveUser( User.fromJson(request.body) ) )
   })
 
   router.post('/image/save', images.single('image'), async (request, response) => {
