@@ -67,7 +67,7 @@ export default () => {
   })
   
   server = router.listen(port, host, () =>
-    console.log(`*** server listening on https://${host}:${port}/`)
+    console.log(`*** server listening on http://${host}:${port}/`)
   )
   
   process.on('SIGINT', () => {
