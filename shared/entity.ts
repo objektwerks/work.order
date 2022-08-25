@@ -13,6 +13,15 @@ export function toObject(json: string) {
 export class Status {
   constructor(public success: boolean = true, 
               public error: string = '') {}
+
+  static fromJson(json: string) {
+    const object = toObject(json)
+    return new Status(object.success, object.error)
+  }
+
+  static fromObject(object: any) {
+    return new Status(object.success, object.error)
+  }
 }
 
 export class Registration {
