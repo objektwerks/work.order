@@ -45,23 +45,33 @@ export default () => {
 }
 
 export function register(registration: Registration): Status {
-  return Status.fromObject( call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')) )
+  return Status.fromObject(
+    call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
+  )
 }
 
 export function login(credentials: Credentials): UsersWorkOrders {
-  return call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
+  return UsersWorkOrders.fromObject(
+    call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
+  )
 }
 
 export function addWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  return call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
+  return WorkOrderStatus.fromObject(
+    call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
+  )
 }
 
 export function saveWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  return call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
+  return WorkOrderStatus.fromObject(
+    call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
+  )
 }
 
 export function saveUser(user: User): UserStatus {
-  return call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user))
+  return UserStatus.fromObject(
+    call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user))
+  )
 }
 
 export function saveImage(number: string, url: string, file: File, filename: string): ImageUrl {
@@ -71,13 +81,19 @@ export function saveImage(number: string, url: string, file: File, filename: str
   formdata.append('url', url)
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)
-  return call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
+  return ImageUrl.fromObject(
+    call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
+  )
 }
 
 export function getWorkOrderByNumber(number: string): WorkOrder {
-  return call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
+  return WorkOrder.fromObject(
+    call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
+  )
 }
 
 export function listWorkOrdersByUserId(id: string): WorkOrders {
-  return call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
+  return WorkOrders.fromObject(
+    call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
+  )
 }
