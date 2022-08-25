@@ -6,7 +6,7 @@
     "target": "ES2022",
     "outDir": "dist",
     "strict": true,
-    "sourceMap": true
+    "sourceMap": false
   },
   "include": ["server.ts", "./client/*.ts", "./server/*.ts", "./shared/*.ts"],
   "exclude": ["node_modules", "images"]
