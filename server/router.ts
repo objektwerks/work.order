@@ -33,7 +33,7 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', async (request, response) => {
-    response.json( await service.register( toObject( request.body ) as Registration) )
+    response.json( await service.register( request.body ) )
   })
   
   router.post('/login', async (request, response) => {
