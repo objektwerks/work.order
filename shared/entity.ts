@@ -156,6 +156,14 @@ export class WorkOrder {
               public success: boolean = true,
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new WorkOrder(object.number, object.homeownerId, object.serviceProviderId, object.title, object.issue, object.imageUrl, object.resolution, object.opened, object.closed)
+  }
+
   static empty() {
     return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
   }
