@@ -186,6 +186,14 @@ export class UserStatus {
               public success: boolean = true, 
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new UserStatus(object.is)
+  }
+
   static success(id: number) {
     return new UserStatus(id)
   }
