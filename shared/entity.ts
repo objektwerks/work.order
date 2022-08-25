@@ -214,6 +214,14 @@ export class User {
               public success: boolean = true,
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new User(object.id, object.role, object.name, object.emailAddress, object.streetAddress, object.registered, object.pin)
+  }
+
   static empty() {
     return new User(0, '', '', '', '', '', '')
   }
