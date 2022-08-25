@@ -11,6 +11,10 @@
   "type": "module",
   "main": "./dist/server.js",
   "scripts": {
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
+    "copy": "cp ./client/*.ico *.png *.css *.html ./dist/",
+    "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "nodemon ./dist/server.js",
     "start": "node ./dist/server.js"
