@@ -2,6 +2,14 @@
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
+export function toJson(object: any) {
+  return JSON.stringify(object)
+}
+
+export function toObject(json: string) {
+  return JSON.parse(json)
+}
+
 export class Status {
   constructor(public success: boolean = true, 
               public error: string = '') {}

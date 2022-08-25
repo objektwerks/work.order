@@ -1,7 +1,7 @@
 // @ts-check
 
 // @ts-ignore
-import { Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
+import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
 
 const rootUrl = 'https://' + window.location.host
 const registerUrl = rootUrl + '/register'
@@ -19,16 +19,16 @@ const headers: any = {
   'Accept': 'application/json'
 }
 
-const call = async (url: string, method: string, headers: any, entity: any, fault: () => object, asJson = true) => {
-  let result
+async function call(url: string, method: string, headers: any, entity: any, fault: () => any, asJson = true): Promise<any> {
+  let result: any
   try {
     let response = await fetch(url, {
       method: method,
       headers: headers,
-      body: asJson ? JSON.stringify(entity) : entity
+      body: asJson ? toJson(entity) : entity
     })
     if (response.ok) {
-      result = JSON.parse( await response.json() )
+      result = toObject( await response.json() )
     } else {
       throw `failed with status code: ${response.status} status text: ${response.statusText}`
     }
@@ -45,7 +45,7 @@ export default () => {
 }
 
 export function register(registration: Registration): Status {
-  return call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
+  return call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')) as Status
 }
 
 export function login(credentials: Credentials): UsersWorkOrders {
