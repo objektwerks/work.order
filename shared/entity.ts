@@ -81,6 +81,14 @@ export class WorkOrders {
               public success: boolean = true, 
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new WorkOrders(object.userId, object.workOrders)
+  }
+
   static success(userId: number, workOrders: WorkOrder[]) {
     return new WorkOrders(userId, workOrders)
   }
