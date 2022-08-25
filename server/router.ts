@@ -4,7 +4,7 @@ import * as service from './service.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { Credentials, Registration, WorkOrder} from '../shared/entity.js'
+import { Credentials, Registration, User, WorkOrder} from '../shared/entity.js'
 
 const port: number = parseInt( process.env.PORT as string ) ?? 3000
 const host: string = process.env.BIND_IP ?? '127.0.0.1'
@@ -45,7 +45,7 @@ export default () => {
   })
 
   router.post('/workorders/save', async (request, response) => {
-    response.json( await service.saveWorkOrder(request.body))
+    response.json( await service.saveWorkOrder( WorkOrder.fromJson(request.body)) )
   })
 
   router.get('/workorders/user/:id', async (request, response) => {
@@ -57,7 +57,7 @@ export default () => {
   })
   
   router.post('/users/save', async (request, response) => {
-    response.json( await service.saveUser(request.body) )
+    response.json( await service.saveUser( User.fromJson(request.body)) )
   })
 
   router.post('/image/save', images.single('image'), async (request, response) => {
