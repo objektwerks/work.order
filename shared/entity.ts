@@ -58,6 +58,14 @@ export class UsersWorkOrders {
               public success: boolean = true, 
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new UsersWorkOrders(object.user, object.serviceProviders, object.workOrders)
+  }
+
   static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
     return new UsersWorkOrders(user, serviceProviders, workOrders)  
   }
