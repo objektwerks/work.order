@@ -30,10 +30,10 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
 function ifExistsRemoveDir(dir: string): boolean {
   if (fs.existsSync(dir)){
     fs.rmSync(dir, { recursive: true })
-    console.log(`*** ifExistsRemoveDir -> ${dir} removed.`)
+    console.log(`*** images.ifExistsRemoveDir -> ${dir} removed.`)
     return true
   } else {
-    console.log(`*** ifExistsRemoveDir -> ${dir} does not exist.`)
+    console.log(`*** images.ifExistsRemoveDir -> ${dir} does not exist.`)
     return false
   }
 }
@@ -43,11 +43,11 @@ export const imagesDir = './images'
 
 export function ifNotExistsMakeDir(dir: string): boolean {
   if (fs.existsSync(dir)){
-    console.log(`*** ifNotExistsMakeDir -> ${dir} exists.`)
+    console.log(`*** images.ifNotExistsMakeDir -> ${dir} exists.`)
     return false
   } else {
     fs.mkdirSync(dir)
-    console.log(`*** ifNotExistsMakeDir -> ${dir} created.`)
+    console.log(`*** images.ifNotExistsMakeDir -> ${dir} created.`)
     return true
   }
 }
