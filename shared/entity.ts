@@ -14,11 +14,11 @@ export class Status {
   constructor(public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): Status {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): Status {
     return new Status(object.success, object.error)
   }
 }
@@ -29,11 +29,11 @@ export class Registration {
               public emailAddress: string, 
               public streetAddress: string) {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): Registration {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): Registration {
     return new Registration(object.role, object. name, object.emailAddress, object.streetAddress)
   }
 
@@ -49,6 +49,14 @@ export class Registration {
 export class Credentials {
   constructor(public emailAddress: string, 
               public pin: string) {}
+
+  static fromJson(json: string): Credentials {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any): Credentials {
+    return new Credentials(object.emailAddress, object.pin)
+  }
 }
 
 export class UsersWorkOrders {
@@ -58,19 +66,19 @@ export class UsersWorkOrders {
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): UsersWorkOrders {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): UsersWorkOrders {
     return new UsersWorkOrders(object.user, object.serviceProviders, object.workOrders)
   }
 
-  static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]) {
+  static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]): UsersWorkOrders {
     return new UsersWorkOrders(user, serviceProviders, workOrders)  
   }
 
-  static fail(error: string) {
+  static fail(error: string): UsersWorkOrders {
     return new UsersWorkOrders(User.empty(), [User.empty()], [WorkOrder.empty()], false, error)  
   }
 }
@@ -81,19 +89,19 @@ export class WorkOrders {
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): WorkOrders {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): WorkOrders {
     return new WorkOrders(object.userId, object.workOrders)
   }
 
-  static success(userId: number, workOrders: WorkOrder[]) {
+  static success(userId: number, workOrders: WorkOrder[]): WorkOrders {
     return new WorkOrders(userId, workOrders)
   }
 
-  static fail(error: string, userId: number) {
+  static fail(error: string, userId: number): WorkOrders {
     return new WorkOrders(userId, [WorkOrder.empty()], false, error)
   }
 }
@@ -104,19 +112,19 @@ export class ImageUrl {
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): ImageUrl {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): ImageUrl {
     return new ImageUrl(object.number, object.url)
   }
 
-  static success(number: number, url: string) {
+  static success(number: number, url: string): ImageUrl {
     return new ImageUrl(number, url)
   }
 
-  static fail(error: string, number: number, url: string) {
+  static fail(error: string, number: number, url: string): ImageUrl {
     return new ImageUrl(number, url, false, error)
   }
 }
@@ -126,19 +134,19 @@ export class WorkOrderStatus {
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): WorkOrderStatus {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): WorkOrderStatus {
     return new WorkOrderStatus(object.number)
   }
 
-  static success(number: number) {
+  static success(number: number): WorkOrderStatus {
     return new WorkOrderStatus(number)
   }
 
-  static fail(error: string, number: number) {
+  static fail(error: string, number: number): WorkOrderStatus {
     return new WorkOrderStatus(number, false, error)
   }
 }
@@ -156,23 +164,23 @@ export class WorkOrder {
               public success: boolean = true,
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): WorkOrder {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): WorkOrder {
     return new WorkOrder(object.number, object.homeownerId, object.serviceProviderId, object.title, object.issue, object.imageUrl, object.resolution, object.opened, object.closed)
   }
 
-  static empty() {
+  static empty(): WorkOrder {
     return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
   }
 
-  static success(workOrder: WorkOrder) {
+  static success(workOrder: WorkOrder): WorkOrder {
     return workOrder
   }
 
-  static fail(error: string, number: number) {
+  static fail(error: string, number: number): WorkOrder {
     let workOrder = WorkOrder.empty()
     workOrder.number = number
     workOrder.success = false
@@ -186,19 +194,19 @@ export class UserStatus {
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): UserStatus {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): UserStatus {
     return new UserStatus(object.is)
   }
 
-  static success(id: number) {
+  static success(id: number): UserStatus {
     return new UserStatus(id)
   }
 
-  static fail(error: string, id: number) {
+  static fail(error: string, id: number): UserStatus {
     return new UserStatus(id, false, error)
   }
 }
@@ -214,15 +222,15 @@ export class User {
               public success: boolean = true,
               public error: string = '') {}
 
-  static fromJson(json: string) {
+  static fromJson(json: string): User {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any) {
+  static fromObject(object: any): User {
     return new User(object.id, object.role, object.name, object.emailAddress, object.streetAddress, object.registered, object.pin)
   }
 
-  static empty() {
+  static empty(): User {
     return new User(0, '', '', '', '', '', '')
   }
 }

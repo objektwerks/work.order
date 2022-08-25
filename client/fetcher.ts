@@ -45,7 +45,7 @@ export default () => {
 }
 
 export function register(registration: Registration): Status {
-  return call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
+  return Status.fromObject( call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')) )
 }
 
 export function login(credentials: Credentials): UsersWorkOrders {
