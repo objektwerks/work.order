@@ -104,6 +104,14 @@ export class ImageUrl {
               public success: boolean = true, 
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new ImageUrl(object.number, object.url)
+  }
+
   static success(number: number, url: string) {
     return new ImageUrl(number, url)
   }
