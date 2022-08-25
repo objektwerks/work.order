@@ -16,5 +16,5 @@ export default () => {
   workordersview()
   userview()
   console.log('*** client running ...')
-  console.log('*** server url: ' + 'https://' + window.location.host)
+  console.log('*** server url: ' + 'http://' + window.location.host)
 }
