@@ -15,8 +15,7 @@ export class Status {
               public error: string = '') {}
 
   static fromJson(json: string) {
-    const object = toObject(json)
-    return new Status(object.success, object.error)
+    return this.fromObject(toObject(json))
   }
 
   static fromObject(object: any) {
@@ -29,6 +28,14 @@ export class Registration {
               public name: string, 
               public emailAddress: string, 
               public streetAddress: string) {}
+
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new Registration(object.role, object. name, object.emailAddress, object.streetAddress)
+  }
 
   static success(): Status {
     return new Status()
