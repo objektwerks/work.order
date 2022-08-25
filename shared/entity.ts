@@ -126,6 +126,14 @@ export class WorkOrderStatus {
               public success: boolean = true, 
               public error: string = '') {}
 
+  static fromJson(json: string) {
+    return this.fromObject(toObject(json))
+  }
+
+  static fromObject(object: any) {
+    return new WorkOrderStatus(object.number)
+  }
+
   static success(number: number) {
     return new WorkOrderStatus(number)
   }
