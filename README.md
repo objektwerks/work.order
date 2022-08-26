@@ -14,6 +14,8 @@ Install
 -------
 1. npm install
 >See **package.json** for details.
+>Note **dependencies** won't work if not installed in your home directory. Some don't appear in the project node_modules directory.
+>Install npm, typescript, typesync and ts-node globally.
 
 Database
 --------
