@@ -12,11 +12,11 @@
   "main": "./dist/server.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "compile": "npx tsc",
+    "compile": "tsc",
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "npx tsx server.ts",
+    "dev": "tsx server.ts",
     "start": "node server.js"
   },
   "dependencies": {
