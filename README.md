@@ -26,6 +26,13 @@ Dev
 1. npm run build
 2. npm run dev
 
+Prod
+----
+1. npm run build
+2. cp -r dist target/
+3. cd target
+4. node server.js
+
 Nodejs Hosting Providers
 ------------------------
 >Consider:
