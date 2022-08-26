@@ -2,11 +2,11 @@
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
-export function toJson(object: any) {
+export function toJson<T>(object: T): string {
   return JSON.stringify(object)
 }
 
-export function toObject(json: string) {
+function toObject<T>(json: string): T {
   return JSON.parse(json)
 }
 

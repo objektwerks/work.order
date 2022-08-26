@@ -19,8 +19,8 @@ const headers: Record<string, string> = {
   'Accept': 'application/json'
 }
 
-async function call(url: string, method: string, headers: Record<string, string>, entity: any, fault: () => any, asJson = true): Promise<any> {
-  let result: any
+async function call<T, R>(url: string, method: string, headers: Record<string, string>, entity: T, fault: () => R, asJson = true): Promise<R> {
+  let result: R
   try {
     let response = await fetch(url, {
       method: method,
