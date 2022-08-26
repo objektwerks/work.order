@@ -1,7 +1,7 @@
-import store from './server/store';
-import emailer from './server/emailer';
-import service from './server/service';
-import router from './server/router';
+import store from './server/store.js';
+import emailer from './server/emailer.js';
+import service from './server/service.js';
+import router from './server/router.js';
 
 store();
 emailer();

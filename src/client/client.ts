@@ -1,10 +1,10 @@
-import menu from './menu'
-import model from './model'
-import fetcher from './fetcher'
-import registerview from './register.form'
-import loginview from './login.form'
-import workordersview from './work.orders.form'
-import userview from './user.form'
+import menu from './menu.js'
+import model from './model.js'
+import fetcher from './fetcher.js'
+import registerview from './register.form.js'
+import loginview from './login.form.js'
+import workordersview from './work.orders.form.js'
+import userview from './user.form.js'
 
 export default () => {
   menu()

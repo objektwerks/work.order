@@ -1,5 +1,5 @@
 // @ts-ignore
-import { homeowner, serviceProvider } from './entity'
+import { homeowner, serviceProvider } from './entity.js'
 
 const roleInvalidMessage = 'A valid role must be selected.'
 const nameInvalidMessage = 'For name, enter at least 2 characters.'

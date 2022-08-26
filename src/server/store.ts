@@ -1,5 +1,5 @@
 import mysql, { MysqlError, OkPacket, Pool } from 'mysql'
-import { User, WorkOrder } from '../shared/entity'
+import { User, WorkOrder } from '../shared/entity.js'
 
 const url: string = process.env.DATABASE_URL as string
 const connection: Pool = mysql.createPool(url)

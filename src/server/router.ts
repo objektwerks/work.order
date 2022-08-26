@@ -1,9 +1,9 @@
-import { images, imagesDir, ifNotExistsMakeDir } from './images'
-import * as service from './service'
+import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
+import * as service from './service.js'
+import { Credentials, Registration, User, WorkOrder} from '../shared/entity.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { Credentials, Registration, User, WorkOrder} from '../shared/entity'
 
 const port: number = parseInt( process.env.PORT as string ) ?? 3000
 const host: string = process.env.BIND_IP ?? '127.0.0.1'
