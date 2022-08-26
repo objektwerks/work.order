@@ -30,9 +30,10 @@ Dev
 
 Npm
 ---
->In a typescript project, the following package.json scripts work but express can't find the client js files.
+>In a typescript project, the following package.json scripts work but express can't find the client js files. See Dev above.
 * "tsx-dev": "tsx server.ts",
 * "node-dev": "node --experimental-specifier-resolution=node --loader ts-node/esm server.ts",
+* "tsc-nodemon-dev": "concurrently \"tsc --watch\" \"nodemon -q dist/server.js\""
 * "start": "node server.js"
 
 Nodejs Hosting Providers
