@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "description": "Work order web client and nodejs server.",
+  "description": "Work order web app linking homeowners and service providers.",
   "homepage": "https://github.com/objektwerks/work.order#readme",
   "license": "Apache 2.0",
   "author": "Objektwerks",
