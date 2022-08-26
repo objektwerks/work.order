@@ -17,6 +17,7 @@
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "tsx server.ts",
+    "alt-dev": "node --experimental-specifier-resolution=node --loader ts-node/esm server.ts",
     "start": "node server.js"
   },
   "dependencies": {
