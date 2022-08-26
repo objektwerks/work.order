@@ -23,12 +23,17 @@ Database
 
 Dev
 ---
-1. npm run dev
-2. Control-C ( to stop nodemon )
->Since I converted this to a typescript project, you need to:
+>In a typescript project, you must run node from **dist** so express can find the client js files.
 1. npm run build
 2. cd dist
 3. node server.js || nodeman server.js
+
+Npm
+---
+>In a typescript project, the following package.json scripts work but express can't find the client js files.
+* "tsx-dev": "tsx server.ts",
+* "node-dev": "node --experimental-specifier-resolution=node --loader ts-node/esm server.ts",
+* "start": "node server.js"
 
 Nodejs Hosting Providers
 ------------------------
