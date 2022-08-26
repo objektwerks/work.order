@@ -16,7 +16,7 @@
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "cd ./dist && concurrently \"tsc-watch --onSuccess\" \"nodemon -q server.js\""
+    "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js"
   },
   "dependencies": {
     "compression": "1.7.4",
