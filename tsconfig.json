@@ -10,6 +10,7 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["server.ts", "./client/*.ts", "./server/*.ts", "./shared/*.ts"],
