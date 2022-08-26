@@ -15,7 +15,8 @@
     "compile": "tsc --project ./tsconfig.json",
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
-    "ddl": "mysql -uroot -p < ddl.sql"
+    "ddl": "mysql -uroot -p < ddl.sql",
+    "dev": "cd ./dist && concurrently \"tsc --watch\" \"nodemon -q server.js\""
   },
   "dependencies": {
     "compression": "1.7.4",
