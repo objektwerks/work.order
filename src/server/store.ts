@@ -1,6 +1,5 @@
-// @ts-check
 import mysql, { MysqlError, OkPacket, Pool } from 'mysql'
-import { User, WorkOrder } from '../shared/entity.js'
+import { User, WorkOrder } from '../shared/entity'
 
 const url: string = process.env.DATABASE_URL as string
 const connection: Pool = mysql.createPool(url)

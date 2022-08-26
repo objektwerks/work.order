@@ -1,5 +1,3 @@
-// @ts-check
-
 // @ts-ignore
 import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
 

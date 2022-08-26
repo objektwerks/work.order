@@ -1,4 +1,3 @@
-// @ts-check
 import crypto from 'node:crypto'
 
 const specialChars = "~!@#$%^&*-+=<>?/:"

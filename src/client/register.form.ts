@@ -1,6 +1,5 @@
-// @ts-check
-import { getById, getValueById, hide, setErrorsList, show } from './common.js'
-import * as fetcher from './fetcher.js'
+import { getById, getValueById, hide, setErrorsList, show } from './common'
+import * as fetcher from './fetcher'
 
 // @ts-ignore
 import { validateRegistration } from './validator.js'

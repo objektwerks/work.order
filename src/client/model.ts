@@ -1,5 +1,4 @@
-// @ts-check
-import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js'
+import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common'
 
 // @ts-ignore
 import { User, WorkOrder } from './entity.js'

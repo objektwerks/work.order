@@ -1,7 +1,6 @@
-// @ts-check
-import { newPin } from './pin.js'
-import * as store from './store.js'
-import * as emailer from './emailer.js'
+import { newPin } from './pin'
+import * as store from './store'
+import * as emailer from './emailer'
 import {
   serviceProvider,
   Credentials,
@@ -14,7 +13,7 @@ import {
   WorkOrderStatus,
   WorkOrders,
   Registration
-} from '../shared/entity.js'
+} from '../shared/entity'
 
 const subjectRegistration = `Work Order Registration`
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`

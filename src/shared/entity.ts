@@ -1,4 +1,3 @@
-// @ts-check
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 

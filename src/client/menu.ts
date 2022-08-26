@@ -1,5 +1,4 @@
-// @ts-check
-import { getById, getByClass, show } from './common.js'
+import { getById, getByClass, show } from './common'
 
 function selectMenuItem(formId: string) {
   const forms = getByClass('form') as HTMLCollectionOf<Element>

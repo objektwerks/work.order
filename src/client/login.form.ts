@@ -1,7 +1,6 @@
-// @ts-check
-import { getById, getValueById, hide, setErrorsList, show } from './common.js'
-import * as fetcher from './fetcher.js'
-import * as model from './model.js'
+import { getById, getValueById, hide, setErrorsList, show } from './common'
+import * as fetcher from './fetcher'
+import * as model from './model'
 
 // @ts-ignore
 import { serviceProvider, Credentials } from './entity.js'

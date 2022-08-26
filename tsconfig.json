@@ -13,6 +13,11 @@
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["server.ts", "./client/*.ts", "./server/*.ts", "./shared/*.ts"],
+  "include": [
+    "src/server.ts",
+    "./src/client/*.ts",
+    "./src/server/*.ts",
+    "./src/shared/*.ts"
+  ],
   "exclude": ["node_modules", "node_modules/@types"]
 }

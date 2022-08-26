@@ -1,4 +1,3 @@
-// @ts-check
 import nodemailer from 'nodemailer'
 import Mail from "nodemailer/lib/mailer"
 
