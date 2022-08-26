@@ -14,7 +14,7 @@
     "lint": "eslint . --ext .ts",
     "clean": "rm -rf ./dist",
     "compile": "tsc --project ./tsconfig.json",
-    "copy": "copyfiles src/client/*.ico src/client/*.png src/client/*.css src/client/*.html ./dist/",
+    "copy": "copyfiles --flat src/client/*.ico src/client/*.png src/client/*.css src/client/*.html ./dist/client",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js"
