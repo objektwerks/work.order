@@ -23,18 +23,8 @@ Database
 
 Dev
 ---
->In a typescript project, you must run node from **dist** so express can find the client js files.
 1. npm run build
-2. cd dist
-3. node server.js || nodeman server.js
-
-Npm
----
->In a typescript project, the following package.json scripts work but express can't find the client js files. See Dev above.
-* "tsx-dev": "tsx server.ts",
-* "node-dev": "node --experimental-specifier-resolution=node --loader ts-node/esm server.ts",
-* "tsc-nodemon-dev": "concurrently \"tsc --watch\" \"nodemon -q dist/server.js\""
-* "start": "node server.js"
+2. npm run dev
 
 Nodejs Hosting Providers
 ------------------------
