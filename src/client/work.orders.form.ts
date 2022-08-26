@@ -1,14 +1,13 @@
-import * as fetcher from './fetcher'
-import * as model from './model'
+import * as fetcher from './fetcher.js'
+import * as model from './model.js'
 import { isDefined, getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
-         show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common'
+         show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
 
 // @ts-ignore
 import { validateWorkOrder } from './validator.js'
 
 // @ts-ignore
-import { homeowner, serviceProvider, WorkOrder } from './entity.js'
-import { WorkOrderStatus } from '../shared/entity'
+import { homeowner, serviceProvider, WorkOrder, WorkOrderStatus } from './entity.js'
 
 const readonlyRole = 'readonly'
 
