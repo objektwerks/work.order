@@ -181,7 +181,7 @@ export class WorkOrder {
   }
 
   static fail(error: string, number: number): WorkOrder {
-    let workOrder = WorkOrder.empty()
+    const workOrder = WorkOrder.empty()
     workOrder.number = number
     workOrder.success = false
     workOrder.error = error

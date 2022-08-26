@@ -104,7 +104,7 @@ export function setListValues(listId: string, values: string[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
   for (const value of values) {
-    let li = document.createElement('li')
+    const li = document.createElement('li')
     li.appendChild(document.createTextNode(value))
     ul.appendChild(li)
   }
@@ -114,7 +114,7 @@ export function setListIdValues(listId: string, idValues: IdValue[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
   for (const idValue of idValues) {
-    let li = document.createElement('li')
+    const li = document.createElement('li')
     li.id = idValue.id
     li.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
     ul.appendChild(li)
@@ -125,7 +125,7 @@ export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
   const select = getById(selectId) as HTMLSelectElement
   select.innerHTML = ''
   for (const idValue of idValues) {
-    let option = document.createElement('option')
+    const option = document.createElement('option')
     option.id = idValue.id
     option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
     select.appendChild(option)

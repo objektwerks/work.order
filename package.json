@@ -11,6 +11,7 @@
   "type": "module",
   "main": "./dist/server.js",
   "scripts": {
+    "lint": "eslint . --ext .ts",
     "clean": "rm -rf ./dist",
     "compile": "tsc --project ./tsconfig.json",
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",

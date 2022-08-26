@@ -48,7 +48,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
 export function addWorkOrder(workOrder: WorkOrder) {
   workOrders.push(workOrder)
   const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened))
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  splitWorkOrders(sortedWorkOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
 }
 
 export function bindUserToForm(newUser: User): void {

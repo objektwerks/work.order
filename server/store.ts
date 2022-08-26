@@ -19,7 +19,7 @@ export function disconnect(): void {
 }
 
 export function listWorkOrdersByUserId(id: number): WorkOrder[] {
-  let list: WorkOrder[] = []
+  const list: WorkOrder[] = []
   connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: MysqlError, rows: any) => {
     if (error) {
       log('listWorkOrdersByUserId', error.message)
@@ -35,7 +35,7 @@ export function listWorkOrdersByUserId(id: number): WorkOrder[] {
 }
 
 export function listUsersByRole(role: string): User[] {
-  let list: User[] = []
+  const list: User[] = []
   connection.query(`select * from user where role = ${role} order by name asc`, (error: MysqlError, rows: any) => {
     if (error) {
       log('listUsersByRole', error.message)
@@ -51,7 +51,7 @@ export function listUsersByRole(role: string): User[] {
 }
 
 export function getUserByEmailAddressPin(emailAddress: string, pin: string): User {
-  let list: User[] = []
+  const list: User[] = []
   connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: MysqlError, rows: any) => {
     if (error) {
       log('getUserByEmailAddressPin', error.message)
@@ -67,7 +67,7 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string): Use
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrder {
-  let list: WorkOrder[] = []
+  const list: WorkOrder[] = []
   connection.query(`select * from work_order where number = ${number}`, (error: MysqlError, rows: any) => {
     if (error) {
       log('getWorkOrderByNumber', error.message)
@@ -83,7 +83,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
 }
 
 export function addWorkOrder(workOrder: WorkOrder): number {
-  let number: number = 0
+  let number = 0
   connection.query('insert into work_order set ?', [workOrder], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('addWorkOrder', error.message)
@@ -96,7 +96,7 @@ export function addWorkOrder(workOrder: WorkOrder): number {
 }
 
 export function addUser(user: User): number {
-  let id: number = 0
+  let id = 0
   connection.query('insert into user set ?', [user], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('addUser', error.message)
@@ -109,7 +109,7 @@ export function addUser(user: User): number {
 }
 
 export function saveWorkOrder(workOrder: WorkOrder): number {
-  let count: number = 0
+  let count = 0
   connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveWorkOrder', error.message)
@@ -122,7 +122,7 @@ export function saveWorkOrder(workOrder: WorkOrder): number {
 }
 
 export function saveUser(user: User): number {
-  let count: number = 0
+  let count = 0
   connection.query('update user SET ? where id = ?', [user, user.id], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveUser', error.message)
@@ -135,7 +135,7 @@ export function saveUser(user: User): number {
 }
 
 export function saveImageUrl(number: number, url: string): number {
-  let count: number = 0
+  let count = 0
   connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: MysqlError | null, result: OkPacket) => {
     if (error) {
       log('saveImageUrl', error.message)

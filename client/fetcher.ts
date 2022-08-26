@@ -22,7 +22,7 @@ const headers: Record<string, string> = {
 async function call<T, R>(url: string, method: string, headers: Record<string, string>, entity: T, fault: () => R, asJson = true): Promise<R> {
   let result: R
   try {
-    let response = await fetch(url, {
+    const response = await fetch(url, {
       method: method,
       headers: headers,
       body: asJson ? toJson(entity) : entity
