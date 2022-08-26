@@ -9,10 +9,10 @@
     "url": "git+https://github.com/objektwerks/work.order.git"
   },
   "type": "module",
-  "main": "server.ts",
+  "main": "./dist/server.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "compile": "tsc",
+    "compile": "tsc --project ./tsconfig.json",
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql"
