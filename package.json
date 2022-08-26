@@ -16,7 +16,7 @@
     "copy": "copyfiles ./client/*.ico ./client/*.png ./client/*.css ./client/*.html ./dist/",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "npx ts-node server.ts",
+    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm server.ts",
     "start": "node server.js"
   },
   "dependencies": {
