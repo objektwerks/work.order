@@ -1,4 +1,6 @@
 .*
+!.eslintrc
+!.eslintignore
 !.gitignore
 dist
 node_modules
