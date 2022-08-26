@@ -6,7 +6,7 @@
     "target": "ES2022",
     "outDir": "dist",
     "strict": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
