@@ -14,12 +14,12 @@ const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
 const post = 'POST'
-const headers: any = {
+const headers: Record<string, string> = {
   "Content-Type": "application/json charset=utf-8",
   'Accept': 'application/json'
 }
 
-async function call(url: string, method: string, headers: any, entity: any, fault: () => any, asJson = true): Promise<any> {
+async function call(url: string, method: string, headers: Record<string, string>, entity: any, fault: () => any, asJson = true): Promise<any> {
   let result: any
   try {
     let response = await fetch(url, {
