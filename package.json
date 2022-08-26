@@ -9,7 +9,7 @@
     "url": "git+https://github.com/objektwerks/work.order.git"
   },
   "type": "module",
-  "main": "./dist/server.js",
+  "main": "server.ts",
   "scripts": {
     "clean": "rm -rf ./dist",
     "compile": "tsc",

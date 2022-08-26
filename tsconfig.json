@@ -13,5 +13,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["server.ts", "./client/*.ts", "./server/*.ts", "./shared/*.ts"],
-  "exclude": ["node_modules", "node_modules/@types", "dist"]
+  "exclude": ["node_modules", "node_modules/@types"]
 }
