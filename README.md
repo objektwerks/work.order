@@ -15,7 +15,7 @@ Install
 1. npm install
 >See **package.json** for details.
 >Note **dependencies** won't work if not installed in your home directory. Some don't appear in the project node_modules directory.
->Install npm, typescript, typesync and tsx globally to run without npx. Don't use ts-node!
+>Install npm, typescript, typesync, ts-node and tsx globally to run without npx.
 
 Database
 --------
@@ -25,6 +25,10 @@ Dev
 ---
 1. npm run dev
 2. Control-C ( to stop nodemon )
+>Since I converted this to a typescript project, you really need to:
+1. npm run build
+2. cd dist
+3. node server.js
 
 Nodejs Hosting Providers
 ------------------------
