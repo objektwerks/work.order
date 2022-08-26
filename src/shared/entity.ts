@@ -5,7 +5,7 @@ export function toJson<T>(object: T): string {
   return JSON.stringify(object)
 }
 
-function toObject<T>(json: string): T {
+export function toObject<T>(json: string): T {
   return JSON.parse(json)
 }
 
