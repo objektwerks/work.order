@@ -1,7 +1,5 @@
 import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js'
-
-// @ts-ignore
-import { User, WorkOrder } from './entity.js'
+import { User, WorkOrder } from '../shared/entity.js'
 
 let user: User
 let serviceProviders: User[]
@@ -10,10 +8,10 @@ let workOrders: WorkOrder[]
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
-    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) })
+    .map((workOrder) => { return new IdValue(workOrder.number.toString(), workOrder.title) })
   const closedWorkOrders = workOrders
     .filter((workorder) => workorder.closed.length > 0) // closed
-    .map((workOrder) => { return new IdValue(workOrder.number, workOrder.title) })
+    .map((workOrder) => { return new IdValue(workOrder.number.toString(), workOrder.title) })
   setListIdValues(openedWorkOrdersListId, openedWorkOrders)
   setListIdValues(closedWorkOrdersListId, closedWorkOrders)
 }
@@ -41,7 +39,8 @@ export function setUser(name: string, emailAddress: string, streetAddress: strin
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrder {
-  return workOrders.find(workOrder => workOrder.number === number)
+  const workOrder = workOrders.find(workOrder => workOrder.number === number)
+  return workOrder !== undefined ? workOrder : WorkOrder.empty()
 }
 
 export function addWorkOrder(workOrder: WorkOrder) {
@@ -61,9 +60,9 @@ export function bindUserToForm(newUser: User): void {
 
 export function bindServiceProvidersToSelect(newServiceProviders: User[]): void {
   serviceProviders = newServiceProviders
-  const idvalues = []
+  const idvalues: IdValue[] = []
   for (const serviceProvider of serviceProviders) {
-    idvalues.push({ id: serviceProvider.id, value: serviceProvider.name })
+    idvalues.push({ id: serviceProvider.id.toString(), value: serviceProvider.name })
   }
   setSelectIdValues('workorder-service-provider-id', idvalues)
 }

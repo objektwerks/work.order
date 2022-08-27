@@ -1,6 +1,6 @@
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { isDefined, getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
          show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
 import { homeowner, serviceProvider, WorkOrder } from '../shared/entity.js'
 import { validateWorkOrder } from '../shared/validator.js'
@@ -180,7 +180,7 @@ export default () => {
     const ext = file?.type === 'image/jpeg' ? 'jpeg' : 'png'
     const filename = `${number}-${datetime}.${ext}`
     const url = `/images/${number}/${filename}`
-    if ( isDefined<File>(file) ) {
+    if ( file !== undefined ) {
       fetcher.saveImage(parseInt(number), url, file, filename).then(imageUrl => {
         if (!imageUrl.success) {
           setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
@@ -219,7 +219,7 @@ export default () => {
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
-      if ( isDefined<WorkOrder>(workOrder) ) {
+      if ( workOrder !== undefined ) {
         bindWorkOrderToForm(workOrder)
         applyRoleToForm(model.getUserRole())
         console.log(`*** work order selected and bound to form for number: ${number}`)

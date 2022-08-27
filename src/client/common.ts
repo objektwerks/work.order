@@ -8,10 +8,6 @@ export class IdValue {
   }
 }
 
-export function isDefined<T>(target: T): boolean {
-  return (target !== undefined && target !== null)
-}
-
 export function getByClass(name: string): HTMLCollectionOf<Element> {
   return document.getElementsByClassName(name)
 }
