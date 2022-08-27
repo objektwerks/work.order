@@ -175,12 +175,12 @@ export default () => {
 
   getById('workorder-image-file-id').addEventListener('change', () => {
     const number = getValueById('workorder-number-id')
-    const file = getFileById('workorder-image-file-id')
+    const file = getFileById('workorder-image-file-id') as File
     const datetime = new Date().toISOString()
     const ext = file?.type === 'image/jpeg' ? 'jpeg' : 'png'
     const filename = `${number}-${datetime}.${ext}`
     const url = `/images/${number}/${filename}`
-    if ( isDefined(file) ) {
+    if ( isDefined<File>(file) ) {
       // @ts-ignore
       const imageUrl = fetcher.saveImage(number, url, file, filename) // file may be undefined or null!
       if (!imageUrl.success) {
@@ -219,7 +219,7 @@ export default () => {
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
-      if ( isDefined(workOrder) ) {
+      if ( isDefined<WorkOrder>(workOrder) ) {
         bindWorkOrderToForm(workOrder)
         applyRoleToForm(model.getUserRole())
         console.log(`*** work order selected and bound to form for number: ${number}`)

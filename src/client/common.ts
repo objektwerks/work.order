@@ -8,7 +8,7 @@ export class IdValue {
   }
 }
 
-export function isDefined(target: any): boolean {
+export function isDefined<T>(target: T): boolean {
   return (target !== undefined && target !== null)
 }
 
