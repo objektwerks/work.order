@@ -12,10 +12,6 @@ export function isDefined(target: any): boolean {
   return (target !== undefined && target !== null)
 }
 
-export function isNotDefined(target: any): boolean {
-  return (target === undefined || target === null)
-}
-
 export function getByClass(name: string): HTMLCollectionOf<Element> {
   return document.getElementsByClassName(name)
 }
