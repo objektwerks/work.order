@@ -72,10 +72,10 @@ export function saveUser(user: User): UserStatus {
   )
 }
 
-export function saveImage(number: string, url: string, file: File, filename: string): ImageUrl {
+export function saveImage(number: number, url: string, file: File, filename: string): ImageUrl {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
-  formdata.append('number', number)
+  formdata.append('number', number.toString())
   formdata.append('url', url)
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)

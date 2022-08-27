@@ -159,7 +159,7 @@ export default () => {
     if (!workOrders.success) {
       setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
     } else {
-      model.bindWorkOrdersToList(workOrders)
+      model.bindWorkOrdersToList(workOrders.workOrders)
     }  
   }, false)
 
@@ -181,8 +181,7 @@ export default () => {
     const filename = `${number}-${datetime}.${ext}`
     const url = `/images/${number}/${filename}`
     if ( isDefined<File>(file) ) {
-      // @ts-ignore
-      const imageUrl = fetcher.saveImage(number, url, file, filename) // file may be undefined or null!
+      const imageUrl = fetcher.saveImage(parseInt(number), url, file, filename)
       if (!imageUrl.success) {
         setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
       } else {
