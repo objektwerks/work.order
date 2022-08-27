@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
 import Mail from "nodemailer/lib/mailer"
+import { SentMessageInfo } from 'nodemailer/lib/sendmail-transport'
 
 const sender: string = process.env.EMAIL_SENDER as string
 const config: object = {
@@ -26,8 +27,7 @@ export function send(recipient: string, pin: string, subject: string, text: stri
     subject: subject,
     text: `${pin} ${text}`
   }
-  // @ts-ignore
-  transporter.sendMail(message, (error: Error, info: SentMessageInfo) => {
+  transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
       console.log(`*** emailer failed: ${error}`)
       throw error
