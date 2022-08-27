@@ -174,13 +174,13 @@ export default () => {
   }, false)
 
   getById('workorder-image-file-id').addEventListener('change', () => {
-    const number = getValueById('workorder-number-id')
-    const file = getFileById('workorder-image-file-id') as File
-    const datetime = new Date().toISOString()
-    const ext = file?.type === 'image/jpeg' ? 'jpeg' : 'png'
-    const filename = `${number}-${datetime}.${ext}`
-    const url = `/images/${number}/${filename}`
-    if ( file !== undefined ) {
+    const file = getFileById('workorder-image-file-id')
+    if ( file !== undefined  && file !== null) {
+      const number = getValueById('workorder-number-id')
+      const datetime = new Date().toISOString()
+      const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
+      const filename = `${number}-${datetime}.${ext}`
+      const url = `/images/${number}/${filename}`
       fetcher.saveImage(parseInt(number), url, file, filename).then(imageUrl => {
         if (!imageUrl.success) {
           setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
@@ -191,7 +191,7 @@ export default () => {
         }
       })
     } else {
-      setErrorList(`Failed to load file: ${filename}`, 'workorder-errors-list-id', 'workorder-errors-form-id')
+      setErrorList(`Failed to load file!`, 'workorder-errors-list-id', 'workorder-errors-form-id')
     }
   }, false)
 
