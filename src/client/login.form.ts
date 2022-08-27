@@ -1,12 +1,8 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-
-// @ts-ignore
-import { serviceProvider, Credentials } from './entity.js'
-
-// @ts-ignore
-import { validateCredentials } from './validator.js'
+import { serviceProvider, Credentials } from '../shared/entity.js'
+import { validateCredentials } from '../shared/validator.js'
 
 export default () => {
   console.log('*** login form init ...')
@@ -21,30 +17,31 @@ export default () => {
 
     const errors = validateCredentials(emailAddress, pin)
     if (errors.length === 0) {
-      const credentials = Credentials.create(emailAddress, pin)
-      const usersWorkOrders = fetcher.login(credentials)
-      if (!usersWorkOrders.success) {
-        errors.push(usersWorkOrders.error)
-        setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id')
-      } else {
-        model.bindUserToForm(usersWorkOrders.user)
-        model.bindServiceProvidersToSelect(usersWorkOrders.serviceProviders)
-        model.bindWorkOrdersToList(usersWorkOrders.workOrders)
-
-        hide('login-form-id')
-        hide('register-form-id"')
-
-        hide('login-menu-id')
-        hide('register-menu-id')
-
-        show(`workorders-menu-id`)
-        show(`user-menu-id`)
-
-        if (model.getUserRole === serviceProvider) {
-          hide('workorder-new-command-id')
+      const credentials = new Credentials(emailAddress, pin)
+      fetcher.login(credentials).then(usersWorkOrders => {
+        if (!usersWorkOrders.success) {
+          errors.push(usersWorkOrders.error)
+          setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id')
+        } else {
+          model.bindUserToForm(usersWorkOrders.user)
+          model.bindServiceProvidersToSelect(usersWorkOrders.serviceProviders)
+          model.bindWorkOrdersToList(usersWorkOrders.workOrders)
+  
+          hide('login-form-id')
+          hide('register-form-id"')
+  
+          hide('login-menu-id')
+          hide('register-menu-id')
+  
+          show(`workorders-menu-id`)
+          show(`user-menu-id`)
+  
+          if (model.getUserRole() === serviceProvider) {
+            hide('workorder-new-command-id')
+          }
+          show('workorders-form-id')
         }
-        show('workorders-form-id')
-      }
+      })
     } else {
       setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id')
     }

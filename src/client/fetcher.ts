@@ -1,5 +1,4 @@
-// @ts-ignore
-import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
+import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from '../shared/entity.js'
 
 const rootUrl = 'https://' + window.location.host
 const registerUrl = rootUrl + '/register'
@@ -46,56 +45,40 @@ export default () => {
   console.log('*** fetcher init ...')
 }
 
-export function register(registration: Registration): Status {
-  return Status.fromObject(
-    call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
-  )
+export async function register(registration: Registration): Promise<Status> {
+  return await call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
 }
 
-export function login(credentials: Credentials): UsersWorkOrders {
-  return UsersWorkOrders.fromObject(
-    call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
-  )
+export async function login(credentials: Credentials): Promise<UsersWorkOrders> {
+  return await call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
 }
 
-export function addWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  return WorkOrderStatus.fromObject(
-    call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
-  )
+export async function addWorkOrder(workOrder: WorkOrder): Promise<WorkOrderStatus> {
+  return await call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
 }
 
-export function saveWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  return WorkOrderStatus.fromObject(
-    call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
-  )
+export async function saveWorkOrder(workOrder: WorkOrder): Promise<WorkOrderStatus> {
+  return await call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
 }
 
-export function saveUser(user: User): UserStatus {
-  return UserStatus.fromObject(
-    call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user))
-  )
+export async function saveUser(user: User): Promise<UserStatus> {
+  return await call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id))
 }
 
-export function saveImage(number: number, url: string, file: File, filename: string): ImageUrl {
+export async function saveImage(number: number, url: string, file: File, filename: string): Promise<ImageUrl> {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
   formdata.append('number', number.toString())
   formdata.append('url', url)
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)
-  return ImageUrl.fromObject(
-    call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
-  )
+  return await call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
 
-export function getWorkOrderByNumber(number: number): WorkOrder {
-  return WorkOrder.fromObject(
-    call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`))
-  )
+export async function getWorkOrderByNumber(number: number): Promise<WorkOrder> {
+  return await call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number))
 }
 
-export function listWorkOrdersByUserId(id: number): WorkOrders {
-  return WorkOrders.fromObject(
-    call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`))
-  )
+export async function listWorkOrdersByUserId(id: number): Promise<WorkOrders> {
+  return await call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
 }

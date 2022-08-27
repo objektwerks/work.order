@@ -1,9 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-
-// @ts-ignore
-import { validateUserInfo } from './validator.js'
+import { validateUserInfo } from '../shared/validator.js'
 
 function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
   model.setUser(name, emailAddress, streetAddress)
@@ -24,13 +22,14 @@ export default () => {
     const errors = validateUserInfo(name, emailAddress, streetAddress)
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress)
-      const userStatus = fetcher.saveUser(model.getUser())
-      if (!userStatus.success) {
-        errors.push(userStatus.error)
-        setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
-      } else {          
-        show('user-dialog-id')
-      }
+      fetcher.saveUser(model.getUser()).then(userStatus => {
+        if (!userStatus.success) {
+          errors.push(userStatus.error)
+          setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
+        } else {          
+          show('user-dialog-id')
+        }
+      })
     } else {
       setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
     }      

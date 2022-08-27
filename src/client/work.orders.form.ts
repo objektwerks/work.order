@@ -2,12 +2,8 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import { isDefined, getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
          show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
-
-// @ts-ignore
-import { validateWorkOrder } from './validator.js'
-
-// @ts-ignore
-import { homeowner, serviceProvider, WorkOrder, WorkOrderStatus } from './entity.js'
+import { homeowner, serviceProvider, WorkOrder, WorkOrderStatus } from '../shared/entity.js'
+import { validateWorkOrder } from '../shared/validator.js'
 
 const readonlyRole = 'readonly'
 
@@ -75,9 +71,9 @@ function bindEmptyWorkOrderToForm() {
 }
 
 function bindWorkOrderToForm(workOrder: WorkOrder) {
-  setValueById('workorder-number-id', workOrder.number)
-  setValueById('workorder-homeowner-id', workOrder.homeownerId)
-  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId)
+  setValueById('workorder-number-id', workOrder.number.toString())
+  setValueById('workorder-homeowner-id', workOrder.homeownerId.toString())
+  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
   setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
@@ -99,8 +95,8 @@ export default () => {
     hide('workorder-errors-form-id')
 
     const number = parseInt( getValueById('workorder-number-id') )
-    const homeownerId = getValueById('workorder-homeowner-id')
-    const serviceProviderId = getSelectedIndexId('workorder-service-provider-id')
+    const homeownerId = parseInt( getValueById('workorder-homeowner-id') )
+    const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')
     const imageUrl = getValueById('workorder-image-url-id')
@@ -119,24 +115,26 @@ export default () => {
         workOrder.imageUrl = imageUrl
         workOrder.resolution = resolution
         workOrder.closed = closed
-        const workOrderStatus: WorkOrderStatus = fetcher.saveWorkOrder(workOrder)
-        if (!workOrderStatus.success) {
-          errors.push(workOrderStatus.error)
-          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
-        } else {          
-          show('workorder-dialog-id')
-        }
+        fetcher.saveWorkOrder(workOrder).then(workOrderStatus => {
+          if (!workOrderStatus.success) {
+            errors.push(workOrderStatus.error)
+            setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
+          } else {          
+            show('workorder-dialog-id')
+          }
+        })
       } else { // add
         const workOrder: WorkOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
-        const workOrderStatus: WorkOrderStatus = fetcher.addWorkOrder(workOrder)
-        if (!workOrderStatus.success) {
-          errors.push(workOrderStatus.error)
-          setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
-        } else {
-          workOrder.number = workOrderStatus.number
-          model.addWorkOrder(workOrder)
-          show('workorder-dialog-id')
-        }
+        fetcher.addWorkOrder(workOrder).then(workOrderStatus => {
+          if (!workOrderStatus.success) {
+            errors.push(workOrderStatus.error)
+            setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
+          } else {
+            workOrder.number = workOrderStatus.number
+            model.addWorkOrder(workOrder)
+            show('workorder-dialog-id')
+          }
+        })
       }
     } else {
       setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
@@ -145,22 +143,24 @@ export default () => {
 
   getById('workorder-refresh-command-id').addEventListener('click', () => {
     const number = parseInt( getValueById('workorder-number-id') )
-    const workOrder = fetcher.getWorkOrderByNumber(number)
-    if (!workOrder.success) {
-      setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-    } else {
-      bindWorkOrderToForm(workOrder)
-    }
+    fetcher.getWorkOrderByNumber(number).then(workOrder => {
+      if (!workOrder.success) {
+        setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+      } else {
+        bindWorkOrderToForm(workOrder)
+      }
+    })
   }, false)
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
     const id = model.getUserId()
-    const workOrders = fetcher.listWorkOrdersByUserId(id)
-    if (!workOrders.success) {
-      setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-    } else {
-      model.bindWorkOrdersToList(workOrders.workOrders)
-    }  
+    fetcher.listWorkOrdersByUserId(id).then(workOrders => {
+      if (!workOrders.success) {
+        setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+      } else {
+        model.bindWorkOrdersToList(workOrders.workOrders)
+      } 
+    }) 
   }, false)
 
   getById('workorder-title-id').addEventListener('input', (event) => {
@@ -181,14 +181,15 @@ export default () => {
     const filename = `${number}-${datetime}.${ext}`
     const url = `/images/${number}/${filename}`
     if ( isDefined<File>(file) ) {
-      const imageUrl = fetcher.saveImage(parseInt(number), url, file, filename)
-      if (!imageUrl.success) {
-        setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-      } else {
-        setImageUrlById('workorder-image-url-id', imageUrl.url)
-        setTextById('workorder-dialog-message', 'Photo saved successfully.')
-        show('workorder-dialog-id')
-      }
+      fetcher.saveImage(parseInt(number), url, file, filename).then(imageUrl => {
+        if (!imageUrl.success) {
+          setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+        } else {
+          setImageUrlById('workorder-image-url-id', imageUrl.url)
+          setTextById('workorder-dialog-message', 'Photo saved successfully.')
+          show('workorder-dialog-id')
+        }
+      })
     } else {
       setErrorList(`Failed to load file: ${filename}`, 'workorder-errors-list-id', 'workorder-errors-form-id')
     }

@@ -1,11 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
-
-// @ts-ignore
-import { validateRegistration } from './validator.js'
-
-// @ts-ignore
-import { Registration } from "./entity.js"
+import { Registration } from "../shared/entity.js"
+import { validateRegistration } from '../shared/validator.js'
 
 export default () => {
   console.log('*** register form init ...')
@@ -22,17 +18,18 @@ export default () => {
 
     const errors = validateRegistration(role, name, emailAddress, streetAddress)
     if (errors.length === 0) {
-      const registration = Registration.create(role, name, emailAddress, streetAddress)
-      const status = fetcher.register(registration)
-      if (!status.success) {
-        errors.push(status.error)
-        setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
-      } else {
-        hide('register-form-id"')
-        hide('register-menu-id')
-        
-        show('register-dialog-id')
-      }
+      const registration = new Registration(role, name, emailAddress, streetAddress)
+      fetcher.register(registration).then(status => {
+        if (!status.success) {
+          errors.push(status.error)
+          setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
+        } else {
+          hide('register-form-id"')
+          hide('register-menu-id')
+          
+          show('register-dialog-id')
+        }
+      })
     } else {
       setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
     }
