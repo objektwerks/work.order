@@ -17,7 +17,7 @@ export class Status {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): Status {
+  static fromObject(object: Status): Status {
     return new Status(object.success, object.error)
   }
 }
@@ -32,7 +32,7 @@ export class Registration {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): Registration {
+  static fromObject(object: Registration): Registration {
     return new Registration(object.role, object. name, object.emailAddress, object.streetAddress)
   }
 
@@ -53,7 +53,7 @@ export class Credentials {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): Credentials {
+  static fromObject(object: Credentials): Credentials {
     return new Credentials(object.emailAddress, object.pin)
   }
 }
@@ -69,7 +69,7 @@ export class UsersWorkOrders {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): UsersWorkOrders {
+  static fromObject(object: UsersWorkOrders): UsersWorkOrders {
     return new UsersWorkOrders(object.user, object.serviceProviders, object.workOrders)
   }
 
@@ -92,7 +92,7 @@ export class WorkOrders {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): WorkOrders {
+  static fromObject(object: WorkOrders): WorkOrders {
     return new WorkOrders(object.userId, object.workOrders)
   }
 
@@ -115,7 +115,7 @@ export class ImageUrl {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): ImageUrl {
+  static fromObject(object: ImageUrl): ImageUrl {
     return new ImageUrl(object.number, object.url)
   }
 
@@ -137,7 +137,7 @@ export class WorkOrderStatus {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): WorkOrderStatus {
+  static fromObject(object: WorkOrderStatus): WorkOrderStatus {
     return new WorkOrderStatus(object.number)
   }
 
@@ -167,7 +167,7 @@ export class WorkOrder {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): WorkOrder {
+  static fromObject(object: WorkOrder): WorkOrder {
     return new WorkOrder(object.number, object.homeownerId, object.serviceProviderId, object.title, object.issue, object.imageUrl, object.resolution, object.opened, object.closed)
   }
 
@@ -197,8 +197,8 @@ export class UserStatus {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): UserStatus {
-    return new UserStatus(object.is)
+  static fromObject(object: UserStatus): UserStatus {
+    return new UserStatus(object.id)
   }
 
   static success(id: number): UserStatus {
@@ -225,7 +225,7 @@ export class User {
     return this.fromObject(toObject(json))
   }
 
-  static fromObject(object: any): User {
+  static fromObject(object: User): User {
     return new User(object.id, object.role, object.name, object.emailAddress, object.streetAddress, object.registered, object.pin)
   }
 
