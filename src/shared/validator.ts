@@ -1,4 +1,3 @@
-// @ts-ignore
 import { homeowner, serviceProvider } from './entity.js'
 
 const roleInvalidMessage = 'A valid role must be selected.'
