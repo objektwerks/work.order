@@ -25,10 +25,10 @@ export function getFileById(id: string): File | undefined | null {
   return input.files?.item(0)
 }
 
-export function getSelectedIndexId(selectId: string): string | undefined | null {
+export function getSelectedIndexId(selectId: string): string {
   const select = getById(selectId) as HTMLSelectElement
   const option = select.selectedOptions.item(select.selectedIndex)
-  return option?.id
+  return option !== null ? option.id : '0'
 }
 
 export function getValueById(id: string): string {
