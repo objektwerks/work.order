@@ -20,15 +20,14 @@ const headers: Record<string, string> = {
 async function call<T, R>(url: string, 
                           method: string, 
                           headers: Record<string, string>, 
-                          entity: T, 
-                          fault: () => R, 
-                          asJson = true): Promise<R> {
+                          entity: FormData | T, 
+                          fault: () => R): Promise<R> {
   let result: R
   try {
     const response = await fetch(url, {
       method: method,
       headers: headers,
-      body: asJson ? toJson(entity) : entity
+      body: entity instanceof FormData ? entity : toJson(entity)
     })
     if (response.ok) {
       result = toObject( await response.json() )
@@ -85,7 +84,7 @@ export function saveImage(number: number, url: string, file: File, filename: str
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)
   return ImageUrl.fromObject(
-    call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url), false)
+    call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
   )
 }
 
