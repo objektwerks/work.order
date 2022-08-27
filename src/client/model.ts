@@ -38,9 +38,8 @@ export function setUser(name: string, emailAddress: string, streetAddress: strin
   user.streetAddress = streetAddress
 }
 
-export function getWorkOrderByNumber(number: number): WorkOrder {
-  const workOrder = workOrders.find(workOrder => workOrder.number === number)
-  return workOrder !== undefined ? workOrder : WorkOrder.empty()
+export function getWorkOrderByNumber(number: number): WorkOrder | undefined {
+  return workOrders.find(workOrder => workOrder.number === number)
 }
 
 export function addWorkOrder(workOrder: WorkOrder) {

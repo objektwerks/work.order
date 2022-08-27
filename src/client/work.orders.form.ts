@@ -106,8 +106,8 @@ export default () => {
 
     const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
     if (errors.length === 0) {
-      if (number > 0) { // save
-        const workOrder: WorkOrder = model.getWorkOrderByNumber(number)
+      const workOrder = model.getWorkOrderByNumber(number)
+      if (workOrder !== undefined && number > 0) { // save
         workOrder.homeownerId = homeownerId
         workOrder.serviceProviderId = serviceProviderId
         workOrder.title = title
