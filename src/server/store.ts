@@ -2,10 +2,10 @@ import mysql, { OkPacket, Pool, PoolOptions, RowDataPacket } from 'mysql2'
 import { User, WorkOrder } from '../shared/entity.js'
 
 const options: PoolOptions = {
-  host: process.env.DATABASE_HOST,
-  database: process.env.DATABASE_NAME,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
+  host: process.env.WORK_ORDER_DATABASE_HOST,
+  database: process.env.WORK_ORDER_DATABASE_NAME,
+  user: process.env.WORK_ORDER_DATABASE_USER,
+  password: process.env.WORK_ORDER_DATABASE_PASSWORD,
 }
 const connection: Pool = mysql.createPool(options)
 

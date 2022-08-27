@@ -2,15 +2,15 @@ import nodemailer from 'nodemailer'
 import Mail from "nodemailer/lib/mailer"
 import { SentMessageInfo } from 'nodemailer/lib/sendmail-transport'
 
-const sender: string = process.env.EMAIL_SENDER as string
+const sender = process.env.WORK_ORDER_EMAIL_SENDER as string
 const config: object = {
-  host: process.env.EMAIL_HOST as string,
-  port: process.env.EMAIL_PORT ?? 587 as number,
+  host: process.env.WORK_ORDER_EMAIL_HOST as string,
+  port: process.env.WORK_ORDER_EMAIL_PORT ?? 587 as number,
   secure: true,
   requireTLS: true,
   auth: {
     user: sender,
-    pass: process.env.EMAIL_PASSWORD as string,
+    pass: process.env.WORK_ORDER_EMAIL_PASSWORD as string,
   },
   logger:true
 }

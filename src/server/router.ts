@@ -5,8 +5,8 @@ import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
 
-const port: number = parseInt( process.env.PORT as string ) ?? 3000
-const host: string = process.env.BIND_IP ?? '127.0.0.1'
+const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
+const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
 
 let router: Express
 let server: Server
