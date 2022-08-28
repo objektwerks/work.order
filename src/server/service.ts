@@ -57,7 +57,7 @@ export function login(credentials: Credentials): UsersWorkOrders {
   let status: UsersWorkOrders
   try {
     const user: User = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin)
-    if (user.id === 0) {
+    if (user.id > 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider)
       const workOrders = store.listWorkOrdersByUserId(user.id)
       status = UsersWorkOrders.success(user, serviceProviders, workOrders)
