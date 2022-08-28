@@ -22,19 +22,15 @@ async function call<T, R>(url: string,
                           entity: FormData | T, 
                           fault: () => R): Promise<R> {
   let result: R
-  try {
-    const response = await fetch(url, {
-      method: method,
-      headers: headers,
-      body: entity instanceof FormData ? entity : toJson(entity)
-    })
-    if (response.ok) {
-      result = toObject( await response.json() )
-    } else {
-      throw `failed with status code: ${response.status} status text: ${response.statusText}`
-    }
-  } catch (error) {
-    console.log(`*** fetcher.call -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, error: ${error}`)
+  const response = await fetch(url, {
+    method: method,
+    headers: headers,
+    body: entity instanceof FormData ? entity : toJson(entity)
+  })
+  if (response.ok) {
+    result = toObject( await response.json() )
+  } else {
+    console.log(`*** fetcher.call -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
     result = fault()
   }
   console.log(`*** fetcher:call -> url: ${url} result: ${result}`)
