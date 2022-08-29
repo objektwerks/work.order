@@ -18,7 +18,6 @@ console.log('*** This is a test!')
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
-const email = process.env.WORK_ORDER_EMAIL_SENDER ?? ""
 
 const rootUrl = `http://${host}:${port}`
 const registerUrl = rootUrl + '/register'
@@ -66,7 +65,7 @@ listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
 
 async function call<T, R>(url: string, 
                           method: string, 
-                          headers: Record<string, string>, 
+                          headers: Record<string, string>,
                           entity: FormData | T, 
                           fault: () => R): Promise<R> {
   let result: R
