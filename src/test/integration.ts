@@ -85,7 +85,7 @@ function call<T, R>(url: string,
   if (response.ok) {
     result = toObject( response.json() as string )
   } else {
-    console.log('*** fetch -> url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
+    console.log('*** fetch:call error -> url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
     result = fault()
   }
   console.log('*** fetch:call -> url: %s result: %o', url, result)
