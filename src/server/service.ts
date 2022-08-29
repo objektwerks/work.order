@@ -40,7 +40,7 @@ export function register(registration: Registration): Status {
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
     id = store.addUser(user)
     if (id > 0) {
-      status = Registration.success()
+      status = Registration.success(pin)
       log('register', `succeeded for ${registration.emailAddress}`)
     } else {
       status = Registration.fail(`Register failed for ${registration.emailAddress}`)

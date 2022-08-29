@@ -10,15 +10,16 @@ export function toObject<T>(json: string): T {
 }
 
 export class Status {
-  constructor(public success: boolean = true, 
-              public error: string = '') {}
+  constructor(public success: boolean, 
+              public error: string,
+              public readonly pin: string) {}
 
   static fromJson(json: string): Status {
     return this.fromObject(toObject(json))
   }
 
   static fromObject(object: Status): Status {
-    return new Status(object.success, object.error)
+    return new Status(object.success, object.error, object.pin)
   }
 }
 
@@ -36,12 +37,12 @@ export class Registration {
     return new Registration(object.role, object. name, object.emailAddress, object.streetAddress)
   }
 
-  static success(): Status {
-    return new Status()
+  static success(pin: string): Status {
+    return new Status(true, '', pin)
   }
   
   static fail(error: string): Status {
-    return new Status(false, error)
+    return new Status(false, error, '')
   }
 }
 
