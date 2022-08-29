@@ -4,7 +4,7 @@ import {
   toJson, 
   toObject, 
   Credentials, 
-  ImageUrl, 
+  // ImageUrl, 
   Registration, 
   User, 
   UserStatus, 
@@ -25,7 +25,7 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const saveImageUrl = rootUrl + '/image/save'
+// const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
