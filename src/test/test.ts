@@ -51,6 +51,9 @@ register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 s
 login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
 login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
 
+let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString, '')
+addWorkOrder(workOrder)
+
 async function call<T, R>(url: string, 
                           method: string, 
                           headers: Record<string, string>, 
@@ -87,7 +90,10 @@ function login(credentials: Credentials, target: UsersWorkOrders): void {
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
-  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
+  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
+    assert(workOrderStatus.success)
+    workOrder.number = workOrderStatus.number
+  })
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
