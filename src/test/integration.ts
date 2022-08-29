@@ -93,42 +93,42 @@ function call<T, R>(url: string,
 
 function register(registration: Registration, target: string): void {
   const status = call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
-  assert(status.success, `Status is in error: ${status.error}`)
-  assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
+  assert(status.success, `Status error: ${status.error}`)
+  assert(status.pin.length === 7, `Pin length invalid: ${status.pin}`)
   target = status.pin
 }
 
 function login(credentials: Credentials, target: UsersWorkOrders): void {
   const usersWorkOrders = call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
-  assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
+  assert(usersWorkOrders.success, `UsersWorkOrders error: ${usersWorkOrders.error}`)
   target = usersWorkOrders
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
   const workOrderStatus = call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
-  assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+  assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
   workOrder.number = workOrderStatus.number
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
   const workOrderStatus = call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
-  assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+  assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
   assert(workOrderStatus.number === workOrder.number)
 }
 
 function saveUser(user: User): void {
   const userStatus = call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id))
-  assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
+  assert(userStatus.success, `UserStatus error: ${userStatus.error}`)
 }
 
 function getWorkOrderByNumber(number: number): void {
   const workOrder = call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number))
   assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
-  assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
+  assert(workOrder.number === number, `WorkOrder number !== number: ${workOrder.number} !== ${number}`)
 }
 
 function listWorkOrdersByUserId(id: number): void {
   const workOrders = call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
-  assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
-  assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
+  assert(workOrders.success, `WorkOrders error: ${workOrders.error}`)
+  assert(workOrders.userId === id, `User id !== id: ${workOrders.userId} !== ${id}`)
 }
