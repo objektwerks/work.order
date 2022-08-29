@@ -14,8 +14,6 @@ import {
   WorkOrders 
 } from '../server/entity.js'
 
-console.log('*** preparing integration test ...')
-
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
 const rootUrl = `http://${host}:${port}`
@@ -28,6 +26,7 @@ const saveUserUrl = rootUrl + '/users/save'
 // const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
+
 const get = 'GET'
 const post = 'POST'
 const headers: Record<string, string> = {
@@ -35,37 +34,43 @@ const headers: Record<string, string> = {
   'Accept': 'application/json'
 }
 
-const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
-const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
+test()
 
-let serviceProviderPin = ''
-let homeownerPin = ''
+function test() {
+  console.log('*** preparing integration test ...')
 
-let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
-let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
-
-console.log('*** running integration test ...')
-
-register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
-register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 stone st"), homeownerPin )
-
-login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
-login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
-
-let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-addWorkOrder(workOrder)
-
-workOrder.resolution = 'fixed'
-workOrder.closed = new Date().toISOString()
-saveWorkOrder(workOrder)
-
-saveUser(homeownerUsersWorkOrders.user)
-
-getWorkOrderByNumber(workOrder.number)
-
-listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
-
-console.log('*** integration test complete!')
+  const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
+  const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
+  
+  let serviceProviderPin = ''
+  let homeownerPin = ''
+  
+  let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
+  let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
+  
+  console.log('*** running integration test ...')
+  
+  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
+  register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 stone st"), homeownerPin )
+  
+  login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
+  login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
+  
+  let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  addWorkOrder(workOrder)
+  
+  workOrder.resolution = 'fixed'
+  workOrder.closed = new Date().toISOString()
+  saveWorkOrder(workOrder)
+  
+  saveUser(homeownerUsersWorkOrders.user)
+  
+  getWorkOrderByNumber(workOrder.number)
+  
+  listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+  
+  console.log('*** integration test complete!')
+}
 
 async function call<T, R>(url: string,
                           method: string,
