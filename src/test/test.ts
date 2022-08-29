@@ -48,8 +48,8 @@ let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
 register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
 register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 stone st"), homeownerPin )
 
-login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders)
-login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders)
+login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
+login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
 
 async function call<T, R>(url: string, 
                           method: string, 
@@ -74,7 +74,7 @@ async function call<T, R>(url: string,
 
 function register(registration: Registration, target: string): void {
   call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
-    assert(status.success)
+    assert(status.success && status.pin.length === 7)
     target = status.pin
   })
 }
@@ -86,8 +86,7 @@ function login(credentials: Credentials, target: UsersWorkOrders): void {
   })
 }
 
-function addWorkOrder(): void {
-  const workOrder = new WorkOrder(0)
+function addWorkOrder(workOrder: WorkOrder): void {
   call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
 }
 
