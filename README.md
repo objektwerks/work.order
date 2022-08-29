@@ -36,6 +36,12 @@ Dev
 1. npm run build
 2. npm run dev
 
+Test
+----
+1. npm run build
+2. npm run dev
+3. npm run test
+
 Prod
 ----
 1. npm run build
