@@ -75,6 +75,7 @@ function call<T, R>(url: string,
                     headers: Record<string, string>,
                     entity: T,
                     fault: () => R): R {
+  console.log('*** fetch:call entity -> %o', entity)
   let result: R
   const response = fetch(url, {
     method: method,
@@ -84,10 +85,10 @@ function call<T, R>(url: string,
   if (response.ok) {
     result = toObject( response.json() as string )
   } else {
-    console.log(`*** fetch -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
+    console.log('*** fetch -> url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
     result = fault()
   }
-  console.log(`*** fetcher:call -> url: ${url} result: ${result}`)
+  console.log('*** fetch:call -> url: %s result: %o', url, result)
   return result
 }
 

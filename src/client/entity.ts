@@ -2,17 +2,19 @@ export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
 export function toJson<T>(object: T): string {
+  console.log('*** toJson: ', object)
   return JSON.stringify(object)
 }
 
 export function toObject<T>(json: string): T {
+  console.log('*** toObject: ', json)
   return JSON.parse(json)
 }
 
 export class Status {
-  constructor(public success: boolean, 
-              public error: string,
-              public readonly pin: string) {}
+  constructor(public success: boolean = true, 
+              public error: string = '',
+              public readonly pin: string = '') {}
 
   static fromJson(json: string): Status {
     return this.fromObject(toObject(json))
