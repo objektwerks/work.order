@@ -26,7 +26,6 @@ export default () => {
   router = express()
   router.use(compression())
   router.use(express.static('client'))
-  router.use(express.static('shared'))
   router.use(express.static('images'))
   router.use(express.json())
   router.use(express.urlencoded({ extended: true }))
