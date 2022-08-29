@@ -14,12 +14,12 @@ import {
   WorkOrders 
 } from '../server/entity.js'
 
-console.log('*** This is a test!')
+console.log('*** preparing test ...')
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
-
 const rootUrl = `http://${host}:${port}`
+
 const registerUrl = rootUrl + '/register'
 const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
@@ -44,6 +44,8 @@ let homeownerPin = ''
 let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
 let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
 
+console.log('*** running test ...')
+
 register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
 register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 stone st"), homeownerPin )
 
@@ -62,6 +64,8 @@ saveUser(homeownerUsersWorkOrders.user)
 getWorkOrderByNumber(workOrder.number)
 
 listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+
+console.log('*** test complete!')
 
 async function call<T, R>(url: string,
                           method: string,
