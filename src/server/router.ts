@@ -1,6 +1,6 @@
 import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
 import * as service from './service.js'
-import { Credentials, Registration, User, WorkOrder} from '../shared/entity.js'
+import { Credentials, Registration, User, WorkOrder} from './entity.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'

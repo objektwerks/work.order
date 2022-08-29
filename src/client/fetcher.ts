@@ -1,4 +1,4 @@
-import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from '../shared/entity.js'
+import { toJson, toObject, Credentials, ImageUrl, Registration, Status, User, UserStatus, UsersWorkOrders, WorkOrder, WorkOrderStatus, WorkOrders } from './entity.js'
 
 const rootUrl = 'https://' + window.location.host
 const registerUrl = rootUrl + '/register'

@@ -1,6 +1,6 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
-import { validateRegistration, Registration } from "../shared/entity.js"
+import { validateRegistration, Registration } from "./entity.js"
 
 export default () => {
   console.log('*** register form init ...')

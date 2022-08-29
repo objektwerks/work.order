@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { serviceProvider, validateCredentials, Credentials } from '../shared/entity.js'
+import { serviceProvider, validateCredentials, Credentials } from './entity.js'
 
 export default () => {
   console.log('*** login form init ...')

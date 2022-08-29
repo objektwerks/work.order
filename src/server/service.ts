@@ -13,7 +13,7 @@ import {
   WorkOrderStatus,
   WorkOrders,
   Registration
-} from '../shared/entity.js'
+} from './entity.js'
 
 const subjectRegistration = `Work Order Registration`
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`

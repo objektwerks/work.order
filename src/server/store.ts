@@ -1,5 +1,5 @@
 import mysql, { OkPacket, Pool, PoolOptions, RowDataPacket } from 'mysql2'
-import { User, WorkOrder } from '../shared/entity.js'
+import { User, WorkOrder } from './entity.js'
 
 const options: PoolOptions = {
   host: process.env.WORK_ORDER_DATABASE_HOST,
