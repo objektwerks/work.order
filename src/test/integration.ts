@@ -71,10 +71,10 @@ function test() {
 }
 
 function call<T, R>(url: string,
-                          method: string,
-                          headers: Record<string, string>,
-                          entity: T,
-                          fault: () => R): R {
+                    method: string,
+                    headers: Record<string, string>,
+                    entity: T,
+                    fault: () => R): R {
   let result: R
   const response = fetch(url, {
     method: method,
