@@ -17,7 +17,8 @@
     "copy": "copyfiles --flat rc/*.ico rc/*.png rc/*.css rc/*.html ./dist/client",
     "build": "npm run clean && npm run compile && npm run copy",
     "ddl": "mysql -uroot -p < ddl.sql",
-    "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js"
+    "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js",
+    "test": "npm run build && node ./dist/test/test.js"
   },
   "dependencies": {
     "compression": "1.7.4",
