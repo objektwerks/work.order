@@ -62,6 +62,8 @@ saveUser(homeownerUsersWorkOrders.user)
 
 getWorkOrderByNumber(workOrder.number)
 
+listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+
 async function call<T, R>(url: string, 
                           method: string, 
                           headers: Record<string, string>, 
@@ -133,10 +135,13 @@ function saveImage(number: number, url: string, file: File, filename: string): v
 function getWorkOrderByNumber(number: number): void {
   call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
     assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
-    assert(workOrder.number === number)
+    assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
   })
 }
 
 function listWorkOrdersByUserId(id: number): void {
-  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
+  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id)).then(workOrders => {
+    assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
+    assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
+  })
 }
