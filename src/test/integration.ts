@@ -1,5 +1,6 @@
 import assert from 'assert';
 import fetch from 'node-fetch';
+import fs from 'fs'
 import { 
   toJson, 
   toObject, 
@@ -70,7 +71,7 @@ function test() {
   listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
 
   const url = 'rc/logo.png'
-  const file = new File([], '')
+  const file = new File( [fs.readFileSync(url, 'utf8')], 'logo.png' )
   const filename = `${workOrder.number}-${new Date().toISOString()}.png`
   saveImage(workOrder.number, url, file, filename)
   
