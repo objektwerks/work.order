@@ -58,6 +58,10 @@ workOrder.resolution = 'fixed'
 workOrder.closed = new Date().toISOString()
 saveWorkOrder(workOrder)
 
+saveUser(homeownerUsersWorkOrders.user)
+
+getWorkOrderByNumber(workOrder.number)
+
 async function call<T, R>(url: string, 
                           method: string, 
                           headers: Record<string, string>, 
@@ -81,37 +85,40 @@ async function call<T, R>(url: string,
 
 function register(registration: Registration, target: string): void {
   call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
-    assert(status.success)
-    assert(status.pin.length === 7)
+    assert(status.success, `Status is in error: ${status.error}`)
+    assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
     target = status.pin
   })
 }
 
 function login(credentials: Credentials, target: UsersWorkOrders): void {
   call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.')).then(usersWorkOrders => {
-    assert(usersWorkOrders.success)
+    assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
     target = usersWorkOrders
   })
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
   call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success)
+    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
     workOrder.number = workOrderStatus.number
   })
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
   call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success)
+    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
     assert(workOrderStatus.number === workOrder.number)
   })
 }
 
 function saveUser(user: User): void {
-  call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id))
+  call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id)).then(userStatus => {
+    assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
+  })
 }
 
+/* TODO!
 function saveImage(number: number, url: string, file: File, filename: string): void {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
@@ -121,9 +128,13 @@ function saveImage(number: number, url: string, file: File, filename: string): v
   formdata.append('image', file, filename)
   call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
+*/
 
 function getWorkOrderByNumber(number: number): void {
-  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number))
+  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
+    assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
+    assert(workOrder.number === number)
+  })
 }
 
 function listWorkOrdersByUserId(id: number): void {
