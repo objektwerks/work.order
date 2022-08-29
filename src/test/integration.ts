@@ -64,12 +64,15 @@ function test() {
   saveWorkOrder(workOrder)
   
   saveUser(homeownerUsersWorkOrders.user)
-
-  saveImage(workOrder.number, 'rc/logo.png', null, 'logo.png')
   
   getWorkOrderByNumber(workOrder.number)
   
   listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+
+  const url = 'rc/logo.png'
+  const file = new File([], '')
+  const filename = `${workOrder.number}-${new Date().toISOString()}.png`
+  saveImage(workOrder.number, url, file, filename)
   
   console.log('*** integration test complete!')
 }
@@ -130,16 +133,6 @@ function saveUser(user: User): void {
   })
 }
 
-function saveImage(number: number, url: string, file: File, filename: string): void {
-  const headers = { "Content-Type": "multipart/form-data" }
-  const formdata = new FormData()
-  formdata.append('number', number.toString())
-  formdata.append('url', url)
-  formdata.append('imagefilename', filename)
-  formdata.append('image', file, filename)
-  call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
-}
-
 function getWorkOrderByNumber(number: number): void {
   call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
     assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
@@ -152,4 +145,14 @@ function listWorkOrdersByUserId(id: number): void {
     assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
     assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
   })
+}
+
+function saveImage(number: number, url: string, file: File, filename: string): void {
+  const headers = { "Content-Type": "multipart/form-data" }
+  const formdata = new FormData()
+  formdata.append('number', number.toString())
+  formdata.append('url', url)
+  formdata.append('imagefilename', filename)
+  formdata.append('image', file, filename)
+  call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
