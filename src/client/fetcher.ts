@@ -16,10 +16,10 @@ const headers: Record<string, string> = {
   'Accept': 'application/json'
 }
 
-async function call<T, R>(url: string, 
-                          method: string, 
-                          headers: Record<string, string>, 
-                          entity: FormData | T, 
+async function call<T, R>(url: string,
+                          method: string,
+                          headers: Record<string, string>,
+                          entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
   const response = await fetch(url, {

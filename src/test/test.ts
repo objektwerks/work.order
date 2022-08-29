@@ -63,10 +63,10 @@ getWorkOrderByNumber(workOrder.number)
 
 listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
 
-async function call<T, R>(url: string, 
-                          method: string, 
+async function call<T, R>(url: string,
+                          method: string,
                           headers: Record<string, string>,
-                          entity: FormData | T, 
+                          entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
   const response = await fetch(url, {
