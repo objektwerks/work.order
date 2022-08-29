@@ -1,11 +1,9 @@
 import assert from 'assert'
 import fetch from 'sync-fetch'
-import fs from 'fs'
 import { 
   toJson, 
   toObject, 
   Credentials, 
-  ImageUrl, 
   Registration, 
   User, 
   UserStatus, 
@@ -24,7 +22,6 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
@@ -69,11 +66,6 @@ function test() {
   getWorkOrderByNumber(workOrder.number)
   
   listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
-
-  const url = 'rc/logo.png'
-  const file = new File( [fs.readFileSync(url, 'utf8')], 'logo.png' )
-  const filename = `${workOrder.number}-${new Date().toISOString()}.png`
-  saveImage(workOrder.number, url, file, filename)
   
   console.log('*** integration test complete!')
 }
@@ -139,15 +131,4 @@ function listWorkOrdersByUserId(id: number): void {
   const workOrders = call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
   assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
   assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
-}
-
-function saveImage(number: number, url: string, file: File, filename: string): void {
-  const headers = { "Content-Type": "multipart/form-data" }
-  const formdata = new FormData()
-  formdata.append('number', number.toString())
-  formdata.append('url', url)
-  formdata.append('imagefilename', filename)
-  formdata.append('image', file, filename)
-  const imageUrl = call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
-  assert(imageUrl.success)
 }
