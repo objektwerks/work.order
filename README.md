@@ -10,7 +10,8 @@ Code Sharing
 ------------
 >Various off-the-wall solutions aside, it is not possible to share source code between client and server.
 >An NPM local path dependency install works, but an import of the new local package is not recognized by
->the client or server. Coding sharing is available by default with ScalaJs.
+>the client or server. Consequently, ***entity.ts***, located in src/client and src/server is duplicate code.
+>Interestingly, code sharing is available by default with ScalaJs.
 
 Doc
 ---
