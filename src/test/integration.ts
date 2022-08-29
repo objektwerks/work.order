@@ -4,7 +4,7 @@ import {
   toJson, 
   toObject, 
   Credentials, 
-  // ImageUrl, 
+  ImageUrl, 
   Registration, 
   User, 
   UserStatus, 
@@ -23,7 +23,7 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-// const saveImageUrl = rootUrl + '/image/save'
+const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
@@ -64,6 +64,8 @@ function test() {
   saveWorkOrder(workOrder)
   
   saveUser(homeownerUsersWorkOrders.user)
+
+  saveImage(workOrder.number, 'rc/logo.png', null, 'logo.png')
   
   getWorkOrderByNumber(workOrder.number)
   
@@ -128,7 +130,6 @@ function saveUser(user: User): void {
   })
 }
 
-/* TODO!
 function saveImage(number: number, url: string, file: File, filename: string): void {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
@@ -138,7 +139,6 @@ function saveImage(number: number, url: string, file: File, filename: string): v
   formdata.append('image', file, filename)
   call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
-*/
 
 function getWorkOrderByNumber(number: number): void {
   call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
