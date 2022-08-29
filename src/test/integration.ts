@@ -1,5 +1,5 @@
 import assert from 'assert'
-import fetch from 'node-fetch'
+import fetch from 'sync-fetch'
 import fs from 'fs'
 import { 
   toJson, 
@@ -78,19 +78,19 @@ function test() {
   console.log('*** integration test complete!')
 }
 
-async function call<T, R>(url: string,
+function call<T, R>(url: string,
                           method: string,
                           headers: Record<string, string>,
-                          entity: FormData | T,
-                          fault: () => R): Promise<R> {
+                          entity: T,
+                          fault: () => R): R {
   let result: R
-  const response = await fetch(url, {
+  const response = fetch(url, {
     method: method,
     headers: headers,
-    body: entity instanceof FormData ? entity : toJson(entity)
+    body: toJson(entity)
   })
   if (response.ok) {
-    result = toObject( await response.json() as string )
+    result = toObject( response.json() as string )
   } else {
     console.log(`*** fetch -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
     result = fault()
@@ -100,52 +100,45 @@ async function call<T, R>(url: string,
 }
 
 function register(registration: Registration, target: string): void {
-  call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
-    assert(status.success, `Status is in error: ${status.error}`)
-    assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
-    target = status.pin
-  })
+  const status = call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
+  assert(status.success, `Status is in error: ${status.error}`)
+  assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
+  target = status.pin
 }
 
 function login(credentials: Credentials, target: UsersWorkOrders): void {
-  call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.')).then(usersWorkOrders => {
-    assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
-    target = usersWorkOrders
-  })
+  const usersWorkOrders = call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
+  assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
+  target = usersWorkOrders
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
-  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
-    workOrder.number = workOrderStatus.number
-  })
+  const workOrderStatus = call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
+  assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+  workOrder.number = workOrderStatus.number
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
-  call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
-    assert(workOrderStatus.number === workOrder.number)
-  })
+  const workOrderStatus = call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
+  assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+  assert(workOrderStatus.number === workOrder.number)
 }
 
 function saveUser(user: User): void {
-  call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id)).then(userStatus => {
-    assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
-  })
+  const userStatus = call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id))
+  assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
 }
 
 function getWorkOrderByNumber(number: number): void {
-  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
-    assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
-    assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
-  })
+  const workOrder = call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number))
+  assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
+  assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
 }
 
 function listWorkOrdersByUserId(id: number): void {
-  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id)).then(workOrders => {
-    assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
-    assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
-  })
+  const workOrders = call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
+  assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
+  assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
 }
 
 function saveImage(number: number, url: string, file: File, filename: string): void {
@@ -155,5 +148,6 @@ function saveImage(number: number, url: string, file: File, filename: string): v
   formdata.append('url', url)
   formdata.append('imagefilename', filename)
   formdata.append('image', file, filename)
-  call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
+  const imageUrl = call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
+  assert(imageUrl.success)
 }
