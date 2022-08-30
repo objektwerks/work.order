@@ -24,13 +24,13 @@ export function disconnect(): void {
 
 export function listWorkOrdersByUserId(id: number): WorkOrder[] {
   const list: WorkOrder[] = []
-  connection.query(`select * from work_order where homeowner_id = ${id} or service_provider_id = ${id} order by opened desc`, (error: Error, rows: RowDataPacket[]) => {
+  connection.query(`select * from work_order where homeownerId = ${id} or serviceProviderId = ${id} order by opened desc`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('listWorkOrdersByUserId', error.message)
     } else {
       rows.forEach((row: RowDataPacket) => {
         list.push(
-          new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+          new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
         )
       })
     }
@@ -46,7 +46,7 @@ export function listUsersByRole(role: string): User[] {
     } else {
       rows.forEach((row: RowDataPacket) => {
         list.push(
-          new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
+          new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
         )
       })
     }
@@ -56,13 +56,13 @@ export function listUsersByRole(role: string): User[] {
 
 export function getUserByEmailAddressPin(emailAddress: string, pin: string): User {
   const list: User[] = []
-  connection.query(`select * from user where email_address = ${emailAddress} and pin = ${pin}`, (error: Error, rows: RowDataPacket[]) => {
+  connection.query(`select * from user where emailAddress = ${emailAddress} and pin = ${pin}`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('getUserByEmailAddressPin', error.message)
     } else {
       rows.forEach((row: RowDataPacket) => {
         list.push(
-          new User(row.id, row.role, row.name, row.email_address, row.street_address, row.registered, '')
+          new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
         )
       })
     }
@@ -78,7 +78,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
     } else {
       rows.forEach((row: RowDataPacket) => {
         list.push(
-          new WorkOrder(row.number, row.homeowner_id, row.service_provider_id, row.title, row.issue, row.image_url, row.resolution, row.opened, row.closed)
+          new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
         )
       })
     }
@@ -140,7 +140,7 @@ export function saveUser(user: User): number {
 
 export function saveImageUrl(number: number, url: string): number {
   let count = 0
-  connection.query('update work_order SET image_url = ? where number = ?', [url, number], (error: Error | null, result: OkPacket) => {
+  connection.query('update work_order SET imageUrl = ? where number = ?', [url, number], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveImageUrl', error.message)
     } else {
