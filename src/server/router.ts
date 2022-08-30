@@ -58,9 +58,7 @@ export default () => {
   })
 
   router.post('/image/save', images.single('image'), (request, response) => {
-    const number = request.body.number
-    const url = request.body.url
-    response.json( service.saveImageUrl(number, url) )
+    response.json( service.saveImageUrl(request.body.number, request.body.url) )
   })
   
   server = router.listen(port, host, () =>
