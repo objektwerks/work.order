@@ -50,45 +50,27 @@ function test() {
 
   // register
   register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), true )
-  setTimeout( () => {
-    register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), false )
-  }, 3000)
+  register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), false )
 
   // login
-  setTimeout( () => {
-    login( new Login(serviceProviderEmail, serviceProviderPin), true )
-  }, 4000)
-  setTimeout( () => {
-    login( new Login(homeownerEmail, homeownerPin), false )
-  }, 5000)
+  login( new Login(serviceProviderEmail, serviceProviderPin), true )
+  login( new Login(homeownerEmail, homeownerPin), false )
 
   // work order add and save
   workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProvidersLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-  setTimeout( () => {
-    addWorkOrder( new SaveWorkOrder(workOrder) )
-  }, 6000)
+  addWorkOrder( new SaveWorkOrder(workOrder) )
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
-  setTimeout( () => {
-    saveWorkOrder( new SaveWorkOrder(workOrder) )
-  }, 7000)
+  saveWorkOrder( new SaveWorkOrder(workOrder) )
 
   // user save
-  setTimeout( () => {
-    saveUser( new SaveUser(serviceProvidersLoggedIn.user) )
-  }, 8000)
-  setTimeout( () => {
-    saveUser( new SaveUser(homeownerLoggedIn.user) )
-  }, 9000)
+  saveUser( new SaveUser(serviceProvidersLoggedIn.user) )
+  saveUser( new SaveUser(homeownerLoggedIn.user) )
 
   // work order get and list
-  setTimeout( () => {
-    getWorkOrderByNumber(workOrder.number)
-  }, 10000)
-  setTimeout( () => {
-    listWorkOrdersByUserId(homeownerLoggedIn.user.id)
-  }, 11000)
+  getWorkOrderByNumber(workOrder.number)
+  listWorkOrdersByUserId(homeownerLoggedIn.user.id)
   
   console.log('*** integration test complete!')
 }
