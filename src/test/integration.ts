@@ -37,37 +37,56 @@ const headers: { [key: string]: string } = {
 test()
 
 function test() {
-  console.log('*** preparing integration test ...')
+  console.log('*** running integration test ...')
 
   const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
   const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
-  
   let serviceProviderPin = ''
-  let homeownerPin = ''
-  
+  let homeownerPin = ''  
+  setTimeout(
+    () => register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin ),
+    2000
+  )
+  setTimeout(
+    () => register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
+    2000
+  )
+
   let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
   let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
-  
-  console.log('*** running integration test ...')
-  
-  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
-  register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin )
-  
-  login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
-  login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
-  
+  setTimeout(
+    () => login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
+    2000
+  )
+  setTimeout(
+    () => login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
+    2000
+  )
+
   let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-  addWorkOrder(workOrder)
+  setTimeout(
+    () => addWorkOrder(workOrder),
+    2000
+  )
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
-  saveWorkOrder(workOrder)
-  
-  saveUser(homeownerUsersWorkOrders.user)
-  
-  getWorkOrderByNumber(workOrder.number)
-  
-  listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+  setTimeout(
+    () => saveWorkOrder(workOrder),
+    2000
+  )
+  setTimeout(
+    () => saveUser(homeownerUsersWorkOrders.user),
+    2000
+  )
+  setTimeout(
+    () => getWorkOrderByNumber(workOrder.number),
+    2000
+  )
+  setTimeout(
+    () => listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id),
+    2000
+  )
 
   /*
   const url = 'rc/logo.png'
@@ -89,8 +108,7 @@ async function call<T, R>(url: string,
   if (method === get) {
     init = {
       method: method,
-      headers: headers,
-      body: ''
+      headers: headers
     }
   } else {
     init = {
@@ -113,7 +131,7 @@ async function call<T, R>(url: string,
 
 function register(registration: Registration, target: string): void {
   call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
-    assert(status.success, `Status is in error: ${status.error}`)
+    assert(status.success, `Status error: ${status.error}`)
     assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
     target = status.pin
   })
@@ -121,41 +139,41 @@ function register(registration: Registration, target: string): void {
 
 function login(credentials: Credentials, target: UsersWorkOrders): void {
   call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.')).then(usersWorkOrders => {
-    assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
+    assert(usersWorkOrders.success, `UsersWorkOrders error: ${usersWorkOrders.error}`)
     target = usersWorkOrders
   })
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
   call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+    assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
     workOrder.number = workOrderStatus.number
   })
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
   call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+    assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
     assert(workOrderStatus.number === workOrder.number)
   })
 }
 
 function saveUser(user: User): void {
   call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id)).then(userStatus => {
-    assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
+    assert(userStatus.success, `UserStatus error: ${userStatus.error}`)
   })
 }
 
 function getWorkOrderByNumber(number: number): void {
   call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
-    assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
+    assert(workOrder.success, `WorkOrder error: ${workOrder.error}`)
     assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
   })
 }
 
 function listWorkOrdersByUserId(id: number): void {
   call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id)).then(workOrders => {
-    assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
+    assert(workOrders.success, `WorkOrders error: ${workOrders.error}`)
     assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
   })
 }

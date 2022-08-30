@@ -10,7 +10,7 @@ const options: PoolOptions = {
 const connection: Pool = mysql.createPool(options)
 
 function log(method: string, message: string): void {
-  console.log('*** store.${method}: ', message)
+  console.log(`*** store.${method}: `, message)
 }
 
 export default () => {
