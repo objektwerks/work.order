@@ -48,11 +48,13 @@ test()
 function test() {
   console.log('*** running integration test ...')
 
+  // register
   register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), true )
   setTimeout( () => {
     register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), false )
   }, 3000)
 
+  // login
   setTimeout( () => {
     login( new Login(serviceProviderEmail, serviceProviderPin), true )
   }, 4000)
@@ -60,6 +62,7 @@ function test() {
     login( new Login(homeownerEmail, homeownerPin), false )
   }, 5000)
 
+  // work order add and save
   workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProvidersLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout( () => {
     addWorkOrder( new SaveWorkOrder(workOrder) )
@@ -71,6 +74,7 @@ function test() {
     saveWorkOrder( new SaveWorkOrder(workOrder) )
   }, 7000)
 
+  // user save
   setTimeout( () => {
     saveUser( new SaveUser(serviceProvidersLoggedIn.user) )
   }, 8000)
@@ -78,6 +82,7 @@ function test() {
     saveUser( new SaveUser(homeownerLoggedIn.user) )
   }, 9000)
 
+  // work order get and list
   setTimeout( () => {
     getWorkOrderByNumber(workOrder.number)
   }, 10000)
