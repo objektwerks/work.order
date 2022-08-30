@@ -1,11 +1,11 @@
 import assert from 'assert'
 import fetch from 'node-fetch'
-import fs from 'fs'
+// import fs from 'fs'
 import { 
   toJson, 
   toObject, 
   Credentials, 
-  ImageUrl, 
+  // ImageUrl, 
   Registration, 
   User, 
   UserStatus, 
@@ -24,7 +24,7 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const saveImageUrl = rootUrl + '/image/save'
+// const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
@@ -69,10 +69,12 @@ function test() {
   
   listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
 
+  /*
   const url = 'rc/logo.png'
   const file = new File( [fs.readFileSync(url, 'utf8')], 'logo.png' )
   const filename = `${workOrder.number}-${new Date().toISOString()}.png`
   saveImage(workOrder.number, url, file, filename)
+  */
   
   console.log('*** integration test complete!')
 }
@@ -147,6 +149,7 @@ function listWorkOrdersByUserId(id: number): void {
   })
 }
 
+/*
 function saveImage(number: number, url: string, file: File, filename: string): void {
   const headers = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
@@ -156,3 +159,4 @@ function saveImage(number: number, url: string, file: File, filename: string): v
   formdata.append('image', file, filename)
   call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
+*/
