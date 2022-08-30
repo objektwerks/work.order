@@ -24,14 +24,14 @@ export default () => {
   ifNotExistsMakeDir(imagesDir)
 
   router = express()
-  router.use(compression())
   router.use(express.static('client'))
   router.use(express.static('images'))
+  router.use(compression())
   router.use(express.json())
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', (request, response) => {
-    response.json( service.register( Registration.fromJson(request.body) ) )
+    response.json( service.register( Registration.fromJson(request.body.text) ) )
   })
   
   router.post('/login', (request, response) => {
