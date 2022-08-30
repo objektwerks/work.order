@@ -40,8 +40,8 @@ const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as st
 const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
 let serviceProviderPin = ''
 let homeownerPin = ''  
-let serviceProviderUsersWorkOrders = new LoggedIn(User.empty(), [], [])
-let homeownerUsersWorkOrders = new LoggedIn(User.empty(), [], [])
+let serviceProvidersModel = new LoggedIn(User.empty(), [], [])
+let homeownerModel = new LoggedIn(User.empty(), [], [])
 
 test()
 
@@ -50,41 +50,41 @@ function test() {
 
   register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
   setTimeout(
-    () => register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
+    () => { register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ) },
     3000
   )
 
   setTimeout(
-    () => login( new Login(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
+    () => { login( new Login(serviceProviderEmail, serviceProviderPin), serviceProvidersModel ) },
     4000
   )
   setTimeout(
-    () => login( new Login(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
+    () => { login( new Login(homeownerEmail, homeownerPin), homeownerModel ) },
     5000
   )
 
-  let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  let workOrder = new WorkOrder(0, homeownerModel.user.id, serviceProvidersModel.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout(
-    () => addWorkOrder(workOrder),
+    () => { addWorkOrder(workOrder) },
     6000
   )
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
   setTimeout(
-    () => saveWorkOrder(workOrder),
+    () => { saveWorkOrder(workOrder) },
     7000
   )
   setTimeout(
-    () => saveUser(homeownerUsersWorkOrders.user),
+    () => { saveUser(homeownerModel.user) },
     8000
   )
   setTimeout(
-    () => getWorkOrderByNumber(workOrder.number),
+    () => { getWorkOrderByNumber(workOrder.number) },
     9000
   )
   setTimeout(
-    () => listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id),
+    () => { listWorkOrdersByUserId(homeownerModel.user.id) },
     1000
   )
 
@@ -117,7 +117,6 @@ async function call<T, R>(url: string,
       body: entity instanceof FormData ? entity : toJson(entity)
     }
   }
-  console.log('*** fetch:call init: ', init)
   const response = await fetch(url, init)
   if (response.ok) {
     result = toObject( await response.json() as string )
