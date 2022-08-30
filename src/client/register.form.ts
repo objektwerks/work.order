@@ -1,6 +1,6 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
-import { validateRegistration, Registration } from "./entity.js"
+import { validateRegistration, Register } from "./entity.js"
 
 export default () => {
   console.log('*** register form init ...')
@@ -17,10 +17,10 @@ export default () => {
 
     const errors = validateRegistration(role, name, emailAddress, streetAddress)
     if (errors.length === 0) {
-      const registration = new Registration(role, name, emailAddress, streetAddress)
-      fetcher.register(registration).then(status => {
-        if (!status.success) {
-          errors.push(status.error)
+      const register = new Register(role, name, emailAddress, streetAddress)
+      fetcher.register(register).then(registered => {
+        if (!registered.success) {
+          errors.push(registered.error)
           setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
         } else {
           hide('register-form-id"')
