@@ -8,8 +8,10 @@ import {
   Register,
   Registered,
   User,
+  SaveUser,
   UserSaved,
   WorkOrder,
+  SaveWorkOrder,
   WorkOrderSaved,
   WorkOrdersListed,
   WorkOrderSelected
@@ -39,36 +41,37 @@ let serviceProviderPin = ''
 let homeownerPin = ''  
 let serviceProvidersModel = new LoggedIn(User.empty(), [], [])
 let homeownerModel = new LoggedIn(User.empty(), [], [])
+let workOrder: WorkOrder
 
 test()
 
 function test() {
   console.log('*** running integration test ...')
 
-  register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
+  register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), true )
   setTimeout( () => {
-    register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin )
+    register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), false )
   }, 3000)
 
   setTimeout( () => {
-    login( new Login(serviceProviderEmail, serviceProviderPin), serviceProvidersModel )
+    login( new Login(serviceProviderEmail, serviceProviderPin), true )
   }, 4000)
   setTimeout( () => {
-    login( new Login(homeownerEmail, homeownerPin), homeownerModel )
+    login( new Login(homeownerEmail, homeownerPin), false )
   }, 5000)
 
-  let workOrder = new WorkOrder(0, homeownerModel.user.id, serviceProvidersModel.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  workOrder = new WorkOrder(0, homeownerModel.user.id, serviceProvidersModel.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout( () => {
-    addWorkOrder(workOrder)
+    addWorkOrder( new SaveWorkOrder(workOrder) )
   }, 6000)
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
   setTimeout( () => {
-    saveWorkOrder(workOrder)
+    saveWorkOrder( new SaveWorkOrder(workOrder) )
   }, 7000)
   setTimeout( () => {
-    saveUser(homeownerModel.user)
+    saveUser( new SaveUser(homeownerModel.user) )
   }, 8000)
   setTimeout( () => {
     getWorkOrderByNumber(workOrder.number)
@@ -110,37 +113,44 @@ async function call<T, R>(url: string,
   return result
 }
 
-function register(registration: Register, target: string): void {
-  call(registerUrl, post, headers, registration, () => Registered.fail('Register failed.')).then(registered => {
+function register(register: Register, setServiceProviderPin: boolean): void {
+  call(registerUrl, post, headers, register, () => Registered.fail('Register failed.')).then(registered => {
     assert(registered.success, `Registered error: ${registered.error}`)
     assert(registered.pin.length === 7, `Pin length is invalid: ${registered.pin}`)
-    target = registered.pin
+    if (setServiceProviderPin){
+      serviceProviderPin = registered.pin
+    } else {
+      homeownerPin = registered.pin
+    }
   })
 }
 
-function login(credentials: Login, target: LoggedIn): void {
-  call(loginUrl, post, headers, credentials, () => LoggedIn.fail('Login failed.')).then(loggedIn => {
+function login(login: Login, setServiceProviderLoggedIn: boolean): void {
+  call(loginUrl, post, headers, login, () => LoggedIn.fail('Login failed.')).then(loggedIn => {
     assert(loggedIn.success, `LoggedIn error: ${loggedIn.error}`)
-    target = loggedIn
+    if (setServiceProviderLoggedIn) {
+      serviceProvidersModel = loggedIn
+    } else {
+      homeownerModel = loggedIn
+    }
   })
 }
 
-function addWorkOrder(workOrder: WorkOrder): void {
-  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!')).then(workOrderSaved => {
+function addWorkOrder(saveWorkOrder: SaveWorkOrder): void {
+  call(addWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed!')).then(workOrderSaved => {
     assert(workOrderSaved.success, `WorkOrderSaved error: ${workOrderSaved.error}`)
     workOrder.number = workOrderSaved.number
   })
 }
 
-function saveWorkOrder(workOrder: WorkOrder): void {
-  call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!')).then(workOrderSaved => {
+function saveWorkOrder(saveWorkOrder: SaveWorkOrder): void {
+  call(saveWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed!')).then(workOrderSaved => {
     assert(workOrderSaved.success, `WorkOrderSaved error: ${workOrderSaved.error}`)
-    assert(workOrderSaved.number === workOrder.number)
   })
 }
 
-function saveUser(user: User): void {
-  call(saveUserUrl, post, headers, user, () => UserSaved.fail(user.id, 'Save user failed.')).then(userSaved => {
+function saveUser(saveUser: SaveUser): void {
+  call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.')).then(userSaved => {
     assert(userSaved.success, `UserSaved error: ${userSaved.error}`)
   })
 }
