@@ -28,8 +28,7 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
 const post = 'POST'
 const headers: Record<string, string> = {
-  "Content-Type": "application/json charset=utf-8",
-  'Accept': 'application/json'
+  "Content-Type": "application/json charset=utf-8"
 }
 
 test()
@@ -88,7 +87,7 @@ function call<T, R>(url: string,
     console.log('*** fetch:call error -> url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
     result = fault()
   }
-  console.log('*** fetch:call -> url: %s result: %o', url, result)
+  console.log('*** fetch:call result -> url: %s result: %o', url, result)
   return result
 }
 

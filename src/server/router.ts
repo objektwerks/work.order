@@ -31,7 +31,9 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', (request, response) => {
-    response.json( service.register( Registration.fromJson(request.body.text) ) )
+    console.log('*** /register %o', request.headers)
+    console.log('*** /register %o', request.body)
+    response.json( service.register( Registration.fromJson(request.body) ) )
   })
   
   router.post('/login', (request, response) => {
