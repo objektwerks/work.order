@@ -33,7 +33,7 @@ export default () => {
   router.post('/register', (request, response) => {
     console.log('*** /register headers %o', request.headers)
     console.log('*** /register request body %o', request.body)
-    response.json( service.register( Registration.fromJson(request.body) ) )
+    response.json( service.register( Registration.fromObject(request.body) ) )
   })
   
   router.post('/login', (request, response) => {
