@@ -2,7 +2,7 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
          show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
-import { homeowner, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
+import { homeowner, SaveWorkOrder, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
 
 const readonlyRole = 'readonly'
 
@@ -114,7 +114,8 @@ export default () => {
         workOrder.imageUrl = imageUrl
         workOrder.resolution = resolution
         workOrder.closed = closed
-        fetcher.saveWorkOrder(workOrder).then(workOrderSaved => {
+        const saveWorkOrder = new SaveWorkOrder(workOrder)
+        fetcher.saveWorkOrder(saveWorkOrder).then(workOrderSaved => {
           if (!workOrderSaved.success) {
             errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
@@ -124,7 +125,8 @@ export default () => {
         })
       } else { // add
         const workOrder: WorkOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
-        fetcher.addWorkOrder(workOrder).then(workOrderSaved => {
+        const saveWorkOrder = new SaveWorkOrder(workOrder)
+        fetcher.addWorkOrder(saveWorkOrder).then(workOrderSaved => {
           if (!workOrderSaved.success) {
             errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
