@@ -45,7 +45,7 @@ function test() {
   let homeownerPin = ''  
   setTimeout(
     () => register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin ),
-    2000
+    1000
   )
   setTimeout(
     () => register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
@@ -56,36 +56,36 @@ function test() {
   let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
   setTimeout(
     () => login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
-    2000
+    3000
   )
   setTimeout(
     () => login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
-    2000
+    4000
   )
 
   let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout(
     () => addWorkOrder(workOrder),
-    2000
+    5000
   )
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
   setTimeout(
     () => saveWorkOrder(workOrder),
-    2000
+    6000
   )
   setTimeout(
     () => saveUser(homeownerUsersWorkOrders.user),
-    2000
+    7000
   )
   setTimeout(
     () => getWorkOrderByNumber(workOrder.number),
-    2000
+    8000
   )
   setTimeout(
     () => listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id),
-    2000
+    9000
   )
 
   /*
