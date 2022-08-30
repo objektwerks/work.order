@@ -2,6 +2,10 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
+Todo
+----
+1. Rewrite integration test to user service, not router!
+
 Technologies
 ------------
 >Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
