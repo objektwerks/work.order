@@ -29,7 +29,7 @@ const get = 'GET'
 const post = 'POST'
 const headers: Record<string, string> = {
   "Content-Type": "application/json charset=utf-8",
-  'Accept': 'application/json'
+  "Accept": "application/json"
 }
 
 test()
@@ -77,11 +77,13 @@ function call<T, R>(url: string,
                     fault: () => R): R {
   console.log('*** fetch:call entity -> %o', entity)
   let result: R
-  const response = fetch(url, {
+  const init = {
     method: method,
     headers: headers,
     body: toJson(entity)
-  })
+  }
+  console.log('*** fetch:call init -> %o', init)
+  const response = fetch(url, init)
   if (response.ok) {
     result = toObject( response.json() as string )
   } else {

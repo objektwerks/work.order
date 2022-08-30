@@ -13,7 +13,7 @@ const get = 'GET'
 const post = 'POST'
 const headers: Record<string, string> = {
   "Content-Type": "application/json charset=utf-8",
-  'Accept': 'application/json'
+  "Accept": "application/json"
 }
 
 async function call<T, R>(url: string,
