@@ -47,8 +47,8 @@ function test() {
   
   console.log('*** running integration test ...')
   
-  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
-  register( new Registration('homeowner', "barney rubble,", homeownerEmail, "123 stone st"), homeownerPin )
+  register( new Registration('serviceprovider', 'fred flintstone', serviceProviderEmail, '123 stone st'), serviceProviderPin )
+  register( new Registration('homeowner', 'barney rubble', homeownerEmail, '125 stone st'), homeownerPin )
   
   login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
   login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
