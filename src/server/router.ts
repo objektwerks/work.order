@@ -1,6 +1,5 @@
 import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
 import * as service from './service.js'
-import { Credentials, Registration, User, WorkOrder} from './entity.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
@@ -33,19 +32,19 @@ export default () => {
   router.post('/register', (request, response) => {
     console.log('*** /register headers %o', request.headers)
     console.log('*** /register request body %o', request.body)
-    response.json( service.register( Registration.fromObject(request.body) ) )
+    response.json( service.register( request.body ) )
   })
   
   router.post('/login', (request, response) => {
-    response.json( service.login( Credentials.fromObject(request.body) ) )
+    response.json( service.login( request.body ) )
   })
   
   router.post('/workorders/add', (request, response) => {
-    response.json( service.addWorkOrder( WorkOrder.fromObject(request.body) ) )
+    response.json( service.addWorkOrder( request.body ) )
   })
 
   router.post('/workorders/save', (request, response) => {
-    response.json( service.saveWorkOrder( WorkOrder.fromObject(request.body) ) )
+    response.json( service.saveWorkOrder( request.body ) )
   })
 
   router.get('/workorders/user/:id', (request, response) => {
@@ -57,7 +56,7 @@ export default () => {
   })
   
   router.post('/users/save', (request, response) => {
-    response.json( service.saveUser( User.fromObject(request.body) ) )
+    response.json( service.saveUser( request.body ) )
   })
 
   router.post('/image/save', images.single('image'), (request, response) => {

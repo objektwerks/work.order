@@ -4,15 +4,17 @@ import fetch from 'node-fetch'
 import { 
   toJson, 
   toObject, 
-  Credentials, 
-  // ImageUrl, 
-  Registration, 
+  Login, 
+  LoggedIn, 
+  // ImageSaved, 
+  Register, 
+  Registered,
   User, 
-  UserStatus, 
-  UsersWorkOrders, 
+  UserSaved, 
   WorkOrder, 
-  WorkOrderStatus, 
-  WorkOrders 
+  WorkOrderSaved, 
+  WorkOrdersListed, 
+  WorkOrderSelected
 } from '../server/entity.js'
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
@@ -24,7 +26,7 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-// const saveImageUrl = rootUrl + '/image/save'
+// const saveImage = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
@@ -34,29 +36,30 @@ const headers: { [key: string]: string } = {
   'Content-Type': 'application/json charset=utf-8'
 }
 
+const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
+const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
+let serviceProviderPin = ''
+let homeownerPin = ''  
+let serviceProviderUsersWorkOrders = new LoggedIn(User.empty(), [], [])
+let homeownerUsersWorkOrders = new LoggedIn(User.empty(), [], [])
+
 test()
 
 function test() {
   console.log('*** running integration test ...')
 
-  const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
-  const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
-  let serviceProviderPin = ''
-  let homeownerPin = ''  
-  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
+  register( new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
   setTimeout(
-    () => register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
+    () => register( new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
     3000
   )
 
-  let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
-  let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
   setTimeout(
-    () => login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
+    () => login( new Login(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
     4000
   )
   setTimeout(
-    () => login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
+    () => login( new Login(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
     5000
   )
 
@@ -126,52 +129,50 @@ async function call<T, R>(url: string,
   return result
 }
 
-function register(registration: Registration, target: string): void {
-  call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
-    assert(status.success, `Status error: ${status.error}`)
-    assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
-    target = status.pin
+function register(registration: Register, target: string): void {
+  call(registerUrl, post, headers, registration, () => Registered.fail('Register failed.')).then(registered => {
+    assert(registered.success, `Registered error: ${registered.error}`)
+    assert(registered.pin.length === 7, `Pin length is invalid: ${registered.pin}`)
+    target = registered.pin
   })
 }
 
-function login(credentials: Credentials, target: UsersWorkOrders): void {
-  call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.')).then(usersWorkOrders => {
-    assert(usersWorkOrders.success, `UsersWorkOrders error: ${usersWorkOrders.error}`)
-    target = usersWorkOrders
+function login(credentials: Login, target: LoggedIn): void {
+  call(loginUrl, post, headers, credentials, () => LoggedIn.fail('Login failed.')).then(loggedIn => {
+    assert(loggedIn.success, `LoggedIn error: ${loggedIn.error}`)
+    target = loggedIn
   })
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
-  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
-    workOrder.number = workOrderStatus.number
+  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!')).then(workOrderSaved => {
+    assert(workOrderSaved.success, `WorkOrderSaved error: ${workOrderSaved.error}`)
+    workOrder.number = workOrderSaved.number
   })
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
-  call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number)).then(workOrderStatus => {
-    assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
-    assert(workOrderStatus.number === workOrder.number)
+  call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!')).then(workOrderSaved => {
+    assert(workOrderSaved.success, `WorkOrderSaved error: ${workOrderSaved.error}`)
+    assert(workOrderSaved.number === workOrder.number)
   })
 }
 
 function saveUser(user: User): void {
-  call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id)).then(userStatus => {
-    assert(userStatus.success, `UserStatus error: ${userStatus.error}`)
+  call(saveUserUrl, post, headers, user, () => UserSaved.fail(user.id, 'Save user failed.')).then(userSaved => {
+    assert(userSaved.success, `UserSaved error: ${userSaved.error}`)
   })
 }
 
 function getWorkOrderByNumber(number: number): void {
-  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
-    assert(workOrder.success, `WorkOrder error: ${workOrder.error}`)
-    assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
+  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrderSelected.fail(`Get work order by number failed for: ${number}!`)).then(workOrderSelected => {
+    assert(workOrderSelected.success, `WorkOrderSelected error: ${workOrderSelected.error}`)
   })
 }
 
 function listWorkOrdersByUserId(id: number): void {
-  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id)).then(workOrders => {
-    assert(workOrders.success, `WorkOrders error: ${workOrders.error}`)
-    assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
+  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrdersListed.fail(id, `List work orders by user id failed for: ${id}!`)).then(workOrdersListed => {
+    assert(workOrdersListed.success, `WorkOrders error: ${workOrdersListed.error}`)
   })
 }
 

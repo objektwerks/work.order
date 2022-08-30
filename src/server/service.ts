@@ -3,16 +3,17 @@ import * as store from './store.js'
 import * as emailer from './emailer.js'
 import {
   serviceProvider,
-  Credentials,
-  ImageUrl,
-  Status,
+  Login,
+  LoggedIn,
+  Register,
+  Registered,
+  ImageSaved,
   User,
-  UserStatus,
-  UsersWorkOrders,
+  UserSaved,
   WorkOrder,
-  WorkOrderStatus,
-  WorkOrders,
-  Registration
+  WorkOrderSaved,
+  WorkOrderSelected,
+  WorkOrdersListed
 } from './entity.js'
 
 const subjectRegistration = `Work Order Registration`
@@ -30,144 +31,143 @@ export function shutdown(): void {
   store.disconnect()
 }
 
-export function register(registration: Registration): Status {
-  let status: Status
+export function register(register: Register): Registered {
+  let registered: Registered
   try {
     const pin = newPin()
     let id = 0
-    const registered = new Date().toISOString()
-    const user = new User(id, registration.role, registration.name, registration.emailAddress, registration.streetAddress, registered, pin)
+    const user = new User(id, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
     id = store.addUser(user)
     if (id > 0) {
-      status = Registration.success(pin)
-      log('register', `succeeded for ${registration.emailAddress}`)
+      registered = Registered.success(pin)
+      log('register', `succeeded for ${register.emailAddress}`)
     } else {
-      status = Registration.fail(`Register failed for ${registration.emailAddress}`)
-      log('register', `failed for: ${registration.emailAddress}`)
+      registered = Registered.fail(`Register failed for ${register.emailAddress}`)
+      log('register', `failed for: ${register.emailAddress}`)
     }
   } catch (error) {
-    status = Registration.fail(`register failed for ${registration.emailAddress}`)
-    log('register', `failed error: ${error} for ${registration.emailAddress}`)
+    registered = Registered.fail(`register failed for ${register.emailAddress}`)
+    log('register', `failed error: ${error} for ${register.emailAddress}`)
   }
-  return status
+  return registered
 }
 
-export function login(credentials: Credentials): UsersWorkOrders {
-  let status: UsersWorkOrders
+export function login(login: Login): LoggedIn {
+  let loggedIn: LoggedIn
   try {
-    const user: User = store.getUserByEmailAddressPin(credentials.emailAddress, credentials.pin)
+    const user: User = store.getUserByEmailAddressPin(login.emailAddress, login.pin)
     if (user.id > 0) {
       const serviceProviders = store.listUsersByRole(serviceProvider)
       const workOrders = store.listWorkOrdersByUserId(user.id)
-      status = UsersWorkOrders.success(user, serviceProviders, workOrders)
-      log('login', `succeeded for ${credentials.emailAddress}`)
+      loggedIn = LoggedIn.success(user, serviceProviders, workOrders)
+      log('login', `succeeded for ${login.emailAddress}`)
     } else {
-      status = UsersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`)
-      log('login', `failed for ${credentials.emailAddress}`)
+      loggedIn = LoggedIn.fail(`Login failed for ${login.emailAddress}`)
+      log('login', `failed for ${login.emailAddress}`)
     }
   } catch(error) {
-    status = UsersWorkOrders.fail(`Login failed for ${credentials.emailAddress}`)
-    log('login', `failed error: ${error} for ${credentials.emailAddress}`)
+    loggedIn = LoggedIn.fail(`Login failed for ${login.emailAddress}`)
+    log('login', `failed error: ${error} for ${login.emailAddress}`)
   }
-  return status
+  return loggedIn
 }
 
-export function listWorkOrdersByUserId(id: number): WorkOrders {
-  let status: WorkOrders
+export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
+  let listed: WorkOrdersListed
   try {
     const list = store.listWorkOrdersByUserId(id)
-    status = WorkOrders.success(id, list)
+    listed = WorkOrdersListed.success(id, list)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
   } catch(error) {
-    status = WorkOrders.fail('List work orders by user id failed.', id)
+    listed = WorkOrdersListed.fail(id, 'List work orders by user id failed.')
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
   }
-  return status
+  return listed
 }
 
-export function getWorkOrderByNumber(number: number): WorkOrder {
-  let status: WorkOrder
+export function getWorkOrderByNumber(number: number): WorkOrderSelected {
+  let selected: WorkOrderSelected
   try {
     const workOrder = store.getWorkOrderByNumber(number)
     if (workOrder.number === 0) {
-      status = WorkOrder.success(workOrder)
+      selected = WorkOrderSelected.success(workOrder)
       log('getWorkOrderByNumber', `succeeded for number: ${number}`)
     } else {
-      status = WorkOrder.fail('Get work order by number failed.', number)
+      selected = WorkOrderSelected.fail('Get work order by number failed.')
       log('getWorkOrderByNumber', `succeeded for number: ${number}`)
     }
   } catch(error) {
-    status = WorkOrder.fail('Get work order by number failed.', number)
+    selected = WorkOrderSelected.fail('Get work order by number failed.')
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
   }
-  return status
+  return selected
 }
 
-export function addWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  let status: WorkOrderStatus
+export function addWorkOrder(workOrder: WorkOrder): WorkOrderSaved {
+  let added: WorkOrderSaved
   try {
     const number = store.addWorkOrder(workOrder)
     workOrder.number = number
-    status = WorkOrderStatus.success(workOrder.number)
+    added = WorkOrderSaved.success(workOrder.number)
     log('addWorkOrder', `succeeded for number: ${number}`)
   } catch(error) {
-    status = WorkOrderStatus.fail('Add work order failed.', workOrder.number)
+    added = WorkOrderSaved.fail(workOrder.number, 'Add work order failed.')
     log('addWorkOrder', `failed: ${error} for ${workOrder}`)
   }
-  return status
+  return added
 }
 
-export function saveWorkOrder(workOrder: WorkOrder): WorkOrderStatus {
-  let status: WorkOrderStatus
+export function saveWorkOrder(workOrder: WorkOrder): WorkOrderSaved {
+  let saved: WorkOrderSaved
   try {
     const count = store.saveWorkOrder(workOrder)
     if (count > 0) {
-      status = WorkOrderStatus.success(workOrder.number)
+      saved = WorkOrderSaved.success(workOrder.number)
       log('saveWorkOrder', `succeeded for number: ${workOrder.number}`)
     } else {
-      status = WorkOrderStatus.fail('Save work order failed.', workOrder.number)
+      saved = WorkOrderSaved.fail(workOrder.number, 'Save work order failed.')
       log('saveWorkOrder', `failed for ${workOrder}`)
     }
   } catch(error) {
-    status = WorkOrderStatus.fail('Save work order failed.', workOrder.number)
+    saved = WorkOrderSaved.fail(workOrder.number, 'Save work order failed.')
     log('saveWorkOrder', `failed: ${error} for ${workOrder}`)
   }
-  return status
+  return saved
 }
 
-export function saveUser(user: User): UserStatus {
-  let status: UserStatus
+export function saveUser(user: User): UserSaved {
+  let status: UserSaved
   try {
     const count = store.saveUser(user)
     if (count > 0) {
-      status = UserStatus.success(user.id)
+      status = UserSaved.success(user.id)
       log('saveUser', `succeeded for id: ${user.id}`)
     } else {
-      status = UserStatus.fail('Save user failed.', user.id)
+      status = UserSaved.fail(user.id, 'Save user failed.')
       log('saveUser', `failed for ${user}`)
     }
   } catch(error) {
-    status = UserStatus.fail('Save user failed.', user.id)
+    status = UserSaved.fail(user.id, 'Save user failed.')
     log('saveUser', `failed: ${error} for ${user}`)
   }
   return status
 }
 
-export function saveImageUrl(number: number, url: string): ImageUrl {
-  let status: ImageUrl
+export function saveImageUrl(number: number, url: string): ImageSaved {
+  let saved: ImageSaved
   try {
     const count = store.saveImageUrl(number, url)
     if (count > 0) {
-      status = ImageUrl.success(number, url)
+      saved = ImageSaved.success(number, url)
       log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
     } else {
-      status = ImageUrl.fail('Save image url failed.', number, url)
+      saved = ImageSaved.fail(number, url, 'Save image url failed.')
       log('saveImageUrl', `failed for number: ${number} url: ${url}`)
     }
   } catch(error) {
-    status = ImageUrl.fail('Save image url failed.', number, url)
+    saved = ImageSaved.fail(number, url, 'Save image url failed.')
     log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
   }
-  return status
+  return saved
 }

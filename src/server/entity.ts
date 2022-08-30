@@ -1,6 +1,14 @@
+/**
+ * The code sharing story in the web space is not ideal. Hence the interim
+ * need for this shared file of roles, json-object, commands, events, entities
+ * and validators.
+ */
+
+// Roles
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
 
+// Json-Object
 export function toJson<T>(object: T): string {
   console.log('*** toJson object: ', object)
   return JSON.stringify(object)
@@ -11,148 +19,142 @@ export function toObject<T>(json: string): T {
   return JSON.parse(json)
 }
 
-export class Status {
-  constructor(public success: boolean = true, 
-              public error: string = '',
-              public readonly pin: string = '') {}
+/*
+1. **client:register** --- registration --> server --- registered ---> client
+2. **client:login** --- credentials --> server --- logged in --> client
+3. **client:add** --- work order --> server --- work order saved --> client
+4. **client:save** --- work order --> server --- work order saved --> client
+5. **client:get** --- userid --> server --- work orders listed --> client
+6. **client:get** --- number --> server --- work order selected --> client
+7. **client:save** --- user --> server --- user saved --> client
+8. **client:save** --- image --> server --- image saved --> client
+*/
 
-  static fromJson(json: string): Status {
-    return this.fromObject(toObject(json))
-  }
-
-  static fromObject(object: Status): Status {
-    return new Status(object.success, object.error, object.pin)
-  }
-}
-
-export class Registration {
+// Commands
+export class Register {
   constructor(public role: string, 
               public name: string, 
               public emailAddress: string, 
               public streetAddress: string) {}
-
-  static fromJson(json: string): Registration {
-    return this.fromObject(toObject(json))
-  }
-
-  static fromObject(object: Registration): Registration {
-    return new Registration(object.role, object. name, object.emailAddress, object.streetAddress)
-  }
-
-  static success(pin: string): Status {
-    return new Status(true, '', pin)
-  }
-  
-  static fail(error: string): Status {
-    return new Status(false, error, '')
-  }
 }
 
-export class Credentials {
+export class Login {
   constructor(public emailAddress: string, 
               public pin: string) {}
+}
 
-  static fromJson(json: string): Credentials {
-    return this.fromObject(toObject(json))
+export class SaveWorkOrder {
+  constructor(workOrder: WorkOrder) {}
+}
+
+export class SaveUser {
+  constructor(public user: User) {}
+}
+
+// Events
+export class Registered {
+  constructor(public pin: string,
+              public success: boolean = true,
+              public error: string = '') {}
+
+  static success(pin: string): Registered {
+    return new Registered(pin)
   }
-
-  static fromObject(object: Credentials): Credentials {
-    return new Credentials(object.emailAddress, object.pin)
+  
+  static fail(error: string): Registered {
+    return new Registered('', false, error)
   }
 }
 
-export class UsersWorkOrders {
+export class LoggedIn {
   constructor(public user: User, 
               public serviceProviders: User[], 
               public workOrders: WorkOrder[], 
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string): UsersWorkOrders {
-    return this.fromObject(toObject(json))
+  static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]): LoggedIn {
+    return new LoggedIn(user, serviceProviders, workOrders)  
   }
 
-  static fromObject(object: UsersWorkOrders): UsersWorkOrders {
-    return new UsersWorkOrders(object.user, object.serviceProviders, object.workOrders)
-  }
-
-  static success(user: User, serviceProviders: User[], workOrders: WorkOrder[]): UsersWorkOrders {
-    return new UsersWorkOrders(user, serviceProviders, workOrders)  
-  }
-
-  static fail(error: string): UsersWorkOrders {
-    return new UsersWorkOrders(User.empty(), [User.empty()], [WorkOrder.empty()], false, error)  
+  static fail(error: string): LoggedIn {
+    return new LoggedIn(User.empty(), [], [], false, error)
   }
 }
 
-export class WorkOrders {
+export class WorkOrderSaved {
+  constructor(public number: number,
+              public success: boolean = true,
+              public error: string = '') {}
+
+  static success(number: number): WorkOrderSaved {
+    return new WorkOrderSaved(number)
+  }
+  
+  static fail(number: number, error: string): WorkOrderSaved {
+    return new WorkOrderSaved(number, false, error)
+  }
+}
+
+export class WorkOrderSelected {
+  constructor(public workOrder: WorkOrder, 
+              public success: boolean = true, 
+              public error: string = '') {}
+
+  static success(workOrder: WorkOrder): WorkOrderSelected {
+    return new WorkOrderSelected(workOrder)
+  }
+
+  static fail(error: string): WorkOrderSelected {
+    return new WorkOrderSelected(WorkOrder.empty(), false, error)
+  }
+}
+
+export class WorkOrdersListed {
   constructor(public userId: number, 
               public workOrders: WorkOrder[], 
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string): WorkOrders {
-    return this.fromObject(toObject(json))
+  static success(userId: number, workOrders: WorkOrder[]): WorkOrdersListed {
+    return new WorkOrdersListed(userId, workOrders)
   }
 
-  static fromObject(object: WorkOrders): WorkOrders {
-    return new WorkOrders(object.userId, object.workOrders)
-  }
-
-  static success(userId: number, workOrders: WorkOrder[]): WorkOrders {
-    return new WorkOrders(userId, workOrders)
-  }
-
-  static fail(error: string, userId: number): WorkOrders {
-    return new WorkOrders(userId, [WorkOrder.empty()], false, error)
+  static fail(userId: number, error: string): WorkOrdersListed {
+    return new WorkOrdersListed(userId, [WorkOrder.empty()], false, error)
   }
 }
 
-export class ImageUrl {
+export class ImageSaved {
   constructor(public number: number, 
               public url: string, 
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string): ImageUrl {
-    return this.fromObject(toObject(json))
+  static success(number: number, url: string): ImageSaved {
+    return new ImageSaved(number, url)
   }
 
-  static fromObject(object: ImageUrl): ImageUrl {
-    return new ImageUrl(object.number, object.url)
-  }
-
-  static success(number: number, url: string): ImageUrl {
-    return new ImageUrl(number, url)
-  }
-
-  static fail(error: string, number: number, url: string): ImageUrl {
-    return new ImageUrl(number, url, false, error)
+  static fail(number: number, url: string, error: string): ImageSaved {
+    return new ImageSaved(number, url, false, error)
   }
 }
 
-export class WorkOrderStatus {
-  constructor(public number: number, 
+export class UserSaved {
+  constructor(public id: number, 
               public success: boolean = true, 
               public error: string = '') {}
 
-  static fromJson(json: string): WorkOrderStatus {
-    return this.fromObject(toObject(json))
+  static success(id: number): UserSaved {
+    return new UserSaved(id)
   }
 
-  static fromObject(object: WorkOrderStatus): WorkOrderStatus {
-    return new WorkOrderStatus(object.number)
-  }
-
-  static success(number: number): WorkOrderStatus {
-    return new WorkOrderStatus(number)
-  }
-
-  static fail(error: string, number: number): WorkOrderStatus {
-    return new WorkOrderStatus(number, false, error)
+  static fail(id: number, error: string): UserSaved {
+    return new UserSaved(id, false, error)
   }
 }
 
+// Entities
 export class WorkOrder {
   constructor(public number: number,
               public homeownerId: number, 
@@ -162,54 +164,10 @@ export class WorkOrder {
               public imageUrl: string, 
               public resolution: string, 
               public opened: string, 
-              public closed: string,
-              public success: boolean = true,
-              public error: string = '') {}
-
-  static fromJson(json: string): WorkOrder {
-    return this.fromObject(toObject(json))
-  }
-
-  static fromObject(object: WorkOrder): WorkOrder {
-    return new WorkOrder(object.number, object.homeownerId, object.serviceProviderId, object.title, object.issue, object.imageUrl, object.resolution, object.opened, object.closed)
-  }
+              public closed: string) {}
 
   static empty(): WorkOrder {
     return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
-  }
-
-  static success(workOrder: WorkOrder): WorkOrder {
-    return workOrder
-  }
-
-  static fail(error: string, number: number): WorkOrder {
-    const workOrder = WorkOrder.empty()
-    workOrder.number = number
-    workOrder.success = false
-    workOrder.error = error
-    return workOrder 
-  }
-}
-
-export class UserStatus {
-  constructor(public id: number, 
-              public success: boolean = true, 
-              public error: string = '') {}
-
-  static fromJson(json: string): UserStatus {
-    return this.fromObject(toObject(json))
-  }
-
-  static fromObject(object: UserStatus): UserStatus {
-    return new UserStatus(object.id)
-  }
-
-  static success(id: number): UserStatus {
-    return new UserStatus(id)
-  }
-
-  static fail(error: string, id: number): UserStatus {
-    return new UserStatus(id, false, error)
   }
 }
 
@@ -220,23 +178,14 @@ export class User {
               public emailAddress: string, 
               public streetAddress: string, 
               public registered: string, 
-              public pin: string,
-              public success: boolean = true,
-              public error: string = '') {}
-
-  static fromJson(json: string): User {
-    return this.fromObject(toObject(json))
-  }
-
-  static fromObject(object: User): User {
-    return new User(object.id, object.role, object.name, object.emailAddress, object.streetAddress, object.registered, object.pin)
-  }
+              public pin: string) {}
 
   static empty(): User {
     return new User(0, '', '', '', '', '', '')
   }
 }
 
+// Validators
 const roleInvalidMessage = 'A valid role must be selected.'
 const nameInvalidMessage = 'For name, enter at least 2 characters.'
 const emailAddressInvalidMessage = 'For email address, enter at least 3 characters to inlcude @.'
