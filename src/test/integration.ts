@@ -1,9 +1,11 @@
 import assert from 'assert'
-import fetch from 'sync-fetch'
+import fetch from 'node-fetch'
+import fs from 'fs'
 import { 
   toJson, 
   toObject, 
   Credentials, 
+  ImageUrl, 
   Registration, 
   User, 
   UserStatus, 
@@ -22,13 +24,15 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
+const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
 const get = 'GET'
 const post = 'POST'
-const headers: { [key: string]: string } = {
-  'Content-Type': 'application/json charset=utf-8'
+const headers: Record<string, string> = {
+  "Content-Type": "application/json charset=utf-8",
+  'Accept': 'application/json'
 }
 
 test()
@@ -47,8 +51,8 @@ function test() {
   
   console.log('*** running integration test ...')
   
-  register( new Registration('serviceprovider', 'fred flintstone', serviceProviderEmail, '123 stone st'), serviceProviderPin )
-  register( new Registration('homeowner', 'barney rubble', homeownerEmail, '125 stone st'), homeownerPin )
+  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
+  register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin )
   
   login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders )
   login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders )
@@ -65,72 +69,91 @@ function test() {
   getWorkOrderByNumber(workOrder.number)
   
   listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id)
+
+  const url = 'rc/logo.png'
+  const file = new File( [fs.readFileSync(url, 'utf8')], 'logo.png' )
+  const filename = `${workOrder.number}-${new Date().toISOString()}.png`
+  saveImage(workOrder.number, url, file, filename)
   
   console.log('*** integration test complete!')
 }
 
-function call<T, R>(url: string,
-                    method: string,
-                    headers: { [key: string]: string },
-                    entity: T,
-                    fault: () => R): R {
-  console.log('*** fetch:call entity -> %o', entity)
+async function call<T, R>(url: string,
+                          method: string,
+                          headers: Record<string, string>,
+                          entity: FormData | T,
+                          fault: () => R): Promise<R> {
   let result: R
-  const init = {
+  const response = await fetch(url, {
     method: method,
     headers: headers,
-    body: toJson(entity)
-  }
-  console.log('*** fetch:call init -> %o', init)
-  const response = fetch(url, init)
+    body: entity instanceof FormData ? entity : toJson(entity)
+  })
   if (response.ok) {
-    result = toObject( response.json() as string )
+    result = toObject( await response.json() as string )
   } else {
-    console.log('*** fetch:call error -> url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
+    console.log(`*** fetch -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
     result = fault()
   }
-  console.log('*** fetch:call result -> url: %s result: %o', url, result)
+  console.log(`*** fetcher:call -> url: ${url} result: ${result}`)
   return result
 }
 
 function register(registration: Registration, target: string): void {
-  const status = call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.'))
-  assert(status.success, `Status error: ${status.error}`)
-  assert(status.pin.length === 7, `Pin length invalid: ${status.pin}`)
-  target = status.pin
+  call(registerUrl, post, headers, registration, () => Registration.fail('Register failed.')).then(status => {
+    assert(status.success, `Status is in error: ${status.error}`)
+    assert(status.pin.length === 7, `Pin length is invalid: ${status.pin}`)
+    target = status.pin
+  })
 }
 
 function login(credentials: Credentials, target: UsersWorkOrders): void {
-  const usersWorkOrders = call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.'))
-  assert(usersWorkOrders.success, `UsersWorkOrders error: ${usersWorkOrders.error}`)
-  target = usersWorkOrders
+  call(loginUrl, post, headers, credentials, () => UsersWorkOrders.fail('Login failed.')).then(usersWorkOrders => {
+    assert(usersWorkOrders.success, `UsersWorkOrders is in error: ${usersWorkOrders.error}`)
+    target = usersWorkOrders
+  })
 }
 
 function addWorkOrder(workOrder: WorkOrder): void {
-  const workOrderStatus = call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number))
-  assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
-  workOrder.number = workOrderStatus.number
+  call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Add work order failed!', workOrder.number)).then(workOrderStatus => {
+    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+    workOrder.number = workOrderStatus.number
+  })
 }
 
 function saveWorkOrder(workOrder: WorkOrder): void {
-  const workOrderStatus = call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number))
-  assert(workOrderStatus.success, `WorkOrderStatus error: ${workOrderStatus.error}`)
-  assert(workOrderStatus.number === workOrder.number)
+  call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderStatus.fail('Save work order failed!', workOrder.number)).then(workOrderStatus => {
+    assert(workOrderStatus.success, `WorkOrderStatus is in error: ${workOrderStatus.error}`)
+    assert(workOrderStatus.number === workOrder.number)
+  })
 }
 
 function saveUser(user: User): void {
-  const userStatus = call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id))
-  assert(userStatus.success, `UserStatus error: ${userStatus.error}`)
+  call(saveUserUrl, post, headers, user, () => UserStatus.fail('Save user failed.', user.id)).then(userStatus => {
+    assert(userStatus.success, `UserStatus is in error: ${userStatus.error}`)
+  })
 }
 
 function getWorkOrderByNumber(number: number): void {
-  const workOrder = call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number))
-  assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
-  assert(workOrder.number === number, `WorkOrder number !== number: ${workOrder.number} !== ${number}`)
+  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrder.fail(`Get work order by number failed for: ${number}!`, number)).then(workOrder => {
+    assert(workOrder.success, `WorkOrder is in error: ${workOrder.error}`)
+    assert(workOrder.number === number, `WorkOrder number does not === number: ${workOrder.number} !== ${number}`)
+  })
 }
 
 function listWorkOrdersByUserId(id: number): void {
-  const workOrders = call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id))
-  assert(workOrders.success, `WorkOrders error: ${workOrders.error}`)
-  assert(workOrders.userId === id, `User id !== id: ${workOrders.userId} !== ${id}`)
+  call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrders.fail(`List work orders by user id failed for: ${id}!`, id)).then(workOrders => {
+    assert(workOrders.success, `WorkOrders is in error: ${workOrders.error}`)
+    assert(workOrders.userId === id, `User id does not === id: ${workOrders.userId} !== ${id}`)
+  })
+}
+
+function saveImage(number: number, url: string, file: File, filename: string): void {
+  const headers = { "Content-Type": "multipart/form-data" }
+  const formdata = new FormData()
+  formdata.append('number', number.toString())
+  formdata.append('url', url)
+  formdata.append('imagefilename', filename)
+  formdata.append('image', file, filename)
+  call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
 }
