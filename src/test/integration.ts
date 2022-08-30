@@ -39,8 +39,8 @@ const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as st
 const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
 let serviceProviderPin = ''
 let homeownerPin = ''  
-let serviceProvidersModel = new LoggedIn(User.empty(), [], [])
-let homeownerModel = new LoggedIn(User.empty(), [], [])
+let serviceProvidersLoggedIn = new LoggedIn(User.empty(), [], [])
+let homeownerLoggedIn = new LoggedIn(User.empty(), [], [])
 let workOrder: WorkOrder
 
 test()
@@ -60,7 +60,7 @@ function test() {
     login( new Login(homeownerEmail, homeownerPin), false )
   }, 5000)
 
-  workOrder = new WorkOrder(0, homeownerModel.user.id, serviceProvidersModel.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProvidersLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout( () => {
     addWorkOrder( new SaveWorkOrder(workOrder) )
   }, 6000)
@@ -70,15 +70,20 @@ function test() {
   setTimeout( () => {
     saveWorkOrder( new SaveWorkOrder(workOrder) )
   }, 7000)
+
   setTimeout( () => {
-    saveUser( new SaveUser(homeownerModel.user) )
+    saveUser( new SaveUser(serviceProvidersLoggedIn.user) )
   }, 8000)
   setTimeout( () => {
-    getWorkOrderByNumber(workOrder.number)
+    saveUser( new SaveUser(homeownerLoggedIn.user) )
   }, 9000)
+
   setTimeout( () => {
-    listWorkOrdersByUserId(homeownerModel.user.id)
+    getWorkOrderByNumber(workOrder.number)
   }, 10000)
+  setTimeout( () => {
+    listWorkOrdersByUserId(homeownerLoggedIn.user.id)
+  }, 11000)
   
   console.log('*** integration test complete!')
 }
@@ -129,9 +134,9 @@ function login(login: Login, setServiceProviderLoggedIn: boolean): void {
   call(loginUrl, post, headers, login, () => LoggedIn.fail('Login failed.')).then(loggedIn => {
     assert(loggedIn.success, `LoggedIn error: ${loggedIn.error}`)
     if (setServiceProviderLoggedIn) {
-      serviceProvidersModel = loggedIn
+      serviceProvidersLoggedIn = loggedIn
     } else {
-      homeownerModel = loggedIn
+      homeownerLoggedIn = loggedIn
     }
   })
 }
