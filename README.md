@@ -2,13 +2,6 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
-Todo
-----
-* curl --header "Content-Type: application/json" \
-       --request POST \
-       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"capehaze@runbox.com","streetAddress":"123 stone st"}' \
-       http://127.0.0.1:3000/register
-
 Technologies
 ------------
 >Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
@@ -134,6 +127,13 @@ Photos
 1. **jpeg**
 2. **png**
 >Note, only 1 image per work order allowed at this time.
+
+Curl
+----
+* curl --header "Content-Type: application/json" \
+       --request POST \
+       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"your@emailaddress.com","streetAddress":"123 stone st"}' \
+       http://127.0.0.1:3000/register
 
 License
 -------
