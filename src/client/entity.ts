@@ -220,7 +220,7 @@ function validateDefined(string: string) {
   return isDefined
 }
 
-export function validateRegistration(role: string, name: string, emailAddress: string, streetAddress: string) {
+export function validateRegister(role: string, name: string, emailAddress: string, streetAddress: string) {
   const errors = []
   if (!validateRole(role)) errors.push(roleInvalidMessage)
   if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
@@ -229,7 +229,7 @@ export function validateRegistration(role: string, name: string, emailAddress: s
   return errors
 }
 
-export function validateCredentials(emailAddress: string, pin: string) {
+export function validateLogin(emailAddress: string, pin: string) {
   const errors = []
   if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
   if (!validateLength(pin, 7)) errors.push(pinInvalidMessage)
@@ -254,7 +254,7 @@ export function validateUser(id: number, role: string, name: string, emailAddres
   const errors = []
   if (!validateGreaterThanZero(id)) errors.push(idInvalidMessage)
   if (!validateLength(registered, 24)) errors.push(datetimeInvalidMessage)
-  errors.concat( validateRegistration(role, name, emailAddress, streetAddress) )
+  errors.concat( validateRegister(role, name, emailAddress, streetAddress) )
   return errors
 }
 
