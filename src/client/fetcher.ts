@@ -6,9 +6,9 @@ import {
   LoggedIn,
   Register,
   Registered,
-  User,
+  SaveUser,
   UserSaved,
-  WorkOrder,
+  SaveWorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed } from './entity.js'
@@ -70,16 +70,16 @@ export async function login(login: Login): Promise<LoggedIn> {
   return await call(loginUrl, post, headers, login, () => LoggedIn.fail('Login failed.'))
 }
 
-export async function addWorkOrder(workOrder: WorkOrder): Promise<WorkOrderSaved> {
-  return await call(addWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!'))
+export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
+  return await call(addWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed!'))
 }
 
-export async function saveWorkOrder(workOrder: WorkOrder): Promise<WorkOrderSaved> {
-  return await call(saveWorkOrderUrl, post, headers, workOrder, () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!'))
+export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
+  return await call(saveWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed!'))
 }
 
-export async function saveUser(user: User): Promise<UserSaved> {
-  return await call(saveUserUrl, post, headers, user, () => UserSaved.fail(user.id, 'Save user failed.'))
+export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
+  return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
 }
 
 export async function saveImage(number: number, url: string, file: File, filename: string): Promise<ImageSaved> {

@@ -33,7 +33,7 @@ export class Login {
 }
 
 export class SaveWorkOrder {
-  constructor(workOrder: WorkOrder) {}
+  constructor(public workOrder: WorkOrder) {}
 }
 
 export class SaveUser {
