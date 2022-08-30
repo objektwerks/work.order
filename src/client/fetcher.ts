@@ -21,11 +21,20 @@ async function call<T, R>(url: string,
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
-  const response = await fetch(url, {
-    method: method,
-    headers: headers,
-    body: entity instanceof FormData ? entity : toJson(entity)
-  })
+  let init
+  if (method === get) {
+    init = {
+      method: method,
+      headers: headers
+    }
+  } else {
+    init = {
+      method: method,
+      headers: headers,
+      body: entity instanceof FormData ? entity : toJson(entity)
+    }
+  }
+  const response = await fetch(url, init)
   if (response.ok) {
     result = toObject( await response.json() )
   } else {
