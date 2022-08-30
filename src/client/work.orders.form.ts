@@ -114,9 +114,9 @@ export default () => {
         workOrder.imageUrl = imageUrl
         workOrder.resolution = resolution
         workOrder.closed = closed
-        fetcher.saveWorkOrder(workOrder).then(workOrderStatus => {
-          if (!workOrderStatus.success) {
-            errors.push(workOrderStatus.error)
+        fetcher.saveWorkOrder(workOrder).then(workOrderSaved => {
+          if (!workOrderSaved.success) {
+            errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {          
             show('workorder-dialog-id')
@@ -124,12 +124,12 @@ export default () => {
         })
       } else { // add
         const workOrder: WorkOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
-        fetcher.addWorkOrder(workOrder).then(workOrderStatus => {
-          if (!workOrderStatus.success) {
-            errors.push(workOrderStatus.error)
+        fetcher.addWorkOrder(workOrder).then(workOrderSaved => {
+          if (!workOrderSaved.success) {
+            errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {
-            workOrder.number = workOrderStatus.number
+            workOrder.number = workOrderSaved.number
             model.addWorkOrder(workOrder)
             show('workorder-dialog-id')
           }
@@ -153,11 +153,11 @@ export default () => {
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
     const id = model.getUserId()
-    fetcher.listWorkOrdersByUserId(id).then(workOrders => {
-      if (!workOrders.success) {
-        setErrorList(workOrders.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+    fetcher.listWorkOrdersByUserId(id).then(workOrdersListed => {
+      if (!workOrdersListed.success) {
+        setErrorList(workOrdersListed.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
       } else {
-        model.bindWorkOrdersToList(workOrders.workOrders)
+        model.bindWorkOrdersToList(workOrdersListed.workOrders)
       } 
     }) 
   }, false)
@@ -180,11 +180,11 @@ export default () => {
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const filename = `${number}-${datetime}.${ext}`
       const url = `/images/${number}/${filename}`
-      fetcher.saveImage(parseInt(number), url, file, filename).then(imageUrl => {
-        if (!imageUrl.success) {
-          setErrorList(imageUrl.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+      fetcher.saveImage(parseInt(number), url, file, filename).then(imageSaved => {
+        if (!imageSaved.success) {
+          setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {
-          setImageUrlById('workorder-image-url-id', imageUrl.url)
+          setImageUrlById('workorder-image-url-id', imageSaved.url)
           setTextById('workorder-dialog-message', 'Photo saved successfully.')
           show('workorder-dialog-id')
         }
