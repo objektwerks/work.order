@@ -30,9 +30,8 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
 const get = 'GET'
 const post = 'POST'
-const headers: Record<string, string> = {
-  "Content-Type": "application/json charset=utf-8",
-  'Accept': 'application/json'
+const headers: { [key: string]: string } = {
+  'Content-Type': 'application/json charset=utf-8'
 }
 
 test()
@@ -80,7 +79,7 @@ function test() {
 
 async function call<T, R>(url: string,
                           method: string,
-                          headers: Record<string, string>,
+                          headers: { [key: string]: string },
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
