@@ -91,10 +91,10 @@ async function call<T, R>(url: string,
   if (response.ok) {
     result = toObject( await response.json() as string )
   } else {
-    console.log(`*** fetch -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
+    console.log('*** fetch:call error: url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
     result = fault()
   }
-  console.log('*** fetch:call result url: %s result: %o', url, result)
+  console.log('*** fetch:call result: url: %s result: %o', url, result)
   return result
 }
 
