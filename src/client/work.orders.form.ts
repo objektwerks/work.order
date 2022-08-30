@@ -142,11 +142,11 @@ export default () => {
 
   getById('workorder-refresh-command-id').addEventListener('click', () => {
     const number = parseInt( getValueById('workorder-number-id') )
-    fetcher.getWorkOrderByNumber(number).then(workOrder => {
-      if (!workOrder.success) {
-        setErrorList(workOrder.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+    fetcher.getWorkOrderByNumber(number).then(workOrderSelected => {
+      if (!workOrderSelected.success) {
+        setErrorList(workOrderSelected.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
       } else {
-        bindWorkOrderToForm(workOrder)
+        bindWorkOrderToForm(workOrderSelected.workOrder)
       }
     })
   }, false)
