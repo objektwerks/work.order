@@ -1,4 +1,17 @@
-import { toJson, toObject, ImageSaved, Login, LoggedIn, Register, Registered, User, UserSaved, WorkOrder, WorkOrderSaved, WorkOrderSelected, WorkOrdersListed } from './entity.js'
+import { 
+  toJson,
+  toObject,
+  ImageSaved,
+  Login,
+  LoggedIn,
+  Register,
+  Registered,
+  User,
+  UserSaved,
+  WorkOrder,
+  WorkOrderSaved,
+  WorkOrderSelected,
+  WorkOrdersListed } from './entity.js'
 
 const rootUrl = 'http://' + window.location.host
 const registerUrl = rootUrl + '/register'
