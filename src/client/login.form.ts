@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { serviceProvider, validateCredentials, Credentials } from './entity.js'
+import { serviceProvider, validateCredentials, Login } from './entity.js'
 
 export default () => {
   console.log('*** login form init ...')
@@ -16,15 +16,15 @@ export default () => {
 
     const errors = validateCredentials(emailAddress, pin)
     if (errors.length === 0) {
-      const credentials = new Credentials(emailAddress, pin)
-      fetcher.login(credentials).then(usersWorkOrders => {
-        if (!usersWorkOrders.success) {
-          errors.push(usersWorkOrders.error)
+      const login = new Login(emailAddress, pin)
+      fetcher.login(login).then(loggedIn => {
+        if (!loggedIn.success) {
+          errors.push(loggedIn.error)
           setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id')
         } else {
-          model.bindUserToForm(usersWorkOrders.user)
-          model.bindServiceProvidersToSelect(usersWorkOrders.serviceProviders)
-          model.bindWorkOrdersToList(usersWorkOrders.workOrders)
+          model.bindUserToForm(loggedIn.user)
+          model.bindServiceProvidersToSelect(loggedIn.serviceProviders)
+          model.bindWorkOrdersToList(loggedIn.workOrders)
   
           hide('login-form-id')
           hide('register-form-id"')
