@@ -94,11 +94,11 @@ export function getWorkOrderByNumber(number: number): WorkOrderSelected {
       selected = WorkOrderSelected.success(workOrder)
       log('getWorkOrderByNumber', `succeeded for number: ${number}`)
     } else {
-      selected = WorkOrderSelected.fail('Get work order by number failed.')
+      selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
       log('getWorkOrderByNumber', `succeeded for number: ${number}`)
     }
   } catch(error) {
-    selected = WorkOrderSelected.fail('Get work order by number failed.')
+    selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
   }
   return selected

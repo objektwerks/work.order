@@ -154,7 +154,7 @@ function saveUser(user: User): void {
 }
 
 function getWorkOrderByNumber(number: number): void {
-  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrderSelected.fail(`Get work order by number failed for: ${number}!`)).then(workOrderSelected => {
+  call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrderSelected.fail(number, `Get work order by number failed for: ${number}!`)).then(workOrderSelected => {
     assert(workOrderSelected.success, `WorkOrderSelected error: ${workOrderSelected.error}`)
   })
 }
