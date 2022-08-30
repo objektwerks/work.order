@@ -43,49 +43,46 @@ function test() {
   const homeownerEmail = process.env.WORK_ORDER_HOMEOWNER_EMAIL as string
   let serviceProviderPin = ''
   let homeownerPin = ''  
-  setTimeout(
-    () => register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin ),
-    1000
-  )
+  register( new Registration('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"), serviceProviderPin )
   setTimeout(
     () => register( new Registration('homeowner', "barney rubble,", homeownerEmail, "125 stone st"), homeownerPin ),
-    2000
+    3000
   )
 
   let serviceProviderUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
   let homeownerUsersWorkOrders = new UsersWorkOrders(User.empty(), [], [])
   setTimeout(
     () => login( new Credentials(serviceProviderEmail, serviceProviderPin), serviceProviderUsersWorkOrders ),
-    3000
+    4000
   )
   setTimeout(
     () => login( new Credentials(homeownerEmail, homeownerPin), homeownerUsersWorkOrders ),
-    4000
+    5000
   )
 
   let workOrder = new WorkOrder(0, homeownerUsersWorkOrders.user.id, serviceProviderUsersWorkOrders.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   setTimeout(
     () => addWorkOrder(workOrder),
-    5000
+    6000
   )
   
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
   setTimeout(
     () => saveWorkOrder(workOrder),
-    6000
-  )
-  setTimeout(
-    () => saveUser(homeownerUsersWorkOrders.user),
     7000
   )
   setTimeout(
-    () => getWorkOrderByNumber(workOrder.number),
+    () => saveUser(homeownerUsersWorkOrders.user),
     8000
   )
   setTimeout(
-    () => listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id),
+    () => getWorkOrderByNumber(workOrder.number),
     9000
+  )
+  setTimeout(
+    () => listWorkOrdersByUserId(homeownerUsersWorkOrders.user.id),
+    1000
   )
 
   /*
