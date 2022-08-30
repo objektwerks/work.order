@@ -19,17 +19,6 @@ export function toObject<T>(json: string): T {
   return JSON.parse(json)
 }
 
-/*
-1. **client:register** --- registration --> server --- registered ---> client
-2. **client:login** --- credentials --> server --- logged in --> client
-3. **client:add** --- work order --> server --- work order saved --> client
-4. **client:save** --- work order --> server --- work order saved --> client
-5. **client:get** --- userid --> server --- work orders listed --> client
-6. **client:get** --- number --> server --- work order selected --> client
-7. **client:save** --- user --> server --- user saved --> client
-8. **client:save** --- image --> server --- image saved --> client
-*/
-
 // Commands
 export class Register {
   constructor(public role: string, 
