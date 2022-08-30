@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { validateUserInfo } from './entity.js'
+import { validateUserInfo, SaveUser } from './entity.js'
 
 function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
   model.setUser(name, emailAddress, streetAddress)
@@ -22,9 +22,10 @@ export default () => {
     const errors = validateUserInfo(name, emailAddress, streetAddress)
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress)
-      fetcher.saveUser(model.getUser()).then(userStatus => {
-        if (!userStatus.success) {
-          errors.push(userStatus.error)
+      const saveUser = new SaveUser(model.getUser())
+      fetcher.saveUser(saveUser).then(userSaved => {
+        if (!userSaved.success) {
+          errors.push(userSaved.error)
           setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
         } else {          
           show('user-dialog-id')
