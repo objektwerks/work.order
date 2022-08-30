@@ -11,14 +11,13 @@ const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
 const post = 'POST'
-const headers: Record<string, string> = {
-  "Content-Type": "application/json charset=utf-8",
-  "Accept": "application/json"
+const headers: { [key: string]: string } = {
+  "Content-Type": "application/json charset=utf-8"
 }
 
 async function call<T, R>(url: string,
                           method: string,
-                          headers: Record<string, string>,
+                          headers: { [key: string]: string },
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
@@ -62,7 +61,7 @@ export async function saveUser(user: User): Promise<UserStatus> {
 }
 
 export async function saveImage(number: number, url: string, file: File, filename: string): Promise<ImageUrl> {
-  const headers = { "Content-Type": "multipart/form-data" }
+  const headers: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
   const formdata = new FormData()
   formdata.append('number', number.toString())
   formdata.append('url', url)
