@@ -94,7 +94,7 @@ async function call<T, R>(url: string,
     console.log(`*** fetch -> url: ${url}, method: ${method}, headers: ${headers}, entity: ${entity}, status code: ${response.status} status text: ${response.statusText}`)
     result = fault()
   }
-  console.log(`*** fetcher:call -> url: ${url} result: ${result}`)
+  console.log('*** fetch:call result url: %s result: %o', url, result)
   return result
 }
 
