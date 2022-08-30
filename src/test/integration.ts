@@ -1,19 +1,17 @@
 import assert from 'assert'
 import fetch from 'node-fetch'
-// import fs from 'fs'
 import { 
-  toJson, 
-  toObject, 
-  Login, 
-  LoggedIn, 
-  // ImageSaved, 
-  Register, 
+  toJson,
+  toObject,
+  Login,
+  LoggedIn,
+  Register,
   Registered,
-  User, 
-  UserSaved, 
-  WorkOrder, 
-  WorkOrderSaved, 
-  WorkOrdersListed, 
+  User,
+  UserSaved,
+  WorkOrder,
+  WorkOrderSaved,
+  WorkOrdersListed,
   WorkOrderSelected
 } from '../server/entity.js'
 
@@ -26,7 +24,6 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-// const saveImage = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 
@@ -87,13 +84,6 @@ function test() {
     () => { listWorkOrdersByUserId(homeownerModel.user.id) },
     1000
   )
-
-  /*
-  const url = 'rc/logo.png'
-  const file = new File( [fs.readFileSync(url, 'utf8')], 'logo.png' )
-  const filename = `${workOrder.number}-${new Date().toISOString()}.png`
-  saveImage(workOrder.number, url, file, filename)
-  */
   
   console.log('*** integration test complete!')
 }
@@ -174,15 +164,3 @@ function listWorkOrdersByUserId(id: number): void {
     assert(workOrdersListed.success, `WorkOrders error: ${workOrdersListed.error}`)
   })
 }
-
-/*
-function saveImage(number: number, url: string, file: File, filename: string): void {
-  const headers = { "Content-Type": "multipart/form-data" }
-  const formdata = new FormData()
-  formdata.append('number', number.toString())
-  formdata.append('url', url)
-  formdata.append('imagefilename', filename)
-  formdata.append('image', file, filename)
-  call(saveImageUrl, post, headers, formdata, () => ImageUrl.fail('Save image failed.', number, url))
-}
-*/
