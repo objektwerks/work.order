@@ -28,7 +28,8 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
 const post = 'POST'
 const headers: Record<string, string> = {
-  "Content-Type": "application/json charset=utf-8"
+  "Content-Type": "application/json charset=utf-8",
+  'Accept': 'application/json'
 }
 
 test()
