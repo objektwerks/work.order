@@ -35,15 +35,15 @@ Database
 --------
 1. npm run ddl
 
-Dev
----
-1. npm run build
-2. npm run dev
-
 Test
 ----
 1. npm run build
 2. npm run test
+
+Dev
+---
+1. npm run build
+2. npm run dev
 
 Prod
 ----
