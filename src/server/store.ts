@@ -22,52 +22,55 @@ export function disconnect(): void {
   console.log('*** store disconnected from database.')
 }
 
-export function listWorkOrdersByUserId(id: number): WorkOrder[] {
-  const list: WorkOrder[] = []
+export function listWorkOrdersByUserId(id: number, workOrders: WorkOrder[]): void {
   connection.query(`select * from work_order where homeownerId = ${id} or serviceProviderId = ${id} order by opened desc`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('listWorkOrdersByUserId', error.message)
+      throw error.message
     } else {
       rows.forEach((row: RowDataPacket) => {
-        list.push(
+        workOrders.push(
           new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
         )
       })
     }
   })
-  return list
 }
 
-export function listUsersByRole(role: string): User[] {
-  const list: User[] = []
+export function listUsersByRole(role: string, users: User[]): void {
   connection.query(`select * from user where role = ${role} order by name asc`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('listUsersByRole', error.message)
+      throw error.message
     } else {
       rows.forEach((row: RowDataPacket) => {
-        list.push(
+        users.push(
           new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
         )
       })
     }
   })
-  return list
 }
 
-export function getUserByEmailAddressPin(emailAddress: string, pin: string): User {
-  const list: User[] = []
+export function getUserByEmailAddressPin(emailAddress: string, pin: string, user: User): void {
   connection.query(`select * from user where emailAddress = ${emailAddress} and pin = ${pin}`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('getUserByEmailAddressPin', error.message)
+      throw error.message
     } else {
+      const list: User[] = []
       rows.forEach((row: RowDataPacket) => {
         list.push(
           new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
         )
       })
+      if (list.length > 0) {
+        user = list[0]
+      } else {
+        throw 'store.saveUser failed.'
+      }
     }
   })
-  return (list.length > 0) ? list[0] : User.empty()
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrder {

@@ -12,6 +12,7 @@ import {
   SaveUser,
   UserSaved,
   SaveWorkOrder,
+  WorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed
@@ -47,36 +48,31 @@ export function register(register: Register): Registered {
 }
 
 export function login(login: Login): LoggedIn {
-  let loggedIn: LoggedIn
   try {
-    const user: User = store.getUserByEmailAddressPin(login.emailAddress, login.pin)
-    if (user.id > 0) {
-      const serviceProviders = store.listUsersByRole(serviceProvider)
-      const workOrders = store.listWorkOrdersByUserId(user.id)
-      loggedIn = LoggedIn.success(user, serviceProviders, workOrders)
-      log('login', `succeeded for ${login.emailAddress}`)
-    } else {
-      loggedIn = LoggedIn.fail(`Login failed for ${login.emailAddress}`)
-      log('login', `failed for ${login.emailAddress}`)
-    }
+    let user: User = User.empty()
+    let serviceProviders: User[] = []
+    let workOrders: WorkOrder[] = []
+    store.getUserByEmailAddressPin(login.emailAddress, login.pin, user)
+    store.listUsersByRole(serviceProvider, serviceProviders)
+    store.listWorkOrdersByUserId(user.id, workOrders)
+    log('login', `succeeded for ${login.emailAddress}`)
+    return LoggedIn.success(user, serviceProviders, workOrders)
   } catch(error) {
-    loggedIn = LoggedIn.fail(`Login failed for ${login.emailAddress}`)
     log('login', `failed error: ${error} for ${login.emailAddress}`)
+    return LoggedIn.fail(`Login failed for ${login.emailAddress}`)
   }
-  return loggedIn
 }
 
 export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
-  let listed: WorkOrdersListed
   try {
-    const list = store.listWorkOrdersByUserId(id)
-    listed = WorkOrdersListed.success(id, list)
+    let workOrders: WorkOrder[] = []
+    store.listWorkOrdersByUserId(id, workOrders)
+    return WorkOrdersListed.success(id, workOrders)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
   } catch(error) {
-    listed = WorkOrdersListed.fail(id, 'List work orders by user id failed.')
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
+    return WorkOrdersListed.fail(id, 'List work orders by user id failed.')
   }
-  return listed
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrderSelected {
