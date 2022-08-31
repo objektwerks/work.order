@@ -40,7 +40,7 @@ export function register(register: Register): Registered {
     const user = new User(id, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
     id = store.addUser(user)
-    log('register', `user id: ${id.toString()}`)
+    log('register', `new user id: ${id.toString()}`)
     if (id > 0) {
       registered = Registered.success(pin)
       log('register', `succeeded for ${register.emailAddress}`)
