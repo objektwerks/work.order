@@ -50,8 +50,8 @@ export function register(register: Register): Registered {
 export function login(login: Login): LoggedIn {
   try {
     let user: User = User.empty()
-    let serviceProviders: User[] = []
-    let workOrders: WorkOrder[] = []
+    const serviceProviders: User[] = []
+    const workOrders: WorkOrder[] = []
     store.getUserByEmailAddressPin(login.emailAddress, login.pin, user)
     store.listUsersByRole(serviceProvider, serviceProviders)
     store.listWorkOrdersByUserId(user.id, workOrders)
@@ -65,7 +65,7 @@ export function login(login: Login): LoggedIn {
 
 export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
   try {
-    let workOrders: WorkOrder[] = []
+    const workOrders: WorkOrder[] = []
     store.listWorkOrdersByUserId(id, workOrders)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
     return WorkOrdersListed.success(id, workOrders)
