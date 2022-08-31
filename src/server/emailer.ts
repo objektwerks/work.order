@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer'
-import SMTPTransport from 'nodemailer/lib/smtp-transport'
+import Mail from 'nodemailer/lib/smtp-transport'
 import { SentMessageInfo } from 'nodemailer/lib/sendmail-transport'
 
 const sender = process.env.WORK_ORDER_EMAIL_SENDER as string
-const options: SMTPTransport.Options = {
+const options: Mail.Options = {
   host: process.env.WORK_ORDER_EMAIL_HOST,
   port: parseInt( process.env.WORK_ORDER_EMAIL_PORT ?? '587' ),
   secure: false,
