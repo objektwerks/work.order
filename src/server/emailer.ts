@@ -1,4 +1,4 @@
-import nodemailer, { Transporter } from 'nodemailer'
+import nodemailer from 'nodemailer'
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
 import { SentMessageInfo } from 'nodemailer/lib/sendmail-transport'
 
@@ -13,7 +13,7 @@ const options: SMTPTransport.Options = {
   },
   logger:true
 }
-const transporter: Transporter<SMTPTransport.SentMessageInfo> = nodemailer.createTransport(options)
+const transporter = nodemailer.createTransport(options)
 
 export default () => {
   console.log('*** emailer connected ...')
