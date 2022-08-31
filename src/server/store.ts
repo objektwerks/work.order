@@ -134,7 +134,10 @@ export function addUser(user: User): number {
 
 export function saveUser(user: User): number {
   let count = 0
-  connection.query('update user set ? where id = ?', [user, user.id], (error: Error | null, result: OkPacket) => {
+  connection
+    .query('update user set role = ?, name = ?, emailAddress = ?, streetAddress = ?, registered = ?, pin = ? where id = ?',
+     [user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin, user.id],
+     (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveUser', error.message)
     } else {
