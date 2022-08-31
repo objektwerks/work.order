@@ -86,8 +86,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
   return (list.length > 0) ? list[0] : WorkOrder.empty()
 }
 
-export function addWorkOrder(workOrder: WorkOrder): number {
-  let number = 0
+export function addWorkOrder(workOrder: WorkOrder): void {
   connection
     .query('insert into work_order (homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?)',
      [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed],
@@ -95,11 +94,10 @@ export function addWorkOrder(workOrder: WorkOrder): number {
     if (error) {
       log('addWorkOrder', error.message)
     } else {
-      number = result.insertId
-      log('addWorkOrder', `succeeded for number: ${number}`)
+      workOrder.number = result.insertId
+      log('addWorkOrder', `succeeded for number: ${workOrder.number}`)
     }
   })
-  return number
 }
 
 
@@ -119,8 +117,7 @@ export function saveWorkOrder(workOrder: WorkOrder): number {
   return count
 }
 
-export function addUser(user: User): number {
-  let id = 0
+export function addUser(user: User): void {
   connection
     .query('insert into user (role, name, emailAddress, streetAddress, registered, pin) values (?, ?, ?, ?, ?, ?)',
      [user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin],
@@ -128,11 +125,10 @@ export function addUser(user: User): number {
     if (error) {
       log('addUser', error.message)
     } else {
-      id = result.insertId
-      log('addUser', `succeeded for id: ${id}`)
+      user.id = result.insertId
+      log('addUser', `succeeded for id: ${user.id}`)
     }
   })
-  return id
 }
 
 export function saveUser(user: User): number {

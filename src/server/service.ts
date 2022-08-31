@@ -33,26 +33,17 @@ export function shutdown(): void {
 }
 
 export function register(register: Register): Registered {
-  let registered: Registered
   try {
     const pin = newPin()
-    let id = 0
-    const user = new User(id, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
+    const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
-    id = store.addUser(user)
-    log('register', `new user id: ${id.toString()}`)
-    if (id > 0) {
-      registered = Registered.success(pin)
-      log('register', `succeeded for ${register.emailAddress}`)
-    } else {
-      registered = Registered.fail(`Register failed for ${register.emailAddress}`)
-      log('register', `failed for: ${register.emailAddress}`)
-    }
+    store.addUser(user)
+    log('register', `succeeded for ${register.emailAddress}`)
+    return Registered.success(pin)
   } catch (error) {
-    registered = Registered.fail(`register failed for ${register.emailAddress}`)
     log('register', `failed error: ${error} for ${register.emailAddress}`)
+    return Registered.fail(`register failed for ${register.emailAddress}`)
   }
-  return registered
 }
 
 export function login(login: Login): LoggedIn {
@@ -107,17 +98,14 @@ export function getWorkOrderByNumber(number: number): WorkOrderSelected {
 }
 
 export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
-  let added: WorkOrderSaved
   try {
-    const number = store.addWorkOrder(saveWorkOrder.workOrder)
-    saveWorkOrder.workOrder.number = number
-    added = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
-    log('addWorkOrder', `succeeded for number: ${number}`)
+    store.addWorkOrder(saveWorkOrder.workOrder)
+    log('addWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
+    return WorkOrderSaved.success(saveWorkOrder.workOrder.number)
   } catch(error) {
-    added = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed.')
     log('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed.')
   }
-  return added
 }
 
 export function saveWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
