@@ -114,7 +114,7 @@ export function addUser(user: User): number {
 
 export function saveWorkOrder(workOrder: WorkOrder): number {
   let count = 0
-  connection.query('update work_order SET ? where number = ?', [workOrder, workOrder.number], (error: Error | null, result: OkPacket) => {
+  connection.query('update work_order set ? where number = ?', [workOrder, workOrder.number], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveWorkOrder', error.message)
     } else {
@@ -127,7 +127,7 @@ export function saveWorkOrder(workOrder: WorkOrder): number {
 
 export function saveUser(user: User): number {
   let count = 0
-  connection.query('update user SET ? where id = ?', [user, user.id], (error: Error | null, result: OkPacket) => {
+  connection.query('update user set ? where id = ?', [user, user.id], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveUser', error.message)
     } else {
@@ -140,7 +140,7 @@ export function saveUser(user: User): number {
 
 export function saveImageUrl(number: number, url: string): number {
   let count = 0
-  connection.query('update work_order SET imageUrl = ? where number = ?', [url, number], (error: Error | null, result: OkPacket) => {
+  connection.query('update work_order set imageUrl = ? where number = ?', [url, number], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveImageUrl', error.message)
     } else {
