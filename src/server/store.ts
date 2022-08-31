@@ -101,20 +101,22 @@ export function addWorkOrder(workOrder: WorkOrder): void {
 }
 
 
-export function saveWorkOrder(workOrder: WorkOrder): number {
-  let count = 0
+export function saveWorkOrder(workOrder: WorkOrder): void {
   connection
     .query('update work_order set homeownerId = ?, serviceProviderId = ?, title = ?, issue = ?, imageUrl = ?, resolution = ?, opened = ?, closed = ? where number = ?',
      [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed, workOrder.number], 
      (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveWorkOrder', error.message)
+      throw error.message
     } else {
-      count = result.affectedRows
-      log('saveWorkOrder', `succeeded for number ${workOrder.number}`)
+      if (result.affectedRows > 0) {
+        log('saveWorkOrder', `succeeded for number: ${workOrder.number}`)
+      } else {
+        throw 'store.saveWorkOrder failed.'
+      }
     }
   })
-  return count
 }
 
 export function addUser(user: User): void {
@@ -131,31 +133,35 @@ export function addUser(user: User): void {
   })
 }
 
-export function saveUser(user: User): number {
-  let count = 0
+export function saveUser(user: User): void {
   connection
     .query('update user set role = ?, name = ?, emailAddress = ?, streetAddress = ?, registered = ?, pin = ? where id = ?',
      [user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin, user.id],
      (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveUser', error.message)
+      throw error.message
     } else {
-      count = result.affectedRows
-      log('saveUser', `succeeded for id ${user.id}`)
+      if (result.affectedRows > 0) {
+        log('saveUser', `succeeded for id: ${user.id}`)
+      } else {
+        throw 'store.saveUser failed.'
+      }
     }
   })
-  return count
 }
 
-export function saveImageUrl(number: number, url: string): number {
-  let count = 0
+export function saveImageUrl(number: number, url: string): void {
   connection.query('update work_order set imageUrl = ? where number = ?', [url, number], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveImageUrl', error.message)
+      throw error.message
     } else {
-      count = result.affectedRows
-      log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
+      if (result.affectedRows > 0) {
+        log('saveImageUrl', `succeeded for number: ${number} and url: ${url}`)
+      } else {
+        throw 'store.saveImageUrl failed.'
+      }
     }
   })
-  return count
 }

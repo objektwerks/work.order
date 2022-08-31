@@ -109,55 +109,34 @@ export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
 }
 
 export function saveWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
-  let saved: WorkOrderSaved
   try {
-    const count = store.saveWorkOrder(saveWorkOrder.workOrder)
-    if (count > 0) {
-      saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
-      log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
-    } else {
-      saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
-      log('saveWorkOrder', `failed for ${saveWorkOrder}`)
-    }
+    store.saveWorkOrder(saveWorkOrder.workOrder)
+    log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
+    return WorkOrderSaved.success(saveWorkOrder.workOrder.number)
   } catch(error) {
-    saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
     log('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
   }
-  return saved
 }
 
 export function saveUser(saveUser: SaveUser): UserSaved {
-  let saved: UserSaved
   try {
-    const count = store.saveUser(saveUser.user)
-    if (count > 0) {
-      saved = UserSaved.success(saveUser.user.id)
-      log('saveUser', `succeeded for id: ${saveUser.user.id}`)
-    } else {
-      saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
-      log('saveUser', `failed for ${saveUser}`)
-    }
+    store.saveUser(saveUser.user)
+    log('saveUser', `succeeded for id: ${saveUser.user.id}`)
+    return UserSaved.success(saveUser.user.id)
   } catch(error) {
-    saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
     log('saveUser', `failed: ${error} for ${saveUser}`)
+    return UserSaved.fail(saveUser.user.id, 'Save user failed.')
   }
-  return saved
 }
 
 export function saveImageUrl(number: number, url: string): ImageSaved {
-  let saved: ImageSaved
   try {
-    const count = store.saveImageUrl(number, url)
-    if (count > 0) {
-      saved = ImageSaved.success(number, url)
-      log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
-    } else {
-      saved = ImageSaved.fail(number, url, 'Save image url failed.')
-      log('saveImageUrl', `failed for number: ${number} url: ${url}`)
-    }
+    store.saveImageUrl(number, url)
+    log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
+    return ImageSaved.success(number, url)
   } catch(error) {
-    saved = ImageSaved.fail(number, url, 'Save image url failed.')
     log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
+    return ImageSaved.fail(number, url, 'Save image url failed.')
   }
-  return saved
 }
