@@ -88,7 +88,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder {
 
 export function addWorkOrder(workOrder: WorkOrder): number {
   let number = 0
-  connection.query('insert into work_order set ?', [workOrder], (error: Error | null, result: OkPacket) => {
+  connection.query('insert into work_order values ?', [workOrder], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('addWorkOrder', error.message)
     } else {
@@ -101,7 +101,7 @@ export function addWorkOrder(workOrder: WorkOrder): number {
 
 export function addUser(user: User): number {
   let id = 0
-  connection.query('insert into user set ?', [user], (error: Error | null, result: OkPacket) => {
+  connection.query('insert into user values ?', [user], (error: Error | null, result: OkPacket) => {
     if (error) {
       log('addUser', error.message)
     } else {
