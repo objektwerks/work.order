@@ -135,7 +135,7 @@ Curl
 ----
 * curl --header "Content-Type: application/json" \
        --request POST \
-       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"your@emailaddress.com","streetAddress":"123 stone st"}' \
+       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"funkwerks@runbox.com","streetAddress":"123 stone st"}' \
        http://127.0.0.1:3000/register
 
 License
