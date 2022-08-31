@@ -26,6 +26,7 @@ export function send(recipient: string, pin: string, subject: string, text: stri
     subject: subject,
     text: `${pin} ${text}`
   }
+  console.log('*** emailer.send message: %o', message)
   transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
       console.log(`*** emailer failed: ${error}`)
