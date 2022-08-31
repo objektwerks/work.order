@@ -21,7 +21,7 @@ const subjectRegistration = `Work Order Registration`
 const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`
 
 function log(method: string, message:  string): void {
-  console.log(`*** service.${method}: `, message)
+  console.log(`*** service.${method}: %s`, message)
 }
 
 export default () => {
