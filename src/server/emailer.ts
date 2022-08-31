@@ -29,10 +29,10 @@ export function send(recipient: string, pin: string, subject: string, text: stri
   console.log('*** emailer.send message: %o', message)
   transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
-      console.log(`*** emailer failed: ${error}`)
+      console.log('*** emailer failed with error: %o ', error)
       throw error
     } else {
-      console.log(`*** emailer sent: ${info.messageId} to: ${message.to}`)
+      console.log('*** emailer sent message id: %s to: %s', info.messageId, message.to)
     }
   })
 }
