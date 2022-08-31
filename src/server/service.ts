@@ -67,8 +67,8 @@ export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
   try {
     let workOrders: WorkOrder[] = []
     store.listWorkOrdersByUserId(id, workOrders)
-    return WorkOrdersListed.success(id, workOrders)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
+    return WorkOrdersListed.success(id, workOrders)
   } catch(error) {
     log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
     return WorkOrdersListed.fail(id, 'List work orders by user id failed.')
