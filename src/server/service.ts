@@ -76,21 +76,15 @@ export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
 }
 
 export function getWorkOrderByNumber(number: number): WorkOrderSelected {
-  let selected: WorkOrderSelected
   try {
-    const workOrder = store.getWorkOrderByNumber(number)
-    if (workOrder.number === 0) {
-      selected = WorkOrderSelected.success(workOrder)
-      log('getWorkOrderByNumber', `succeeded for number: ${number}`)
-    } else {
-      selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
-      log('getWorkOrderByNumber', `succeeded for number: ${number}`)
-    }
+    let workOrder = WorkOrder.empty()
+    store.getWorkOrderByNumber(number, workOrder)
+    log('getWorkOrderByNumber', `succeeded for number: ${number}`)
+    return WorkOrderSelected.success(workOrder)
   } catch(error) {
-    selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
+    return WorkOrderSelected.fail(number, 'Get work order by number failed.')
   }
-  return selected
 }
 
 export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {

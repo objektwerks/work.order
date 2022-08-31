@@ -73,20 +73,25 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string, user
   })
 }
 
-export function getWorkOrderByNumber(number: number): WorkOrder {
-  const list: WorkOrder[] = []
+export function getWorkOrderByNumber(number: number, workOrder: WorkOrder): void {
   connection.query(`select * from work_order where number = ${number}`, (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('getWorkOrderByNumber', error.message)
+      throw error.message
     } else {
+      const list: WorkOrder[] = []
       rows.forEach((row: RowDataPacket) => {
         list.push(
           new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
         )
       })
+      if (list.length > 0) {
+        workOrder = list[0]
+      } else {
+        throw 'store.getWorkOrderByNumber failed.'
+      }
     }
   })
-  return (list.length > 0) ? list[0] : WorkOrder.empty()
 }
 
 export function addWorkOrder(workOrder: WorkOrder): void {
