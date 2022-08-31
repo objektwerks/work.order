@@ -105,7 +105,10 @@ export function addWorkOrder(workOrder: WorkOrder): number {
 
 export function saveWorkOrder(workOrder: WorkOrder): number {
   let count = 0
-  connection.query('update work_order set ? where number = ?', [workOrder, workOrder.number], (error: Error | null, result: OkPacket) => {
+  connection
+    .query('update work_order set homeownerId = ?, serviceProviderId = ?, title = ?, issue = ?, imageUrl = ?, resolution = ?, opened = ?, closed = ? where number = ?',
+     [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed, workOrder.number], 
+     (error: Error | null, result: OkPacket) => {
     if (error) {
       log('saveWorkOrder', error.message)
     } else {
