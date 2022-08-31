@@ -102,6 +102,20 @@ export function addWorkOrder(workOrder: WorkOrder): number {
   return number
 }
 
+
+export function saveWorkOrder(workOrder: WorkOrder): number {
+  let count = 0
+  connection.query('update work_order set ? where number = ?', [workOrder, workOrder.number], (error: Error | null, result: OkPacket) => {
+    if (error) {
+      log('saveWorkOrder', error.message)
+    } else {
+      count = result.affectedRows
+      log('saveWorkOrder', `succeeded for number ${workOrder.number}`)
+    }
+  })
+  return count
+}
+
 export function addUser(user: User): number {
   let id = 0
   connection
@@ -116,19 +130,6 @@ export function addUser(user: User): number {
     }
   })
   return id
-}
-
-export function saveWorkOrder(workOrder: WorkOrder): number {
-  let count = 0
-  connection.query('update work_order set ? where number = ?', [workOrder, workOrder.number], (error: Error | null, result: OkPacket) => {
-    if (error) {
-      log('saveWorkOrder', error.message)
-    } else {
-      count = result.affectedRows
-      log('saveWorkOrder', `succeeded for number ${workOrder.number}`)
-    }
-  })
-  return count
 }
 
 export function saveUser(user: User): number {
