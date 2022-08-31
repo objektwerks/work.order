@@ -9,8 +9,9 @@ import {
   Registered,
   ImageSaved,
   User,
+  SaveUser,
   UserSaved,
-  WorkOrder,
+  SaveWorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed
@@ -104,54 +105,54 @@ export function getWorkOrderByNumber(number: number): WorkOrderSelected {
   return selected
 }
 
-export function addWorkOrder(workOrder: WorkOrder): WorkOrderSaved {
+export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
   let added: WorkOrderSaved
   try {
-    const number = store.addWorkOrder(workOrder)
-    workOrder.number = number
-    added = WorkOrderSaved.success(workOrder.number)
+    const number = store.addWorkOrder(saveWorkOrder.workOrder)
+    saveWorkOrder.workOrder.number = number
+    added = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
     log('addWorkOrder', `succeeded for number: ${number}`)
   } catch(error) {
-    added = WorkOrderSaved.fail(workOrder.number, 'Add work order failed.')
-    log('addWorkOrder', `failed: ${error} for ${workOrder}`)
+    added = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed.')
+    log('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
   }
   return added
 }
 
-export function saveWorkOrder(workOrder: WorkOrder): WorkOrderSaved {
+export function saveWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
   let saved: WorkOrderSaved
   try {
-    const count = store.saveWorkOrder(workOrder)
+    const count = store.saveWorkOrder(saveWorkOrder.workOrder)
     if (count > 0) {
-      saved = WorkOrderSaved.success(workOrder.number)
-      log('saveWorkOrder', `succeeded for number: ${workOrder.number}`)
+      saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+      log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
     } else {
-      saved = WorkOrderSaved.fail(workOrder.number, 'Save work order failed.')
-      log('saveWorkOrder', `failed for ${workOrder}`)
+      saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
+      log('saveWorkOrder', `failed for ${saveWorkOrder}`)
     }
   } catch(error) {
-    saved = WorkOrderSaved.fail(workOrder.number, 'Save work order failed.')
-    log('saveWorkOrder', `failed: ${error} for ${workOrder}`)
+    saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
+    log('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
   }
   return saved
 }
 
-export function saveUser(user: User): UserSaved {
-  let status: UserSaved
+export function saveUser(saveUser: SaveUser): UserSaved {
+  let saved: UserSaved
   try {
-    const count = store.saveUser(user)
+    const count = store.saveUser(saveUser.user)
     if (count > 0) {
-      status = UserSaved.success(user.id)
-      log('saveUser', `succeeded for id: ${user.id}`)
+      saved = UserSaved.success(saveUser.user.id)
+      log('saveUser', `succeeded for id: ${saveUser.user.id}`)
     } else {
-      status = UserSaved.fail(user.id, 'Save user failed.')
-      log('saveUser', `failed for ${user}`)
+      saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
+      log('saveUser', `failed for ${saveUser}`)
     }
   } catch(error) {
-    status = UserSaved.fail(user.id, 'Save user failed.')
-    log('saveUser', `failed: ${error} for ${user}`)
+    saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
+    log('saveUser', `failed: ${error} for ${saveUser}`)
   }
-  return status
+  return saved
 }
 
 export function saveImageUrl(number: number, url: string): ImageSaved {

@@ -2,17 +2,10 @@ import assert from 'assert'
 import * as service from '../server/service.js'
 import { 
   Login,
-  LoggedIn,
   Register,
-  Registered,
-  User,
   SaveUser,
-  UserSaved,
   WorkOrder,
-  SaveWorkOrder,
-  WorkOrderSaved,
-  WorkOrdersListed,
-  WorkOrderSelected
+  SaveWorkOrder
 } from '../server/entity.js'
 
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
@@ -24,29 +17,41 @@ function test() {
   console.log('*** running integration test ...')
 
   // register
-  const serviceProviderRegister = new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st")
-  const homeownerRegister = new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st")
+  const serviceProviderRegistered = service.register(new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"))
+  const homeownerRegistered = service.register(new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"))
+  assert(serviceProviderRegistered.success)
+  assert(homeownerRegistered.success)
 
   // login
-  const serviceProviderLogin = new Login(serviceProviderEmail, 'serviceProviderPin')
-  const homeownerLogin = new Login(homeownerEmail, 'homeownerPin')
+  const serviceProviderLoggedIn = service.login(new Login(serviceProviderEmail, serviceProviderRegistered.pin))
+  const homeownerLoggedIn = service.login(new Login(homeownerEmail, homeownerRegistered.pin))
+  assert(serviceProviderLoggedIn.success)
+  assert(homeownerLoggedIn.success)
 
   // work order add
-  workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProvidersLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-  
+  const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  const workOrderAdded = service.addWorkOrder(new SaveWorkOrder(workOrder))
+  assert(workOrderAdded.success)
+
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
+  const workOrderSaved = service.saveWorkOrder(new SaveWorkOrder(workOrder))
+  assert(workOrderSaved.success)
 
   // user save
-  const serviceProviderUser = new SaveUser(serviceProvidersLoggedIn.user)
-  const homeownerUser = new SaveUser(homeownerLoggedIn.user)
+  const serviceProviderUserSaved = service.saveUser(new SaveUser(serviceProviderLoggedIn.user))
+  const homeownerUserSaved = service.saveUser(new SaveUser(homeownerLoggedIn.user))
+  assert(serviceProviderUserSaved.success)
+  assert(homeownerUserSaved.success)
 
   // work order get
-  getWorkOrderByNumber(workOrder.number)
+  const workOrderSelected = service.getWorkOrderByNumber(workOrder.number)
+  assert(workOrderSelected.success)
 
   // work orders list
-  listWorkOrdersByUserId(homeownerLoggedIn.user.id)
+  const workOrdersListed = service.listWorkOrdersByUserId(homeownerLoggedIn.user.id)
+  assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')
 }
