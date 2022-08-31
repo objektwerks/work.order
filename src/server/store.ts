@@ -56,7 +56,7 @@ export function listUsersByRole(role: string, users: User[]): void {
   })
 }
 
-export function getUserByEmailAddressPin(emailAddress: string, pin: string, user: User): void {
+export function getUserByEmailAddressPin(emailAddress: string, pin: string, user: User[]): void {
   connection
     .query(`select * from user where emailAddress = ${emailAddress} and pin = ${pin}`,
       (error: Error, rows: RowDataPacket[]) => {
@@ -64,22 +64,21 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string, user
       log('getUserByEmailAddressPin', error.message)
       throw error.message
     } else {
-      const list: User[] = []
       rows.forEach((row: RowDataPacket) => {
-        list.push(
+        user.push(
           new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
         )
       })
-      if (list.length > 0) {
-        user = list[0]
+      if (user.length > 0) {
+        user[0]
       } else {
-        throw 'store.saveUser failed.'
+        throw 'store.getUserByEmailAddressPin failed.'
       }
     }
   })
 }
 
-export function getWorkOrderByNumber(number: number, workOrder: WorkOrder): void {
+export function getWorkOrderByNumber(number: number, workOrder: WorkOrder[]): void {
   connection
     .query(`select * from work_order where number = ${number}`,
       (error: Error, rows: RowDataPacket[]) => {
@@ -87,14 +86,13 @@ export function getWorkOrderByNumber(number: number, workOrder: WorkOrder): void
       log('getWorkOrderByNumber', error.message)
       throw error.message
     } else {
-      const list: WorkOrder[] = []
       rows.forEach((row: RowDataPacket) => {
-        list.push(
+        workOrder.push(
           new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
         )
       })
-      if (list.length > 0) {
-        workOrder = list[0]
+      if (workOrder.length > 0) {
+        workOrder[0]
       } else {
         throw 'store.getWorkOrderByNumber failed.'
       }

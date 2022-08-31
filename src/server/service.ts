@@ -49,14 +49,14 @@ export function register(register: Register): Registered {
 
 export function login(login: Login): LoggedIn {
   try {
-    let user: User = User.empty()
+    const user: User[] = []
     const serviceProviders: User[] = []
     const workOrders: WorkOrder[] = []
     store.getUserByEmailAddressPin(login.emailAddress, login.pin, user)
     store.listUsersByRole(serviceProvider, serviceProviders)
-    store.listWorkOrdersByUserId(user.id, workOrders)
+    store.listWorkOrdersByUserId(user[0].id, workOrders)
     log('login', `succeeded for ${login.emailAddress}`)
-    return LoggedIn.success(user, serviceProviders, workOrders)
+    return LoggedIn.success(user[0], serviceProviders, workOrders)
   } catch(error) {
     log('login', `failed error: ${error} for ${login.emailAddress}`)
     return LoggedIn.fail(`Login failed for ${login.emailAddress}`)
@@ -77,10 +77,10 @@ export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
 
 export function getWorkOrderByNumber(number: number): WorkOrderSelected {
   try {
-    let workOrder = WorkOrder.empty()
+    const workOrder: WorkOrder[] = []
     store.getWorkOrderByNumber(number, workOrder)
     log('getWorkOrderByNumber', `succeeded for number: ${number}`)
-    return WorkOrderSelected.success(workOrder)
+    return WorkOrderSelected.success(workOrder[0])
   } catch(error) {
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
     return WorkOrderSelected.fail(number, 'Get work order by number failed.')
