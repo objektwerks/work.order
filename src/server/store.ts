@@ -24,7 +24,7 @@ export function disconnect(): void {
 
 export function listWorkOrdersByUserId(id: number, workOrders: WorkOrder[]): void {
   connection
-    .query(`select * from work_order where homeownerId = ${id} or serviceProviderId = ${id} order by opened desc`,
+    .query(`select * from work_order where homeownerId = '${id}' or serviceProviderId = '${id}' order by opened desc`,
       (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('listWorkOrdersByUserId', error.message)
@@ -41,7 +41,7 @@ export function listWorkOrdersByUserId(id: number, workOrders: WorkOrder[]): voi
 
 export function listUsersByRole(role: string, users: User[]): void {
   connection
-    .query(`select * from user where role = ${role} order by name asc`,
+    .query(`select * from user where role = '${role}' order by name asc`,
       (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('listUsersByRole', error.message)
@@ -58,7 +58,7 @@ export function listUsersByRole(role: string, users: User[]): void {
 
 export function getUserByEmailAddressPin(emailAddress: string, pin: string, user: User[]): void {
   connection
-    .query(`select * from user where emailAddress = ${emailAddress} and pin = ${pin}`,
+    .query(`select * from user where emailAddress = '${emailAddress}' and pin = '${pin}'`,
       (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('getUserByEmailAddressPin', error.message)
@@ -80,7 +80,7 @@ export function getUserByEmailAddressPin(emailAddress: string, pin: string, user
 
 export function getWorkOrderByNumber(number: number, workOrder: WorkOrder[]): void {
   connection
-    .query(`select * from work_order where number = ${number}`,
+    .query(`select * from work_order where number = '${number}'`,
       (error: Error, rows: RowDataPacket[]) => {
     if (error) {
       log('getWorkOrderByNumber', error.message)
