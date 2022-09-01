@@ -38,7 +38,7 @@ export async function listUsersByRole(role: string): Promise<User[]> {
   const users: User[] = []
   rows.forEach((row: RowDataPacket) => {
     users.push(
-      new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
+      new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, row.pin)
     )
   })
   return users
@@ -51,7 +51,7 @@ export async function getUserByEmailAddressPin(emailAddress: string, pin: string
   const users: User[] = []
   rows.forEach((row: RowDataPacket) => {
     users.push(
-      new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, '')
+      new User(row.id, row.role, row.name, row.emailAddress, row.streetAddress, row.registered, row.pin)
     )
   })
   return users.length > 0 ? users[0] : User.empty()

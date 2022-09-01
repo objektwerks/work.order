@@ -31,8 +31,9 @@ async function test() {
   // work order add
   const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
   const workOrderAdded = await service.addWorkOrder(new SaveWorkOrder(workOrder))
+  workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success)
-
+  
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()

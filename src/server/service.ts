@@ -102,7 +102,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
     number = await store.addWorkOrder(saveWorkOrder.workOrder)
     if (number > 0) {
       log('addWorkOrder', `succeeded for number: ${number}`)
-      added = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+      added = WorkOrderSaved.success(number)
     } else {
       log('addWorkOrder', `failed for: ${saveWorkOrder}`)
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
