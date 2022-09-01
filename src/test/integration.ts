@@ -1,5 +1,5 @@
 import assert from 'assert'
-import * as service from '../server/service.js'
+import * as handler from '../server/handler.js'
 import { 
   Login,
   Register,
@@ -17,41 +17,41 @@ async function test() {
   console.log('*** running integration test ...')
 
   // register
-  const serviceProviderRegistered = await service.register(new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"))
-  const homeownerRegistered = await service.register(new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"))
+  const serviceProviderRegistered = await handler.register(new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"))
+  const homeownerRegistered = await handler.register(new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"))
   assert(serviceProviderRegistered.success)
   assert(homeownerRegistered.success)
 
   // login
-  const serviceProviderLoggedIn = await service.login(new Login(serviceProviderEmail, serviceProviderRegistered.pin))
-  const homeownerLoggedIn = await service.login(new Login(homeownerEmail, homeownerRegistered.pin))
+  const serviceProviderLoggedIn = await handler.login(new Login(serviceProviderEmail, serviceProviderRegistered.pin))
+  const homeownerLoggedIn = await handler.login(new Login(homeownerEmail, homeownerRegistered.pin))
   assert(serviceProviderLoggedIn.success)
   assert(homeownerLoggedIn.success)
 
   // work order add
   const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-  const workOrderAdded = await service.addWorkOrder(new SaveWorkOrder(workOrder))
+  const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder))
   workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success)
   
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
-  const workOrderSaved = await service.saveWorkOrder(new SaveWorkOrder(workOrder))
+  const workOrderSaved = await handler.saveWorkOrder(new SaveWorkOrder(workOrder))
   assert(workOrderSaved.success)
 
   // user save
-  const serviceProviderUserSaved = await service.saveUser(new SaveUser(serviceProviderLoggedIn.user))
-  const homeownerUserSaved = await service.saveUser(new SaveUser(homeownerLoggedIn.user))
+  const serviceProviderUserSaved = await handler.saveUser(new SaveUser(serviceProviderLoggedIn.user))
+  const homeownerUserSaved = await handler.saveUser(new SaveUser(homeownerLoggedIn.user))
   assert(serviceProviderUserSaved.success)
   assert(homeownerUserSaved.success)
 
   // work order get
-  const workOrderSelected = await service.getWorkOrderByNumber(workOrder.number)
+  const workOrderSelected = await handler.getWorkOrderByNumber(workOrder.number)
   assert(workOrderSelected.success)
 
   // work orders list
-  const workOrdersListed = await service.listWorkOrdersByUserId(homeownerLoggedIn.user.id)
+  const workOrdersListed = await handler.listWorkOrdersByUserId(homeownerLoggedIn.user.id)
   assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')
