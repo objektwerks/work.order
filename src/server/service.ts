@@ -97,7 +97,7 @@ export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSel
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   let added: WorkOrderSaved
-  let number: number = 0
+  let number = 0
   try {
     number = await store.addWorkOrder(saveWorkOrder.workOrder)
     if (number > 0) {
