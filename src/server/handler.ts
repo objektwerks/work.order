@@ -22,6 +22,10 @@ export default () => {
   console.log('*** handler running ...')
 }
 
+export function shutdown(): void {
+  service.shutdown()
+}
+
 export async function register(register: Register): Promise<Registered> {
   if (isRegisterValid(register)) return service.register(register)
   else return Registered.fail(`Register was invalid.`)

@@ -1,5 +1,5 @@
 import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
-import * as service from './service.js'
+import * as handler from './handler.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
@@ -13,7 +13,7 @@ let server: Server
 function shutdown(signal: string): void {
   server.close(() => {
     console.log(`*** [${signal}] server and router shutting down ...`)
-    service.shutdown()
+    handler.shutdown()
     console.log('*** server and router shutdown.')
     process.exit()
   })
@@ -30,35 +30,35 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', async (request, response) => {
-    response.json( await service.register( request.body ) )
+    response.json( await handler.register( request.body ) )
   })
   
   router.post('/login', async (request, response) => {
-    response.json( await service.login( request.body ) )
+    response.json( await handler.login( request.body ) )
   })
   
   router.post('/workorders/add', async (request, response) => {
-    response.json( await service.addWorkOrder( request.body ) )
+    response.json( await handler.addWorkOrder( request.body ) )
   })
 
   router.post('/workorders/save', async (request, response) => {
-    response.json( await service.saveWorkOrder( request.body ) )
+    response.json( await handler.saveWorkOrder( request.body ) )
   })
 
   router.get('/workorders/user/:id', async (request, response) => {
-    response.json( await service.listWorkOrdersByUserId( parseInt(request.params.id) ) )
+    response.json( await handler.listWorkOrdersByUserId( parseInt(request.params.id) ) )
   })
   
   router.get('/workorders/:number', async (request, response) => {
-    response.json( await service.getWorkOrderByNumber( parseInt(request.params.number) ) )
+    response.json( await handler.getWorkOrderByNumber( parseInt(request.params.number) ) )
   })
   
   router.post('/users/save', async (request, response) => {
-    response.json( await service.saveUser( request.body ) )
+    response.json( await handler.saveUser( request.body ) )
   })
 
   router.post('/image/save', images.single('image'), async (request, response) => {
-    response.json( await service.saveImageUrl(request.body.number, request.body.url) )
+    response.json( await handler.saveImageUrl(request.body.number, request.body.url) )
   })
   
   server = router.listen(port, host, () =>
