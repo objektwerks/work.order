@@ -220,6 +220,14 @@ export function isGreaterThanZero(number: number): boolean {
   return number > 0
 }
 
+export function isRegisterValid(register: Register): boolean {
+  return validateRegisterForm(register.role, register.name, register.emailAddress, register.streetAddress).length === 0
+}
+
+export function isLoginValid(login: Login): boolean {
+  return validateLoginForm(login.emailAddress, login.pin).length === 0
+}
+
 export function validateRegisterForm(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
   const errors = []
   if (!isRole(role)) errors.push(roleInvalidMessage)
