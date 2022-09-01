@@ -150,13 +150,20 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   return saved
 }
 
-export function saveImageUrl(number: number, url: string): ImageSaved {
+export async function saveImageUrl(number: number, url: string): Promise<ImageSaved> {
+  let saved: ImageSaved
   try {
-    store.saveImageUrl(number, url)
-    log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
-    return ImageSaved.success(number, url)
+    const affectedRows = await store.saveImageUrl(number, url)
+    if (affectedRows === 1) {
+      log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
+      saved = ImageSaved.success(number, url)
+    } else {
+      log('saveImageUrl', `failed for number: ${number} url: ${url}`)
+      saved = ImageSaved.fail(number, url, 'Saved image url failed.')
+    }
   } catch(error) {
     log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
-    return ImageSaved.fail(number, url, 'Save image url failed.')
+    saved = ImageSaved.fail(number, url, 'Save image url failed.')
   }
+  return saved
 }
