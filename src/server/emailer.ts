@@ -26,11 +26,10 @@ export async function send(recipient: string, subject: string, text: string): Pr
     subject: subject,
     text: text
   }
-  console.log('*** emailer message: %o', message)
   transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
-      console.log('*** emailer failed with error: %o ', error)
-      throw error
+      console.log('*** emailer failed with error: %s', error.message)
+      throw error.message
     } else {
       console.log('*** emailer sent message id: %s to: %s', info.messageId, message.to)
     }
