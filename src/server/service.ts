@@ -117,8 +117,8 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   let saved: WorkOrderSaved
   try {
-    const count = await store.saveWorkOrder(saveWorkOrder.workOrder)
-    if (count === 1) {
+    const affectedRows = await store.saveWorkOrder(saveWorkOrder.workOrder)
+    if (affectedRows === 1) {
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
     } else {
@@ -132,15 +132,22 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
   return saved
 }
 
-export function saveUser(saveUser: SaveUser): UserSaved {
+export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
+  let saved: UserSaved
   try {
-    store.saveUser(saveUser.user)
-    log('saveUser', `succeeded for id: ${saveUser.user.id}`)
-    return UserSaved.success(saveUser.user.id)
+    const affectedRows = await store.saveUser(saveUser.user)
+    if (affectedRows === 1) {
+      log('saveUser', `succeeded for id: ${saveUser.user.id}`)
+      saved = UserSaved.success(saveUser.user.id)
+    } else {
+      log('saveUser', `failed for id: ${saveUser.user.id}`)
+      saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
+    }
   } catch(error) {
     log('saveUser', `failed: ${error} for ${saveUser}`)
-    return UserSaved.fail(saveUser.user.id, 'Save user failed.')
+    saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
   }
+  return saved
 }
 
 export function saveImageUrl(number: number, url: string): ImageSaved {
