@@ -12,7 +12,6 @@ import {
   SaveUser,
   UserSaved,
   SaveWorkOrder,
-  WorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed
@@ -45,11 +44,11 @@ export async function register(register: Register): Promise<Registered> {
       registered = Registered.success(pin)
     } else {
       log('register', `failed for: ${register.emailAddress}`)
-      registered = Registered.fail(`Register failed for ${register.emailAddress}`)
+      registered = Registered.fail(`Register failed for: ${register.emailAddress}`)
     }
   } catch (error) {
-    log('register', `failed error: ${error} for ${register.emailAddress}`)
-    registered = Registered.fail(`register failed for ${register.emailAddress}`)
+    log('register', `failed error: ${error} for: ${register.emailAddress}`)
+    registered = Registered.fail(`register failed for: ${register.emailAddress}`)
   }
   return registered
 }
@@ -59,11 +58,11 @@ export async function login(login: Login): Promise<LoggedIn> {
     const user = await store.getUserByEmailAddressPin(login.emailAddress, login.pin)
     const serviceProviders = await store.listUsersByRole(serviceProvider)
     const workOrders = await store.listWorkOrdersByUserId(user.id)
-    log('login', `succeeded for ${login.emailAddress}`)
+    log('login', `succeeded for: ${login.emailAddress}`)
     return LoggedIn.success(user, serviceProviders, workOrders)
   } catch(error) {
-    log('login', `failed error: ${error} for ${login.emailAddress}`)
-    return LoggedIn.fail(`Login failed for ${login.emailAddress}`)
+    log('login', `failed error: ${error} for: ${login.emailAddress}`)
+    return LoggedIn.fail(`Login failed for: ${login.emailAddress}`)
   }
 }
 
@@ -96,26 +95,41 @@ export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSel
   return selected
 }
 
-export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
+export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
+  let added: WorkOrderSaved
+  let number: number = 0
   try {
-    store.addWorkOrder(saveWorkOrder.workOrder)
-    log('addWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
-    return WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+    number = await store.addWorkOrder(saveWorkOrder.workOrder)
+    if (number > 0) {
+      log('addWorkOrder', `succeeded for number: ${number}`)
+      added = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+    } else {
+      log('addWorkOrder', `failed for: ${saveWorkOrder}`)
+      added = WorkOrderSaved.fail(number, 'Add work order failed.')
+    }
   } catch(error) {
     log('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
-    return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed.')
+    added = WorkOrderSaved.fail(number, 'Add work order failed.')
   }
+  return added
 }
 
-export function saveWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {
+export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
+  let saved: WorkOrderSaved
   try {
-    store.saveWorkOrder(saveWorkOrder.workOrder)
-    log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
-    return WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+    const count = await store.saveWorkOrder(saveWorkOrder.workOrder)
+    if (count === 1) {
+      log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
+      saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+    } else {
+      log('saveWorkOrder', `failed for number: ${saveWorkOrder.workOrder.number}`)
+      saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
+    }
   } catch(error) {
     log('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
-    return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
+    saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
   }
+  return saved
 }
 
 export function saveUser(saveUser: SaveUser): UserSaved {
