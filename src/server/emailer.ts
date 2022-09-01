@@ -19,7 +19,7 @@ export default () => {
   console.log('*** emailer connected ...')
 }
 
-export function send(recipient: string, subject: string, text: string): void {
+export async function send(recipient: string, subject: string, text: string): Promise<void> {
   const message = {
     from: sender,
     to: recipient,
