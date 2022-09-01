@@ -15,7 +15,7 @@
     "clean": "rm -rf ./dist",
     "compile": "tsc --project ./tsconfig.json",
     "copy": "copyfiles --flat rc/*.ico rc/*.png rc/*.css rc/*.html ./dist/client",
-    "build": "npm run clean && npm run compile && npm run copy",
+    "build": "npm run clean && npm run compile && npm run copy && npm run lint",
     "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js",
     "test": "npm run ddl && node ./dist/test/integration.js"
