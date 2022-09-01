@@ -19,12 +19,12 @@ export default () => {
   console.log('*** emailer connected ...')
 }
 
-export function send(recipient: string, pin: string, subject: string, text: string): void {
+export function send(recipient: string, subject: string, text: string): void {
   const message = {
     from: sender,
     to: recipient,
     subject: subject,
-    text: `${pin} ${text}`
+    text: text
   }
   transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {

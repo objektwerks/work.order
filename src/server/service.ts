@@ -17,8 +17,7 @@ import {
   WorkOrdersListed
 } from './entity.js'
 
-const subjectRegistration = `Work Order Registration`
-const textRegistration = `is your new 7-character pin. Use it to login. Print this email and keep it in a safe place. Then delete this email!`
+const subject = 'Work Order Registration'
 
 function log(method: string, message:  string): void {
   console.log(`*** service.${method}: %s`, message)
@@ -37,7 +36,8 @@ export async function register(register: Register): Promise<Registered> {
   try {
     const pin = newPin()
     const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
-    emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
+    const text = `Your new 7-character pin is: ${pin} Use it to login. Print this email, keep it in a safe place and delete it!`
+    emailer.send(user.emailAddress, subject, text)
     const id = await store.addUser(user)
     if (id > 0) {
       log('register', `succeeded for: ${register.emailAddress}`)
