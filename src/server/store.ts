@@ -20,7 +20,8 @@ export function disconnect(): void {
 
 export async function listWorkOrdersByUserId(id: number): Promise<WorkOrder[]> {
   const [rows] = await connection
-    .query<RowDataPacket[]>('select * from work_order where homeownerId = ? or serviceProviderId = ? order by opened desc', [id, id])
+    .query<RowDataPacket[]>('select * from work_order where homeownerId = ? or serviceProviderId = ? order by opened desc',
+    [id, id])
   const workOrders: WorkOrder[] = []
   rows.forEach((row: RowDataPacket) => {
     workOrders.push(
@@ -32,7 +33,8 @@ export async function listWorkOrdersByUserId(id: number): Promise<WorkOrder[]> {
 
 export async function listUsersByRole(role: string): Promise<User[]> {
   const [rows] = await connection
-    .query<RowDataPacket[]>('select * from user where role = ? order by name asc', [role])
+    .query<RowDataPacket[]>('select * from user where role = ? order by name asc',
+    [role])
   const users: User[] = []
   rows.forEach((row: RowDataPacket) => {
     users.push(
@@ -44,7 +46,8 @@ export async function listUsersByRole(role: string): Promise<User[]> {
 
 export async function getUserByEmailAddressPin(emailAddress: string, pin: string): Promise<User> {
   const [rows] = await connection
-    .query<RowDataPacket[]>('select * from user where emailAddress = ? and pin = ?', [emailAddress, pin])
+    .query<RowDataPacket[]>('select * from user where emailAddress = ? and pin = ?',
+    [emailAddress, pin])
   const users: User[] = []
   rows.forEach((row: RowDataPacket) => {
     users.push(
@@ -56,7 +59,8 @@ export async function getUserByEmailAddressPin(emailAddress: string, pin: string
 
 export async function getWorkOrderByNumber(number: number): Promise<WorkOrder> {
   const [rows] = await connection
-    .query<RowDataPacket[]>('select * from work_order where number = ?', [number])
+    .query<RowDataPacket[]>('select * from work_order where number = ?',
+    [number])
   const workOrders: WorkOrder[] = []
   rows.forEach((row: RowDataPacket) => {
     workOrders.push(
@@ -96,6 +100,7 @@ export async function saveUser(user: User): Promise<number> {
 
 export async function saveImageUrl(number: number, url: string): Promise<number> {
   const [result] = await connection
-    .query<OkPacket>('update work_order set imageUrl = ? where number = ?', [url, number])
+    .query<OkPacket>('update work_order set imageUrl = ? where number = ?',
+    [url, number])
   return result.affectedRows
 }
