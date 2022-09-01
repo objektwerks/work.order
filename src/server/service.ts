@@ -54,7 +54,7 @@ export function login(login: Login): LoggedIn {
     const workOrders: WorkOrder[] = []
     store.getUserByEmailAddressPin(login.emailAddress, login.pin, user)
     store.listUsersByRole(serviceProvider, serviceProviders)
-    store.listWorkOrdersByUserId(user[0].id, workOrders)
+    store.listWorkOrdersByUserId(user[0].id, workOrders) // timing issue, no user!
     log('login', `succeeded for ${login.emailAddress}`)
     return LoggedIn.success(user[0], serviceProviders, workOrders)
   } catch(error) {
