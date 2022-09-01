@@ -186,31 +186,31 @@ const idInvalidMessage = 'An id must be greater than 0.'
 const numberInvalidMessage = 'A number must be greater than 0.'
 const definedInvalidMessage = 'This field may be empty, but must be defined.'
 
-function validateRole(role: string) {
+function isRole(role: string): boolean {
   return role === homeowner || role === serviceProvider
 }
 
-function validateEmailAddress(emailAddress: string) {
-  return validateLengthRange(emailAddress, 3, 128) && emailAddress.includes('@')
+function isEmailAddress(emailAddress: string): boolean {
+  return idLengthRange(emailAddress, 3, 128) && emailAddress.includes('@')
 }
 
-function validateLength(string: string, length: number) {
+function isLength(string: string, length: number): boolean {
   return string.length === length
 }
 
-function validateLengthRange(string: string, lower: number, upper: number) {
+function idLengthRange(string: string, lower: number, upper: number): boolean {
   return string.length >= lower && string.length <= upper
 }
 
-function validateGreaterThanZero(number: number) {
+function isGreaterThanZero(number: number): boolean {
   return number > 0
 }
 
-function validateGreaterThanOrEqualZero(number: number) {
+function isGreaterThanOrEqualZero(number: number): boolean {
   return number >= 0
 }
 
-function validateDefined(string: string) {
+function isDefined(string: string): boolean {
   let isDefined
   try {
     isDefined = string !== undefined && string !== null && string.length >= 0
@@ -220,48 +220,48 @@ function validateDefined(string: string) {
   return isDefined
 }
 
-export function validateRegister(role: string, name: string, emailAddress: string, streetAddress: string) {
+export function validateRegister(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
   const errors = []
-  if (!validateRole(role)) errors.push(roleInvalidMessage)
-  if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
-  if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
-  if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
+  if (!isRole(role)) errors.push(roleInvalidMessage)
+  if (!idLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
+  if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
+  if (!idLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
   return errors
 }
 
 export function validateLogin(emailAddress: string, pin: string) {
   const errors = []
-  if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
-  if (!validateLength(pin, 7)) errors.push(pinInvalidMessage)
+  if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
+  if (!isLength(pin, 7)) errors.push(pinInvalidMessage)
   return errors
 }
 
-export function validateWorkOrder(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string) {
+export function validateWorkOrder(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string): string[] {
   const errors = []
-  if (!validateGreaterThanOrEqualZero(number)) errors.push(numberInvalidMessage)
-  if (!validateGreaterThanZero(homeownerId)) errors.push(idInvalidMessage)
-  if (!validateGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage)
-  if (!validateLengthRange(title, 4, 64)) errors.push(definedInvalidMessage)
-  if (!validateLengthRange(issue, 4, 255)) errors.push(definedInvalidMessage)
-  if (!validateDefined(imageUrl)) errors.push(definedInvalidMessage)
-  if (!validateDefined(resolution)) errors.push(definedInvalidMessage)
-  if (!validateLength(opened, 24)) errors.push(datetimeInvalidMessage)
-  if (!validateDefined(closed)) errors.push(definedInvalidMessage)
+  if (!isGreaterThanOrEqualZero(number)) errors.push(numberInvalidMessage)
+  if (!isGreaterThanZero(homeownerId)) errors.push(idInvalidMessage)
+  if (!isGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage)
+  if (!idLengthRange(title, 4, 64)) errors.push(definedInvalidMessage)
+  if (!idLengthRange(issue, 4, 255)) errors.push(definedInvalidMessage)
+  if (!isDefined(imageUrl)) errors.push(definedInvalidMessage)
+  if (!isDefined(resolution)) errors.push(definedInvalidMessage)
+  if (!isLength(opened, 24)) errors.push(datetimeInvalidMessage)
+  if (!isDefined(closed)) errors.push(definedInvalidMessage)
   return errors
 }
 
-export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string) {
+export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string): string[] {
   const errors = []
-  if (!validateGreaterThanZero(id)) errors.push(idInvalidMessage)
-  if (!validateLength(registered, 24)) errors.push(datetimeInvalidMessage)
+  if (!isGreaterThanZero(id)) errors.push(idInvalidMessage)
+  if (!isLength(registered, 24)) errors.push(datetimeInvalidMessage)
   errors.concat( validateRegister(role, name, emailAddress, streetAddress) )
   return errors
 }
 
-export function validateUserInfo(name: string, emailAddress: string, streetAddress: string) {
+export function validateUserInfo(name: string, emailAddress: string, streetAddress: string): string[] {
   const errors = []
-  if (!validateLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
-  if (!validateEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
-  if (!validateLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
+  if (!idLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
+  if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
+  if (!idLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
   return errors
 }
