@@ -55,4 +55,6 @@ async function test() {
   assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')
+
+  process.exit()
 }
