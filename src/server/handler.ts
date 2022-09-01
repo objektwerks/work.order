@@ -1,5 +1,5 @@
 import * as service from './service.js'
-import { validateLogin, validateRegister, Login, LoggedIn, Register, Registered } from './entity.js'
+import { Login, LoggedIn, Register, Registered } from './entity.js'
 
 export default () => {
   console.log('*** handler running ...')
