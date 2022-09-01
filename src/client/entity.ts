@@ -202,14 +202,6 @@ function idLengthRange(string: string, lower: number, upper: number): boolean {
   return string.length >= lower && string.length <= upper
 }
 
-function isGreaterThanZero(number: number): boolean {
-  return number > 0
-}
-
-function isGreaterThanOrEqualZero(number: number): boolean {
-  return number >= 0
-}
-
 function isDefined(string: string): boolean {
   let isDefined
   try {
@@ -218,6 +210,14 @@ function isDefined(string: string): boolean {
     isDefined = false
   }
   return isDefined
+}
+
+function isGreaterThanOrEqualZero(number: number): boolean {
+  return number >= 0
+}
+
+export function isGreaterThanZero(number: number): boolean {
+  return number > 0
 }
 
 export function validateRegisterForm(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
