@@ -220,6 +220,10 @@ export function isGreaterThanZero(number: number): boolean {
   return number > 0
 }
 
+export function isImageUrl(url: string): boolean {
+  return url.startsWith('/images/')
+}
+
 export function isRegisterValid(register: Register): boolean {
   return validateRegisterForm(register.role, register.name, register.emailAddress, register.streetAddress).length === 0
 }
