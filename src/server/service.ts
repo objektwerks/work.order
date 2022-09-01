@@ -67,10 +67,9 @@ export async function login(login: Login): Promise<LoggedIn> {
   }
 }
 
-export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
+export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersListed> {
   try {
-    const workOrders: WorkOrder[] = []
-    store.listWorkOrdersByUserId(id, workOrders)
+    const workOrders = await store.listWorkOrdersByUserId(id)
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
     return WorkOrdersListed.success(id, workOrders)
   } catch(error) {
@@ -79,16 +78,22 @@ export function listWorkOrdersByUserId(id: number): WorkOrdersListed {
   }
 }
 
-export function getWorkOrderByNumber(number: number): WorkOrderSelected {
+export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
+  let selected: WorkOrderSelected
   try {
-    const workOrder: WorkOrder[] = []
-    store.getWorkOrderByNumber(number, workOrder)
-    log('getWorkOrderByNumber', `succeeded for number: ${number}`)
-    return WorkOrderSelected.success(workOrder[0])
+    const workOrder = await store.getWorkOrderByNumber(number)
+    if (workOrder.number > 0) {
+      log('getWorkOrderByNumber', `succeeded for number: ${number}`)
+      selected = WorkOrderSelected.success(workOrder)
+    } else {
+      log('getWorkOrderByNumber', `failed for number: ${number}`)
+      selected = WorkOrderSelected.fail(number, `Get work order by number failed for number: ${number}`)
+    }
   } catch(error) {
     log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
-    return WorkOrderSelected.fail(number, 'Get work order by number failed.')
+    selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
   }
+  return selected
 }
 
 export function addWorkOrder(saveWorkOrder: SaveWorkOrder): WorkOrderSaved {

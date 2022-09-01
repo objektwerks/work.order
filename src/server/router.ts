@@ -37,28 +37,28 @@ export default () => {
     response.json( await service.login( request.body ) )
   })
   
-  router.post('/workorders/add', (request, response) => {
-    response.json( service.addWorkOrder( request.body ) )
+  router.post('/workorders/add', async (request, response) => {
+    response.json( await service.addWorkOrder( request.body ) )
   })
 
-  router.post('/workorders/save', (request, response) => {
-    response.json( service.saveWorkOrder( request.body ) )
+  router.post('/workorders/save', async (request, response) => {
+    response.json( await service.saveWorkOrder( request.body ) )
   })
 
-  router.get('/workorders/user/:id', (request, response) => {
-    response.json( service.listWorkOrdersByUserId( parseInt(request.params.id) ) )
+  router.get('/workorders/user/:id', async (request, response) => {
+    response.json( await service.listWorkOrdersByUserId( parseInt(request.params.id) ) )
   })
   
-  router.get('/workorders/:number', (request, response) => {
-    response.json( service.getWorkOrderByNumber( parseInt(request.params.number) ) )
+  router.get('/workorders/:number', async (request, response) => {
+    response.json( await service.getWorkOrderByNumber( parseInt(request.params.number) ) )
   })
   
-  router.post('/users/save', (request, response) => {
-    response.json( service.saveUser( request.body ) )
+  router.post('/users/save', async (request, response) => {
+    response.json( await service.saveUser( request.body ) )
   })
 
-  router.post('/image/save', images.single('image'), (request, response) => {
-    response.json( service.saveImageUrl(request.body.number, request.body.url) )
+  router.post('/image/save', images.single('image'), async (request, response) => {
+    response.json( await service.saveImageUrl(request.body.number, request.body.url) )
   })
   
   server = router.listen(port, host, () =>
