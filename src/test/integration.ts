@@ -56,5 +56,5 @@ async function test() {
   
   console.log('*** integration test complete!')
 
-  process.exit()
+  // WARNING: Don't add a process.exit() here! Doing so will prevent the emailer for sending out emails.
 }
