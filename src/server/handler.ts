@@ -1,5 +1,21 @@
 import * as service from './service.js'
-import { isGreaterThanZero, isLoginValid, isRegisterValid, Login, LoggedIn, Register, Registered, WorkOrderSelected, WorkOrdersListed } from './entity.js'
+import {
+  isGreaterThanZero,
+  isLoginValid,
+  isRegisterValid,
+  isUserValid,
+  isWorkOrderValid,
+  ImageSaved,
+  Login,
+  LoggedIn,
+  Register,
+  Registered,
+  SaveUser,
+  UserSaved,
+  SaveWorkOrder,
+  WorkOrderSaved,
+  WorkOrderSelected,
+  WorkOrdersListed } from './entity.js'
 
 export default () => {
   console.log('*** handler running ...')
@@ -26,17 +42,21 @@ export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSel
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  return WorkOrderSaved.fail(number, 'Add work order failed.')
+  if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
+  else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed.')
 }
 
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
+  if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.saveWorkOrder(saveWorkOrder)
   return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
-  return UserSaved.fail(saveUser.user.id, 'Save user failed.')
+  if (isUserValid(saveUser.user)) return service.saveUser(saveUser)
+  else return UserSaved.fail(saveUser.user.id, 'Save user failed.')
 }
 
 export async function saveImageUrl(number: number, url: string): Promise<ImageSaved> {
-  return ImageSaved.fail(number, url, 'Save image url failed.')
+  if (isGreaterThanZero(number) && url.startsWith('/images/')) return service.saveImageUrl(number, url)
+  else return ImageSaved.fail(number, url, 'Save image url failed.')
 }
