@@ -1,6 +1,7 @@
 import * as service from './service.js'
 import {
   isGreaterThanZero,
+  isImageUrl,
   isLoginValid,
   isRegisterValid,
   isUserValid,
@@ -57,6 +58,6 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
 }
 
 export async function saveImageUrl(number: number, url: string): Promise<ImageSaved> {
-  if (isGreaterThanZero(number) && url.startsWith('/images/')) return service.saveImageUrl(number, url)
+  if (isGreaterThanZero(number) && isImageUrl(url)) return service.saveImageUrl(number, url)
   else return ImageSaved.fail(number, url, 'Save image url failed.')
 }
