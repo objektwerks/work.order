@@ -29,8 +29,8 @@ export default () => {
   router.use(express.json())
   router.use(express.urlencoded({ extended: true }))
 
-  router.post('/register', (request, response) => {
-    response.json( service.register( request.body ) )
+  router.post('/register', async (request, response) => {
+    response.json( await service.register( request.body ) )
   })
   
   router.post('/login', (request, response) => {

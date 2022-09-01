@@ -33,18 +33,25 @@ export function shutdown(): void {
   store.disconnect()
 }
 
-export function register(register: Register): Registered {
+export async function register(register: Register): Promise<Registered> {
+  let registered: Registered
   try {
     const pin = newPin()
     const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
     emailer.send(user.emailAddress, pin, subjectRegistration, textRegistration)
-    store.addUser(user)
-    log('register', `succeeded for ${register.emailAddress}`)
-    return Registered.success(pin)
+    const id = await store.addUser(user)
+    if (id > 0) {
+      log('register', `succeeded for: ${register.emailAddress}`)
+      registered = Registered.success(pin)
+    } else {
+      log('register', `failed for: ${register.emailAddress}`)
+      registered = Registered.fail(`Register failed for ${register.emailAddress}`)
+    }
   } catch (error) {
     log('register', `failed error: ${error} for ${register.emailAddress}`)
-    return Registered.fail(`register failed for ${register.emailAddress}`)
+    registered = Registered.fail(`register failed for ${register.emailAddress}`)
   }
+  return registered
 }
 
 export function login(login: Login): LoggedIn {
