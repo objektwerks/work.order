@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { serviceProvider, validateLogin, Login } from './entity.js'
+import { serviceProvider, validateLoginForm, Login } from './entity.js'
 
 export default () => {
   console.log('*** login form init ...')
@@ -14,7 +14,7 @@ export default () => {
     const emailAddress = getValueById('login-email-address-id')
     const pin = getValueById('login-pin-id')
 
-    const errors = validateLogin(emailAddress, pin)
+    const errors = validateLoginForm(emailAddress, pin)
     if (errors.length === 0) {
       const login = new Login(emailAddress, pin)
       fetcher.login(login).then(loggedIn => {

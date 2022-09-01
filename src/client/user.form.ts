@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { validateUserInfo, SaveUser } from './entity.js'
+import { validateUserForm, SaveUser } from './entity.js'
 
 function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
   model.setUser(name, emailAddress, streetAddress)
@@ -19,7 +19,7 @@ export default () => {
     const emailAddress = getValueById('user-email-address-id')
     const streetAddress = getValueById('user-street-address-id')
 
-    const errors = validateUserInfo(name, emailAddress, streetAddress)
+    const errors = validateUserForm(name, emailAddress, streetAddress)
     if (errors.length === 0) {
       bindFormToUser(name, emailAddress, streetAddress)
       const saveUser = new SaveUser(model.getUser())

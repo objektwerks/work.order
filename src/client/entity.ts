@@ -220,7 +220,7 @@ function isDefined(string: string): boolean {
   return isDefined
 }
 
-export function validateRegister(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
+export function validateRegisterForm(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
   const errors = []
   if (!isRole(role)) errors.push(roleInvalidMessage)
   if (!idLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
@@ -229,10 +229,18 @@ export function validateRegister(role: string, name: string, emailAddress: strin
   return errors
 }
 
-export function validateLogin(emailAddress: string, pin: string) {
+export function validateLoginForm(emailAddress: string, pin: string): string[] {
   const errors = []
   if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
   if (!isLength(pin, 7)) errors.push(pinInvalidMessage)
+  return errors
+}
+
+export function validateUserForm(name: string, emailAddress: string, streetAddress: string): string[] {
+  const errors = []
+  if (!idLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
+  if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
+  if (!idLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
   return errors
 }
 
@@ -254,14 +262,6 @@ export function validateUser(id: number, role: string, name: string, emailAddres
   const errors = []
   if (!isGreaterThanZero(id)) errors.push(idInvalidMessage)
   if (!isLength(registered, 24)) errors.push(datetimeInvalidMessage)
-  errors.concat( validateRegister(role, name, emailAddress, streetAddress) )
-  return errors
-}
-
-export function validateUserInfo(name: string, emailAddress: string, streetAddress: string): string[] {
-  const errors = []
-  if (!idLengthRange(name, 2, 64)) errors.push(nameInvalidMessage)
-  if (!isEmailAddress(emailAddress)) errors.push(emailAddressInvalidMessage)
-  if (!idLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
+  errors.concat( validateRegisterForm(role, name, emailAddress, streetAddress) )
   return errors
 }
