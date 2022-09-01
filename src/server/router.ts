@@ -33,8 +33,8 @@ export default () => {
     response.json( await service.register( request.body ) )
   })
   
-  router.post('/login', (request, response) => {
-    response.json( service.login( request.body ) )
+  router.post('/login', async (request, response) => {
+    response.json( await service.login( request.body ) )
   })
   
   router.post('/workorders/add', (request, response) => {

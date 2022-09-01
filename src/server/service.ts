@@ -54,16 +54,13 @@ export async function register(register: Register): Promise<Registered> {
   return registered
 }
 
-export function login(login: Login): LoggedIn {
+export async function login(login: Login): Promise<LoggedIn> {
   try {
-    const user: User[] = []
-    const serviceProviders: User[] = []
-    const workOrders: WorkOrder[] = []
-    store.getUserByEmailAddressPin(login.emailAddress, login.pin, user)
-    store.listUsersByRole(serviceProvider, serviceProviders)
-    store.listWorkOrdersByUserId(user[0].id, workOrders) // timing issue, no user!
+    const user = await store.getUserByEmailAddressPin(login.emailAddress, login.pin)
+    const serviceProviders = await store.listUsersByRole(serviceProvider)
+    const workOrders = await store.listWorkOrdersByUserId(user.id)
     log('login', `succeeded for ${login.emailAddress}`)
-    return LoggedIn.success(user[0], serviceProviders, workOrders)
+    return LoggedIn.success(user, serviceProviders, workOrders)
   } catch(error) {
     log('login', `failed error: ${error} for ${login.emailAddress}`)
     return LoggedIn.fail(`Login failed for ${login.emailAddress}`)
