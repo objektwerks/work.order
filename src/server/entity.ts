@@ -228,6 +228,15 @@ export function isLoginValid(login: Login): boolean {
   return validateLoginForm(login.emailAddress, login.pin).length === 0
 }
 
+export function isWorkOrderValid(workOrder: WorkOrder): boolean {
+  return validateWorkOrder(workOrder.number, workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title,
+     workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed).length === 0
+}
+
+export function isUserValid(user: User): boolean {
+  return validateUser(user.id, user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin).length === 0
+}
+
 export function validateRegisterForm(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
   const errors = []
   if (!isRole(role)) errors.push(roleInvalidMessage)
@@ -266,10 +275,11 @@ export function validateWorkOrder(number: number, homeownerId: number, servicePr
   return errors
 }
 
-export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string): string[] {
+export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string, pin: string): string[] {
   const errors = []
   if (!isGreaterThanZero(id)) errors.push(idInvalidMessage)
   if (!isLength(registered, 24)) errors.push(datetimeInvalidMessage)
   errors.concat( validateRegisterForm(role, name, emailAddress, streetAddress) )
+  if (!isLength(pin, 7)) errors.push(pinInvalidMessage)
   return errors
 }
