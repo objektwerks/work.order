@@ -19,7 +19,8 @@
     "build": "npm run clean && npm run compile && npm run copy && npm run lint",
     "ddl": "mysql -uroot -p < ddl.sql",
     "dev": "tsc-watch --onSuccess && cd ./dist && nodemon server.js",
-    "test": "npm run ddl && node ./dist/test/integration.js"
+    "test": "npm run ddl && node ./dist/test/integration.js",
+    "start": "npm run build && cd ./dist && node server.js"
   },
   "dependencies": {
     "compression": "1.7.4",
