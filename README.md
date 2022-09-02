@@ -8,7 +8,7 @@ Technologies
 
 Code Sharing
 ------------
->To share Typescript code between client and server, in a node project, the following options exist:
+>To share Typescript code between client and server in a node web app the following options exist:
 1. npm link
 2. npm publish
 3. npm install via npm **and** github repo
