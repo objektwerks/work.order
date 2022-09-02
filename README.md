@@ -6,6 +6,10 @@ Todo
 ----
 1. Test and refactor web ui as required.
 
+Usage
+-----
+>**Must** register at least **one** service provider before **any** homewoners register and submit work orders.
+
 Technologies
 ------------
 >Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
