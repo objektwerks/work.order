@@ -8,7 +8,7 @@ Todo
 
 Usage
 -----
->**Must** register at least **one** service provider before **any** homewoners register and submit work orders.
+>***Must*** register at least ***one*** service provider before ***any*** homewoners register and submit work orders.
 
 Technologies
 ------------
