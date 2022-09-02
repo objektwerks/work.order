@@ -18,8 +18,9 @@ Code Sharing
 3. npm install via npm and github
 4. lerna, a monorepo solution
 5. bitsrc.io
->The top 3 solutions allow for easy development. But ES6 imports don't work in the client. And said solutions
->require one to go down serveral dark holes. I didn't try solutions 4 and 5. 
+>The top 3 solutions allow for proper ES module imports in both client and server source.
+>But ES6 imports don't work in the client, when deployed to a browser. Moreover, said solutions
+>require going down serveral dark holes. I didn't try solutions 4 and 5. 
 >Consequently, ***entity.ts***, located in **src/client** and **src/server** is ***duplicate*** code.
 >Interestingly, code sharing is available by default with ScalaJs.
 
