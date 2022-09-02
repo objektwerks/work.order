@@ -1,4 +1,5 @@
 {
+  "name": "work-order",
   "version": "0.0.1",
   "description": "Work order web app linking homeowners and service providers.",
   "homepage": "https://github.com/objektwerks/work.order#readme",
