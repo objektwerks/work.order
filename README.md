@@ -12,10 +12,16 @@ Technologies
 
 Code Sharing
 ------------
->Various off-the-wall solutions aside, it is not possible to share source code between client and server.
->An NPM local path dependency install works, but an import of the new local package is not recognized by
->the client or server. Consequently, ***entity.ts***, located in **src/client** and **src/server** is
->***duplicate*** code. Interestingly, code sharing is available by default with ScalaJs.
+>To share Typescript code between client and server, in a node project, the following options exist:
+1. npm link
+2. npm publish
+3. npm install via npm and github
+4. lerna, a monorepo solution
+5. bitsrc.io
+>The top 3 solutions allow for easy development. But ES6 imports don't work in the client. And said solutions
+>require one to go down serveral dark holes. I didn't try solutions 4 and 5. 
+>Consequently, ***entity.ts***, located in **src/client** and **src/server** is ***duplicate*** code.
+>Interestingly, code sharing is available by default with ScalaJs.
 
 Doc
 ---
