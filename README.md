@@ -14,10 +14,10 @@ Code Sharing
 3. npm install via npm **and** github repo
 4. lerna ( lerna.js.org/ )
 5. bit ( bit.dev/ )
->The top 3 solutions allow for proper ES module imports in both client and server source.
->But ES6 imports don't work in the client, when deployed to a browser. Moreover, said solutions
->require going down serveral dark holes. I didn't try solutions 4 and 5. Consequently,
->***entity.ts***, located in **src/client** and **src/server** is ***duplicate*** code.
+>The top 3 solutions allow for proper ES module imports in both client and server source during
+>development. Yet ES6 imports don't work in the client, when deployed to a browser. Moreover,
+>said solutions require a lot of research, trial and error. I didn't try solutions 4 and 5.
+>Consequently, ***entity.ts***, located in **src/client** and **src/server** is ***duplicate*** code.
 >Interestingly, code sharing is available by default with ScalaJs.
 
 Doc
