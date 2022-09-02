@@ -11,7 +11,7 @@ import {
   SaveWorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
-  WorkOrdersListed } from 'work-order-shared'
+  WorkOrdersListed } from './entity.js'
 
 const rootUrl = 'http://' + window.location.host
 const registerUrl = rootUrl + '/register'

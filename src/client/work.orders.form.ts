@@ -2,7 +2,7 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
          show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './common.js'
-import { homeowner, SaveWorkOrder, serviceProvider, validateWorkOrder, WorkOrder } from 'work-order-shared'
+import { homeowner, SaveWorkOrder, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
 
 const readonlyRole = 'readonly'
 

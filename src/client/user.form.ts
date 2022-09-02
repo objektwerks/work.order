@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { validateUserForm, SaveUser } from 'work-order-shared'
+import { validateUserForm, SaveUser } from './entity.js'
 
 function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
   model.setUser(name, emailAddress, streetAddress)
