@@ -16,7 +16,7 @@ Code Sharing
 1. npm link
 2. npm publish
 3. npm install via npm and github
-4. lerna, a monorepo solution
+4. lerna ( https://lerna.js.org/ )
 5. bitsrc.io
 >The top 3 solutions allow for proper ES module imports in both client and server source.
 >But ES6 imports don't work in the client, when deployed to a browser. Moreover, said solutions
