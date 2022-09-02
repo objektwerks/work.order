@@ -1,5 +1,5 @@
 import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js'
-import { User, WorkOrder } from './entity.js'
+import { User, WorkOrder } from 'work-order-shared'
 
 let user: User
 let serviceProviders: User[]

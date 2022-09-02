@@ -6,7 +6,7 @@ import {
   SaveUser,
   WorkOrder,
   SaveWorkOrder
-} from '../server/entity.js'
+} from 'work-order-shared'
 
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
 const homeownerEmail = process.env.WORK_ORDER_HOME_OWNER_EMAIL as string

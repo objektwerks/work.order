@@ -16,7 +16,7 @@ import {
   SaveWorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
-  WorkOrdersListed } from './entity.js'
+  WorkOrdersListed } from 'work-order-shared'
 
 export default () => {
   console.log('*** handler running ...')

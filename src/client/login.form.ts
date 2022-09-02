@@ -1,7 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { serviceProvider, validateLoginForm, Login } from './entity.js'
+import { serviceProvider, validateLoginForm, Login } from 'work-order-shared'
 
 export default () => {
   console.log('*** login form init ...')
