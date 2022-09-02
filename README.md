@@ -2,6 +2,10 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
+Todo
+----
+1. Test and refactor web ui as required.
+
 Technologies
 ------------
 >Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
