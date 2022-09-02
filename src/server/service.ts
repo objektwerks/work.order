@@ -15,7 +15,7 @@ import {
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed
-} from 'work-order-shared'
+} from './entity.js'
 
 const subject = 'Work Order Registration'
 

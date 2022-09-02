@@ -1,8 +1,8 @@
-import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
-import * as handler from './handler.js'
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
+import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
+import * as handler from './handler.js'
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
