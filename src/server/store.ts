@@ -2,10 +2,8 @@ import mysql, { OkPacket, Pool, PoolOptions, RowDataPacket } from 'mysql2/promis
 import { User, WorkOrder } from './entity.js'
 
 const options: PoolOptions = {
-  host: process.env.WORK_ORDER_DATABASE_HOST,
-  database: process.env.WORK_ORDER_DATABASE_NAME,
-  user: process.env.WORK_ORDER_DATABASE_USER,
-  password: process.env.WORK_ORDER_DATABASE_PASSWORD,
+  uri: process.env.WORK_ORDER_DATABASE_URL,
+  pool: 9
 }
 const connection: Pool = mysql.createPool(options)
 
