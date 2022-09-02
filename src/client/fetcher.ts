@@ -47,6 +47,7 @@ async function call<T, R>(url: string,
       body: entity instanceof FormData ? entity : toJson(entity)
     }
   }
+  console.log('*** fetcher:call init: ', init)
   const response = await fetch(url, init)
   if (response.ok) {
     result = toObject( await response.json() )
