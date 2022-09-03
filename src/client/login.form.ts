@@ -1,4 +1,4 @@
-import { getById, getValueById, hide, setErrorsList, show } from './common.js'
+import { getById, getValueById, hide, setErrorsList, show } from './dom.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import { serviceProvider, validateLoginForm, Login } from './entity.js'

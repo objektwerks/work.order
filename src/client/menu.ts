@@ -1,4 +1,4 @@
-import { getById, getByClass, show } from './common.js'
+import { getById, getByClass, show } from './dom.js'
 
 function selectMenuItem(formId: string) {
   const forms = getByClass('form') as HTMLCollectionOf<Element>

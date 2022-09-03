@@ -1,4 +1,4 @@
-import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './common.js'
+import { IdValue, setListIdValues, setSelectIdValues, setValueById } from './dom.js'
 import { User, WorkOrder } from './entity.js'
 
 let user: User
