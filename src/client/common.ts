@@ -123,6 +123,7 @@ export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
   for (const idValue of idValues) {
     const option = document.createElement('option')
     option.id = idValue.id
+    option.value = idValue.id
     option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
     select.appendChild(option)
   }
