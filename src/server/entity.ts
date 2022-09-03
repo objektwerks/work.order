@@ -197,19 +197,19 @@ function isDefined(string: string): boolean {
 }
 
 function isRole(role: string): boolean {
-  return isDefined(role) && role === homeowner || role === serviceProvider
+  return isDefined(role) ? role === homeowner || role === serviceProvider : false
 }
 
 function isEmailAddress(emailAddress: string): boolean {
-  return isDefined(emailAddress) && idLengthRange(emailAddress, 3, 128) && emailAddress.includes('@')
+  return isDefined(emailAddress) ? idLengthRange(emailAddress, 3, 128) && emailAddress.includes('@') : false
 }
 
 function isLength(string: string, length: number): boolean {
-  return isDefined(string) && string.length === length
+  return isDefined(string) ? string.length === length : false
 }
 
 function idLengthRange(string: string, lower: number, upper: number): boolean {
-  return isDefined(string) && string.length >= lower && string.length <= upper
+  return isDefined(string) ? string.length >= lower && string.length <= upper : false
 }
 
 function isGreaterThanOrEqualZero(number: number): boolean {
@@ -221,7 +221,7 @@ export function isGreaterThanZero(number: number): boolean {
 }
 
 export function isImageUrl(url: string): boolean {
-  return isDefined(url) && url.startsWith('/images/')
+  return isDefined(url) ? url.startsWith('/images/') : false
 }
 
 export function isRegisterValid(register: Register): boolean {
