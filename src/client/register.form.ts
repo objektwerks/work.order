@@ -1,4 +1,4 @@
-import { getById, getValueById, hide, setErrorsList, show } from './common.js'
+import { getById, getValueById, getSelectedValueById, hide, setErrorsList, show } from './common.js'
 import * as fetcher from './fetcher.js'
 import { validateRegisterForm, Register } from './entity.js'
 
@@ -10,7 +10,7 @@ export default () => {
     
     hide('register-errors-form-id')
 
-    const role = getValueById('register-role-id')
+    const role = getSelectedValueById('register-role-id')
     const name = getValueById('register-name-id')
     const emailAddress = getValueById('register-email-address-id')
     const streetAddress = getValueById('register-street-address-id')
