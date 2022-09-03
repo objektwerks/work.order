@@ -27,6 +27,12 @@ export function getSelectedIndexId(selectId: string): string {
   return option !== null ? option.id : '0'
 }
 
+export function getSelectedValueById(selectId: string): string {
+  const select = getById(selectId) as HTMLSelectElement
+  const option = select.selectedOptions.item(select.selectedIndex)
+  return option !== null ? option.value : ''
+}
+
 export function getValueById(id: string): string {
   const input = getById(id) as HTMLInputElement
   return input.value
