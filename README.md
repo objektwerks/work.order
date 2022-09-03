@@ -20,11 +20,12 @@ Code Sharing
 1. npm link
 2. npm publish
 3. npm install via npm **and** github repo
-4. lerna ( lerna.js.org/ )
-5. bit ( bit.dev/ )
+4. browserify ( https://browserify.org/ )
+5. lerna ( lerna.js.org/ )
+6. bit ( bit.dev/ )
 >The top 3 solutions allow for proper ES module imports in both client and server source code during
 >development. ***Yet ES6 imports fail to work in the client, when deployed to a browser.*** Moreover,
->said solutions require a lot of research, trial and error. I have yet to use solutions 4 and 5.
+>said solutions require a lot of research, trial and error. I have yet to use solutions 4, 5 and 6.
 >Consequently, ***entity.ts***, located in **src/client** and **src/server** is ***duplicate*** code.
 >Interestingly, code sharing is available by **default** with ScalaJs.
 
