@@ -31,7 +31,7 @@ export async function send(recipient: string, subject: string, text: string): Pr
       console.log('*** emailer failed with error: %s', error.message)
       throw error.message
     } else {
-      console.log('*** emailer sent message id: %s to: %s', info.messageId, message.to)
+      console.error('*** emailer sent message id: %s to: %s', info.messageId, message.to)
     }
   })
 }
