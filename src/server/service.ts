@@ -1,6 +1,7 @@
 import { newPin } from './pin.js'
 import * as store from './store.js'
 import * as emailer from './emailer.js'
+import { logger } from './logger.js'
 import {
   serviceProvider,
   Login,
@@ -20,11 +21,11 @@ import {
 const subject = 'Work Order Registration'
 
 function log(method: string, message:  string): void {
-  console.log(`*** service.${method}: %s`, message)
+  logger.info(`*** service.${method}: `, message)
 }
 
 function logError(method: string, message:  string): void {
-  console.error(`*** service.${method} error: %s`, message)
+  logger.error(`*** service.${method} error: `, message)
 }
 
 export default () => {
