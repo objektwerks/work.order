@@ -29,38 +29,38 @@ export default () => {
   router.use(express.json())
   router.use(express.urlencoded({ extended: true }))
 
-  router.post('/register', async (request, response) => {
+  router.post('/register', (request, response) => {
     console.log('*** router register: ', request.body)
-    response.json( await handler.register( request.body ) )
+    handler.register( request.body ).then(registered => response.json(registered))
   })
   
-  router.post('/login', async (request, response) => {
+  router.post('/login', (request, response) => {
     console.log('*** router login: ', request.body)
-    response.json( await handler.login( request.body ) )
+    handler.login( request.body ).then(loggedIn => response.json(loggedIn))
   })
   
-  router.post('/workorders/add', async (request, response) => {
-    response.json( await handler.addWorkOrder( request.body ) )
+  router.post('/workorders/add', (request, response) => {
+    handler.addWorkOrder( request.body ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.post('/workorders/save', async (request, response) => {
-    response.json( await handler.saveWorkOrder( request.body ) )
+  router.post('/workorders/save', (request, response) => {
+    handler.saveWorkOrder( request.body ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.get('/workorders/user/:id', async (request, response) => {
-    response.json( await handler.listWorkOrdersByUserId( parseInt(request.params.id) ) )
+  router.get('/workorders/user/:id', (request, response) => {
+    handler.listWorkOrdersByUserId( parseInt(request.params.id) ).then(workOrdersListed => response.json(workOrdersListed))
   })
   
-  router.get('/workorders/:number', async (request, response) => {
-    response.json( await handler.getWorkOrderByNumber( parseInt(request.params.number) ) )
+  router.get('/workorders/:number', (request, response) => {
+    handler.getWorkOrderByNumber( parseInt(request.params.number) ).then(workOrderSelected => response.json(workOrderSelected))
   })
   
-  router.post('/users/save', async (request, response) => {
-    response.json( await handler.saveUser( request.body ) )
+  router.post('/users/save', (request, response) => {
+    handler.saveUser( request.body ).then(userSaved => response.json(userSaved))
   })
 
-  router.post('/image/save', images.single('image'), async (request, response) => {
-    response.json( await handler.saveImageUrl(request.body.number, request.body.url) )
+  router.post('/image/save', images.single('image'), (request, response) => {
+    handler.saveImageUrl(request.body.number, request.body.url).then(imageSaved => response.json(imageSaved))
   })
   
   server = router.listen(port, host, () =>
