@@ -126,5 +126,5 @@ export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
     option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
     select.appendChild(option)
   }
-  select.selectedIndex = 0
+  if (select.options.length > 0) select.selectedIndex = 0
 }
