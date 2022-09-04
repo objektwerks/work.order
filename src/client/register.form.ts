@@ -15,11 +15,6 @@ export default () => {
     const emailAddress = getValueById('register-email-address-id')
     const streetAddress = getValueById('register-street-address-id')
 
-    console.log('*** register form: role: ', role)
-    console.log('*** register form: name: ', name)
-    console.log('*** register form: email address: ', emailAddress)
-    console.log('*** register form: street address: ', streetAddress)
-
     const errors = validateRegisterForm(role, name, emailAddress, streetAddress)
     if (errors.length === 0) {
       const register = new Register(role, name, emailAddress, streetAddress)
