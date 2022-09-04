@@ -23,6 +23,10 @@ function log(method: string, message:  string): void {
   console.log(`*** service.${method}: %s`, message)
 }
 
+function logError(method: string, message:  string): void {
+  console.error(`*** service.${method} error: %s`, message)
+}
+
 export default () => {
   console.log('*** service running ...')
 }
@@ -47,7 +51,7 @@ export async function register(register: Register): Promise<Registered> {
       registered = Registered.fail(`Register failed for: ${register.emailAddress}`)
     }
   } catch (error) {
-    log('register', `failed error: ${error} for: ${register.emailAddress}`)
+    logError('register', `failed error: ${error} for: ${register.emailAddress}`)
     registered = Registered.fail(`register failed for: ${register.emailAddress}`)
   }
   return registered
@@ -61,7 +65,7 @@ export async function login(login: Login): Promise<LoggedIn> {
     log('login', `succeeded for: ${login.emailAddress}`)
     return LoggedIn.success(user, serviceProviders, workOrders)
   } catch(error) {
-    log('login', `failed error: ${error} for: ${login.emailAddress}`)
+    logError('login', `failed error: ${error} for: ${login.emailAddress}`)
     return LoggedIn.fail(`Login failed for: ${login.emailAddress}`)
   }
 }
@@ -72,7 +76,7 @@ export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersList
     log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
     return WorkOrdersListed.success(id, workOrders)
   } catch(error) {
-    log('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
+    logError('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
     return WorkOrdersListed.fail(id, 'List work orders by user id failed.')
   }
 }
@@ -89,7 +93,7 @@ export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSel
       selected = WorkOrderSelected.fail(number, `Get work order by number failed for number: ${number}`)
     }
   } catch(error) {
-    log('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
+    logError('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
     selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
   }
   return selected
@@ -108,7 +112,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
     }
   } catch(error) {
-    log('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    logError('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
     added = WorkOrderSaved.fail(number, 'Add work order failed.')
   }
   return added
@@ -126,7 +130,7 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
       saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
     }
   } catch(error) {
-    log('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    logError('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
     saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
   }
   return saved
@@ -144,7 +148,7 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
       saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
     }
   } catch(error) {
-    log('saveUser', `failed: ${error} for ${saveUser}`)
+    logError('saveUser', `failed: ${error} for ${saveUser}`)
     saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
   }
   return saved
@@ -162,7 +166,7 @@ export async function saveImageUrl(number: number, url: string): Promise<ImageSa
       saved = ImageSaved.fail(number, url, 'Saved image url failed.')
     }
   } catch(error) {
-    log('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
+    logError('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
     saved = ImageSaved.fail(number, url, 'Save image url failed.')
   }
   return saved
