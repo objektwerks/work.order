@@ -148,12 +148,12 @@ Curl
 ----
 * curl --header "Content-Type: application/json" \
        --request POST \
-       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"funkwerks@runbox.com","streetAddress":"123 stone st"}' \
+       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"objektwerks@runbox.com","streetAddress":"123 stone st"}' \
        http://127.0.0.1:3000/register
 
 * curl --header "Content-Type: application/json" \
        --request POST \
-       --data '{"emailAddress":"funkwerks@runbox.com","pin":"1234567"}' \
+       --data '{"emailAddress":"objektwerks@runbox.com","pin":"1234567"}' \
        http://127.0.0.1:3000/login
 
 License
