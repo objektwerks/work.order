@@ -14,9 +14,6 @@ export default () => {
     const emailAddress = getValueById('login-email-address-id')
     const pin = getValueById('login-pin-id')
 
-    console.log('*** login form: email address: ', emailAddress)
-    console.log('*** login form: pin: ', pin)
-
     const errors = validateLoginForm(emailAddress, pin)
     if (errors.length === 0) {
       const login = new Login(emailAddress, pin)
