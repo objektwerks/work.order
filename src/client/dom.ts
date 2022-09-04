@@ -23,14 +23,13 @@ export function getFileById(id: string): File | undefined | null {
 
 export function getSelectedIndexId(selectId: string): string {
   const select = getById(selectId) as HTMLSelectElement
-  const option = select.selectedOptions.item(select.selectedIndex)
-  return option !== null ? option.id : '0'
+  const option = select.options[select.selectedIndex]
+  return option.id
 }
 
 export function getSelectedValueById(selectId: string): string {
   const select = getById(selectId) as HTMLSelectElement
-  const option = select.selectedOptions.item(select.selectedIndex)
-  return option !== null ? option.value : ''
+  return select.value
 }
 
 export function getValueById(id: string): string {
@@ -127,4 +126,5 @@ export function setSelectIdValues(selectId: string, idValues: IdValue[]): void {
     option.appendChild(document.createTextNode(`${idValue.id} - ${idValue.value}`))
     select.appendChild(option)
   }
+  select.selectedIndex = 0
 }

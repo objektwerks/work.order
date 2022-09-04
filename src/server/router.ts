@@ -30,10 +30,12 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', async (request, response) => {
+    console.log('*** router register: ', request.body)
     response.json( await handler.register( request.body ) )
   })
   
   router.post('/login', async (request, response) => {
+    console.log('*** router login: ', request.body)
     response.json( await handler.login( request.body ) )
   })
   

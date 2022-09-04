@@ -1,6 +1,5 @@
 import { 
   toJson,
-  toObject,
   ImageSaved,
   Login,
   LoggedIn,
@@ -50,7 +49,7 @@ async function call<T, R>(url: string,
   console.log('*** fetcher:call init: ', init)
   const response = await fetch(url, init)
   if (response.ok) {
-    result = toObject( await response.json() )
+    result = await response.json()
   } else {
     console.log('*** fetcher:call error: url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
     result = fault()
