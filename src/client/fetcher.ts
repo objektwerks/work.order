@@ -33,8 +33,7 @@ const getInit = {
 }
 const postInit = {
   method: 'post',
-  headers: headers,
-  body: ''
+  headers: headers
 }
 
 async function call<T, R>(url: string,
