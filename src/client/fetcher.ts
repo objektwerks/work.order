@@ -24,7 +24,7 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'get'
 const post = 'post'
 const headers: { [key: string]: string } = {
-  'Content-Type': 'application/json charset=utf-8',
+  'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
@@ -44,7 +44,6 @@ async function call<T, R>(url: string,
                           fault: () => R): Promise<R> {
   let result: R
   const init = (method === get) ? getInit : Object.assign( { body: entity instanceof FormData ? entity : toJson(entity) }, postInit )
-  console.log('*** fetcher:call init: ', init)
   const response = await fetch(url, init)
   if (response.ok) {
     result = await response.json()

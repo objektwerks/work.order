@@ -38,27 +38,27 @@ export function getValueById(id: string): string {
 }
 
 export function hide(id: string): void {
-  const element = getById(id) as HTMLElement
+  const element = getById(id)
   element.style.display = 'none'
 }
 
 export function show(id: string): void {
-  const element = getById(id) as HTMLElement
+  const element = getById(id)
   element.style.display = 'block'
 }
 
 export function addReadonlyById(id: string): void {
-  const element = getById(id) as HTMLElement
+  const element = getById(id)
   element.setAttribute('readonly', 'readonly')
 }
 
 export function removeReadonlyById(id: string): void {
-  const element = getById(id) as HTMLElement
+  const element = getById(id)
   element.removeAttribute('readonly')
 }
 
 export function setTextById(id: string, text: string): void {
-  const element = getById(id) as HTMLElement
+  const element = getById(id)
   element.innerText = text
 }
 
