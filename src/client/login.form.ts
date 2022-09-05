@@ -27,10 +27,7 @@ export default () => {
           model.bindWorkOrdersToList(loggedIn.workOrders)
   
           hide('login-form-id')
-          hide('register-form-id"')
-  
           hide('login-menu-id')
-          hide('register-menu-id')
   
           show(`workorders-menu-id`)
           show(`user-menu-id`)
@@ -39,6 +36,7 @@ export default () => {
             hide('workorder-new-command-id')
           }
           show('workorders-form-id')
+          show('workorders-list-form-id')
         }
       })
     } else {
