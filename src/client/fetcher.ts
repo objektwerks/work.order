@@ -24,8 +24,7 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'get'
 const post = 'post'
 const headers: { [key: string]: string } = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Content-Type': 'application/json'
 }
 const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
 const getInit = {
