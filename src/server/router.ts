@@ -30,7 +30,7 @@ export default () => {
   router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', (request, response) => {
-    console.log('*** router register: ', request.body)
+    console.log('*** router register request: ', request)
     handler.register( request.body ).then(registered => response.json(registered))
   })
   
