@@ -225,14 +225,10 @@ export function isImageUrl(url: string): boolean {
 }
 
 export function isRegisterValid(register: Register): boolean {
-  console.log('*** server: is register valid: ', register)
-  console.log('*** server: is register valid: ', validateRegisterForm(register.role, register.name, register.emailAddress, register.streetAddress))
   return validateRegisterForm(register.role, register.name, register.emailAddress, register.streetAddress).length === 0
 }
 
 export function isLoginValid(login: Login): boolean {
-  console.log('*** server: is login valid: ', login)
-  console.log('*** server: is login valid: ', validateLoginForm(login.emailAddress, login.pin) )
   return validateLoginForm(login.emailAddress, login.pin).length === 0
 }
 
