@@ -24,7 +24,8 @@ const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'GET'
 const post = 'POST'
 const headers: { [key: string]: string } = {
-  'Content-Type': 'application/json charset=utf-8'
+  'Content-Type': 'application/json charset=utf-8',
+  'Accept': 'application/json'
 }
 
 async function call<T, R>(url: string,
@@ -40,10 +41,12 @@ async function call<T, R>(url: string,
       headers: headers
     }
   } else {
+    const body =  entity instanceof FormData ? entity : toJson(entity)
+    console.log('*** entity as formdata or json: ', body)
     init = {
       method: method,
       headers: headers,
-      body: entity instanceof FormData ? entity : toJson(entity)
+      body: body
     }
   }
   console.log('*** fetcher:call init: ', init)
