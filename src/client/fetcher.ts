@@ -23,18 +23,10 @@ const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'get'
 const post = 'post'
-const headers: { [key: string]: string } = {
-  'Content-Type': 'application/json'
-}
+const headers: { [key: string]: string } = { 'Content-Type': 'application/json' }
 const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
-const getInit = {
-  method: 'get',
-  headers: headers
-}
-const postInit = {
-  method: 'post',
-  headers: headers
-}
+const getInit = { method: 'get', headers: headers }
+const postInit = { method: 'post', headers: headers }
 
 async function call<T, R>(url: string,
                           method: string,
