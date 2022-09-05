@@ -41,12 +41,10 @@ async function call<T, R>(url: string,
       headers: headers
     }
   } else {
-    const body =  entity instanceof FormData ? entity : toJson(entity)
-    console.log('*** entity as formdata or json: ', body)
     init = {
       method: method,
       headers: headers,
-      body: body
+      body: entity instanceof FormData ? entity : toJson(entity)
     }
   }
   console.log('*** fetcher:call init: ', init)
