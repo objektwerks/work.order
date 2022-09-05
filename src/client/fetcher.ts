@@ -21,11 +21,20 @@ const saveUserUrl = rootUrl + '/users/save'
 const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
-const get = 'GET'
-const post = 'POST'
+const get = 'get'
+const post = 'post'
 const headers: { [key: string]: string } = {
   'Content-Type': 'application/json charset=utf-8',
   'Accept': 'application/json'
+}
+const getInit = {
+  method: 'get',
+  headers: headers
+}
+const postInit = {
+  method: 'post',
+  headers: headers,
+  body: ''
 }
 
 async function call<T, R>(url: string,
@@ -34,19 +43,7 @@ async function call<T, R>(url: string,
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
-  let init
-  if (method === get) {
-    init = {
-      method: method,
-      headers: headers
-    }
-  } else {
-    init = {
-      method: method,
-      headers: headers,
-      body: entity instanceof FormData ? entity : toJson(entity)
-    }
-  }
+  const init = (method === get) ? getInit : Object.assign( { body: entity instanceof FormData ? entity : toJson(entity) }, postInit )
   console.log('*** fetcher:call init: ', init)
   const response = await fetch(url, init)
   if (response.ok) {
