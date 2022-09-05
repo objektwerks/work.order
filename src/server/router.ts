@@ -34,7 +34,6 @@ export default () => {
   })
   
   router.post('/login', (request, response) => {
-    console.log('*** router login: ', request.body)
     handler.login( request.body ).then(loggedIn => response.json(loggedIn))
   })
   
