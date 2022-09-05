@@ -42,7 +42,7 @@ Install
 Install Issues
 --------------
 1. Note **dependencies** may not work if not installed in your home directory. After a project npm install, some dependencies don't appear in the project node_modules directory.
-2. Install nodemon, typescript, typesync, ts-node, ts-watch, tsx and the like globally to run without npx or npm scripts.
+2. Install nodemon, typescript, typesync, ts-node, ts-watch, tsx and the like globally to run without npx or in npm scripts.
 
 Database
 --------
@@ -56,7 +56,8 @@ Test
 Dev
 ---
 1. npm run build
-2. npm run dev
+2. npm run watch
+3. npm run dev
 
 Prod
 ----
