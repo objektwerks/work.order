@@ -27,13 +27,11 @@ export function shutdown(): void {
 }
 
 export async function register(register: Register): Promise<Registered> {
-  console.log('*** handler register: ', register)
   if (isRegisterValid(register)) return service.register(register)
   else return Registered.fail(`Register was invalid.`)
 }
 
 export async function login(login: Login): Promise<LoggedIn> {
-  console.log('*** handler login: ', login)
   if (isLoginValid(login)) return service.login(login)
   else return LoggedIn.fail(`Login was invalid.`)
 }
