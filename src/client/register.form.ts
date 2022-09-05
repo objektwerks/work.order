@@ -23,7 +23,7 @@ export default () => {
           errors.push(registered.error)
           setErrorsList(errors, 'register-errors-list-id', 'register-errors-form-id')
         } else {
-          hide('register-form-id"')
+          hide('register-form-id')
           hide('register-menu-id')
           
           show('register-dialog-id')
