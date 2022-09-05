@@ -27,6 +27,7 @@ const headers: { [key: string]: string } = {
   'Content-Type': 'application/json charset=utf-8',
   'Accept': 'application/json'
 }
+const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
 const getInit = {
   method: 'get',
   headers: headers
@@ -80,13 +81,12 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
 }
 
 export async function saveImage(number: number, url: string, file: File, filename: string): Promise<ImageSaved> {
-  const headers: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
-  const formdata = new FormData()
-  formdata.append('number', number.toString())
-  formdata.append('url', url)
-  formdata.append('imagefilename', filename)
-  formdata.append('image', file, filename)
-  return await call(saveImageUrl, post, headers, formdata, () => ImageSaved.fail(number, url, 'Save image failed.'))
+  const formData = new FormData()
+  formData.append('number', number.toString())
+  formData.append('url', url)
+  formData.append('imagefilename', filename)
+  formData.append('image', file, filename)
+  return await call(saveImageUrl, post, formDataHeaders, formData, () => ImageSaved.fail(number, url, 'Save image failed.'))
 }
 
 export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
