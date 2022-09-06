@@ -36,7 +36,7 @@ export default () => {
             hide('workorder-new-command-id')
           }
           show('workorders-form-id')
-          show('workorders-list-form-id')
+          if (loggedIn.workOrders.length > 0) show('workorders-list-form-id')
         }
       })
     } else {
