@@ -142,17 +142,6 @@ export default () => {
     }  
   }, false)
 
-  getById('workorder-refresh-command-id').addEventListener('click', () => {
-    const number = parseInt( getValueById('workorder-number-id') )
-    fetcher.getWorkOrderByNumber(number).then(workOrderSelected => {
-      if (!workOrderSelected.success) {
-        setErrorList(workOrderSelected.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-      } else {
-        bindWorkOrderToForm(workOrderSelected.workOrder)
-      }
-    })
-  }, false)
-
   getById('workorders-refresh-command-id').addEventListener('click', () => {
     const id = model.getUserId()
     fetcher.listWorkOrdersByUserId(id).then(workOrdersListed => {
