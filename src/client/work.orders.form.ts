@@ -84,8 +84,19 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
 export default () => {
   console.log('*** workorders form init ...')
 
-  getById('workorder-new-command-id').addEventListener('click', () => {
+  getById('workorders-new-command-id').addEventListener('click', () => {
     bindEmptyWorkOrderToForm()
+    hide('workorders-list-id')
+    show('workorder-form-id')
+  }, false)
+
+  getById('workorders-refresh-command-id').addEventListener('click', () => {
+    const id = model.getUserId()
+    fetcher.listWorkOrdersByUserId(id).then(workOrdersListed => {
+      if (workOrdersListed.success && workOrdersListed.workOrders.length > 0) {
+        model.bindWorkOrdersToList(workOrdersListed.workOrders)
+      } 
+    }) 
   }, false)
 
   getById('workorder-form-id').addEventListener('submit', (event) => {
@@ -121,6 +132,8 @@ export default () => {
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {          
             show('workorder-dialog-id')
+            show('workorders-list-id')
+            hide('workorder-form-id')
           }
         })
       } else { // add
@@ -134,23 +147,14 @@ export default () => {
             workOrder.number = workOrderSaved.number
             model.addWorkOrder(workOrder)
             show('workorder-dialog-id')
+            show('workorders-list-id')
+            hide('workorder-form-id')
           }
         })
       }
     } else {
       setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
     }  
-  }, false)
-
-  getById('workorders-refresh-command-id').addEventListener('click', () => {
-    const id = model.getUserId()
-    fetcher.listWorkOrdersByUserId(id).then(workOrdersListed => {
-      if (!workOrdersListed.success) {
-        setErrorList(workOrdersListed.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-      } else {
-        model.bindWorkOrdersToList(workOrdersListed.workOrders)
-      } 
-    }) 
   }, false)
 
   getById('workorder-title-id').addEventListener('input', (event) => {

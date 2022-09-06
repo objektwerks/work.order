@@ -84,15 +84,15 @@ export function setSelectOptionById(selectId: string, optionId: string): void {
   }
 }
 
-export function setErrorList(error: string, errorsListId: string, errorsViewId: string): void {
+export function setErrorList(error: string, errorsListId: string, errorsFormId: string): void {
   const errors = []
   errors.push(error)
-  setErrorsList(errors, errorsListId, errorsViewId)
+  setErrorsList(errors, errorsListId, errorsFormId)
 }
 
-export function setErrorsList(errors: string[], errorsListId: string, errorsViewId: string): void {
+export function setErrorsList(errors: string[], errorsListId: string, errorsFormId: string): void {
   setListValues(errorsListId, errors)
-  show(errorsViewId)
+  show(errorsFormId)
 }
 
 export function setListValues(listId: string, values: string[]): void {

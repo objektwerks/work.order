@@ -19,7 +19,7 @@ export default () => {
   }, false)
   
   getById('workorders-menu-id').addEventListener('click', () => {
-    selectMenuItem('workorders-form-id')
+    selectMenuItem('workorders-list-id')
   }, false)
   
   getById('user-menu-id').addEventListener('click', () => {

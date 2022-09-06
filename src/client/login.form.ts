@@ -27,16 +27,14 @@ export default () => {
           model.bindWorkOrdersToList(loggedIn.workOrders)
   
           hide('login-form-id')
-          hide('login-menu-id')
-  
-          show(`workorders-menu-id`)
-          show(`user-menu-id`)
-  
+          hide('login-menu-id')  
           if (model.getUserRole() === serviceProvider) {
             hide('workorder-new-command-id')
           }
-          show('workorders-form-id')
-          if (loggedIn.workOrders.length > 0) show('workorders-list-form-id')
+
+          show(`workorders-menu-id`)
+          show(`user-menu-id`)
+          show('workorders-list-id')
         }
       })
     } else {
