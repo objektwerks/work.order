@@ -81,6 +81,12 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-closed-id', workOrder.closed)
 }
 
+function postAddSaveWorkOrder() {
+  show('workorder-dialog-id')
+  show('workorders-list-id')
+  hide('workorder-form-id')
+}
+
 export default () => {
   console.log('*** workorders form init ...')
 
@@ -131,9 +137,7 @@ export default () => {
             errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {          
-            show('workorder-dialog-id')
-            show('workorders-list-id')
-            hide('workorder-form-id')
+            postAddSaveWorkOrder()
           }
         })
       } else { // add
@@ -146,9 +150,7 @@ export default () => {
           } else {
             workOrder.number = workOrderSaved.number
             model.addWorkOrder(workOrder)
-            show('workorder-dialog-id')
-            show('workorders-list-id')
-            hide('workorder-form-id')
+            postAddSaveWorkOrder()
           }
         })
       }
