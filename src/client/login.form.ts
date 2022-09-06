@@ -29,7 +29,7 @@ export default () => {
           hide('login-form-id')
           hide('login-menu-id')  
           if (model.getUserRole() === serviceProvider) {
-            hide('workorder-new-command-id')
+            hide('workorders-new-command-id')
           }
 
           show(`workorders-menu-id`)
