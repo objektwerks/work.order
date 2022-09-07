@@ -170,14 +170,14 @@ export default () => {
   }, false)
 
   getById('workorder-image-file-id').addEventListener('change', () => {
+    const number = parseInt( getValueById('workorder-number-id') )
     const file = getFileById('workorder-image-file-id')
-    if ( file !== undefined  && file !== null) {
-      const number = getValueById('workorder-number-id')
+    if (number > 0 &&  file !== undefined  && file !== null) {
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const filename = `${number}-${datetime}.${ext}`
       const url = `/images/${number}/${filename}`
-      fetcher.saveImage(parseInt(number), url, file, filename).then(imageSaved => {
+      fetcher.saveImage(number, url, file, filename).then(imageSaved => {
         if (!imageSaved.success) {
           setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
         } else {
