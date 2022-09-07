@@ -112,6 +112,8 @@ export default () => {
 
     hide('workorder-errors-form-id')
 
+    // TODO: convert to formdata. get model.imageFile. refactor fetcher and router.
+
     const number = parseInt( getValueById('workorder-number-id') )
     const homeownerId = parseInt( getValueById('workorder-homeowner-id') )
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
