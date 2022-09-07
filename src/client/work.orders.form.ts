@@ -67,6 +67,7 @@ function bindEmptyWorkOrderToForm() {
   setValueById('workorder-resolution-id', "")
   setValueById('workorder-opened-id', new Date().toISOString())
   setValueById('workorder-closed-id', "")
+  model.setImageFile(null)
 }
 
 function bindWorkOrderToForm(workOrder: WorkOrder) {
@@ -79,6 +80,7 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
   setValueById('workorder-closed-id', workOrder.closed)
+  model.setImageFile(null)
 }
 
 function postAddSaveWorkOrder() {
