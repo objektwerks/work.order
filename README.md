@@ -2,10 +2,6 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
-Todo
-----
-1. Test and refactor web ui as required.
-
 Usage
 -----
 >***Must*** register at least ***one*** service provider before ***any*** homeowners register and submit work orders.
