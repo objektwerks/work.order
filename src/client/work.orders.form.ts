@@ -81,26 +81,6 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-closed-id', workOrder.closed)
 }
 
-function saveImage(number: number, file: File | undefined | null) {
-  if (number > 0 && file !== undefined  && file !== null) {
-    const datetime = new Date().toISOString()
-    const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
-    const filename = `${number}-${datetime}.${ext}`
-    const url = `/images/${number}/${filename}`
-    fetcher.saveImage(number, url, file, filename).then(imageSaved => {
-      if (!imageSaved.success) {
-        setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-      } else {
-        setImageUrlById('workorder-image-url-id', imageSaved.url)
-        setTextById('workorder-dialog-message', 'Photo saved successfully.')
-        show('workorder-dialog-id')
-      }
-    })
-  } else {
-    setErrorList('Failed to load file!', 'workorder-errors-list-id', 'workorder-errors-form-id')
-  }
-}
-
 function postAddSaveWorkOrder() {
   show('workorder-dialog-id')
   show('workorders-list-id')
@@ -192,8 +172,23 @@ export default () => {
   getById('workorder-image-file-id').addEventListener('change', () => {
     const number = parseInt( getValueById('workorder-number-id') )
     const file = getFileById('workorder-image-file-id')
-    saveImage(number, file)
-  }, false)
+    if (number > 0 && file !== undefined  && file !== null) {
+      const datetime = new Date().toISOString()
+      const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
+      const filename = `${number}-${datetime}.${ext}`
+      const url = `/images/${number}/${filename}`
+      fetcher.saveImage(number, url, file, filename).then(imageSaved => {
+        if (!imageSaved.success) {
+          setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+        } else {
+          setImageUrlById('workorder-image-url-id', imageSaved.url)
+          setTextById('workorder-dialog-message', 'Photo saved successfully.')
+          show('workorder-dialog-id')
+        }
+      })
+    } else {
+      setErrorList('Failed to load file!', 'workorder-errors-list-id', 'workorder-errors-form-id')
+    }  }, false)
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
     const isChecked = ( event.target as HTMLInputElement ).checked
