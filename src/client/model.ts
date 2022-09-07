@@ -5,6 +5,8 @@ let user: User
 let serviceProviders: User[]
 let workOrders: WorkOrder[]
 
+let imageFile: File | undefined | null
+
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
@@ -18,6 +20,14 @@ function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string
 
 export default () => {
   console.log('*** model init ...')
+}
+
+export function getImageFile() {
+  return imageFile
+}
+
+export function setImageFile(file: File | undefined | null) {
+  imageFile = file
 }
 
 export function getUserId(): number {

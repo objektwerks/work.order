@@ -170,22 +170,26 @@ export default () => {
   }, false)
 
   getById('workorder-image-file-id').addEventListener('change', () => {
-    const number = parseInt( getValueById('workorder-number-id') )
     const file = getFileById('workorder-image-file-id')
-    if (number > 0 && file !== undefined  && file !== null) {
+    if (file !== undefined  && file !== null) {
+      const number = parseInt( getValueById('workorder-number-id') )
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const filename = `${number}-${datetime}.${ext}`
       const url = `/images/${number}/${filename}`
-      fetcher.saveImage(number, url, file, filename).then(imageSaved => {
-        if (!imageSaved.success) {
-          setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-        } else {
-          setImageUrlById('workorder-image-url-id', imageSaved.url)
-          setTextById('workorder-dialog-message', 'Photo saved successfully.')
-          show('workorder-dialog-id')
-        }
-      })
+      if (number > 0) {
+        fetcher.saveImage(number, url, file, filename).then(imageSaved => {
+          if (!imageSaved.success) {
+            setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
+          } else {
+            setImageUrlById('workorder-image-url-id', imageSaved.url)
+            setTextById('workorder-dialog-message', 'Photo saved successfully.')
+            show('workorder-dialog-id')
+          }
+        })
+      } else {
+        model.setImageFile(file)
+      }
     } else {
       setErrorList('Failed to load file!', 'workorder-errors-list-id', 'workorder-errors-form-id')
     }  }, false)
