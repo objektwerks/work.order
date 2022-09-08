@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import multer, { FileFilterCallback } from 'multer'
 import { Request } from "express"
+import { logger } from './logger.js'
 
 type DestinationCallback = (error: Error | null, destination: string) => void
 type FileNameCallback = (error: Error | null, filename: string) => void
@@ -28,9 +29,14 @@ const oneHour = 60 * (60 * 1000)
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
-    const txtFiles = files.filter(file => path.extname(file) === txt)
-    for(const txtFile of txtFiles) {
-      fs.unlinkSync(txtFile)
+    if (error) {
+      logger.error('*** error reading images dir: ', error)
+    } else {
+      const txtFiles = files.filter(file => path.extname(file) === txt)
+      for(const txtFile of txtFiles) {
+        fs.unlinkSync(txtFile)
+      }
+      logger.info('*** removed txt files: ', txtFiles)
     }
   })
 }
