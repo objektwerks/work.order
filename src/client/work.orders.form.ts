@@ -177,7 +177,7 @@ export default () => {
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const filename = `${datetime}.${ext}`
       const url = `/images/${filename}`
-      model.setImageFile( new model.ImageFile(number, filename, url, file) )
+      model.setImageFile( new model.ImageFile(number, file, filename, url) )
     }}, false)
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
