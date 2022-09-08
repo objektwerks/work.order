@@ -29,10 +29,6 @@ export function getImageFile(): ImageFile[] {
   return imageFile
 }
 
-export function resetImageFile(): void {
-  imageFile = []
-}
-
 export function setImageFile(newImageFile: ImageFile): void {
   imageFile = []
   imageFile.push(newImageFile)
