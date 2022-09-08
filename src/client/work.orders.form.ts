@@ -84,6 +84,7 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
 }
 
 function postAddSaveWorkOrder() {
+  model.resetImageFile()
   show('workorder-dialog-id')
   show('workorders-list-id')
   hide('workorder-form-id')
