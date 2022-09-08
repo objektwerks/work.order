@@ -1,11 +1,5 @@
 export class IdValue {
-  id: string
-  value: string
-
-  constructor(id: string, value: string) {
-    this.id = id
-    this.value = value
-  }
+  constructor(public id: string, public value: string) {}
 }
 
 export function getByClass(name: string): HTMLCollectionOf<Element> {
