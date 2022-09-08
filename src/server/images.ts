@@ -25,7 +25,9 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
 }
 
 const txt = '.txt';
-const oneHour = 60 * (60 * 1000)
+const oneMinute = (60 * 1000)
+const oneHour = 60 * oneMinute
+const fourHours = 4 * oneHour
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
@@ -39,7 +41,7 @@ function removeTxtFiles() {
   })
 }
 
-setInterval(removeTxtFiles, oneHour)
+setInterval(removeTxtFiles, fourHours)
 
 export const images = multer({ storage: storage, fileFilter: fileFilter })
 export const imagesDir = './images'
