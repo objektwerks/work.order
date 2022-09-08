@@ -1,7 +1,7 @@
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
+import { images, checkImagesDir } from './images.js'
 import * as handler from './handler.js'
 import { toObject, SaveWorkOrder } from './entity.js'
 
@@ -21,7 +21,7 @@ function shutdown(signal: string): void {
 }
 
 export default () => {
-  ifNotExistsMakeDir(imagesDir)
+  checkImagesDir()
 
   router = express()
   router.use(express.static('client'))

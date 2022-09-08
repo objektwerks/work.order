@@ -44,13 +44,6 @@ setInterval(removeTxtFiles, oneHour)
 export const images = multer({ storage: storage, fileFilter: fileFilter })
 export const imagesDir = './images'
 
-export function ifNotExistsMakeDir(dir: string): boolean {
-  if (fs.existsSync(dir)){
-    console.log(`*** images: ${dir} exists.`)
-    return false
-  } else {
-    fs.mkdirSync(dir)
-    console.log(`*** images: ${dir} created.`)
-    return true
-  }
+export function checkImagesDir(): void {
+  if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir)
 }
