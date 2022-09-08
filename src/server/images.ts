@@ -30,13 +30,9 @@ function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
     const txtFiles = files.filter(file => path.extname(file) === txt)
     for(const txtFile of txtFiles) {
-      removeFile(txtFile)
+      fs.unlinkSync(txtFile)
     }
   })
-}
-
-function removeFile(file: string) {
-  if (fs.existsSync(file)) fs.unlinkSync(file)
 }
 
 setInterval(removeTxtFiles, oneHour)
