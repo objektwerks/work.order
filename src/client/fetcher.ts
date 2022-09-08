@@ -1,3 +1,4 @@
+import { ImageFile } from './model.js'
 import { 
   toJson,
   ImageSaved,
@@ -7,7 +8,7 @@ import {
   Registered,
   SaveUser,
   UserSaved,
-  SaveWorkOrder,
+  WorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
   WorkOrdersListed } from './entity.js'
@@ -46,6 +47,17 @@ async function call<T, R>(url: string,
   return result
 }
 
+function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): FormData {
+  const formData = new FormData()
+  formData.append('workOrderAsJson', toJson(workOrder))
+  if (imageFile.length > 0) {
+    const image = imageFile[0]
+    formData.append('imagefilename', image.filename)
+    formData.append('image', image.file, image.filename)
+  }
+  return formData
+}
+
 export default () => {
   console.log('*** fetcher init ...')
 }
@@ -58,12 +70,12 @@ export async function login(login: Login): Promise<LoggedIn> {
   return await call(loginUrl, post, headers, login, () => LoggedIn.fail('Login failed.'))
 }
 
-export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  return await call(addWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Add work order failed!'))
+export async function addWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]): Promise<WorkOrderSaved> {
+  return await call(addWorkOrderUrl, post, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!'))
 }
 
-export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  return await call(saveWorkOrderUrl, post, headers, saveWorkOrder, () => WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed!'))
+export async function saveWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]): Promise<WorkOrderSaved> {
+  return await call(saveWorkOrderUrl, post, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!'))
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {

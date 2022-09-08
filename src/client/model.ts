@@ -18,7 +18,7 @@ function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string
 }
 
 export class ImageFile {
-  constructor(public number: number, public name: string, public url: string, public file: File) {}
+  constructor(public number: number, public filename: string, public url: string, public file: File) {}
 }
 
 export default () => {
