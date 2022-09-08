@@ -24,7 +24,7 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
   }
 }
 
-const txt = '.txt';
+const txt = '.txt'
 const oneMinute = (60 * 1000)
 const oneHour = 60 * oneMinute
 const threeHours = 3 * oneHour
