@@ -1,7 +1,7 @@
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById, hide,
-         show, setErrorList, setErrorsList, setImageUrlById, setSelectOptionById, setTextById, setValueById } from './dom.js'
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById,
+         hide, show, setErrorsList, setImageUrlById, setSelectOptionById, setValueById } from './dom.js'
 import { homeowner, SaveWorkOrder, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
 
 const readonlyRole = 'readonly'
@@ -181,22 +181,8 @@ export default () => {
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const name = `${number}-${datetime}.${ext}`
       const url = `/images/${number}/${name}`
-      if (number > 0) {
-        fetcher.saveImage(number, url, file, name).then(imageSaved => {
-          if (!imageSaved.success) {
-            setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
-          } else {
-            setImageUrlById('workorder-image-url-id', imageSaved.url)
-            setTextById('workorder-dialog-message', 'Photo saved successfully.')
-            show('workorder-dialog-id')
-          }
-        })
-      } else {
-        model.setImageFile( new model.ImageFile(number, name, url, file) )
-      }
-    } else {
-      setErrorList('Failed to load file!', 'workorder-errors-list-id', 'workorder-errors-form-id')
-    }  }, false)
+      model.setImageFile( new model.ImageFile(number, name, url, file) )
+    }}, false)
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
     const isChecked = ( event.target as HTMLInputElement ).checked
