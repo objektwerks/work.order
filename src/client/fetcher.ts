@@ -54,7 +54,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.append('image', image.file, image.filename)
     formData.append('imageFileName', image.filename)
   } else {
-    formData.append('image', new Blob(), 'empty')
+    formData.append('image', new Blob(['empty']), 'empty')
     formData.append('imageFileName', '')
   }
   formData.append('workOrderAsJson', toJson(workOrder))
