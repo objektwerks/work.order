@@ -4,7 +4,7 @@ import { User, WorkOrder } from './entity.js'
 let user: User
 let serviceProviders: User[]
 let workOrders: WorkOrder[]
-let imageFile: ImageFile[] // array of 1
+let imageFile: ImageFile[] // array of 1, or option
 
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
@@ -29,11 +29,11 @@ export function getImageFile(): ImageFile[] {
   return imageFile
 }
 
-export function resetImageFile() {
+export function resetImageFile(): void {
   imageFile = []
 }
 
-export function setImageFile(newImageFile: ImageFile) {
+export function setImageFile(newImageFile: ImageFile): void {
   imageFile = []
   imageFile.push(newImageFile)
 }
@@ -60,7 +60,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder | undefined {
   return workOrders.find(workOrder => workOrder.number === number)
 }
 
-export function addWorkOrder(workOrder: WorkOrder) {
+export function addWorkOrder(workOrder: WorkOrder): void {
   workOrders.push(workOrder)
   const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened))
   splitWorkOrders(sortedWorkOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')

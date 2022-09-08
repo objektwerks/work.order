@@ -49,12 +49,13 @@ async function call<T, R>(url: string,
 
 function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): FormData {
   const formData = new FormData()
-  formData.append('workOrderAsJson', toJson(workOrder))
   if (imageFile.length > 0) {
     const image = imageFile[0]
+    workOrder.imageUrl = image.url
     formData.append('imagefilename', image.filename)
     formData.append('image', image.file, image.filename)
   }
+  formData.append('workOrderAsJson', toJson(workOrder))
   return formData
 }
 
