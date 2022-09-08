@@ -54,7 +54,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.append('imageFileName', image.filename)
   } else {
     const filename = `z-${new Date().toISOString()}.txt`
-    formData.append('image', new Blob(['empty']), filename)
+    formData.append('image', new Blob(['delete me!'], { type: "text/plain" }), filename)
     formData.append('imageFileName', filename)
   }
   formData.append('workOrderAsJson', toJson(workOrder))
