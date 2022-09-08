@@ -175,9 +175,9 @@ export default () => {
       const number = parseInt( getValueById('workorder-number-id') )
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
-      const name = `${number}-${datetime}.${ext}`
-      const url = `/images/${number}/${name}`
-      model.setImageFile( new model.ImageFile(number, name, url, file) )
+      const filename = `${datetime}.${ext}`
+      const url = `/images/${filename}`
+      model.setImageFile( new model.ImageFile(number, filename, url, file) )
     }}, false)
 
   getById('workorder-closed-check-id').addEventListener('change', (event) => {
