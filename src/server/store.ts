@@ -95,10 +95,3 @@ export async function saveUser(user: User): Promise<number> {
     [user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin, user.id])
   return result.affectedRows
 }
-
-export async function saveImageUrl(number: number, url: string): Promise<number> {
-  const [result] = await connection
-    .query<OkPacket>('update work_order set imageUrl = ? where number = ?',
-    [url, number])
-  return result.affectedRows
-}
