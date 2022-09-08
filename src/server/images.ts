@@ -46,11 +46,11 @@ export const imagesDir = './images'
 
 export function ifNotExistsMakeDir(dir: string): boolean {
   if (fs.existsSync(dir)){
-    console.log(`*** images.ifNotExistsMakeDir -> ${dir} exists.`)
+    console.log(`*** images: ${dir} exists.`)
     return false
   } else {
     fs.mkdirSync(dir)
-    console.log(`*** images.ifNotExistsMakeDir -> ${dir} created.`)
+    console.log(`*** images: ${dir} created.`)
     return true
   }
 }
