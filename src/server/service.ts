@@ -8,7 +8,6 @@ import {
   LoggedIn,
   Register,
   Registered,
-  ImageSaved,
   User,
   SaveUser,
   UserSaved,
@@ -151,24 +150,6 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   } catch(error) {
     logError('saveUser', `failed: ${error} for ${saveUser}`)
     saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
-  }
-  return saved
-}
-
-export async function saveImageUrl(number: number, url: string): Promise<ImageSaved> {
-  let saved: ImageSaved
-  try {
-    const affectedRows = await store.saveImageUrl(number, url)
-    if (affectedRows === 1) {
-      log('saveImageUrl', `succeeded for number: ${number} url: ${url}`)
-      saved = ImageSaved.success(number, url)
-    } else {
-      log('saveImageUrl', `failed for number: ${number} url: ${url}`)
-      saved = ImageSaved.fail(number, url, 'Saved image url failed.')
-    }
-  } catch(error) {
-    logError('saveImageUrl', `failed: for number: ${number} url: ${url} error: ${error}`)
-    saved = ImageSaved.fail(number, url, 'Save image url failed.')
   }
   return saved
 }
