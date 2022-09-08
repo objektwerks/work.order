@@ -24,7 +24,7 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
 }
 
 const txt = '.txt';
-const timeInterval = 60 * (60 * 1000)
+const oneHour = 60 * (60 * 1000)
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
@@ -36,15 +36,10 @@ function removeTxtFiles() {
 }
 
 function removeFile(file: string) {
-  if (fs.existsSync(file)) {
-    fs.unlinkSync(file);
-    console.log(`*** ${file} removed.`);
-  } else {
-    console.log(`*** ${file} doesn't exist.`);
-  }
+  if (fs.existsSync(file)) fs.unlinkSync(file)
 }
 
-setInterval(removeTxtFiles, timeInterval)
+setInterval(removeTxtFiles, oneHour)
 
 export const images = multer({ storage: storage, fileFilter: fileFilter })
 export const imagesDir = './images'
