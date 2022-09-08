@@ -4,7 +4,7 @@ import { User, WorkOrder } from './entity.js'
 let user: User
 let serviceProviders: User[]
 let workOrders: WorkOrder[]
-let imageFile: ImageFile[]
+let imageFile: ImageFile[] // array of 1
 
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
