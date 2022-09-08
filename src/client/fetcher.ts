@@ -50,7 +50,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
   if (imageFile.length > 0) {
     const image = imageFile[0]
     workOrder.imageUrl = image.url
-    formData.append('number', workOrder.number)
+    formData.append('number', workOrder.number.toString())
     formData.append('image', image.file, image.filename)
     formData.append('imageFileName', image.filename)
   }

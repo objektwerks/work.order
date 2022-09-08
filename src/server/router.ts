@@ -39,7 +39,15 @@ export default () => {
   })
   
   router.post('/workorders/add', images.single('image'), (request, response) => {
-    handler.addWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
+    handler.addWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) )
+      .then(workOrderSaved => {
+        if (request.body.number === '0') {
+          // const number = workOrderSaved.number
+          // 1) rename directory images/$number and 2) rename image file to ${number}-${datetime}.${ext}
+        }
+        response.json(workOrderSaved)
+      }
+    )
   })
 
   router.post('/workorders/save', images.single('image'), (request, response) => {
