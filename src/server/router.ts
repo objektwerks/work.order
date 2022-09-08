@@ -3,6 +3,7 @@ import express, { Express } from 'express'
 import { Server } from 'http'
 import { images, imagesDir, ifNotExistsMakeDir } from './images.js'
 import * as handler from './handler.js'
+import { toObject, SaveWorkOrder } from './entity.js'
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
@@ -37,12 +38,12 @@ export default () => {
     handler.login( request.body ).then(loggedIn => response.json(loggedIn))
   })
   
-  router.post('/workorders/add', (request, response) => {
-    handler.addWorkOrder( request.body ).then(workOrderSaved => response.json(workOrderSaved))
+  router.post('/workorders/add', images.single('image'), (request, response) => {
+    handler.addWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.post('/workorders/save', (request, response) => {
-    handler.saveWorkOrder( request.body ).then(workOrderSaved => response.json(workOrderSaved))
+  router.post('/workorders/save', images.single('image'), (request, response) => {
+    handler.saveWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
   router.get('/workorders/user/:id', (request, response) => {
