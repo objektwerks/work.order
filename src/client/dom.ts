@@ -102,7 +102,7 @@ export function setListValues(listId: string, values: string[]): void {
 export function setListIdValues(listId: string, idValues: IdValue[]): void {
   const ul = getById(listId) as HTMLUListElement
   ul.innerHTML = ''
-  if (idValues.length === 0) idValues.push( new IdValue('0', 'values in list.'))
+  if (idValues.length === 0) idValues.push( new IdValue('0', 'items in list.') )
   for (const idValue of idValues) {
     const li = document.createElement('li')
     li.id = idValue.id
