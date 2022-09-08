@@ -1,12 +1,10 @@
 import * as service from './service.js'
 import {
   isGreaterThanZero,
-  isImageUrl,
   isLoginValid,
   isRegisterValid,
   isUserValid,
   isWorkOrderValid,
-  ImageSaved,
   Login,
   LoggedIn,
   Register,
@@ -59,9 +57,4 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   if (isUserValid(saveUser.user)) return service.saveUser(saveUser)
   else return UserSaved.fail(saveUser.user.id, 'User is invalid.')
-}
-
-export async function saveImageUrl(number: number, url: string): Promise<ImageSaved> {
-  if (isGreaterThanZero(number) && isImageUrl(url)) return service.saveImageUrl(number, url)
-  else return ImageSaved.fail(number, url, 'Work order number and/or image url is invalid.')
 }
