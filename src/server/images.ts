@@ -7,6 +7,7 @@ type FileNameCallback = (error: Error | null, filename: string) => void
 
 const storage = multer.diskStorage({
   destination: (request: Request, file: Express.Multer.File, callback: DestinationCallback) => {
+    // handle emtpy file and filename
     const number = request.body.number as number
     const dir = `${imagesDir}/${number}` as string
     ifExistsRemoveDir(dir) // only 1 image per work order!
