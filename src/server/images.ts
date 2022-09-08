@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 import multer, { FileFilterCallback } from 'multer'
 import { Request } from "express"
 
@@ -21,6 +22,29 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
       callback(null, false)
   }
 }
+
+const txt = '.txt';
+const timeInterval = 60 * (60 * 1000)
+
+function removeTxtFiles() {
+  fs.readdir(imagesDir, (error, files) => {
+    const txtFiles = files.filter(file => path.extname(file) === txt)
+    for(const txtFile of txtFiles) {
+      removeFile(txtFile)
+    }
+  })
+}
+
+function removeFile(file: string) {
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+    console.log(`*** ${file} removed.`);
+  } else {
+    console.log(`*** ${file} doesn't exist.`);
+  }
+}
+
+setInterval(removeTxtFiles, timeInterval)
 
 export const images = multer({ storage: storage, fileFilter: fileFilter })
 export const imagesDir = './images'
