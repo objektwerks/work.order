@@ -47,15 +47,15 @@ async function call<T, R>(url: string,
 
 function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): FormData {
   const formData = new FormData()
-  formData.append('number', workOrder.number.toString())
   if (imageFile.length > 0) {
     const image = imageFile[0]
     workOrder.imageUrl = image.url
     formData.append('image', image.file, image.filename)
     formData.append('imageFileName', image.filename)
   } else {
-    formData.append('image', new Blob(['empty']), 'empty')
-    formData.append('imageFileName', '')
+    const filename = `z-${new Date().toISOString()}.txt`
+    formData.append('image', new Blob(['empty']), filename)
+    formData.append('imageFileName', filename)
   }
   formData.append('workOrderAsJson', toJson(workOrder))
   return formData
