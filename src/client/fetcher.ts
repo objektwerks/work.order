@@ -1,7 +1,6 @@
 import { ImageFile } from './model.js'
 import { 
   toJson,
-  ImageSaved,
   Login,
   LoggedIn,
   Register,
@@ -19,7 +18,6 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const saveImageUrl = rootUrl + '/image/save'
 const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'get'
@@ -81,15 +79,6 @@ export async function saveWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
-}
-
-export async function saveImage(number: number, url: string, file: File, filename: string): Promise<ImageSaved> {
-  const formData = new FormData()
-  formData.append('number', number.toString())
-  formData.append('url', url)
-  formData.append('imagefilename', filename)
-  formData.append('image', file, filename)
-  return await call(saveImageUrl, post, formDataHeaders, formData, () => ImageSaved.fail(number, url, 'Save image failed.'))
 }
 
 export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
