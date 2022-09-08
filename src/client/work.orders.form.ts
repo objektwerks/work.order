@@ -67,7 +67,7 @@ function bindEmptyWorkOrderToForm() {
   setValueById('workorder-resolution-id', "")
   setValueById('workorder-opened-id', new Date().toISOString())
   setValueById('workorder-closed-id', "")
-  model.setImageFile(null)
+  model.resetImageFile()
 }
 
 function bindWorkOrderToForm(workOrder: WorkOrder) {
@@ -80,7 +80,7 @@ function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
   setValueById('workorder-closed-id', workOrder.closed)
-  model.setImageFile(null)
+  model.resetImageFile()
 }
 
 function postAddSaveWorkOrder() {
@@ -179,10 +179,10 @@ export default () => {
       const number = parseInt( getValueById('workorder-number-id') )
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
-      const filename = `${number}-${datetime}.${ext}`
-      const url = `/images/${number}/${filename}`
+      const name = `${number}-${datetime}.${ext}`
+      const url = `/images/${number}/${name}`
       if (number > 0) {
-        fetcher.saveImage(number, url, file, filename).then(imageSaved => {
+        fetcher.saveImage(number, url, file, name).then(imageSaved => {
           if (!imageSaved.success) {
             setErrorList(imageSaved.error, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {
@@ -192,7 +192,7 @@ export default () => {
           }
         })
       } else {
-        model.setImageFile(file)
+        model.setImageFile( new model.ImageFile(number, name, url, file) )
       }
     } else {
       setErrorList('Failed to load file!', 'workorder-errors-list-id', 'workorder-errors-form-id')

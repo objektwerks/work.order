@@ -4,8 +4,7 @@ import { User, WorkOrder } from './entity.js'
 let user: User
 let serviceProviders: User[]
 let workOrders: WorkOrder[]
-
-let imageFile: File | undefined | null
+let imageFile: ImageFile[]
 
 function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
   const openedWorkOrders = workOrders
@@ -18,16 +17,25 @@ function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string
   setListIdValues(closedWorkOrdersListId, closedWorkOrders)
 }
 
+export class ImageFile {
+  constructor(public number: number, public name: string, public url: string, public file: File) {}
+}
+
 export default () => {
   console.log('*** model init ...')
 }
 
-export function getImageFile() {
+export function getImageFile(): ImageFile[] {
   return imageFile
 }
 
-export function setImageFile(file: File | undefined | null) {
-  imageFile = file
+export function resetImageFile() {
+  imageFile = []
+}
+
+export function setImageFile(newImageFile: ImageFile) {
+  imageFile = []
+  imageFile.push(newImageFile)
 }
 
 export function getUserId(): number {
