@@ -57,10 +57,6 @@ export default () => {
   router.post('/users/save', (request, response) => {
     handler.saveUser( request.body ).then(userSaved => response.json(userSaved))
   })
-
-  router.post('/image/save', images.single('image'), (request, response) => {
-    handler.saveImageUrl(request.body.number, request.body.url).then(imageSaved => response.json(imageSaved))
-  })
   
   server = router.listen(port, host, () =>
     console.log(`*** server listening on http://${host}:${port}/`)
