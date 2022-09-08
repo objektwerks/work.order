@@ -115,21 +115,6 @@ export class WorkOrdersListed {
   }
 }
 
-export class ImageSaved {
-  constructor(public number: number, 
-              public url: string, 
-              public success: boolean = true, 
-              public error: string = '') {}
-
-  static success(number: number, url: string): ImageSaved {
-    return new ImageSaved(number, url)
-  }
-
-  static fail(number: number, url: string, error: string): ImageSaved {
-    return new ImageSaved(number, url, false, error)
-  }
-}
-
 export class UserSaved {
   constructor(public id: number, 
               public success: boolean = true, 
