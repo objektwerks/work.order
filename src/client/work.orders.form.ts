@@ -124,7 +124,6 @@ export default () => {
     if (errors.length === 0) {
       const workOrder = model.getWorkOrderByNumber(number)
       if (workOrder !== undefined && number > 0) { // save
-        workOrder.homeownerId = homeownerId
         workOrder.serviceProviderId = serviceProviderId
         workOrder.title = title
         workOrder.issue = issue
