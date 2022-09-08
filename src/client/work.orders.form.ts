@@ -142,7 +142,7 @@ export default () => {
           }
         })
       } else { // add
-        const workOrder: WorkOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
+        const workOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
         fetcher.addWorkOrder(workOrder,  model.getImageFile()).then(workOrderSaved => {
           if (!workOrderSaved.success) {
             errors.push(workOrderSaved.error)
