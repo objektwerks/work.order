@@ -8,12 +8,12 @@ const options: PoolOptions = {
 const connection: Pool = mysql.createPool(options)
 
 export default () => {
-  console.log('*** store connected to database ...')
+  console.log('*** store connected ...')
 }
 
 export function disconnect(): void {
   connection.end()
-  console.log('*** store disconnected from database.')
+  console.log('*** store disconnected.')
 }
 
 export async function listWorkOrdersByUserId(id: number): Promise<WorkOrder[]> {
