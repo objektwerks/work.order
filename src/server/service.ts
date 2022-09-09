@@ -20,11 +20,11 @@ import {
 const subject = 'Work Order Registration'
 
 function log(method: string, message:  string): void {
-  logger.info(`*** service.${method}: `, message)
+  logger.info(`*** service.${method}: ${message}`)
 }
 
 function logError(method: string, message:  string): void {
-  logger.error(`*** service.${method} error: `, message)
+  logger.error(`*** service.${method} error: ${message}`)
 }
 
 export default () => {
