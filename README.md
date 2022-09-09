@@ -126,7 +126,7 @@ Mysql Setup
 
 Mysql
 -----
-1. mysql -u admin -p
+1. mysql -u work -p
 2. \. ddl.sql
 
 Date Time
