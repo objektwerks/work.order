@@ -115,9 +115,17 @@ Schema
 3. work_order
 >See **ddl.sql** for details.
 
+Mysql Setup
+-----------
+1. sudo mysql -u root
+2. CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+3. SHOW CREATE USER 'admin'@'localhost';
+4. GRANT ALL PRIVILEGES ON work_order_db.* TO 'admin'@'localhost';
+5. \. ddl.sql
+
 Mysql
 -----
-1. sudo mysql -u root
+1. mysql -u admin -p
 2. \. ddl.sql
 
 Date Time
