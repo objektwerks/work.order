@@ -2,7 +2,8 @@ import { getById, getValueById, hide, setErrorsList, show } from './dom.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
-import { serviceProvider, validateLoginForm, Login } from './entity.js'
+import * as role from './role.js'
+import { validateLoginForm, Login } from './entity.js'
 
 export default () => {
   console.log('*** login form init ...')
@@ -31,11 +32,10 @@ export default () => {
           binder.bindServiceProvidersToSelect(model.getServiceProviders())
           binder.bindWorkOrdersToList(model.getWorkOrders())
   
+          role.apply(model.getUserRole())
+
           hide('login-form-id')
           hide('login-menu-id')  
-          if (model.getUserRole() === serviceProvider) {
-            hide('workorders-new-command-id')
-          }
 
           show(`workorders-menu-id`)
           show(`user-menu-id`)
