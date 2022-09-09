@@ -117,10 +117,7 @@ Schema
 
 Mysql
 -----
->Option 1:
-1. mysql -uroot -p < ddl.sql
->Option 2:
-1. mysql -uroot -p
+1. sudo mysql -u root
 2. \. ddl.sql
 
 Date Time
