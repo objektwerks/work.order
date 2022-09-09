@@ -1,8 +1,8 @@
 import { getById, getValueById, hide, setErrorsList, show } from './dom.js'
-import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
 import * as role from './role.js'
+import * as fetcher from './fetcher.js'
 import { validateLoginForm, Login } from './entity.js'
 
 export default () => {
