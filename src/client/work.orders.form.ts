@@ -1,7 +1,8 @@
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId, getValueById,
-         hide, show, setErrorsList, setImageUrlById, setSelectOptionById, setValueById } from './dom.js'
+import * as binder from './binder.js'
+import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId,
+         getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
 import { homeowner, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
 
 const readonlyRole = 'readonly'
@@ -58,29 +59,6 @@ function applyRoleToForm(role: string) {
   }
 }
 
-function bindEmptyWorkOrderToForm() {
-  setValueById('workorder-number-id', '0')
-  setValueById('workorder-homeowner-id', model.getUserId.toString())
-  setValueById('workorder-title-id', "")
-  setValueById('workorder-issue-id', "")
-  setValueById('workorder-image-url-id', "")
-  setValueById('workorder-resolution-id', "")
-  setValueById('workorder-opened-id', new Date().toISOString())
-  setValueById('workorder-closed-id', "")
-}
-
-function bindWorkOrderToForm(workOrder: WorkOrder) {
-  setValueById('workorder-number-id', workOrder.number.toString())
-  setValueById('workorder-homeowner-id', workOrder.homeownerId.toString())
-  setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
-  setValueById('workorder-title-id', workOrder.title)
-  setValueById('workorder-issue-id', workOrder.issue)
-  setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
-  setValueById('workorder-resolution-id', workOrder.resolution)
-  setValueById('workorder-opened-id', workOrder.opened)
-  setValueById('workorder-closed-id', workOrder.closed)
-}
-
 function postAddSaveWorkOrder() {
   show('workorder-dialog-id')
   show('workorders-list-id')
@@ -91,7 +69,7 @@ export default () => {
   console.log('*** workorders form init ...')
 
   getById('workorders-new-command-id').addEventListener('click', () => {
-    bindEmptyWorkOrderToForm()
+    binder.bindEmptyWorkOrderToForm()
     hide('workorders-list-id')
     show('workorder-form-id')
   }, false)
@@ -100,7 +78,7 @@ export default () => {
     const id = model.getUserId()
     fetcher.listWorkOrdersByUserId(id).then(workOrdersListed => {
       if (workOrdersListed.success && workOrdersListed.workOrders.length > 0) {
-        model.bindWorkOrdersToList(workOrdersListed.workOrders)
+        binder.bindWorkOrdersToList(workOrdersListed.workOrders)
       } 
     }) 
   }, false)
@@ -202,7 +180,7 @@ export default () => {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
       if ( workOrder !== undefined ) {
-        bindWorkOrderToForm(workOrder)
+        binder.bindWorkOrderToForm(workOrder)
         applyRoleToForm(model.getUserRole())
         console.log(`*** work order selected and bound to form for number: ${number}`)
       } else {
@@ -217,7 +195,7 @@ export default () => {
       const number = ( event.target as HTMLInputElement ).id
       const workorder = model.getWorkOrderByNumber( parseInt(number) )
       if (workorder !== undefined) {
-        bindWorkOrderToForm(workorder)
+        binder.bindWorkOrderToForm(workorder)
         applyRoleToForm(readonlyRole)
         console.log(`*** work order selected and bound to form for number: ${number}`)
       } else {

@@ -4,7 +4,7 @@ import * as model from './model.js'
 import { validateUserForm, SaveUser } from './entity.js'
 
 function bindFormToUser(name: string, emailAddress: string, streetAddress: string) {
-  model.setUser(name, emailAddress, streetAddress)
+  model.setUserFields(name, emailAddress, streetAddress)
 }
 
 export default () => {

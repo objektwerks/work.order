@@ -1,6 +1,7 @@
 import { getById, getValueById, hide, setErrorsList, show } from './dom.js'
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
+import * as binder from './binder.js'
 import { serviceProvider, validateLoginForm, Login } from './entity.js'
 
 export default () => {
@@ -22,9 +23,13 @@ export default () => {
           errors.push(loggedIn.error)
           setErrorsList(errors, 'login-errors-list-id', 'login-errors-form-id')
         } else {
-          model.bindUserToForm(loggedIn.user)
-          model.bindServiceProvidersToSelect(loggedIn.serviceProviders)
-          model.bindWorkOrdersToList(loggedIn.workOrders)
+          model.setUser(loggedIn.user)
+          model.setServiceProviders(loggedIn.serviceProviders)
+          model.setWorkOrders(loggedIn.workOrders)
+
+          binder.bindUserToForm(model.getUser())
+          binder.bindServiceProvidersToSelect(model.getServiceProviders())
+          binder.bindWorkOrdersToList(model.getWorkOrders())
   
           hide('login-form-id')
           hide('login-menu-id')  
