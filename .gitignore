@@ -3,5 +3,6 @@
 !.eslintignore
 !.gitignore
 dist
+logs
 node_modules
 package-lock.json
