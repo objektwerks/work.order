@@ -28,7 +28,7 @@ function logError(method: string, message:  string): void {
 }
 
 export default () => {
-  console.log('*** service running ...')
+  console.log('*** service init ...')
 }
 
 export function shutdown(): void {
