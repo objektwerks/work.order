@@ -18,9 +18,9 @@ export function apply(role: string) {
     addReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
     addReadonlyById('workorder-closed-id')
-    show('workorder-new-command-id')
+    show('workorders-new-command-id')
+    show('workorders-refresh-command-id')
     show('workorder-save-command-id')
-    show('workorder-refresh-command-id')
   } else if (role === serviceProvider) {
     // always readonly addReadonlyById('workorder-number-id')
     // always readonly addReadonlyById('workorder-homeowner-id')
@@ -31,9 +31,9 @@ export function apply(role: string) {
     removeReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
     removeReadonlyById('workorder-closed-id')
-    hide('workorder-new-command-id')
+    hide('workorders-new-command-id')
+    show('workorders-refresh-command-id')
     show('workorder-save-command-id')
-    show('workorder-refresh-command-id')
   } else if (role === readonlyRole) {
     // always readonly addReadonlyById('workorder-number-id')
     // always readonly addReadonlyById('workorder-homeowner-id')
@@ -44,8 +44,8 @@ export function apply(role: string) {
     addReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
     addReadonlyById('workorder-closed-id')
-    hide('workorder-new-command-id')
+    hide('workorders-new-command-id')
+    hide('workorders-refresh-command-id')
     hide('workorder-save-command-id')
-    hide('workorder-refresh-command-id')
   }
 }
