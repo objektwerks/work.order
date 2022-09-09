@@ -1,11 +1,9 @@
 import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
-import { getByClass, removeReadonlyById, addReadonlyById, getById, getFileById, getSelectedIndexId,
-         getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
-import { homeowner, serviceProvider, validateWorkOrder, WorkOrder } from './entity.js'
-
-const readonlyRole = 'readonly'
+import * as role from './role.js'
+import { getByClass, getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
+import { validateWorkOrder, WorkOrder } from './entity.js'
 
 function selectTab(tabviewId: string) {
   const tabviews = getByClass('tabview') as HTMLCollectionOf<Element>
@@ -14,49 +12,6 @@ function selectTab(tabviewId: string) {
     tabview.style.display = 'none'
   }
   show(tabviewId)
-}
-
-function applyRoleToForm(role: string) {
-  if (role === homeowner) {
-    // always readonly removeReadonlyById('workorder-number-id')
-    // always readonly removeReadonlyById('workorder-homeowner-id')
-    removeReadonlyById('workorder-service-provider-id')
-    removeReadonlyById('workorder-title-id')
-    removeReadonlyById('workorder-issue-id')
-    removeReadonlyById('workorder-image-file-id')
-    addReadonlyById('workorder-resolution-id')
-    // always readonly addReadonlyById('workorder-opened-id')
-    addReadonlyById('workorder-closed-id')
-    show('workorder-new-command-id')
-    show('workorder-save-command-id')
-    show('workorder-refresh-command-id')
-  } else if (role === serviceProvider) {
-    // always readonly addReadonlyById('workorder-number-id')
-    // always readonly addReadonlyById('workorder-homeowner-id')
-    addReadonlyById('workorder-service-provider-id')
-    addReadonlyById('workorder-title-id')
-    addReadonlyById('workorder-issue-id')
-    addReadonlyById('workorder-image-file-id')
-    removeReadonlyById('workorder-resolution-id')
-    // always readonly addReadonlyById('workorder-opened-id')
-    removeReadonlyById('workorder-closed-id')
-    hide('workorder-new-command-id')
-    show('workorder-save-command-id')
-    show('workorder-refresh-command-id')
-  } else if (role === readonlyRole) {
-    // always readonly addReadonlyById('workorder-number-id')
-    // always readonly addReadonlyById('workorder-homeowner-id')
-    addReadonlyById('workorder-service-provider-id')
-    addReadonlyById('workorder-title-id')
-    addReadonlyById('workorder-issue-id')
-    addReadonlyById('workorder-image-file-id')
-    addReadonlyById('workorder-resolution-id')
-    // always readonly addReadonlyById('workorder-opened-id')
-    addReadonlyById('workorder-closed-id')
-    hide('workorder-new-command-id')
-    hide('workorder-save-command-id')
-    hide('workorder-refresh-command-id')
-  }
 }
 
 function postAddSaveWorkOrder() {
@@ -166,12 +121,12 @@ export default () => {
 
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-opened-form-id')
-    applyRoleToForm(model.getUserRole())
+    role.apply(model.getUserRole())
   }, false)
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-closed-form-id')
-    applyRoleToForm(readonlyRole)
+    role.apply(role.readonlyRole)
   }, false)
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
@@ -181,7 +136,7 @@ export default () => {
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
       if ( workOrder !== undefined ) {
         binder.bindWorkOrderToForm(workOrder)
-        applyRoleToForm(model.getUserRole())
+        role.apply(model.getUserRole())
         console.log(`*** work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** work order undefined for number: ${number}`)
@@ -196,7 +151,7 @@ export default () => {
       const workorder = model.getWorkOrderByNumber( parseInt(number) )
       if (workorder !== undefined) {
         binder.bindWorkOrderToForm(workorder)
-        applyRoleToForm(readonlyRole)
+        role.apply(role.readonlyRole)
         console.log(`*** work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** work order undefined for number: ${number}`)
