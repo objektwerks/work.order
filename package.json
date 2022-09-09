@@ -17,7 +17,7 @@
     "compile": "tsc",
     "copy": "copyfiles --flat rc/*.ico rc/*.png rc/*.css rc/*.html ./dist/client",
     "build": "npm run clean && npm run compile && npm run copy && npm run lint",
-    "ddl": "mysql -u admin < ddl.sql",
+    "ddl": "mysql -u admin -p < ddl.sql",
     "watch": "tsc-watch",
     "dev": "cd ./dist && nodemon server.js",
     "test": "npm run ddl && node ./dist/test/integration.js",
