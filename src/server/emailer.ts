@@ -16,7 +16,7 @@ const options: Mail.Options = {
 const transporter = nodemailer.createTransport(options)
 
 export default () => {
-  console.log('*** emailer connected ...')
+  console.log('*** emailer init ...')
 }
 
 export async function send(recipient: string, subject: string, text: string): Promise<void> {
