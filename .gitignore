@@ -2,6 +2,7 @@
 !.eslintrc
 !.eslintignore
 !.gitignore
+app.log
 dist
 node_modules
 package-lock.json
