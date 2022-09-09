@@ -1,7 +1,7 @@
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { images, checkImagesDir } from './images.js'
+import { imagesStore } from './images.js'
 import * as handler from './handler.js'
 import { toObject, SaveWorkOrder } from './entity.js'
 
@@ -21,8 +21,6 @@ function shutdown(signal: string): void {
 }
 
 export default () => {
-  checkImagesDir()
-
   router = express()
   router.use(express.static('client'))
   router.use(express.static('images'))
@@ -38,11 +36,11 @@ export default () => {
     handler.login( request.body ).then(loggedIn => response.json(loggedIn))
   })
   
-  router.post('/workorders/add', images.single('image'), (request, response) => {
+  router.post('/workorders/add', imagesStore.single('image'), (request, response) => {
     handler.addWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.post('/workorders/save', images.single('image'), (request, response) => {
+  router.post('/workorders/save', imagesStore.single('image'), (request, response) => {
     handler.saveWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 

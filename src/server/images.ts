@@ -28,6 +28,7 @@ const txt = '.txt'
 const oneMinute = (60 * 1000)
 const oneHour = 60 * oneMinute
 const threeHours = 3 * oneHour
+const imagesDir = './images'
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
@@ -43,9 +44,9 @@ function removeTxtFiles() {
 
 setInterval(removeTxtFiles, threeHours)
 
-export const images = multer({ storage: storage, fileFilter: fileFilter })
-export const imagesDir = './images'
-
-export function checkImagesDir(): void {
+export default () => {
   if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir)
+  console.log('*** images init ...')
 }
+
+export const imagesStore = multer({ storage: storage, fileFilter: fileFilter })
