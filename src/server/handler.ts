@@ -17,7 +17,7 @@ import {
   WorkOrdersListed } from './entity.js'
 
 export default () => {
-  console.log('*** handler running ...')
+  console.log('*** handler init ...')
 }
 
 export function shutdown(): void {
