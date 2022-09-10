@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import Mail from 'nodemailer/lib/smtp-transport'
 import { SentMessageInfo } from 'nodemailer/lib/sendmail-transport'
+import { logger } from './logger.js'
 
 const sender = process.env.WORK_ORDER_EMAIL_SENDER as string
 const options: Mail.Options = {
@@ -29,10 +30,10 @@ export async function send(recipient: string, subject: string, text: string): Pr
   }
   transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
-      console.log('*** emailer failed with error: %s', error.message)
+      logger.error(`*** emailer failed with error: ${error.message}`)
       throw error.message
     } else {
-      console.error('*** emailer sent message id: %s to: %s', info.messageId, message.to)
+      logger.info(`*** emailer sent message id: ${info.messageId} to: ${message.to}`)
     }
   })
 }
