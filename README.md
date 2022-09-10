@@ -118,11 +118,12 @@ Schema
 Mysql Setup
 -----------
 1. sudo mysql -u root
-2. CREATE USER 'work'@'localhost' IDENTIFIED BY 'work';
-3. SHOW CREATE USER 'work'@'localhost';
-4. GRANT ALL PRIVILEGES ON work_order_db.* TO 'work'@'localhost';
-5. ALTER USER 'work'@'localhost' IDENTIFIED BY 'work';
-6. \. ddl.sql
+2. CREATE USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
+3. SHOW CREATE USER 'workorder'@'localhost';
+4. GRANT ALL PRIVILEGES ON work_order_db.* TO 'workorder'@'localhost';
+5. ALTER USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
+6. FLUSH PRIVILEGES;
+7. \. ddl.sql
 
 Mysql
 -----
