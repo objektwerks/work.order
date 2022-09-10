@@ -21,12 +21,12 @@ export default () => {
   console.log('*** emailer init ...')
 }
 
-export function send(recipient: string, subject: string, text: string): void {
+export function send(recipient: string, subject: string, html: string): void {
   transporter.sendMail({
     from: sender,
     to: recipient,
     subject: subject,
-    text: text
+    html: html
   }, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
       logger.error(`*** emailer failed with error: ${error.message}`)
