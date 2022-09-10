@@ -41,17 +41,14 @@ export async function register(register: Register): Promise<Registered> {
     const pin = newPin()
     const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
     const text = `Your new 7-character pin is: ${pin} Use it to login. Print this email, keep it in a safe place and delete it!`
-    if (await emailer.send(user.emailAddress, subject, text)) {
-      const id = await store.addUser(user)
-      if (id > 0) {
-        log('register', `succeeded for: ${register.emailAddress}`)
-        registered = Registered.success(pin)
-      } else {
-        log('register', `failed for: ${register.emailAddress}`)
-        registered = Registered.fail(`Register failed for: ${register.emailAddress}`)
-      }
+    emailer.send(user.emailAddress, subject, text)
+    const id = await store.addUser(user)
+    if (id > 0) {
+      log('register', `succeeded for: ${register.emailAddress}`)
+      registered = Registered.success(pin)
     } else {
-      registered = Registered.fail(`Register failed to send email to: ${register.emailAddress}`)
+      log('register', `failed for: ${register.emailAddress}`)
+      registered = Registered.fail(`Register failed for: ${register.emailAddress}`)
     }
   } catch (error) {
     logError('register', `failed error: ${error} for: ${register.emailAddress}`)

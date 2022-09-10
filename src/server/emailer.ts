@@ -21,21 +21,18 @@ export default () => {
   console.log('*** emailer init ...')
 }
 
-export async function send(recipient: string, subject: string, text: string): Promise<boolean> {
-  const message = {
+export function send(recipient: string, subject: string, text: string): void {
+  transporter.sendMail({
     from: sender,
     to: recipient,
     subject: subject,
     text: text
-  }
-  let result = true
-  transporter.sendMail(message, (error: Error | null, info: SentMessageInfo) => {
+  }, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
       logger.error(`*** emailer failed with error: ${error.message}`)
-      result = false
+      throw error
     } else {
-      logger.info(`*** emailer sent message id: ${info.messageId} to: ${message.to}`)
+      logger.info(`*** emailer sent message id: ${info.messageId} to: ${recipient}`)
     }
   })
-  return result
 }
