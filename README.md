@@ -127,7 +127,7 @@ Mysql Setup
 
 Mysql
 -----
-1. mysql -u work -p
+1. mysql -u workorder -p
 2. \. ddl.sql
 
 Date Time
