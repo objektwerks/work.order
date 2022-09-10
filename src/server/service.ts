@@ -39,7 +39,7 @@ export async function register(register: Register): Promise<Registered> {
   let registered: Registered
   try {
     const pin = newPin()
-    const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin)
+    const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin, '')
     const html = `<p>Your new 7-character pin is: <b>${pin}</b> Use it to login. Print this email, keep it in a safe place and <b>delete it!</b></p>`
     emailer.send(user.emailAddress, subject, html)
     const id = await store.addUser(user)

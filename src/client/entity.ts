@@ -153,10 +153,11 @@ export class User {
               public emailAddress: string, 
               public streetAddress: string, 
               public registered: string, 
-              public pin: string) {}
+              public pin: string,
+              public license: string) {}
 
   static empty(): User {
-    return new User(0, '', '', '', '', '', '')
+    return new User(0, '', '', '', '', '', '', '')
   }
 }
 
