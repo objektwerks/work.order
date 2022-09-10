@@ -4,7 +4,6 @@ import service from './server/service.js'
 import handler from './server/handler.js'
 import images from './server/images.js'
 import router from './server/router.js'
-import { logger } from './server/logger.js'
 
 store()
 emailer()
@@ -14,11 +13,11 @@ images()
 router()
 
 process.on('uncaughtException', (error) => {
-  logger.error(error, '*** server uncaught exception thrown. terminating server.')
+  console.error(error, '*** server uncaught exception thrown. terminating server.')
   process.exit(1)
 })
 
 process.on('unhandledRejection', (error) => {
-  logger.error(error, '*** server unhandled rejection thrown. terminating server.')
+  console.error(error, '*** server unhandled rejection thrown. terminating server.')
   process.exit(1)
 })
