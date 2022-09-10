@@ -10,5 +10,3 @@ export const logger = pino(
   },
   pino.destination(`${logsDir}/${new Date().toISOString()}.log`)
 )
-
-console.log('*** logger init ...')
