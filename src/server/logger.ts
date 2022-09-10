@@ -1,12 +1,12 @@
 import pino from 'pino'
+import pretty from 'pino-pretty'
 import fs from 'fs'
 
 const logsDir = './logs'
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 
-export const logger = pino( 
-  {
-    level: process.env.PINO_LOG_LEVEL || 'info'
-  },
-  pino.destination(`${logsDir}/${new Date().toISOString()}.log`)
-)
+const stream = pretty({
+  destination: `${logsDir}/${new Date().toISOString()}.log`
+})
+
+export const logger = pino( { level: process.env.PINO_LOG_LEVEL || 'info' }, stream )
