@@ -33,11 +33,11 @@ const imagesDir = './images'
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
     if (error) {
-      logger.error(`*** error reading images dir (${imagesDir}): `, error)
+      logger.error(`*** error reading images dir (${imagesDir}): ${error.message}`)
     } else {
       const txtFiles = files.filter(file => path.extname(file) === txt)
       for(const txtFile of txtFiles) fs.unlinkSync(txtFile)
-      logger.info('*** removed images txt files: ', txtFiles)
+      logger.info(`*** removed images txt files: ${txtFiles}`)
     }
   })
 }
