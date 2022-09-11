@@ -35,7 +35,7 @@ export class ListWorkOrders {
 }
 
 export class SaveUser {
-  constructor(public user: User, public license: string) {}
+  constructor(public user: User) {}
 }
 
 // Events

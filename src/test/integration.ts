@@ -31,14 +31,14 @@ async function test() {
 
   // work order add
   const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
-  const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder))
+  const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
   workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success)
   
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
-  const workOrderSaved = await handler.saveWorkOrder(new SaveWorkOrder(workOrder))
+  const workOrderSaved = await handler.saveWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
   assert(workOrderSaved.success)
 
   // user save
@@ -48,7 +48,7 @@ async function test() {
   assert(homeownerUserSaved.success)
 
   // work orders list
-  const workOrdersListed = await handler.listWorkOrders(new ListWorkOrders(homeownerLoggedIn.user.id))
+  const workOrdersListed = await handler.listWorkOrders(new ListWorkOrders(homeownerLoggedIn.user.id, homeownerLoggedIn.user.license))
   assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')

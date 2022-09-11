@@ -30,8 +30,8 @@ export default () => {
   }, false)
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
-    const id = model.getUserId()
-    fetcher.listWorkOrders( new ListWorkOrders(id) ).then(workOrdersListed => {
+    const userId = model.getUserId()
+    fetcher.listWorkOrders( new ListWorkOrders(userId, model.getLicense()) ).then(workOrdersListed => {
       if (workOrdersListed.success && workOrdersListed.workOrders.length > 0) {
         binder.bindWorkOrdersToList(workOrdersListed.workOrders)
       } 
