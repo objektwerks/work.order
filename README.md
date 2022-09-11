@@ -77,9 +77,8 @@ Features [ Role ]
 2. **login user** — [ homeowner, service provider ]
 3. **add work order** — [ homeowner ]
 4. **edit work order** — [ homeowner, service provider ]
-5. **list work orders by user** - [ homeowner, service provider ]
-6. **get work order by number** - [ homeowner, service provider ]
-7. **edit user** — [ homeowner, service provider ]
+5. **list work orders** - [ homeowner, service provider ]
+6. **edit user** — [ homeowner, service provider ]
 
 Forms
 -----
