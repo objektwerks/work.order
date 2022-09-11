@@ -69,17 +69,6 @@ export async function login(login: Login): Promise<LoggedIn> {
   }
 }
 
-export async function listWorkOrders(userId: number): Promise<WorkOrdersListed> {
-  try {
-    const workOrders = await store.listWorkOrders(userId)
-    log('listWorkOrders', `succeeded for user id: ${userId}`)
-    return WorkOrdersListed.success(userId, workOrders)
-  } catch(error) {
-    logError('listWorkOrders', `failed error: ${error} for id: ${userId}`)
-    return WorkOrdersListed.fail(userId, 'List work orders failed.')
-  }
-}
-
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   let added: WorkOrderSaved
   let number = 0
@@ -115,6 +104,17 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
     saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
   }
   return saved
+}
+
+export async function listWorkOrders(userId: number): Promise<WorkOrdersListed> {
+  try {
+    const workOrders = await store.listWorkOrders(userId)
+    log('listWorkOrders', `succeeded for user id: ${userId}`)
+    return WorkOrdersListed.success(userId, workOrders)
+  } catch(error) {
+    logError('listWorkOrders', `failed error: ${error} for id: ${userId}`)
+    return WorkOrdersListed.fail(userId, 'List work orders failed.')
+  }
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
