@@ -187,7 +187,7 @@ function isGreaterThanOrEqualZero(number: number): boolean {
 }
 
 export function isLicense(license: string): boolean {
-  return license.length === 36
+  return isLength(license, 36)
 }
 
 export function isGreaterThanZero(number: number): boolean {
@@ -259,6 +259,6 @@ export function validateUser(id: number, role: string, name: string, emailAddres
   if (!isLength(registered, 24)) errors.push(datetimeInvalidMessage)
   errors.concat( validateRegisterForm(role, name, emailAddress, streetAddress) )
   if (!isLength(pin, 7)) errors.push(pinInvalidMessage)
-  if(!isLicense(license)) errors.push(licenseInvalidMessage)
+  if(!isLength(license, 36)) errors.push(licenseInvalidMessage)
   return errors
 }
