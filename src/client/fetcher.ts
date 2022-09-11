@@ -19,6 +19,7 @@ const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const listWorkOrdersUrl = rootUrl + '/workorders'
 const saveUserUrl = rootUrl + '/users/save'
+const post = 'post'
 const jsonHeaders: { [key: string]: string } = { 'Content-Type': 'application/json' }
 const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
 
@@ -28,7 +29,7 @@ async function call<T, R>(url: string,
                           fault: () => R): Promise<R> {
   let result: R
   const init = {
-    method: 'post',
+    method: post,
     headers: headers,
     body: entity instanceof FormData ? entity : toJson(entity)
   }
