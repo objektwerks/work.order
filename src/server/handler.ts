@@ -57,6 +57,8 @@ export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<Wo
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
-  if (isUserValid(saveUser.user)) return service.saveUser(saveUser)
-  else return UserSaved.fail(saveUser.user.id, 'User is invalid.')
+  if (isLicenseValid(saveUser.user.license)) {
+    if (isUserValid(saveUser.user)) return service.saveUser(saveUser)
+    else return UserSaved.fail(saveUser.user.id, 'User is invalid.')
+  } else return UserSaved.fail(saveUser.user.id, `License invalid: ${saveUser.user.license}`)
 }
