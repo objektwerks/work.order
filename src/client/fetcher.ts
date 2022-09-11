@@ -17,27 +17,26 @@ const registerUrl = rootUrl + '/register'
 const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
-const saveUserUrl = rootUrl + '/users/save'
 const listWorkOrdersUrl = rootUrl + '/workorders'
-const get = 'get'
-const post = 'post'
-const headers: { [key: string]: string } = { 'Content-Type': 'application/json' }
+const saveUserUrl = rootUrl + '/users/save'
+const jsonHeaders: { [key: string]: string } = { 'Content-Type': 'application/json' }
 const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
-const getInit = { method: 'get', headers: headers }
-const postInit = { method: 'post', headers: headers }
 
 async function call<T, R>(url: string,
-                          method: string,
                           headers: { [key: string]: string },
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
   let result: R
-  const init = (method === get) ? getInit : Object.assign( { body: entity instanceof FormData ? entity : toJson(entity) }, postInit )
+  const init = {
+    method: 'post',
+    headers: headers,
+    body: entity instanceof FormData ? entity : toJson(entity)
+  }
   const response = await fetch(url, init)
   if (response.ok) {
     result = await response.json()
   } else {
-    console.error('*** fetcher:call error: url: %s, method: %s, headers: %o, entity: %o, status code: %s status text: %s', url, method, headers, entity, response.status, response.statusText)
+    console.error('*** fetcher:call error: url: %s, headers: %o, entity: %o, status code: %s status text: %s', url, headers, entity, response.status, response.statusText)
     result = fault()
   }
   console.log('*** fetcher:call result url: %s result: %o', url, result)
@@ -65,25 +64,25 @@ export default () => {
 }
 
 export async function register(register: Register): Promise<Registered> {
-  return await call(registerUrl, post, headers, register, () => Registered.fail('Register failed.'))
+  return await call(registerUrl, jsonHeaders, register, () => Registered.fail('Register failed.'))
 }
 
 export async function login(login: Login): Promise<LoggedIn> {
-  return await call(loginUrl, post, headers, login, () => LoggedIn.fail('Login failed.'))
+  return await call(loginUrl, jsonHeaders, login, () => LoggedIn.fail('Login failed.'))
 }
 
 export async function addWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]): Promise<WorkOrderSaved> {
-  return await call(addWorkOrderUrl, post, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!'))
+  return await call(addWorkOrderUrl, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Add work order failed!'))
 }
 
 export async function saveWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]): Promise<WorkOrderSaved> {
-  return await call(saveWorkOrderUrl, post, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!'))
+  return await call(saveWorkOrderUrl, formDataHeaders, workOrderToFormData(workOrder, imageFile), () => WorkOrderSaved.fail(workOrder.number, 'Save work order failed!'))
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
-  return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
+  return await call(saveUserUrl, jsonHeaders, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
 }
 
 export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
-  return await call(listWorkOrdersUrl, post, headers, listWorkOrders, () => WorkOrdersListed.fail(listWorkOrders.userId, `List work orders by user id failed for: ${listWorkOrders.userId}!`))
+  return await call(listWorkOrdersUrl, jsonHeaders, listWorkOrders, () => WorkOrdersListed.fail(listWorkOrders.userId, `List work orders by user id failed for: ${listWorkOrders.userId}!`))
 }
