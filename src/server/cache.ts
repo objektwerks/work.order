@@ -7,7 +7,7 @@ async function loadLicenseCache(): Promise<number> {
   for ( const license of await store.listLicenses() ) {
     licenseCache.add(license)
   }
-  return licenseCache.keys.length
+  return licenseCache.values.length
 }
 
 const oneMinute = (60 * 1000)
@@ -17,7 +17,7 @@ setInterval(loadLicenseCache, oneHour)
 
 export default () => {
   console.log('*** cache init ...')
-  
+
   loadLicenseCache().then(count => {
     console.log('*** license cache count: ', count)
   })
@@ -25,4 +25,8 @@ export default () => {
 
 export function addLicense(license: string): void {
   licenseCache.add(license)
+}
+
+export function isLicenseValid(license: string): boolean {
+  return licenseCache.has(license)
 }
