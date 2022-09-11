@@ -12,7 +12,7 @@ create table `user` (
   `streetAddress` varchar(128) not null unique,
   `registered` varchar(24) not null,
   `pin` varchar(7) not null unique,
-  `license` varchar(36) not null default (uuid()),
+  `license` char(36) not null default (uuid()),
   primary key (`id`)
 );
 create index user_email_address_idx ON `user`(`emailAddress`);
