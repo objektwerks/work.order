@@ -84,6 +84,6 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
 }
 
-export async function listWorkOrdersByUserId(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
+export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
   return await call(listWorkOrdersByUserIdUrl, post, headers, listWorkOrders, () => WorkOrdersListed.fail(listWorkOrders.userId, `List work orders by user id failed for: ${listWorkOrders.userId}!`))
 }
