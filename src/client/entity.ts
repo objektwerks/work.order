@@ -145,6 +145,7 @@ export class User {
 }
 
 // Validators
+const licenseInvalidMessage = 'A valid license is 36 characters.'
 const roleInvalidMessage = 'A valid role must be selected.'
 const nameInvalidMessage = 'For name, enter at least 2 characters.'
 const emailAddressInvalidMessage = 'For email address, enter at least 3 characters to inlcude @.'
@@ -185,6 +186,10 @@ function isGreaterThanOrEqualZero(number: number): boolean {
   return number >= 0
 }
 
+export function isLicense(license: string): boolean {
+  return isLength(license, 36)
+}
+
 export function isGreaterThanZero(number: number): boolean {
   return number > 0
 }
@@ -207,7 +212,7 @@ export function isWorkOrderValid(workOrder: WorkOrder): boolean {
 }
 
 export function isUserValid(user: User): boolean {
-  return validateUser(user.id, user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin).length === 0
+  return validateUser(user.id, user.role, user.name, user.emailAddress, user.streetAddress, user.registered, user.pin, user.license).length === 0
 }
 
 export function validateRegisterForm(role: string, name: string, emailAddress: string, streetAddress: string): string[] {
@@ -248,11 +253,12 @@ export function validateWorkOrder(number: number, homeownerId: number, servicePr
   return errors
 }
 
-export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string, pin: string): string[] {
+export function validateUser(id: number, role: string, name: string, emailAddress: string, streetAddress: string, registered: string, pin: string, license: string): string[] {
   const errors = []
   if (!isGreaterThanZero(id)) errors.push(idInvalidMessage)
   if (!isLength(registered, 24)) errors.push(datetimeInvalidMessage)
   errors.concat( validateRegisterForm(role, name, emailAddress, streetAddress) )
   if (!isLength(pin, 7)) errors.push(pinInvalidMessage)
+  if(!isLength(license, 36)) errors.push(licenseInvalidMessage)
   return errors
 }
