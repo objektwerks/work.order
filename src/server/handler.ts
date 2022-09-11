@@ -1,3 +1,4 @@
+import * as cache from './cache'
 import * as service from './service.js'
 import {
   isGreaterThanZero,
@@ -35,8 +36,10 @@ export async function login(login: Login): Promise<LoggedIn> {
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
-  else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order was invalid.')
+  if (cache.isLicenseValid(saveWorkOrder.license)) {
+    if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
+    else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order was invalid.')
+  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License invalid: ${saveWorkOrder.license}`)
 }
 
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
