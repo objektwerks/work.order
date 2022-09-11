@@ -24,7 +24,7 @@ export default () => {
 }
 
 export function addLicense(license: string): void {
-  licenseCache.add(license)
+  if (!licenseCache.has(license) && license.length === 36) licenseCache.add(license)
 }
 
 export function isLicenseValid(license: string): boolean {
