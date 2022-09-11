@@ -36,6 +36,10 @@ export class SaveWorkOrder {
   constructor(public workOrder: WorkOrder) {}
 }
 
+export class ListWorkOrdersByUserId {
+  constructor(public userId: number) {}
+}
+
 export class SaveUser {
   constructor(public user: User) {}
 }
