@@ -9,6 +9,7 @@ import {
   UserSaved,
   WorkOrder,
   WorkOrderSaved,
+  ListWorkOrdersByUserId,
   WorkOrdersListed } from './entity.js'
 
 const rootUrl = 'http://' + window.location.host
@@ -83,6 +84,6 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
 }
 
-export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersListed> {
-  return await call(listWorkOrdersByUserIdUrl + id, get, headers, {}, () => WorkOrdersListed.fail(id, `List work orders by user id failed for: ${id}!`))
+export async function listWorkOrdersByUserId(listWorkOrdersByUserId: ListWorkOrdersByUserId): Promise<WorkOrdersListed> {
+  return await call(listWorkOrdersByUserIdUrl, post, headers, listWorkOrdersByUserId, () => WorkOrdersListed.fail(listWorkOrdersByUserId.userId, `List work orders by user id failed for: ${listWorkOrdersByUserId.userId}!`))
 }
