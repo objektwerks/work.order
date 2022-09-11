@@ -27,15 +27,15 @@ export class Login {
 }
 
 export class SaveWorkOrder {
-  constructor(public workOrder: WorkOrder) {}
+  constructor(public workOrder: WorkOrder, public license: string) {}
 }
 
 export class ListWorkOrders {
-  constructor(public userId: number) {}
+  constructor(public userId: number, public license: string) {}
 }
 
 export class SaveUser {
-  constructor(public user: User) {}
+  constructor(public user: User, public license: string) {}
 }
 
 // Events
