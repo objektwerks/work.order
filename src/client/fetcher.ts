@@ -10,7 +10,8 @@ import {
   WorkOrder,
   WorkOrderSaved,
   ListWorkOrders,
-  WorkOrdersListed } from './entity.js'
+  WorkOrdersListed, 
+  SaveWorkOrder} from './entity.js'
 
 const rootUrl = 'http://' + window.location.host
 const registerUrl = rootUrl + '/register'
@@ -56,7 +57,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.append('image', new Blob(['delete me!'], { type: "text/plain" }), filename)
     formData.append('imageFileName', filename)
   }
-  formData.append('workOrderAsJson', toJson(workOrder))
+  formData.append('workOrderAsJson', toJson(new SaveWorkOrder(workOrder)))
   return formData
 }
 
