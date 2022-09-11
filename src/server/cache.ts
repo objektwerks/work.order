@@ -7,7 +7,7 @@ async function loadLicenseCache(): Promise<number> {
   for ( const license of await store.listLicenses() ) {
     licenseCache.add(license)
   }
-  return licenseCache.values.length
+  return licenseCache.size
 }
 
 const oneMinute = (60 * 1000)
