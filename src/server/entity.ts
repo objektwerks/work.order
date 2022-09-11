@@ -185,6 +185,10 @@ function isGreaterThanOrEqualZero(number: number): boolean {
   return number >= 0
 }
 
+export function isLicense(license: string): boolean {
+  return license.length === 36
+}
+
 export function isGreaterThanZero(number: number): boolean {
   return number > 0
 }
