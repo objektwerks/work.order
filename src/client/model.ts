@@ -14,6 +14,10 @@ export default () => {
   console.log('*** model init ...')
 }
 
+export function getLicense() {
+  return user.license
+}
+
 export function getUserId(): number {
   return user.id
 }
