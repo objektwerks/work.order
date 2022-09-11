@@ -44,7 +44,7 @@ export default () => {
     handler.saveWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.get('/workorders', (request, response) => {
+  router.post('/workorders', (request, response) => {
     handler.listWorkOrders( request.body ).then(workOrdersListed => response.json(workOrdersListed))
   })
   
