@@ -37,11 +37,11 @@ export default () => {
   })
   
   router.post('/workorders/add', imagesStore.single('image'), (request, response) => {
-    handler.addWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
+    handler.addWorkOrder( toObject(request.body.saveWorkOrderAsJson) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
   router.post('/workorders/save', imagesStore.single('image'), (request, response) => {
-    handler.saveWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
+    handler.saveWorkOrder( toObject(request.body.saveWorkOrderAsJson) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
   router.post('/workorders', (request, response) => {
