@@ -1,4 +1,4 @@
-import * as cache from './cache'
+import { isLicenseValid } from './cache.js'
 import * as service from './service.js'
 import {
   isGreaterThanZero,
@@ -36,20 +36,24 @@ export async function login(login: Login): Promise<LoggedIn> {
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  if (cache.isLicenseValid(saveWorkOrder.license)) {
+  if (isLicenseValid(saveWorkOrder.license)) {
     if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
     else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order was invalid.')
   } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License invalid: ${saveWorkOrder.license}`)
 }
 
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
-  if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.saveWorkOrder(saveWorkOrder)
-  return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order is invalid.')
+  if (isLicenseValid(saveWorkOrder.license)) {
+    if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.saveWorkOrder(saveWorkOrder)
+    return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order is invalid.')
+  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License invalid: ${saveWorkOrder.license}`)
 }
 
 export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
-  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
-  else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
+  if (isLicenseValid(listWorkOrders.license)) {
+    if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
+    else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
+  } else return WorkOrdersListed.fail(listWorkOrders.userId, `License invalid: ${listWorkOrders.license}`)
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
