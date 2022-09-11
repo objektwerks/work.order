@@ -1,4 +1,5 @@
 import * as store from './store.js'
+import { oneHour } from './time.js'
 import { isLicense } from './entity.js'
 
 const licenseCache = new Set<string>()
@@ -10,9 +11,6 @@ async function loadLicenseCache(): Promise<number> {
   }
   return licenseCache.size
 }
-
-const oneMinute = (60 * 1000)
-const oneHour = 60 * oneMinute
 
 setInterval(loadLicenseCache, oneHour)
 
