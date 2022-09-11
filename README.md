@@ -143,6 +143,10 @@ Mysql
 1. mysql -u workorder -p
 2. \. ddl.sql
 
+Cache
+-----
+>All user licenses are agressively cached at server startup and on each login.
+
 Date Time
 ---------
 >Use ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ
