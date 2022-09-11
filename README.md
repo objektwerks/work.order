@@ -107,18 +107,18 @@ Sequences
 
 Authentication
 --------------
->Via route:
+>Route:
 1. /login
->at service.login with **emailAddress** and **pin** via *Login* command.
+>Function: service.login with **emailAddress** and **pin** via *Login* command.
 
 Authorization
 -------------
->Via routes:
+>Routes:
 1. /workorders/add
 2. /workorders/save
 3. /workorders
 4. /users/save
->at handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUser } with **license** via *associated* commands.
+>Functions: handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUser } with **license** via *associated* commands.
 
 Schema
 ------
