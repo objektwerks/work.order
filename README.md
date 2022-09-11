@@ -70,7 +70,7 @@ Roles
 1. **homeowner** — add, select and edit *work orders*
 2. **service provider** — select and edit *work orders*
 
-Features [ Role ]
+Features [ Roles ]
 -----------------
 >A feature maps to a set of roles.
 1. **register user** — [ homeowner, service provider ]
@@ -104,6 +104,21 @@ Sequences
 4. **client** --- save work order --> server --- work order saved --> client
 5. **client** --- list work orders --> server --- work orders listed --> client
 6. **client** --- save user --> server --- user saved --> client
+
+Authentication
+--------------
+>Via route:
+1. /login
+>at service.login( Login(emailAddress, pin) )
+
+Authorization
+-------------
+>Via routes:
+1. /workorders/add
+2. /workorders/save
+3. /workorders
+4. /users/save
+>at handler.* with user.license
 
 Schema
 ------
