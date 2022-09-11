@@ -99,13 +99,12 @@ Routes
 
 Sequences
 ---------
-1. **client:register** --- registration --> server --- registered ---> client
-2. **client:login** --- credentials --> server --- logged in --> client
-3. **client:add** --- work order --> server --- work order saved --> client
-4. **client:save** --- work order --> server --- work order saved --> client
-5. **client:get** --- userid --> server --- work orders listed --> client
-6. **client:get** --- number --> server --- work order selected --> client
-7. **client:save** --- user --> server --- user saved --> client
+1. **client:register** --- register --> server --- registered ---> client
+2. **client:login** --- login --> server --- logged in --> client
+3. **client:add** --- save work order --> server --- work order saved --> client
+4. **client:save** --- save work order --> server --- work order saved --> client
+5. **client:get** --- list work orders --> server --- work orders listed --> client
+6. **client:save** --- save user --> server --- user saved --> client
 
 Schema
 ------
