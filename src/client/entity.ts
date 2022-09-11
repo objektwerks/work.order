@@ -1,9 +1,3 @@
-/**
- * The code sharing story in the web space is not ideal. Hence the interim
- * need for this shared file of roles, json-object, commands, events, entities
- * and validators.
- */
-
 // Roles
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'
