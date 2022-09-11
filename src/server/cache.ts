@@ -10,8 +10,14 @@ async function loadLicenseCache(): Promise<number> {
   return licenseCache.keys.length
 }
 
+const oneMinute = (60 * 1000)
+const oneHour = 60 * oneMinute
+
+setInterval(loadLicenseCache, oneHour)
+
 export default () => {
   console.log('*** cache init ...')
+  
   loadLicenseCache().then(count => {
     console.log('*** license cache count: ', count)
   })
