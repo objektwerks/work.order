@@ -55,19 +55,6 @@ export async function getUserByEmailAddressPin(emailAddress: string, pin: string
   return users.length > 0 ? users[0] : User.empty()
 }
 
-export async function getWorkOrderByNumber(number: number): Promise<WorkOrder> {
-  const [rows] = await connection
-    .query<RowDataPacket[]>('select * from work_order where number = ?',
-    [number])
-  const workOrders: WorkOrder[] = []
-  rows.forEach((row: RowDataPacket) => {
-    workOrders.push(
-      new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
-    )
-  })
-  return workOrders.length > 0 ? workOrders[0] : WorkOrder.empty()
-}
-
 export async function addWorkOrder(workOrder: WorkOrder): Promise<number> {
   const [result] = await connection
     .query<OkPacket>('insert into work_order (homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?)',
