@@ -57,7 +57,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.append('image', new Blob(['delete me!'], { type: "text/plain" }), filename)
     formData.append('imageFileName', filename)
   }
-  formData.append('workOrderAsJson', toJson(new SaveWorkOrder(workOrder)))
+  formData.append('saveWorkOrderAsJson', toJson(new SaveWorkOrder(workOrder)))
   return formData
 }
 
