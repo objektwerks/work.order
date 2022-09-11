@@ -94,9 +94,8 @@ Routes
 2. post - /login
 3. post - /workorders/add
 4. post - /workorders/save
-5. get  - /workorders/user/:id
-6. get  - /workorders/:number
-7. post - /users/save
+5. post  - /workorders
+6. post - /users/save
 
 Sequences
 ---------
