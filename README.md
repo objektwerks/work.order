@@ -118,7 +118,7 @@ Authorization
 2. /workorders/save
 3. /workorders
 4. /users/save
->at handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUsder } with **license** via *associated* commands.
+>at handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUser } with **license** via *associated* commands.
 
 Schema
 ------
