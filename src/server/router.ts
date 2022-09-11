@@ -3,7 +3,7 @@ import express, { Express } from 'express'
 import { Server } from 'http'
 import { imagesStore } from './images.js'
 import * as handler from './handler.js'
-import { toObject, SaveWorkOrder } from './entity.js'
+import { toObject } from './entity.js'
 
 const port = parseInt( process.env.WORK_ORDER_PORT as string ) ?? 3000
 const host = process.env.WORK_ORDER_BIND_IP ?? '127.0.0.1'
