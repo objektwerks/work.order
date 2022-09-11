@@ -9,7 +9,6 @@ import {
   UserSaved,
   WorkOrder,
   WorkOrderSaved,
-  WorkOrderSelected,
   WorkOrdersListed } from './entity.js'
 
 const rootUrl = 'http://' + window.location.host
@@ -18,7 +17,6 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const getWorkOrderByNumberUrl = rootUrl + '/workorders/'
 const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
 const get = 'get'
 const post = 'post'
@@ -83,10 +81,6 @@ export async function saveWorkOrder(workOrder: WorkOrder, imageFile: ImageFile[]
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   return await call(saveUserUrl, post, headers, saveUser, () => UserSaved.fail(saveUser.user.id, 'Save user failed.'))
-}
-
-export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
-  return await call(getWorkOrderByNumberUrl + number, get, headers, {}, () => WorkOrderSelected.fail(number, `Get work order by number failed for: ${number}!`))
 }
 
 export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersListed> {
