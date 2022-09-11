@@ -34,11 +34,6 @@ export async function login(login: Login): Promise<LoggedIn> {
   else return LoggedIn.fail(`Login was invalid.`)
 }
 
-export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
-  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
-  else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
-}
-
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
   else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order was invalid.')
@@ -47,6 +42,11 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.saveWorkOrder(saveWorkOrder)
   return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order is invalid.')
+}
+
+export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
+  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
+  else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
