@@ -51,7 +51,7 @@ async function test() {
   assert(workOrderSelected.success)
 
   // work orders list
-  const workOrdersListed = await handler.listWorkOrdersByUserId(homeownerLoggedIn.user.id)
+  const workOrdersListed = await handler.listWorkOrders(homeownerLoggedIn.user.id)
   assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')

@@ -44,12 +44,8 @@ export default () => {
     handler.saveWorkOrder( new SaveWorkOrder( toObject(request.body.workOrderAsJson) ) ).then(workOrderSaved => response.json(workOrderSaved))
   })
 
-  router.get('/workorders/user/:id', (request, response) => {
-    handler.listWorkOrdersByUserId( parseInt(request.params.id) ).then(workOrdersListed => response.json(workOrdersListed))
-  })
-  
-  router.get('/workorders/:number', (request, response) => {
-    handler.getWorkOrderByNumber( parseInt(request.params.number) ).then(workOrderSelected => response.json(workOrderSelected))
+  router.get('/workorders', (request, response) => {
+    handler.listWorkOrders( request.body ).then(workOrdersListed => response.json(workOrdersListed))
   })
   
   router.post('/users/save', (request, response) => {

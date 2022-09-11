@@ -14,7 +14,8 @@ import {
   SaveWorkOrder,
   WorkOrderSaved,
   WorkOrderSelected,
-  WorkOrdersListed } from './entity.js'
+  WorkOrdersListed, 
+  ListWorkOrders} from './entity.js'
 
 export default () => {
   console.log('*** handler init ...')
@@ -34,9 +35,9 @@ export async function login(login: Login): Promise<LoggedIn> {
   else return LoggedIn.fail(`Login was invalid.`)
 }
 
-export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersListed> {
-  if (isGreaterThanZero(id)) return service.listWorkOrdersByUserId(id)
-  else return WorkOrdersListed.fail(id, 'User id was invalid.')
+export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
+  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrdersByUserId(listWorkOrders.userId)
+  else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
 }
 
 export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
