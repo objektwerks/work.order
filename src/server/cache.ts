@@ -1,4 +1,5 @@
 import * as store from './store.js'
+import { isLicense } from './entity.js'
 
 const licenseCache = new Set<string>()
 
@@ -24,7 +25,7 @@ export default () => {
 }
 
 export function addLicense(license: string): void {
-  if (!licenseCache.has(license) && license.length === 36) licenseCache.add(license)
+  if (!licenseCache.has(license) && isLicense(license)) licenseCache.add(license)
 }
 
 export function isLicenseValid(license: string): boolean {
