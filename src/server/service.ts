@@ -1,4 +1,5 @@
 import { newPin } from './pin.js'
+import * as cache from './cache.js'
 import * as store from './store.js'
 import * as emailer from './emailer.js'
 import { logger } from './logger.js'
@@ -57,16 +58,19 @@ export async function register(register: Register): Promise<Registered> {
 }
 
 export async function login(login: Login): Promise<LoggedIn> {
+  let loggedIn: LoggedIn
   try {
     const user = await store.getUserByEmailAddressPin(login.emailAddress, login.pin)
     const serviceProviders = await store.listUsersByRole(serviceProvider)
     const workOrders = await store.listWorkOrders(user.id)
     log('login', `succeeded for: ${login.emailAddress}`)
-    return LoggedIn.success(user, serviceProviders, workOrders)
+    loggedIn = LoggedIn.success(user, serviceProviders, workOrders)
+    cache.addLicense(user.license)
   } catch(error) {
     logError('login', `failed error: ${error} for: ${login.emailAddress}`)
-    return LoggedIn.fail(`Login failed for: ${login.emailAddress}`)
+    loggedIn = LoggedIn.fail(`Login failed for: ${login.emailAddress}`)
   }
+  return loggedIn
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
