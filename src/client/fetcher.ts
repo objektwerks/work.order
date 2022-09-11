@@ -18,7 +18,7 @@ const loginUrl = rootUrl + '/login'
 const addWorkOrderUrl = rootUrl + '/workorders/add'
 const saveWorkOrderUrl = rootUrl + '/workorders/save'
 const saveUserUrl = rootUrl + '/users/save'
-const listWorkOrdersByUserIdUrl = rootUrl + '/workorders/user/'
+const listWorkOrdersUrl = rootUrl + '/workorders'
 const get = 'get'
 const post = 'post'
 const headers: { [key: string]: string } = { 'Content-Type': 'application/json' }
@@ -85,5 +85,5 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
 }
 
 export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
-  return await call(listWorkOrdersByUserIdUrl, post, headers, listWorkOrders, () => WorkOrdersListed.fail(listWorkOrders.userId, `List work orders by user id failed for: ${listWorkOrders.userId}!`))
+  return await call(listWorkOrdersUrl, post, headers, listWorkOrders, () => WorkOrdersListed.fail(listWorkOrders.userId, `List work orders by user id failed for: ${listWorkOrders.userId}!`))
 }
