@@ -109,7 +109,7 @@ Authentication
 --------------
 >Via route:
 1. /login
->at service.login( Login(emailAddress, pin) )
+>at service.login with **emailAddress** and **pin** via *Login* command.
 
 Authorization
 -------------
@@ -118,7 +118,7 @@ Authorization
 2. /workorders/save
 3. /workorders
 4. /users/save
->at handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUsder } with user.license
+>at handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUsder } with **license** via *associated* commands.
 
 Schema
 ------
