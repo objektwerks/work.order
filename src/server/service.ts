@@ -13,7 +13,6 @@ import {
   UserSaved,
   SaveWorkOrder,
   WorkOrderSaved,
-  WorkOrderSelected,
   WorkOrdersListed
 } from './entity.js'
 
@@ -61,7 +60,7 @@ export async function login(login: Login): Promise<LoggedIn> {
   try {
     const user = await store.getUserByEmailAddressPin(login.emailAddress, login.pin)
     const serviceProviders = await store.listUsersByRole(serviceProvider)
-    const workOrders = await store.listWorkOrdersByUserId(user.id)
+    const workOrders = await store.listWorkOrders(user.id)
     log('login', `succeeded for: ${login.emailAddress}`)
     return LoggedIn.success(user, serviceProviders, workOrders)
   } catch(error) {
@@ -70,33 +69,15 @@ export async function login(login: Login): Promise<LoggedIn> {
   }
 }
 
-export async function listWorkOrdersByUserId(id: number): Promise<WorkOrdersListed> {
+export async function listWorkOrders(userId: number): Promise<WorkOrdersListed> {
   try {
-    const workOrders = await store.listWorkOrdersByUserId(id)
-    log('listWorkOrdersByUserId', `succeeded for user id: ${id}`)
-    return WorkOrdersListed.success(id, workOrders)
+    const workOrders = await store.listWorkOrders(userId)
+    log('listWorkOrders', `succeeded for user id: ${userId}`)
+    return WorkOrdersListed.success(userId, workOrders)
   } catch(error) {
-    logError('listWorkOrdersByUserId', `failed error: ${error} for id: ${id}`)
-    return WorkOrdersListed.fail(id, 'List work orders by user id failed.')
+    logError('listWorkOrders', `failed error: ${error} for id: ${userId}`)
+    return WorkOrdersListed.fail(userId, 'List work orders failed.')
   }
-}
-
-export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
-  let selected: WorkOrderSelected
-  try {
-    const workOrder = await store.getWorkOrderByNumber(number)
-    if (workOrder.number > 0) {
-      log('getWorkOrderByNumber', `succeeded for number: ${number}`)
-      selected = WorkOrderSelected.success(workOrder)
-    } else {
-      log('getWorkOrderByNumber', `failed for number: ${number}`)
-      selected = WorkOrderSelected.fail(number, `Get work order by number failed for number: ${number}`)
-    }
-  } catch(error) {
-    logError('getWorkOrderByNumber', `failed error: ${error} for number: ${number}`)
-    selected = WorkOrderSelected.fail(number, 'Get work order by number failed.')
-  }
-  return selected
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {

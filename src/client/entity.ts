@@ -89,21 +89,6 @@ export class WorkOrderSaved {
   }
 }
 
-export class WorkOrderSelected {
-  constructor(public number: number,
-              public workOrder: WorkOrder, 
-              public success: boolean = true, 
-              public error: string = '') {}
-
-  static success(workOrder: WorkOrder): WorkOrderSelected {
-    return new WorkOrderSelected(workOrder.number, workOrder)
-  }
-
-  static fail(number: number, error: string): WorkOrderSelected {
-    return new WorkOrderSelected(number, WorkOrder.empty(), false, error)
-  }
-}
-
 export class WorkOrdersListed {
   constructor(public userId: number, 
               public workOrders: WorkOrder[], 

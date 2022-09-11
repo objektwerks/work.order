@@ -3,7 +3,7 @@ import * as model from './model.js'
 import * as binder from './binder.js'
 import * as role from './role.js'
 import { getByClass, getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
-import { validateWorkOrder, WorkOrder } from './entity.js'
+import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 
 function selectTab(tabviewId: string) {
   const tabviews = getByClass('tabview') as HTMLCollectionOf<Element>
@@ -31,7 +31,7 @@ export default () => {
 
   getById('workorders-refresh-command-id').addEventListener('click', () => {
     const id = model.getUserId()
-    fetcher.listWorkOrders(id).then(workOrdersListed => {
+    fetcher.listWorkOrders( new ListWorkOrders(id) ).then(workOrdersListed => {
       if (workOrdersListed.success && workOrdersListed.workOrders.length > 0) {
         binder.bindWorkOrdersToList(workOrdersListed.workOrders)
       } 

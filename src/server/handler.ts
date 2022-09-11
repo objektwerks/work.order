@@ -13,7 +13,6 @@ import {
   UserSaved,
   SaveWorkOrder,
   WorkOrderSaved,
-  WorkOrderSelected,
   WorkOrdersListed, 
   ListWorkOrders} from './entity.js'
 
@@ -36,13 +35,8 @@ export async function login(login: Login): Promise<LoggedIn> {
 }
 
 export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
-  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrdersByUserId(listWorkOrders.userId)
+  if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
   else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
-}
-
-export async function getWorkOrderByNumber(number: number): Promise<WorkOrderSelected> {
-  if (isGreaterThanZero(number)) return service.getWorkOrderByNumber(number)
-  else return WorkOrderSelected.fail(number, 'Work order number was invalid.')
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {

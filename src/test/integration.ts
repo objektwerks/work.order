@@ -5,7 +5,8 @@ import {
   Register,
   SaveUser,
   WorkOrder,
-  SaveWorkOrder
+  SaveWorkOrder,
+  ListWorkOrders
 } from '../server/entity.js'
 
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
@@ -46,12 +47,8 @@ async function test() {
   assert(serviceProviderUserSaved.success)
   assert(homeownerUserSaved.success)
 
-  // work order get
-  const workOrderSelected = await handler.getWorkOrderByNumber(workOrder.number)
-  assert(workOrderSelected.success)
-
   // work orders list
-  const workOrdersListed = await handler.listWorkOrders(homeownerLoggedIn.user.id)
+  const workOrdersListed = await handler.listWorkOrders(new ListWorkOrders(homeownerLoggedIn.user.id))
   assert(workOrdersListed.success)
   
   console.log('*** integration test complete!')
