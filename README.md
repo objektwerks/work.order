@@ -60,9 +60,9 @@ Prod
 Nodejs Hosting Providers
 ------------------------
 >Consider:
-1. [NodeChef](www.nodechef.com/nodejs-hosting)
-2. [Digital Ocean](www.digitalocean.com/)
-3. [Heroku](www.heroku.com/nodejs)
+1. [NodeChef](nodechef.com/nodejs-hosting)
+2. [Digital Ocean](digitalocean.com/)
+3. [Heroku](heroku.com/nodejs)
 
 Roles
 -----
