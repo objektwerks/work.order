@@ -1,18 +1,14 @@
 import * as store from './store.js'
-import { oneHour } from './time.js'
 import { isLicense } from './entity.js'
 
 const licenseCache = new Set<string>()
 
 async function loadLicenseCache(): Promise<number> {
-  licenseCache.clear()
   for ( const license of await store.listLicenses() ) {
     licenseCache.add(license)
   }
   return licenseCache.size
 }
-
-setInterval(loadLicenseCache, oneHour)
 
 export default () => {
   console.log('*** cache init ...')
