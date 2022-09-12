@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import multer, { FileFilterCallback } from 'multer'
 import { Request } from "express"
-import { threeHours } from './time.js'
 import { logger } from './logger.js'
 
 type DestinationCallback = (error: Error | null, destination: string) => void
@@ -27,6 +26,9 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
 
 const txt = '.txt'
 const imagesDir = './images'
+export const oneMinute = (60 * 1000)
+export const oneHour = 60 * oneMinute
+export const threeHours = 3 * oneHour
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {
