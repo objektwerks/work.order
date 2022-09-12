@@ -61,8 +61,7 @@ Nodejs Hosting Providers
 ------------------------
 >Consider:
 1. [NodeChef](nodechef.com/nodejs-hosting)
-2. [Digital Ocean](digitalocean.com/)
-3. [Heroku](heroku.com/nodejs)
+2. [Heroku](heroku.com/nodejs)
 
 Roles
 -----
