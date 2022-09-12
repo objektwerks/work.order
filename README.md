@@ -57,8 +57,8 @@ Prod
 3. cd target
 4. node server.js
 
-Nodejs Hosting Providers
-------------------------
+Nodejs Hosting
+--------------
 >Consider:
 1. [NodeChef](nodechef.com/nodejs-hosting)
 2. [Heroku](heroku.com/nodejs)
