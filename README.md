@@ -154,7 +154,7 @@ Mysql
 
 Cache
 -----
->A user *license* is cached at login.
+>A user **license** is cached at login.
 
 Date Time
 ---------
