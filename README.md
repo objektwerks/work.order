@@ -154,7 +154,7 @@ Mysql
 
 Cache
 -----
->**All** user *licenses* are agressively cached at *server startup* and on each login as required.
+>A user *license* is cached at login.
 
 Date Time
 ---------
