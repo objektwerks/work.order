@@ -10,6 +10,8 @@ function selectMenuItem(formId: string) {
 }
 
 export default () => {
+  console.log('*** menu init ...')
+
   getById('login-menu-id').addEventListener('click', () => {
     selectMenuItem('login-form-id')
   }, false)
@@ -25,6 +27,4 @@ export default () => {
   getById('user-menu-id').addEventListener('click', () => {
     selectMenuItem('user-form-id')
   }, false)
-
-  console.log('*** menu init ...')
 }
