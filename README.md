@@ -62,6 +62,7 @@ Nodejs Hosting Providers
 >Consider:
 1. [NodeChef](nodechef.com/nodejs-hosting)
 2. [Heroku](heroku.com/nodejs)
+3. [A2](a2hosting.com/nodejs-hosting)
 
 Roles
 -----
