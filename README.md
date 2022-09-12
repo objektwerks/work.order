@@ -105,6 +105,15 @@ Sequences
 5. **client** --- list work orders --> server --- work orders listed --> client
 6. **client** --- save user --> server --- user saved --> client
 
+Registration
+------------
+>A prospective user must register with:
+1. role
+2. name
+3. email address
+4. street address
+>If the email address is valid and registration email sent, the new user will receive a pin.
+
 Authentication
 --------------
 >**Route**:
