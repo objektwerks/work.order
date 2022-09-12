@@ -25,6 +25,14 @@ export async function getLicense(license: string): Promise<string> {
   return licenses.length > 0 ? licenses[0] : ''
 }
 
+export async function listLicenses(): Promise<string[]> {
+  const [rows] = await connection.query<RowDataPacket[]>('select license from user')
+  const licenses: string[] = []
+  rows.forEach((row: RowDataPacket) => {
+    licenses.push( row.license )
+  })
+  return licenses
+}
 
 export async function listWorkOrders(userId: number): Promise<WorkOrder[]> {
   const [rows] = await connection
