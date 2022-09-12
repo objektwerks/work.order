@@ -16,6 +16,16 @@ export function disconnect(): void {
   console.log('*** store disconnected.')
 }
 
+export async function getLicense(license: string): Promise<string> {
+  const [rows] = await connection.query<RowDataPacket[]>('select license from user where license = ?', [license])
+  const licenses: string[] = []
+  rows.forEach((row: RowDataPacket) => {
+    licenses.push( row.license )
+  })
+  return licenses.length > 0 ? licenses[0] : ''
+}
+
+
 export async function listWorkOrders(userId: number): Promise<WorkOrder[]> {
   const [rows] = await connection
     .query<RowDataPacket[]>('select * from work_order where homeownerId = ? or serviceProviderId = ? order by opened desc',
