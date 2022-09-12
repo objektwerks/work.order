@@ -50,6 +50,7 @@ async function test() {
   // work orders list
   const workOrdersListed = await handler.listWorkOrders(new ListWorkOrders(homeownerLoggedIn.user.id, homeownerLoggedIn.user.license))
   assert(workOrdersListed.success)
+  assert(workOrdersListed.workOrders.length === 1)
   
   console.log('*** integration test complete!')
 
