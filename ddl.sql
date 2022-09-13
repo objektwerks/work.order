@@ -2,7 +2,7 @@ drop database if exists `work_order_db`;
 
 create database `work_order_db`;
 
-use `work_order_db`
+use `work_order_db`;
 
 create table `user` (
   `id` int not null auto_increment,
