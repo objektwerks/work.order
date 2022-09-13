@@ -119,8 +119,10 @@ export default () => {
     const isChecked = ( event.target as HTMLInputElement ).checked
     if (isChecked) {
       setValueById('workorder-closed-id', new Date().toISOString())
+      console.log('*** workorder closed checked.')
     } else {
       setValueById('workorder-closed-id', '')
+      console.log('*** workorder closed unchecked.')
     }
   }, false)
 
