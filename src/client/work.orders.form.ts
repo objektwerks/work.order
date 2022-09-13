@@ -100,6 +100,7 @@ export default () => {
       const number = parseInt( getValueById('workorder-number-id'))
       if (number !== undefined && number > 0) { // is number valid?
         getById(number.toString()).children[0].innerHTML = `${number} - ${title}` // set new title to corresponding work orders list item
+        console.log('*** workorder title changed: @s', `${number} - ${title}`)
       }
     }
   }, false)
