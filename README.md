@@ -41,8 +41,7 @@ Database
 
 Test
 ----
-1. npm run build
-2. npm run test
+1. npm run test
 
 Dev
 ---
