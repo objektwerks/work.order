@@ -74,6 +74,7 @@ export default () => {
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
           } else {          
             postAddSaveWorkOrder()
+            console.log('*** workorder saved: @o', workOrder)
           }
         })
       } else { // add
@@ -86,6 +87,7 @@ export default () => {
             workOrder.number = workOrderSaved.number
             model.addWorkOrder(workOrder)
             postAddSaveWorkOrder()
+            console.log('*** workorder added: @o', workOrder)
           }
         })
       }
