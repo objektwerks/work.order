@@ -27,7 +27,9 @@ async function test() {
   const serviceProviderLoggedIn = await handler.login(new Login(serviceProviderEmail, serviceProviderRegistered.pin))
   const homeownerLoggedIn = await handler.login(new Login(homeownerEmail, homeownerRegistered.pin))
   assert(serviceProviderLoggedIn.success)
+  assert(serviceProviderLoggedIn.user.pin === serviceProviderRegistered.pin)
   assert(homeownerLoggedIn.success)
+  assert(homeownerLoggedIn.user.pin === homeownerRegistered.pin)
 
   // work order add
   const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
