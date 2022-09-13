@@ -149,6 +149,7 @@ Mysql Setup
 
 Mysql
 -----
+>Built with version - 8.0.30
 1. mysql -u workorder -p
 2. \. ddl.sql
 
