@@ -55,7 +55,7 @@ Prod
 1. npm run build
 2. cp -r dist target/
 3. cd target
-4. pm2 server.js
+4. pm2 start server.js
 >See [PM2](pm2.keymetrics.io/)
 
 Nodejs Hosting
