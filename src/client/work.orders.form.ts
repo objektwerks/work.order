@@ -127,11 +127,13 @@ export default () => {
   getById('workorders-list-opened-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-opened-form-id')
     role.apply(model.getUserRole())
+    console.log('*** workorders list opened tab selected.')
   }, false)
   
   getById('workorders-list-closed-tab-id').addEventListener('click', () => {
     selectTab('workorders-list-closed-form-id')
     role.apply(role.readonlyRole)
+    console.log('*** workorders list closed tab selected.')
   }, false)
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
