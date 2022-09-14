@@ -14,6 +14,36 @@ function postAddSaveWorkOrder() {
 export default () => {
   console.log('*** workorders form init ...')
 
+  getById('workorders-list-opened-id').addEventListener('click', (event) => {
+    const isLi = ( event.target as Node ).nodeName === 'li'
+    if(isLi) {
+      const number = ( event.target as HTMLInputElement ).id
+      const workOrder = model.getWorkOrderByNumber( parseInt(number) )
+      if ( workOrder !== undefined ) {
+        binder.bindWorkOrderToForm(workOrder)
+        role.apply(model.getUserRole())
+        console.log(`*** opened work order selected and bound to form for number: ${number}`)
+      } else {
+        console.log(`*** opened work order undefined for number: ${number}`)
+      }
+    }
+  }, false)
+
+  getById('workorders-list-closed-id').addEventListener('click', (event) => {
+    const isLi = ( event.target as Node ).nodeName === 'li'
+    if(isLi) {
+      const number = ( event.target as HTMLInputElement ).id
+      const workorder = model.getWorkOrderByNumber( parseInt(number) )
+      if (workorder !== undefined) {
+        binder.bindWorkOrderToForm(workorder)
+        role.apply(role.readonlyRole)
+        console.log(`*** closed work order selected and bound to form for number: ${number}`)
+      } else {
+        console.log(`*** closed work order undefined for number: ${number}`)
+      }
+    }
+  }, false)
+
   getById('workorders-new-command-id').addEventListener('click', () => {
     binder.bindEmptyWorkOrderToForm()
     hide('workorders-list-id')
@@ -118,36 +148,6 @@ export default () => {
     } else {
       setValueById('workorder-closed-id', '')
       console.log('*** workorder closed unchecked.')
-    }
-  }, false)
-
-  getById('workorders-list-opened-id').addEventListener('click', (event) => {
-    const isLi = ( event.target as Node ).nodeName === 'li'
-    if(isLi) {
-      const number = ( event.target as HTMLInputElement ).id
-      const workOrder = model.getWorkOrderByNumber( parseInt(number) )
-      if ( workOrder !== undefined ) {
-        binder.bindWorkOrderToForm(workOrder)
-        role.apply(model.getUserRole())
-        console.log(`*** opened work order selected and bound to form for number: ${number}`)
-      } else {
-        console.log(`*** opened work order undefined for number: ${number}`)
-      }
-    }
-  }, false)
-
-  getById('workorders-list-closed-id').addEventListener('click', (event) => {
-    const isLi = ( event.target as Node ).nodeName === 'li'
-    if(isLi) {
-      const number = ( event.target as HTMLInputElement ).id
-      const workorder = model.getWorkOrderByNumber( parseInt(number) )
-      if (workorder !== undefined) {
-        binder.bindWorkOrderToForm(workorder)
-        role.apply(role.readonlyRole)
-        console.log(`*** closed work order selected and bound to form for number: ${number}`)
-      } else {
-        console.log(`*** closed work order undefined for number: ${number}`)
-      }
     }
   }, false)
 }
