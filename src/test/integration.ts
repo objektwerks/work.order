@@ -36,7 +36,8 @@ async function test() {
   const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
   workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success)
-  
+  assert(workOrderAdded.number > 0)
+
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
