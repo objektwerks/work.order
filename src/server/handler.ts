@@ -27,33 +27,33 @@ export function shutdown(): void {
 
 export async function register(register: Register): Promise<Registered> {
   if (isRegisterValid(register)) return service.register(register)
-  else return Registered.fail(`Register was invalid.`)
+  else return Registered.fail(`Register is invalid.`)
 }
 
 export async function login(login: Login): Promise<LoggedIn> {
   if (isLoginValid(login)) return service.login(login)
-  else return LoggedIn.fail(`Login was invalid.`)
+  else return LoggedIn.fail(`Login is invalid.`)
 }
 
 export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   if (isLicenseValid(saveWorkOrder.license)) {
     if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.addWorkOrder(saveWorkOrder)
-    else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order was invalid.')
-  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License invalid: ${saveWorkOrder.license}`)
+    else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order is invalid.')
+  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License is invalid: ${saveWorkOrder.license}`)
 }
 
 export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOrderSaved> {
   if (isLicenseValid(saveWorkOrder.license)) {
     if (isWorkOrderValid(saveWorkOrder.workOrder)) return service.saveWorkOrder(saveWorkOrder)
     return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Work order is invalid.')
-  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License invalid: ${saveWorkOrder.license}`)
+  } else return WorkOrderSaved.fail(saveWorkOrder.workOrder.number, `License is invalid: ${saveWorkOrder.license}`)
 }
 
 export async function listWorkOrders(listWorkOrders: ListWorkOrders): Promise<WorkOrdersListed> {
   if (isLicenseValid(listWorkOrders.license)) {
     if (isGreaterThanZero(listWorkOrders.userId)) return service.listWorkOrders(listWorkOrders.userId)
-    else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id was invalid.')
-  } else return WorkOrdersListed.fail(listWorkOrders.userId, `License invalid: ${listWorkOrders.license}`)
+    else return WorkOrdersListed.fail(listWorkOrders.userId, 'User id is invalid.')
+  } else return WorkOrdersListed.fail(listWorkOrders.userId, `License is invalid: ${listWorkOrders.license}`)
 }
 
 export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
