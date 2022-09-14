@@ -1,6 +1,6 @@
+import fs from 'fs'
 import pino from 'pino'
 import pretty from 'pino-pretty'
-import fs from 'fs'
 
 const logsDir = './logs'
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
