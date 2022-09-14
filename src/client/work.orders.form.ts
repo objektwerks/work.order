@@ -5,14 +5,14 @@ import * as role from './role.js'
 import { getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
 import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 
-function postAddSaveWorkOrder() {
-  show('workorder-dialog-id')
-  show('workorders-list-id')
-  hide('workorder-form-id')
-}
-
 export default () => {
   console.log('*** workorders form init ...')
+
+  function postAddSaveWorkOrder() {
+    show('workorder-dialog-id')
+    show('workorders-list-id')
+    hide('workorder-form-id')
+  }
 
   getById('workorders-list-opened-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
