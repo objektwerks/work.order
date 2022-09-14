@@ -37,7 +37,7 @@ export function bindServiceProvidersToSelect(serviceProviders: User[]): void {
 
 export function bindWorkOrdersToList(workOrders: WorkOrder[]): void {
   model.setWorkOrders(workOrders)
-  splitWorkOrders(workOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  splitWorkOrders(workOrders)
 }
 
 export function bindEmptyWorkOrderToForm() {
