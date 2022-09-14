@@ -15,11 +15,11 @@ images()
 router()
 
 process.on('uncaughtException', (error) => {
-  console.error(error, '*** server uncaught exception thrown. terminating server.')
+  console.error(error, '*** server uncaught exception thrown. exiting process.')
   process.exit(1)
 })
 
 process.on('unhandledRejection', (error) => {
-  console.error(error, '*** server unhandled rejection thrown. terminating server.')
+  console.error(error, '*** server unhandled rejection thrown. exiting process.')
   process.exit(1)
 })
