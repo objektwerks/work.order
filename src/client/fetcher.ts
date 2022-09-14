@@ -38,7 +38,7 @@ async function call<T, R>(url: string,
   if (response.ok) {
     result = await response.json()
   } else {
-    console.error('*** fetcher:call error: url: %s, headers: %o, entity: %o, status code: %s status text: %s', url, headers, entity, response.status, response.statusText)
+    console.error('*** fetcher:call error: url: %s, headers: %o, entity: %o, status code: %i status text: %s', url, headers, entity, response.status, response.statusText)
     result = fault()
   }
   console.log('*** fetcher:call url: %s result: %o', url, result)
