@@ -52,7 +52,7 @@ export async function register(register: Register): Promise<Registered> {
     }
   } catch (error) {
     logError('register', `failed error: ${error} for: ${register.emailAddress}`)
-    registered = Registered.fail(`register failed for: ${register.emailAddress}`)
+    registered = Registered.fail(`Register failed for: ${register.emailAddress}`)
   }
   return registered
 }
@@ -86,7 +86,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
     }
   } catch(error) {
-    logError('addWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    logError('addWorkOrder', `failed error: ${error} for: ${saveWorkOrder}`)
     added = WorkOrderSaved.fail(number, 'Add work order failed.')
   }
   return added
@@ -104,7 +104,7 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
       saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
     }
   } catch(error) {
-    logError('saveWorkOrder', `failed: ${error} for ${saveWorkOrder}`)
+    logError('saveWorkOrder', `failed error: ${error} for: ${saveWorkOrder}`)
     saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Save work order failed.')
   }
   return saved
@@ -116,7 +116,7 @@ export async function listWorkOrders(userId: number): Promise<WorkOrdersListed> 
     log('listWorkOrders', `succeeded for user id: ${userId}`)
     return WorkOrdersListed.success(userId, workOrders)
   } catch(error) {
-    logError('listWorkOrders', `failed error: ${error} for id: ${userId}`)
+    logError('listWorkOrders', `failed error: ${error} for user id: ${userId}`)
     return WorkOrdersListed.fail(userId, 'List work orders failed.')
   }
 }
@@ -126,14 +126,14 @@ export async function saveUser(saveUser: SaveUser): Promise<UserSaved> {
   try {
     const affectedRows = await store.saveUser(saveUser.user)
     if (affectedRows === 1) {
-      log('saveUser', `succeeded for id: ${saveUser.user.id}`)
+      log('saveUser', `succeeded for user id: ${saveUser.user.id}`)
       saved = UserSaved.success(saveUser.user.id)
     } else {
-      log('saveUser', `failed for id: ${saveUser.user.id}`)
+      log('saveUser', `failed for user id: ${saveUser.user.id}`)
       saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
     }
   } catch(error) {
-    logError('saveUser', `failed: ${error} for ${saveUser}`)
+    logError('saveUser', `failed error: ${error} for: ${saveUser}`)
     saved = UserSaved.fail(saveUser.user.id, 'Save user failed.')
   }
   return saved
