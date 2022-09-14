@@ -59,7 +59,7 @@ export function getWorkOrderByNumber(number: number): WorkOrder | undefined {
 export function addWorkOrder(workOrder: WorkOrder): void {
   workOrders.push(workOrder)
   const sortedWorkOrders = workOrders.sort((a, b) => Date.parse(b.opened) - Date.parse(a.opened))
-  binder.splitWorkOrders(sortedWorkOrders, 'workorders-list-opened-id', 'workorders-list-closed-id')
+  binder.splitWorkOrders(sortedWorkOrders)
 }
 
 export function setWorkOrders(newWorkOrders: WorkOrder[]): void {
