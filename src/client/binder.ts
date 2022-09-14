@@ -6,15 +6,15 @@ export default () => {
   console.log('*** binder init ...')
 }
 
-export function splitWorkOrders(workOrders: WorkOrder[], openedWorkOrdersListId: string, closedWorkOrdersListId: string): void {
+export function splitWorkOrders(workOrders: WorkOrder[]): void {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
     .map((workOrder) => { return new IdValue(workOrder.number.toString(), workOrder.title) })
   const closedWorkOrders = workOrders
     .filter((workorder) => workorder.closed.length > 0) // closed
     .map((workOrder) => { return new IdValue(workOrder.number.toString(), workOrder.title) })
-  setListIdValues(openedWorkOrdersListId, openedWorkOrders)
-  setListIdValues(closedWorkOrdersListId, closedWorkOrders)
+  setListIdValues('workorders-list-opened-id', openedWorkOrders)
+  setListIdValues('workorders-list-closed-id', closedWorkOrders)
 }
 
 export function bindUserToForm(user: User): void {
