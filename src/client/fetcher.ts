@@ -22,7 +22,7 @@ const listWorkOrdersUrl = rootUrl + '/workorders'
 const saveUserUrl = rootUrl + '/users/save'
 const post = 'post'
 const jsonHeaders: { [key: string]: string } = { 'Content-Type': 'application/json' }
-const formDataHeaders: { [key: string]: string } = { "Content-Type": "multipart/form-data" }
+const formDataHeaders: { [key: string]: string } = { 'Content-Type': 'multipart/form-data' }
 
 async function call<T, R>(url: string,
                           headers: { [key: string]: string },
