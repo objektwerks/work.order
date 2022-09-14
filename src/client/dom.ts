@@ -61,6 +61,11 @@ export function setValueById(id: string, value: string): void {
   input.value = value
 }
 
+export function setImageUrlHrefById(id: string, url: string): void {
+  const anchor = getById(id) as HTMLAnchorElement
+  anchor.href = url
+}
+
 export function setImageUrlById(id: string, url: string): void {
   const img = getById(id) as HTMLImageElement
   img.src = url

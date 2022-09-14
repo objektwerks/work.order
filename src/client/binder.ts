@@ -1,6 +1,6 @@
 import * as model from './model.js'
 import { User, WorkOrder } from './entity.js'
-import { IdValue, setImageUrlById, setListIdValues, setSelectIdValues, setSelectOptionById, setValueById } from './dom.js'
+import { IdValue, setImageUrlById, setImageUrlHrefById, setListIdValues, setSelectIdValues, setSelectOptionById, setValueById } from './dom.js'
 
 export default () => {
   console.log('*** binder init ...')
@@ -45,6 +45,7 @@ export function bindEmptyWorkOrderToForm() {
   setValueById('workorder-homeowner-id', model.getUserId.toString())
   setValueById('workorder-title-id', "")
   setValueById('workorder-issue-id', "")
+  setImageUrlHrefById('workorder-image-url-anchor-id', "")
   setValueById('workorder-image-url-id', "")
   setValueById('workorder-resolution-id', "")
   setValueById('workorder-opened-id', new Date().toISOString())
@@ -57,6 +58,7 @@ export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
+  setImageUrlHrefById('workorder-image-url-anchor-id', workOrder.imageUrl)
   setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
