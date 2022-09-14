@@ -121,7 +121,7 @@ export default () => {
     }
   }, false)
 
-  getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
+  getById('workorders-list-opened-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
@@ -136,7 +136,7 @@ export default () => {
     }
   }, false)
 
-  getById('workorders-list-closed-form-id').addEventListener('click', (event) => {
+  getById('workorders-list-closed-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
