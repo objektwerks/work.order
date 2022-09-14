@@ -2,17 +2,8 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
 import * as role from './role.js'
-import { getByClass, getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
+import { getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
 import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
-
-function selectTab(tabviewId: string) {
-  const tabviews = getByClass('tabview') as HTMLCollectionOf<Element>
-  for (let i = 0; i < tabviews.length; i++) {
-    const tabview = tabviews.item(i) as HTMLFormElement
-    tabview.style.display = 'none'
-  }
-  show(tabviewId)
-}
 
 function postAddSaveWorkOrder() {
   show('workorder-dialog-id')
@@ -128,18 +119,6 @@ export default () => {
       setValueById('workorder-closed-id', '')
       console.log('*** workorder closed unchecked.')
     }
-  }, false)
-
-  getById('workorders-list-opened-tab-id').addEventListener('click', () => {
-    selectTab('workorders-list-opened-form-id')
-    role.apply(model.getUserRole())
-    console.log('*** workorders list opened tab selected.')
-  }, false)
-  
-  getById('workorders-list-closed-tab-id').addEventListener('click', () => {
-    selectTab('workorders-list-closed-form-id')
-    role.apply(role.readonlyRole)
-    console.log('*** workorders list closed tab selected.')
   }, false)
 
   getById('workorders-list-opened-form-id').addEventListener('click', (event) => {
