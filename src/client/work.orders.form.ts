@@ -20,7 +20,7 @@ export default () => {
     if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
-      if ( workOrder !== undefined ) {
+      if (number !== '0' && workOrder !== undefined) {
         binder.bindWorkOrderToForm(workOrder)
         role.apply(model.getUserRole())
         hide('workorders-list-id')
@@ -38,7 +38,7 @@ export default () => {
     if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
       const workorder = model.getWorkOrderByNumber( parseInt(number) )
-      if (workorder !== undefined) {
+      if (number !== '0' && workorder !== undefined) {
         binder.bindWorkOrderToForm(workorder)
         role.apply(role.readonlyRole)
         hide('workorders-list-id')
