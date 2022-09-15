@@ -59,6 +59,7 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.append('imageFileName', filename)
   }
   formData.append('saveWorkOrderAsJson', toJson(new SaveWorkOrder(workOrder, getLicense())))
+  console.log('*** formdata: %o', formData)
   return formData
 }
 
