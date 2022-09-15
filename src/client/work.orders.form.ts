@@ -71,6 +71,7 @@ export default () => {
 
     const number = parseInt( getValueById('workorder-number-id') )
     const homeownerId = model.getUserId()
+    console.log('*** homeowner / user id: ', model.getUserId())
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')
