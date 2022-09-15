@@ -1,7 +1,7 @@
 import * as binder from './binder.js'
 import { User, WorkOrder } from './entity.js'
 
-let user: User
+let user: User = User.empty()
 let serviceProviders: User[] = []
 let workOrders: WorkOrder[] = []
 let imageFile: ImageFile[] = [] // length of 0 or 1
