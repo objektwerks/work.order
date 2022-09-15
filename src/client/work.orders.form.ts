@@ -70,7 +70,7 @@ export default () => {
     hide('workorder-errors-form-id')
 
     const number = parseInt( getValueById('workorder-number-id') )
-    const homeownerId = parseInt( getValueById('workorder-homeowner-id') )
+    const homeownerId = model.getUserId()
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')

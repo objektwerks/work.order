@@ -42,7 +42,6 @@ export function bindWorkOrdersToList(workOrders: WorkOrder[]): void {
 
 export function bindEmptyWorkOrderToForm() {
   setValueById('workorder-number-id', '0')
-  setValueById('workorder-homeowner-id', model.getUserId.toString())
   setValueById('workorder-title-id', "")
   setValueById('workorder-issue-id', "")
   setImageUrlHrefById('workorder-image-url-anchor-id', "")
@@ -54,7 +53,6 @@ export function bindEmptyWorkOrderToForm() {
 
 export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-number-id', workOrder.number.toString())
-  setValueById('workorder-homeowner-id', workOrder.homeownerId.toString())
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
