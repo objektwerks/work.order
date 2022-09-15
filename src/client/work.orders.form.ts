@@ -8,6 +8,11 @@ import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 export default () => {
   console.log('*** workorders form init ...')
 
+  function workOrderSelected() {
+    hide('workorders-list-id')
+    show('workorder-form-id')
+  }
+  
   function postAddSaveWorkOrder() {
     show('workorder-dialog-id')
     show('workorders-list-id')
@@ -22,8 +27,7 @@ export default () => {
       if (number !== '0' && workOrder !== undefined) {
         binder.bindWorkOrderToForm(workOrder)
         role.apply(model.getUserRole())
-        hide('workorders-list-id')
-        show('workorder-form-id')
+        workOrderSelected()
         console.log(`*** opened work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** opened work order undefined for number: ${number}`)
@@ -39,8 +43,7 @@ export default () => {
       if (number !== '0' && workorder !== undefined) {
         binder.bindWorkOrderToForm(workorder)
         role.apply(role.readonlyRole)
-        hide('workorders-list-id')
-        show('workorder-form-id')
+        workOrderSelected()
         console.log(`*** closed work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** closed work order undefined for number: ${number}`)
