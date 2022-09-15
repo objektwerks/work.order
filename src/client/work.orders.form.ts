@@ -15,9 +15,9 @@ export default () => {
   }
 
   getById('workorders-list-opened-id').addEventListener('click', (event) => {
-    const isLi = ( event.target as Node ).nodeName === 'li'
-    console.log(`*** opened work order selected, is li? : ${isLi}`)
-    if(isLi) {
+    const li = ( event.target as Node ).nodeName
+    console.log(`*** opened work order selected node type: ${li}`)
+    if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
       if ( workOrder !== undefined ) {
@@ -31,9 +31,9 @@ export default () => {
   }, false)
 
   getById('workorders-list-closed-id').addEventListener('click', (event) => {
-    const isLi = ( event.target as Node ).nodeName === 'li'
-    console.log(`*** closed work order selected, is li? : ${isLi}`)
-    if(isLi) {
+    const li = ( event.target as Node ).nodeName
+    console.log(`*** closed work order selected node type: ${li}`)
+    if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
       const workorder = model.getWorkOrderByNumber( parseInt(number) )
       if (workorder !== undefined) {
