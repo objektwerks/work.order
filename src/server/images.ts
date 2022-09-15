@@ -25,7 +25,7 @@ const fileFilter = (request: Request, file: Express.Multer.File, callback: FileF
 }
 
 const txt = '.txt'
-const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? './images'
+const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? '$HOME/.workorder/images'
 export const oneMinute = (60 * 1000)
 export const oneHour = 60 * oneMinute
 export const threeHours = 3 * oneHour
@@ -45,7 +45,6 @@ function removeTxtFiles() {
 setInterval(removeTxtFiles, threeHours)
 
 export default () => {
-  if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir)
   console.log('*** images init ...')
 }
 
