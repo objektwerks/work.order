@@ -42,8 +42,8 @@ export function bindWorkOrdersToList(workOrders: WorkOrder[]): void {
 
 export function bindEmptyWorkOrderToForm() {
   setValueById('workorder-number-id', '0')
-  setValueById('workorder-title-id', "")
-  setValueById('workorder-issue-id', "")
+  setValueById('workorder-title-id', "title")
+  setValueById('workorder-issue-id', "issue")
   setImageUrlHrefById('workorder-image-url-anchor-id', "")
   setValueById('workorder-image-url-id', "")
   setValueById('workorder-resolution-id', "")
