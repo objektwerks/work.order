@@ -23,6 +23,8 @@ export default () => {
       if ( workOrder !== undefined ) {
         binder.bindWorkOrderToForm(workOrder)
         role.apply(model.getUserRole())
+        hide('workorders-list-id')
+        show('workorder-dialog-id')
         console.log(`*** opened work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** opened work order undefined for number: ${number}`)
@@ -39,6 +41,8 @@ export default () => {
       if (workorder !== undefined) {
         binder.bindWorkOrderToForm(workorder)
         role.apply(role.readonlyRole)
+        hide('workorders-list-id')
+        show('workorder-dialog-id')
         console.log(`*** closed work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** closed work order undefined for number: ${number}`)
