@@ -16,6 +16,7 @@ export default () => {
 
   getById('workorders-list-opened-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
+    console.log(`*** opened work order selected, is li? : ${isLi}`)
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workOrder = model.getWorkOrderByNumber( parseInt(number) )
@@ -31,6 +32,7 @@ export default () => {
 
   getById('workorders-list-closed-id').addEventListener('click', (event) => {
     const isLi = ( event.target as Node ).nodeName === 'li'
+    console.log(`*** closed work order selected, is li? : ${isLi}`)
     if(isLi) {
       const number = ( event.target as HTMLInputElement ).id
       const workorder = model.getWorkOrderByNumber( parseInt(number) )
@@ -109,7 +111,7 @@ export default () => {
             workOrder.number = workOrderSaved.number
             model.addWorkOrder(workOrder)
             postAddSaveWorkOrder()
-            console.log('*** workorder added: @o', workOrder)
+            console.log('*** workorder added: ', workOrder)
           }
         })
       }
