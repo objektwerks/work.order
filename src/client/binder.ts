@@ -1,6 +1,6 @@
 import * as model from './model.js'
 import { User, WorkOrder } from './entity.js'
-import { IdValue, setImageUrlById, setImageUrlHrefById, setListIdValues, setSelectIdValues, setSelectOptionById, setValueById } from './dom.js'
+import { IdValue, setImageUrlById, setImageUrlHrefById, setListIdValues, setSelectIdValues, setSelectOptionById, setCheckBoxById, setValueById } from './dom.js'
 
 export default () => {
   console.log('*** binder init ...')
@@ -49,6 +49,7 @@ export function bindEmptyWorkOrderToForm() {
   setValueById('workorder-resolution-id', "")
   setValueById('workorder-opened-id', new Date().toISOString())
   setValueById('workorder-closed-id', "")
+  setCheckBoxById('workorder-closed-check-id', false)
 }
 
 export function bindWorkOrderToForm(workOrder: WorkOrder) {
@@ -61,4 +62,5 @@ export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
   setValueById('workorder-closed-id', workOrder.closed)
+  setCheckBoxById('workorder-closed-check-id', workOrder.closed.length === 0 ? false : true)
 }
