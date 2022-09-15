@@ -1,7 +1,7 @@
 import compression from 'compression'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { imagesStore } from './images.js'
+import { imagesDir, imagesStore } from './images.js'
 import * as handler from './handler.js'
 import { toObject } from './entity.js'
 
@@ -23,7 +23,7 @@ function shutdown(signal: string): void {
 export default () => {
   router = express()
   router.use(express.static('client'))
-  router.use(express.static('images'))
+  router.use(express.static(imagesDir))
   router.use(compression())
   router.use(express.json())
 
