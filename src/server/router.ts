@@ -26,7 +26,6 @@ export default () => {
   router.use(express.static('images'))
   router.use(compression())
   router.use(express.json())
-  router.use(express.urlencoded({ extended: true }))
 
   router.post('/register', (request, response) => {
     handler.register( request.body ).then(registered => response.json(registered))
