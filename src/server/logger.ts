@@ -2,7 +2,7 @@ import fs from 'fs'
 import pino from 'pino'
 import pretty from 'pino-pretty'
 
-const logsDir = './logs'
+const logsDir = process.env.WORK_ORDER_LOGS_DIR ?? './logs'
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 
 const stream = pretty({
