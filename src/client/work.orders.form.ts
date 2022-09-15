@@ -12,7 +12,7 @@ export default () => {
     hide('workorders-list-id')
     show('workorder-form-id')
   }
-  
+
   function postAddSaveWorkOrder() {
     show('workorder-dialog-id')
     show('workorders-list-id')
@@ -78,7 +78,7 @@ export default () => {
 
     const number = parseInt( getValueById('workorder-number-id') )
     const homeownerId = model.getUserId()
-    console.log('*** homeowner / user id: ', model.getUserId())
+    console.log('*** user id: %i for: %s', model.getUserId(), model.getUserRole())
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')
