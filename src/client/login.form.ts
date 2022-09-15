@@ -34,6 +34,9 @@ export default () => {
   
           role.apply(model.getUserRole())
 
+          hide('register-form-id')
+          hide('register-menu-id')
+          
           hide('login-form-id')
           hide('login-menu-id')  
 
