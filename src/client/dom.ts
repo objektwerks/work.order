@@ -51,6 +51,11 @@ export function removeReadonlyById(id: string): void {
   element.removeAttribute('readonly')
 }
 
+export function setCheckBoxById(id: string, isChecked: boolean): void {
+  const input = getById(id) as HTMLInputElement
+  input.checked = isChecked
+}
+
 export function setTextById(id: string, text: string): void {
   const element = getById(id)
   element.innerText = text
