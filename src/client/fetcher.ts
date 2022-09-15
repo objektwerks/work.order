@@ -28,7 +28,6 @@ async function call<T, R>(url: string,
                           headers: { [key: string]: string },
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
-  console.log('*** fetcher:call url: %s entity: %o', url, entity)
   let result: R
   const init = {
     method: post,
@@ -60,7 +59,9 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
     formData.set('imageFileName', filename)
   }
   formData.set('saveWorkOrderAsJson', toJson(new SaveWorkOrder(workOrder, getLicense())))
-  console.log('*** formdata: %o', formData)
+  formData.forEach((value, key) => {
+    console.log("*** formdata key %s: value %o", key, value)
+  })
   return formData
 }
 
