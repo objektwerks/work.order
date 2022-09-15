@@ -15,7 +15,7 @@ export default () => {
   }
 
   getById('workorders-list-opened-id').addEventListener('click', (event) => {
-    const li = ( event.target as Node ).nodeName
+    const li = ( event.target as Node ).nodeName.toLowerCase()
     console.log(`*** opened work order selected node type: ${li}`)
     if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
@@ -31,7 +31,7 @@ export default () => {
   }, false)
 
   getById('workorders-list-closed-id').addEventListener('click', (event) => {
-    const li = ( event.target as Node ).nodeName
+    const li = ( event.target as Node ).nodeName.toLowerCase()
     console.log(`*** closed work order selected node type: ${li}`)
     if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
