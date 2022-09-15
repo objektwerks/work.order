@@ -28,6 +28,7 @@ async function call<T, R>(url: string,
                           headers: { [key: string]: string },
                           entity: FormData | T,
                           fault: () => R): Promise<R> {
+  console.log('*** fetcher:call url: %s entity: %o', url, entity)
   let result: R
   const init = {
     method: post,
