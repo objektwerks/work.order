@@ -50,13 +50,13 @@ function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): Form
   if (imageFile.length > 0) {
     const image = imageFile[0]
     workOrder.imageUrl = image.url
-    formData.append('image', image.file, image.filename)
     formData.set('imageFileName', image.filename)
+    formData.append('image', image.file, image.filename)
   } else {
     const filename = `z-${new Date().toISOString()}.txt`
     const file = new File(['delete me!'], filename, { type: "text/plain" })
-    formData.append('image', file, filename)
     formData.set('imageFileName', filename)
+    formData.append('image', file, filename)
   }
   formData.set('saveWorkOrderAsJson', toJson(new SaveWorkOrder(workOrder, getLicense())))
   formData.forEach((value, key) => {
