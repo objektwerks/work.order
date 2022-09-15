@@ -2,9 +2,9 @@ import * as binder from './binder.js'
 import { User, WorkOrder } from './entity.js'
 
 let user: User
-let serviceProviders: User[]
-let workOrders: WorkOrder[]
-let imageFile: ImageFile[] // length of 0 or 1
+let serviceProviders: User[] = []
+let workOrders: WorkOrder[] = []
+let imageFile: ImageFile[] = [] // length of 0 or 1
 
 export class ImageFile {
   constructor(public number: number, public file: File, public filename: string, public url: string) {}
