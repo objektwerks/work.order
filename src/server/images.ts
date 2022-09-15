@@ -28,7 +28,7 @@ const txt = '.txt'
 const oneMinute = (60 * 1000)
 const oneHour = 60 * oneMinute
 const threeHours = 3 * oneHour
-export const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? '$HOME/.workorder/images'
+export const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? process.env.HOME + '/.workorder/images'
 
 function removeTxtFiles() {
   fs.readdir(imagesDir, (error, files) => {

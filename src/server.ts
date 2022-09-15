@@ -7,9 +7,9 @@ import handler from './server/handler.js'
 import images from './server/images.js'
 import router from './server/router.js'
 
-const workOrderDir = process.env.WORK_ORDER_DIR ?? '$HOME/.workorder'
-const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? '$HOME/.workorder/images'
-const logsDir = process.env.WORK_ORDER_LOGS_DIR ?? '$HOME/.workorder/logs'
+const workOrderDir = process.env.WORK_ORDER_DIR ?? process.env.HOME + '/.workorder'
+const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? process.env.HOME + '/.workorder/images'
+const logsDir = process.env.WORK_ORDER_LOGS_DIR ?? process.env.HOME + '/.workorder/logs'
 
 if (!fs.existsSync(workOrderDir)) fs.mkdirSync(workOrderDir)
 if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir)
