@@ -67,11 +67,6 @@ export default () => {
     }) 
   }, false)
 
-  getById('workorder-close-command-id').addEventListener('click', () => {
-    hide('workorder-form-id')
-    show('workorders-list-id')
-  }, false)
-
   getById('workorder-form-id').addEventListener('submit', (event) => {
     event.preventDefault()
 
