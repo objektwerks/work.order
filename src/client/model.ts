@@ -74,3 +74,7 @@ export function setImageFile(newImageFile: ImageFile): void {
   imageFile = []
   imageFile.push(newImageFile)
 }
+
+export function resetImageFile(): void {
+  imageFile = []
+}
