@@ -1,6 +1,8 @@
 import assert from 'assert'
 import * as handler from '../server/handler.js'
-import { 
+import {
+  homeowner,
+  serviceProvider,
   Login,
   Register,
   SaveUser,
@@ -18,8 +20,8 @@ async function test() {
   console.log('*** running integration test ...')
 
   // register
-  const serviceProviderRegistered = await handler.register(new Register('serviceprovider', "fred flintstone,", serviceProviderEmail, "123 stone st"))
-  const homeownerRegistered = await handler.register(new Register('homeowner', "barney rubble,", homeownerEmail, "125 stone st"))
+  const serviceProviderRegistered = await handler.register(new Register(serviceProvider, "lawncare,", serviceProviderEmail, "123 green st"))
+  const homeownerRegistered = await handler.register(new Register(homeowner, "fred flintstone,", homeownerEmail, "345 stone st"))
   assert(serviceProviderRegistered.success)
   assert(homeownerRegistered.success)
 
