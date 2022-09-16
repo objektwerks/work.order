@@ -58,9 +58,9 @@ export default () => {
   }, false)
 
   getById('workorders-new-command-id').addEventListener('click', () => {
-    model.resetImageFile()
     binder.bindEmptyWorkOrderToForm()
     role.apply(model.getUserRole())
+    model.resetImageFile()
     hide('workorders-list-id')
     show('workorder-form-id')
   }, false)
