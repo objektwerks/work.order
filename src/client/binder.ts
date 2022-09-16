@@ -57,7 +57,7 @@ export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
-  setImageUrlHrefById('workorder-image-url-anchor-id', workOrder.imageUrl)
+  setImageUrlHrefById('workorder-image-url-anchor-id', workOrder.imageUrl.length === 0 ? '#0' : workOrder.imageUrl)
   setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
