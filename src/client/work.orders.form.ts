@@ -8,10 +8,14 @@ import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 export default () => {
   console.log('*** workorders form init ...')
 
-  function workOrderSelected(workOrder: WorkOrder) {
+  function workOrderSelected(workOrder: WorkOrder, isClosed: boolean = false) {
     hide('workorders-list-id')
     hide('workorder-errors-form-id')
-    workOrder.imageUrl.length > 0 ? hide('workorder-image-file-container-id') : show('workorder-image-file-container-id')
+    if (isClosed) {
+      hide('workorder-image-file-container-id')
+    } else {
+      workOrder.imageUrl.length > 0 ? hide('workorder-image-file-container-id') : show('workorder-image-file-container-id')
+    }
     show('workorder-form-id')
   }
 
@@ -45,7 +49,7 @@ export default () => {
       if (number !== '0' && workOrder !== undefined) {
         binder.bindWorkOrderToForm(workOrder)
         role.apply(role.readonlyRole)
-        workOrderSelected(workOrder)
+        workOrderSelected(workOrder, true)
         console.log(`*** closed work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** closed work order undefined for number: ${number}`)
