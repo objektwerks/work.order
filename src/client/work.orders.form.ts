@@ -8,7 +8,7 @@ import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 export default () => {
   console.log('*** workorders form init ...')
 
-  function workOrderSelected(workOrder: WorkOrder, isClosed: boolean = false) {
+  function workOrderSelected(workOrder: WorkOrder, isClosed = false) {
     hide('workorders-list-id')
     hide('workorder-errors-form-id')
     if (isClosed) {
