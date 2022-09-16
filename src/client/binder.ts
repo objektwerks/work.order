@@ -58,7 +58,7 @@ export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
   setImageUrlHrefById('workorder-image-url-anchor-id', workOrder.imageUrl.length === 0 ? '#0' : workOrder.imageUrl)
-  setImageUrlById('workorder-image-url-id', workOrder.imageUrl.length === 0 ? 'data:,' : workOrder.imageUrl)
+  setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
   setValueById('workorder-resolution-id', workOrder.resolution)
   setValueById('workorder-opened-id', workOrder.opened)
   setValueById('workorder-closed-id', workOrder.closed)
