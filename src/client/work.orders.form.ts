@@ -8,9 +8,10 @@ import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 export default () => {
   console.log('*** workorders form init ...')
 
-  function workOrderSelected() {
+  function workOrderSelected(workOrder: WorkOrder) {
     hide('workorders-list-id')
     hide('workorder-errors-form-id')
+    workOrder.imageUrl.length > 0 ? hide('workorder-image-file-container-id') : show('workorder-image-file-container-id')
     show('workorder-form-id')
   }
 
@@ -28,7 +29,7 @@ export default () => {
       if (number !== '0' && workOrder !== undefined) {
         binder.bindWorkOrderToForm(workOrder)
         role.apply(model.getUserRole())
-        workOrderSelected()
+        workOrderSelected(workOrder)
         console.log(`*** opened work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** opened work order undefined for number: ${number}`)
@@ -40,11 +41,11 @@ export default () => {
     const li = ( event.target as Node ).nodeName.toLowerCase()
     if(li === 'li') {
       const number = ( event.target as HTMLInputElement ).id
-      const workorder = model.getWorkOrderByNumber( parseInt(number) )
-      if (number !== '0' && workorder !== undefined) {
-        binder.bindWorkOrderToForm(workorder)
+      const workOrder = model.getWorkOrderByNumber( parseInt(number) )
+      if (number !== '0' && workOrder !== undefined) {
+        binder.bindWorkOrderToForm(workOrder)
         role.apply(role.readonlyRole)
-        workOrderSelected()
+        workOrderSelected(workOrder)
         console.log(`*** closed work order selected and bound to form for number: ${number}`)
       } else {
         console.log(`*** closed work order undefined for number: ${number}`)
