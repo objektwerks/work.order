@@ -154,14 +154,13 @@ const idInvalidMessage = 'An id must be greater than 0.'
 const numberInvalidMessage = 'A number must be greater than 0.'
 const definedInvalidMessage = 'This field may be empty, but must be defined.'
 
-function isDefined(value: string): boolean {
+function isDefined(string: string): boolean {
   let isDefined
   try {
-    isDefined = value !== undefined && value !== null && value.length >= 0
+    isDefined = string !== undefined && string !== null && string.length >= 0
   } catch {
     isDefined = false
   }
-  console.log('*** isDefined validator of field: %s is defined: %s', value, isDefined)
   return isDefined
 }
 
@@ -245,14 +244,10 @@ export function validateWorkOrder(number: number, homeownerId: number, servicePr
   if (!isGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage)
   if (!idLengthRange(title, 4, 64)) errors.push(definedInvalidMessage)
   if (!idLengthRange(issue, 4, 255)) errors.push(definedInvalidMessage)
-  console.log('*** validator imageUrl: ', imageUrl)
   if (!isDefined(imageUrl)) errors.push(definedInvalidMessage)
-  console.log('*** imageUrl is defined!')
   if (!isDefined(resolution)) errors.push(definedInvalidMessage)
-  console.log('*** resolution is defined!')
   if (!isLength(opened, 24)) errors.push(datetimeInvalidMessage)
   if (!isDefined(closed)) errors.push(definedInvalidMessage)
-  console.log('*** closed is defined!')
   return errors
 }
 
