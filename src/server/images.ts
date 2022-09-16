@@ -15,6 +15,8 @@ const storage = multer.diskStorage({
 
 const fileFilter = (request: Request, file: Express.Multer.File, callback: FileFilterCallback) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    // This filter is key to preventing the storage of temporary fake *.txt files
+    // from being written to imagesDir. See client/fetcher for more details.
     callback(null, true)
   } else {
     callback(null, false)
