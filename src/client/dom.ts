@@ -31,6 +31,16 @@ export function getValueById(id: string): string {
   return input.value
 }
 
+export function disable(id: string): void {
+  const element = getById(id) as HTMLInputElement
+  element.disabled = true
+}
+
+export function enable(id: string): void {
+  const element = getById(id) as HTMLInputElement
+  element.disabled = false
+}
+
 export function hide(id: string): void {
   const element = getById(id)
   element.style.display = 'none'
