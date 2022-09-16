@@ -5,8 +5,8 @@ Work order web app linking homeowners and service providers.
 Todo
 ----
 1. Consider email notification to:
-  1. service provider when a work order opened.
-  1. homeowner when a work order is closed.
+   * service provider when a work order opened.
+   * homeowner when a work order is closed.
 
 Usage
 -----
