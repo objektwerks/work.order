@@ -10,6 +10,7 @@ export default () => {
 
   function workOrderSelected() {
     hide('workorders-list-id')
+    hide('workorder-errors-form-id')
     show('workorder-form-id')
   }
 
