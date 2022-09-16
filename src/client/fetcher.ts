@@ -48,16 +48,19 @@ async function call<T, R>(url: string,
 
 function workOrderToFormData(workOrder: WorkOrder, imageFile: ImageFile[]): FormData {
   const formData = new FormData()
+  console.log('*** fetcher: model image file: %o', imageFile)
   if (imageFile.length > 0) {
     const image = imageFile[0]
     workOrder.imageUrl = image.url
     formData.set('imageFileName', image.filename)
     formData.append('image', image.file, image.filename)
+    console.log('*** fetcher: real image file:', image.filename)
   } else {
     const filename = `z-${new Date().toISOString()}.txt`
     const file = new File(['delete me!'], filename, { type: "text/plain" })
     formData.set('imageFileName', filename)
     formData.append('image', file, filename)
+    console.log('*** fetcher: fake image file:', filename)
   }
   formData.set('saveWorkOrderAsJson', toJson(new SaveWorkOrder(workOrder, getLicense())))
   formData.forEach((value, key) => {
