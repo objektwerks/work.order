@@ -54,6 +54,7 @@ export default () => {
 
   getById('workorders-new-command-id').addEventListener('click', () => {
     binder.bindEmptyWorkOrderToForm()
+    role.apply(model.getUserRole())
     hide('workorders-list-id')
     show('workorder-form-id')
   }, false)
