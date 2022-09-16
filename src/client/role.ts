@@ -1,4 +1,4 @@
-import { removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
+import { disable, enable, removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
 import { homeowner, serviceProvider } from './entity.js'
 
 export const readonlyRole = 'readonly'
@@ -18,7 +18,7 @@ export function apply(role: string) {
     show('workorder-image-file-id')
     addReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
-    addReadonlyById('workorder-closed-check-id')
+    disable('workorder-closed-check-id')
     // always readonly addReadonlyById('workorder-closed-id')
     show('workorders-new-command-id')
     show('workorders-refresh-command-id')
@@ -33,7 +33,7 @@ export function apply(role: string) {
     hide('workorder-image-file-id')
     removeReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
-    removeReadonlyById('workorder-closed-check-id')
+    enable('workorder-closed-check-id')
     // always readonly addReadonlyById('workorder-closed-id')
     hide('workorders-new-command-id')
     show('workorders-refresh-command-id')
@@ -48,7 +48,7 @@ export function apply(role: string) {
     hide('workorder-image-file-id')
     addReadonlyById('workorder-resolution-id')
     // always readonly addReadonlyById('workorder-opened-id')
-    addReadonlyById('workorder-closed-check-id')
+    disable('workorder-closed-check-id')
     addReadonlyById('workorder-closed-id')
     hide('workorders-new-command-id')
     hide('workorders-refresh-command-id')
