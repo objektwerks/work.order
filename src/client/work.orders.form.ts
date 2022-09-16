@@ -143,7 +143,7 @@ export default () => {
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
       const filename = `${datetime}.${ext}`
-      const url = `/images/${filename}`
+      const url = `/${filename}`
       model.setImageFile( new model.ImageFile(number, file, filename, url) )
       console.log('*** image file set for number: %i url: %s ', number, url)
     }}, false)
