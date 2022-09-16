@@ -81,6 +81,11 @@ export function setImageUrlHrefById(id: string, url: string): void {
   anchor.href = url
 }
 
+export function getImageUrlById(id: string): string {
+  const img = getById(id) as HTMLImageElement
+  return img.src
+}
+
 export function setImageUrlById(id: string, url: string): void {
   const img = getById(id) as HTMLImageElement
   img.src = url

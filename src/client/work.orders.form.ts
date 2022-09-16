@@ -2,7 +2,7 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
 import * as role from './role.js'
-import { getById, getFileById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
+import { getById, getFileById, getImageUrlById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
 import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 
 export default () => {
@@ -79,7 +79,8 @@ export default () => {
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')
-    const imageUrl = getValueById('workorder-image-url-id')
+    const imageUrl = getImageUrlById('workorder-image-url-id')
+    console.log('*** workorder form image url: ', imageUrl)
     const resolution = getValueById('workorder-resolution-id')
     const opened = getValueById('workorder-opened-id')
     const closed = getValueById('workorder-closed-id')
@@ -118,6 +119,7 @@ export default () => {
         })
       }
     } else {
+      console.log('*** workorder form submit errors: ', errors)
       setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
     }  
   }, false)
