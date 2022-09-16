@@ -50,8 +50,6 @@ export function apply(role: string) {
     // always readonly addReadonlyById('workorder-opened-id')
     disable('workorder-closed-check-id')
     addReadonlyById('workorder-closed-id')
-    hide('workorders-new-command-id')
-    hide('workorders-refresh-command-id')
     hide('workorder-save-command-id')
   }
 }
