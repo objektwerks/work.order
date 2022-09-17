@@ -187,6 +187,22 @@ Curl
        --data '{"emailAddress":"objektwerks@runbox.com","pin":"1234567"}' \
        http://127.0.0.1:3000/login
 
+Environment
+-----------
+>The following ***environment variables*** must be defined:
+export WORK_ORDER_BIND_IP="127.0.0.1"
+export WORK_ORDER_PORT=3000
+export WORK_ORDER_DATABASE_URL="mysql://workorder:workorder@localhost:3306/work_order_db"
+export WORK_ORDER_EMAIL_HOST="youremailhost.com"
+export WORK_ORDER_EMAIL_PORT=587
+export WORK_ORDER_EMAIL_SENDER="youremailaddress@youremailhost.com"
+export WORK_ORDER_EMAIL_PASSWORD="youremailpassword"
+export WORK_ORDER_SERVICE_PROVIDER_EMAIL="testemailaddress1@youremailhost.com"
+export WORK_ORDER_HOME_OWNER_EMAIL="testemailaddress2@youremailhost.com"
+export WORK_ORDER_DIR=$HOME/.workorder
+export WORK_ORDER_IMAGES_DIR=$WORK_ORDER_DIR/images
+export WORK_ORDER_LOGS_DIR=$WORK_ORDER_DIR/logs
+
 License
 -------
 > Copyright (c) [2022] [Objektwerks]
