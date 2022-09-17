@@ -1,3 +1,20 @@
+// Mime Types
+const mimetypes = new Map<string, string>()
+mimetypes.set('image/jpeg', 'jpeg')
+mimetypes.set('image/png', 'png')
+export function isMimeTypeAccepted(mimetype: string): boolean {
+  return mimetypes.has(mimetype)
+}
+
+export function getFileExtByMimeType(mimetype: string): string  {
+  let ext = 'txt'
+  if (mimetypes.has(mimetype)) {
+    const value = mimetypes.get(mimetype)
+    if (value !== undefined) ext = value
+  }
+  return ext
+}
+
 // Roles
 export const homeowner = 'homeowner'
 export const serviceProvider = 'serviceprovider'

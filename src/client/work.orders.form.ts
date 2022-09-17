@@ -143,7 +143,7 @@ export default () => {
 
   getById('workorder-image-file-id').addEventListener('change', () => {
     const file = getFileById('workorder-image-file-id')
-    if (file !== undefined  && file !== null) {
+    if (file !== null && file !== undefined) {
       const number = parseInt( getValueById('workorder-number-id') )
       const datetime = new Date().toISOString()
       const ext = file.type === 'image/jpeg' ? 'jpeg' : 'png'
