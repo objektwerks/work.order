@@ -155,13 +155,7 @@ const numberInvalidMessage = 'A number must be greater than 0.'
 const definedInvalidMessage = 'This field may be empty, but must be defined.'
 
 function isDefined(string: string): boolean {
-  let isDefined
-  try {
-    isDefined = string !== undefined && string !== null && string.length >= 0
-  } catch {
-    isDefined = false
-  }
-  return isDefined
+  return string !== null
 }
 
 function isRole(role: string): boolean {
