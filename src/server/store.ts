@@ -60,6 +60,8 @@ export async function listUsersByRole(role: string): Promise<User[]> {
   return users
 }
 
+// TODO listEmailAddressesByIds - select emailAddress from user where id in (1,2);
+
 export async function getUserByEmailAddressPin(emailAddress: string, pin: string): Promise<User> {
   const [rows] = await connection
     .query<RowDataPacket[]>('select * from user where emailAddress = ? and pin = ?',
