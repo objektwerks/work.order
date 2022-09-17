@@ -82,6 +82,8 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
       log('addWorkOrder', `succeeded for number: ${number}`)
       added = WorkOrderSaved.success(number)
       // TODO emailer.send(homeowner.emailAddress, serviceProvider.emailAddress, subject, html)
+      // to: 'recipient1,recipient2'
+      // store.getEmailAddresses(homeownerId, serviceProviderId)
     } else {
       log('addWorkOrder', `failed for: ${saveWorkOrder}`)
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
@@ -101,6 +103,8 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
       // TODO emailer.send(homeowner.emailAddress, serviceProvider.emailAddress, subject, html)
+      // to: 'recipient1,recipient2'
+      // store.getEmailAddresses(homeownerId, serviceProviderId)
     } else {
       log('saveWorkOrder', `failed for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
