@@ -29,9 +29,6 @@ async function test() {
   console.log('*** running integration test ...')
 
   // register
-  console.log('*** service provider role: ' + serviceProvider)
-  console.log('*** homeowner role: ' + homeowner)
-
   const serviceProviderRegistered = await handler.register(new Register(serviceProvider, "lawncare,", serviceProviderEmail, "123 green st"))
   const homeownerRegistered = await handler.register(new Register(homeowner, "fred flintstone,", homeownerEmail, "345 stone st"))
   assert(serviceProviderRegistered.success, 'register service provider failed: ' + serviceProviderRegistered)
