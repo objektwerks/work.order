@@ -173,7 +173,7 @@ Photos
 >Supported photo file formats:
 1. **jpeg**
 2. **png**
->Note, only 1 image per work order allowed at this time.
+>Only **1** image is allowed ***per*** work order. The app stores ***images*** in **WORK_ORDER_IMAGES_DIR** defined below.
 
 Curl
 ----
