@@ -60,7 +60,7 @@ export async function listUsersByRole(role: string): Promise<User[]> {
   return users
 }
 
-export async function listEmailAddressesByIds(homeownerId: number, serviceProviderId: number): Promise<string[]> {
+export async function listEmailAddressesByIds(homeownerId: number, serviceProviderId: number): Promise<string> {
   const [rows] = await connection
     .query<RowDataPacket[]>('select emailAddress from user where id in (?,?)',
     [homeownerId, serviceProviderId])
@@ -68,7 +68,7 @@ export async function listEmailAddressesByIds(homeownerId: number, serviceProvid
   rows.forEach((row: RowDataPacket) => {
     emailAddresses.push( row.emailAddress )
   })
-  return emailAddresses
+  return emailAddresses.length === 2 ? `${emailAddresses[0]},${emailAddresses[1]}` : ''
 }
 
 export async function getUserByEmailAddressPin(emailAddress: string, pin: string): Promise<User> {
