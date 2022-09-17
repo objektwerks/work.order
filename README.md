@@ -2,10 +2,6 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
-Todo
-----
-1. Send ***email notification*** to *homeowner* and *service provider* when a *work order* is ***opened*** and ***closed***.
-
 Usage
 -----
 >***Must*** register at least ***one*** service provider before ***any*** homeowners register and submit work orders.
