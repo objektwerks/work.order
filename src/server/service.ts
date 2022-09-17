@@ -81,6 +81,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
     if (number > 0) {
       log('addWorkOrder', `succeeded for number: ${number}`)
       added = WorkOrderSaved.success(number)
+      // TODO emailer.send(user.emailAddress, subject, html)
     } else {
       log('addWorkOrder', `failed for: ${saveWorkOrder}`)
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
@@ -99,6 +100,7 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
     if (affectedRows === 1) {
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
+      // TODO emailer.send(user.emailAddress, subject, html)
     } else {
       log('saveWorkOrder', `failed for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
