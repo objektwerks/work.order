@@ -7,7 +7,7 @@ export function isMimeTypeAccepted(mimetype: string): boolean {
   return mimetypes.has(mimetype)
 }
 
-export function getFileExtByMimeType(mimetype: string): string  {
+export function getFileExtByMimeType(mimetype: string): string {
   let ext = 'txt'
   if (mimetypes.has(mimetype)) {
     const value = mimetypes.get(mimetype)
