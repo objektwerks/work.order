@@ -170,22 +170,10 @@ Date Time
 
 Photos
 ------
->Supported photo file formats:
+>The following image file types are supported:
 1. **jpeg**
 2. **png**
 >Only **1** image is allowed ***per*** work order. The app stores ***images*** in **WORK_ORDER_IMAGES_DIR** defined below.
-
-Curl
-----
-* curl --header "Content-Type: application/json" \
-       --request POST \
-       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"objektwerks@runbox.com","streetAddress":"123 stone st"}' \
-       http://127.0.0.1:3000/register
-
-* curl --header "Content-Type: application/json" \
-       --request POST \
-       --data '{"emailAddress":"objektwerks@runbox.com","pin":"1234567"}' \
-       http://127.0.0.1:3000/login
 
 Environment
 -----------
@@ -202,6 +190,18 @@ export WORK_ORDER_HOME_OWNER_EMAIL="testemailaddress2@youremailhost.com"
 export WORK_ORDER_DIR=$HOME/.workorder
 export WORK_ORDER_IMAGES_DIR=$WORK_ORDER_DIR/images
 export WORK_ORDER_LOGS_DIR=$WORK_ORDER_DIR/logs
+
+Curl
+----
+* curl --header "Content-Type: application/json" \
+       --request POST \
+       --data '{"role":"serviceprovider","name":"fred flintstone","emailAddress":"objektwerks@runbox.com","streetAddress":"123 stone st"}' \
+       http://127.0.0.1:3000/register
+
+* curl --header "Content-Type: application/json" \
+       --request POST \
+       --data '{"emailAddress":"objektwerks@runbox.com","pin":"1234567"}' \
+       http://127.0.0.1:3000/login
 
 License
 -------
