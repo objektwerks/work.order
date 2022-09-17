@@ -21,10 +21,10 @@ export default () => {
   console.log('*** emailer init ...')
 }
 
-export function send(recipient: string, subject: string, html: string): void {
+export function send(recipients: string, subject: string, html: string): void {
   transporter.sendMail({
     from: sender,
-    to: recipient,
+    to: recipients, // recipients can contain 1 or more comman-delimitted email addresses
     subject: subject,
     html: html
   }, (error: Error | null, info: SentMessageInfo) => {
@@ -32,7 +32,7 @@ export function send(recipient: string, subject: string, html: string): void {
       logger.error(`*** emailer failed with error: ${error.message}`)
       throw error
     } else {
-      logger.info(`*** emailer sent message id: ${info.messageId} to: ${recipient}`)
+      logger.info(`*** emailer sent message id: ${info.messageId} to: ${recipients}`)
     }
   })
 }
