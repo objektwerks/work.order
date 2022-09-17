@@ -177,7 +177,7 @@ Photos
 
 Environment
 -----------
->The following ***environment variables*** must be defined:
+>The following environment variables ***must*** be defined:
 export WORK_ORDER_BIND_IP="127.0.0.1"
 export WORK_ORDER_PORT=3000
 export WORK_ORDER_DATABASE_URL="mysql://workorder:workorder@localhost:3306/work_order_db"
