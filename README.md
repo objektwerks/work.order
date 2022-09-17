@@ -157,6 +157,10 @@ Mysql
 1. mysql -u workorder -p
 2. \. ddl.sql
 
+Mysql Log
+---------
+>Apple M1/macOS Big Sur - /opt/homebrew/var/mysql/computername.local.err
+
 Cache
 -----
 >A user **license** is cached at login. This is the simplest possible cache, with no time-to-live configuration
