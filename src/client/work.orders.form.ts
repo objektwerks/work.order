@@ -2,8 +2,8 @@ import * as fetcher from './fetcher.js'
 import * as model from './model.js'
 import * as binder from './binder.js'
 import * as role from './role.js'
-import { getById, getFileById, getFileExtByMimeType, getImageUrlById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
-import { ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
+import { getById, getFileById, getImageUrlById, getSelectedIndexId, getValueById, hide, show, setErrorsList, setValueById } from './dom.js'
+import { getFileExtByMimeType, ListWorkOrders, validateWorkOrder, WorkOrder } from './entity.js'
 
 export default () => {
   console.log('*** workorders form init ...')
