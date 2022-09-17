@@ -1,3 +1,4 @@
+import fs from 'fs'
 import assert from 'assert'
 import * as handler from '../server/handler.js'
 import {
@@ -10,6 +11,14 @@ import {
   SaveWorkOrder,
   ListWorkOrders
 } from '../server/entity.js'
+
+const workOrderDir = process.env.WORK_ORDER_DIR ?? process.env.HOME + '/.workorder'
+const imagesDir = process.env.WORK_ORDER_IMAGES_DIR ?? process.env.HOME + '/.workorder/images'
+const logsDir = process.env.WORK_ORDER_LOGS_DIR ?? process.env.HOME + '/.workorder/logs'
+
+if (!fs.existsSync(workOrderDir)) fs.mkdirSync(workOrderDir)
+if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir)
+if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
 const homeownerEmail = process.env.WORK_ORDER_HOME_OWNER_EMAIL as string
