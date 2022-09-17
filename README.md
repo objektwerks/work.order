@@ -144,12 +144,13 @@ Schema
 Mysql Setup
 -----------
 1. sudo mysql -u root
-2. CREATE USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
-3. SHOW CREATE USER 'workorder'@'localhost';
-4. GRANT ALL PRIVILEGES ON work_order_db.* TO 'workorder'@'localhost';
-5. ALTER USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
-6. FLUSH PRIVILEGES;
-7. \. ddl.sql
+2. DROP USER IF EXISTS 'workorder'@'localhost';
+3. CREATE USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
+4. SHOW CREATE USER 'workorder'@'localhost';
+5. GRANT ALL PRIVILEGES ON work_order_db.* TO 'workorder'@'localhost' WITH GRANT OPTION;
+6. ALTER USER 'workorder'@'localhost' IDENTIFIED BY 'workorder';
+7. FLUSH PRIVILEGES;
+8. \. ddl.sql
 
 Mysql
 -----
