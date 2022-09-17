@@ -17,7 +17,8 @@ import {
   WorkOrdersListed
 } from './entity.js'
 
-const subject = 'Work Order Registration'
+const subjectRegistration = 'Work Order Registration'
+const subjectNotification = 'Work Order Notification'
 
 function log(method: string, message:  string): void {
   logger.info(`*** service.${method}: ${message}`)
@@ -41,7 +42,7 @@ export async function register(register: Register): Promise<Registered> {
     const pin = newPin()
     const user = new User(0, register.role, register.name, register.emailAddress, register.streetAddress, new Date().toISOString(), pin, '')
     const html = `<p>Your new 7-character pin is: <b>${pin}</b> Use it to login. Print this email, keep it in a safe place and <b>delete it!</b></p>`
-    emailer.send(user.emailAddress, subject, html)
+    emailer.send(user.emailAddress, subjectRegistration, html)
     const id = await store.addUser(user)
     if (id > 0) {
       log('register', `succeeded for: ${register.emailAddress}`)
@@ -81,9 +82,10 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
     if (number > 0) {
       log('addWorkOrder', `succeeded for number: ${number}`)
       added = WorkOrderSaved.success(number)
-      // TODO emailer.send(homeowner.emailAddress, serviceProvider.emailAddress, subject, html)
-      // to: 'recipient1,recipient2'
-      // store.getEmailAddresses(homeownerId, serviceProviderId)
+      const html = `<p>Work order number: <b>${number}</b> has been updated.</p>`
+      store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
+        emailer.send(`${emailAddresses[0]},${emailAddresses[1]}`, subjectNotification, html)
+      })
     } else {
       log('addWorkOrder', `failed for: ${saveWorkOrder}`)
       added = WorkOrderSaved.fail(number, 'Add work order failed.')
@@ -102,9 +104,10 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
     if (affectedRows === 1) {
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
-      // TODO emailer.send(homeowner.emailAddress, serviceProvider.emailAddress, subject, html)
-      // to: 'recipient1,recipient2'
-      // store.getEmailAddresses(homeownerId, serviceProviderId)
+      const html = `<p>Work order number: <b>${saveWorkOrder.workOrder.number}</b> has been updated.</p>`
+      store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
+        emailer.send(`${emailAddresses[0]},${emailAddresses[1]}`, subjectNotification, html)
+      })
     } else {
       log('saveWorkOrder', `failed for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.fail(saveWorkOrder.workOrder.number, 'Saved work order failed.')
