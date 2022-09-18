@@ -102,10 +102,10 @@ Routes
 
 Sequences
 ---------
-1. **client** --- register --> server --- registered ---> client
+1. **client** --- register --> server --- registered ---> client --- email ---> homeowner or service provider
 2. **client** --- login --> server --- logged in --> client
-3. **client** --- (add) save work order --> server --- work order saved --> client
-4. **client** --- save work order --> server --- work order saved --> client
+3. **client** --- (add) save work order --> server --- work order saved --> client --- email ---> homeowner and service provider
+4. **client** --- save work order --> server --- work order saved --> client --- email ---> homeowner and service provider
 5. **client** --- list work orders --> server --- work orders listed --> client
 6. **client** --- save user --> server --- user saved --> client
 
