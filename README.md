@@ -72,7 +72,7 @@ Roles
 3. **app** - has super powers :)
 
 Features [ Roles ]
------------------
+------------------
 >A feature maps to a set of roles.
 1. **register user** — [ homeowner, service provider ]
 2. **login user** — [ homeowner, service provider ]
