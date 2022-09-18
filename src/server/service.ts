@@ -82,7 +82,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
     if (number > 0) {
       log('addWorkOrder', `succeeded for number: ${number}`)
       added = WorkOrderSaved.success(number)
-      const html = `<p>New work order, number <b>${number}</b>, has been submitted.</p>`
+      const html = `<p>A new work order, number <b>${number}</b>, has been submitted.</p>`
       store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
         emailer.send(emailAddresses, subjectNotification, html)
       })
@@ -105,7 +105,7 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
       const updatedOrClosed = saveWorkOrder.workOrder.closed.length === 0 ? 'updated' : 'closed'
-      const html = `<p>Work order, number <b>${saveWorkOrder.workOrder.number}</b>, has been ${updatedOrClosed}.</p>`
+      const html = `<p>Open work order, number <b>${saveWorkOrder.workOrder.number}</b>, has been ${updatedOrClosed}.</p>`
       store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
         emailer.send(emailAddresses, subjectNotification, html)
       })
