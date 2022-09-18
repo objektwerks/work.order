@@ -69,6 +69,7 @@ Roles
 >A role can invoke a set of actions.
 1. **homeowner** — add, select and edit *work orders*
 2. **service provider** — select and edit *work orders*
+3. **app** - has super powers :)
 
 Features [ Roles ]
 -----------------
@@ -79,6 +80,9 @@ Features [ Roles ]
 4. **edit work order** — [ homeowner, service provider ]
 5. **list work orders** - [ homeowner, service provider ]
 6. **edit user** — [ homeowner, service provider ]
+7. **registration email notification*** - [ app ]
+8. **new work order email notification** - [ app ]
+9. **updated and closed work order email notification** - [ app ]
 
 Forms
 -----
