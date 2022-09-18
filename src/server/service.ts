@@ -104,7 +104,8 @@ export async function saveWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkO
     if (affectedRows === 1) {
       log('saveWorkOrder', `succeeded for number: ${saveWorkOrder.workOrder.number}`)
       saved = WorkOrderSaved.success(saveWorkOrder.workOrder.number)
-      const html = `<p>Work order, number: <b>${saveWorkOrder.workOrder.number}</b>, has been updated.</p>`
+      const updatedOrClosed = saveWorkOrder.workOrder.closed.length === 0 ? 'updated' : 'closed'
+      const html = `<p>Work order, number: <b>${saveWorkOrder.workOrder.number}</b>, has been ${updatedOrClosed}.</p>`
       store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
         emailer.send(emailAddresses, subjectNotification, html)
       })
