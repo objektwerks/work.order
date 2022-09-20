@@ -21,7 +21,7 @@ Code Sharing
 6. bit ( bit.dev )
 7. typescript references ( blog.logrocket.com/make-sharing-typescript-code-types-quick-easy/ )
 >The top 3 solutions allow for proper ES module imports in both client and server source code during development.
->***Yet ES6 imports fail to work when deployed to a browser.*** Moreover, said solutions require a ton of research,
+>Yet ES6 imports ***fail*** to work when deployed to a browser. Moreover, said solutions require endless research,
 >trial and error. I have explored solutions 4, 5, 6 and 7, with 7 looking the most promising. None are ideal.
 >Consequently, ***entity.ts***, located in >**src/client** and **src/server** is ***duplicate*** code.
 >Interestingly, code sharing is available by **default** with ScalaJs.
