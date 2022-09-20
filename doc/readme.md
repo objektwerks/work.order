@@ -20,7 +20,8 @@ Register
 
 Login
 -----
->Provide an 1) email address and 2) pin via [Login](../doc/app/login.png)
+>Provide an 1) email address and 2) pin via:
+* [Login](../doc/app/login.png)
 
 WorkOrders
 ----------
