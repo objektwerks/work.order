@@ -53,8 +53,8 @@ Prod
 4. pm2 start server.js
 >See [PM2](pm2.keymetrics.io/)
 
-Nodejs Hosting
---------------
+Hosting
+-------
 >Consider:
 1. [NodeChef](nodechef.com/nodejs-hosting)
 2. [Heroku](heroku.com/nodejs)
