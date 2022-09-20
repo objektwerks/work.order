@@ -4,7 +4,7 @@ Work order web app linking homeowners and service providers.
 
 Documentation
 -------------
->See [Readme](../doc/../work.order/doc/0.readme.md)
+>See [Readme](doc/../work.order/doc/0.readme.md)
 
 Technologies
 ------------
