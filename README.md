@@ -112,7 +112,7 @@ Registration
 2. name
 3. email address
 4. street address
->If the email address is valid and registration email sent, the new user will receive a pin.
+>If the email address is valid, the new user will receive a pin via a registration email.
 
 Authentication
 --------------
