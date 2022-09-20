@@ -107,7 +107,7 @@ Sequences
 
 Registration
 ------------
->A prospective user must register with a:
+>A prospective user must register with a/an:
 1. role
 2. name
 3. email address
@@ -116,9 +116,9 @@ Registration
 
 Authentication
 --------------
->**Route**:
-1. /login
->**Function**: service.login with **emailAddress** and **pin** via *Login* command.
+>A user must login with a/an:
+1. email address
+2. pin
 
 Authorization
 -------------
