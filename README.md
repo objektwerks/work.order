@@ -4,7 +4,7 @@ Work Order
 
 Documentation
 -------------
->See [Readme](doc/0.readme.md)
+>See [Readme](doc/readme.md)
 
 Technologies
 ------------
