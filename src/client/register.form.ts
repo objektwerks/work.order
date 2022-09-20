@@ -25,8 +25,6 @@ export default () => {
         } else {
           hide('register-form-id')
           hide('register-menu-id')
-          
-          show('register-dialog-id')
         }
       })
     } else {
