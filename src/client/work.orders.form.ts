@@ -21,7 +21,6 @@ export default () => {
 
   function postAddSaveWorkOrder() {
     hide('workorder-form-id')
-    show('workorder-dialog-id')
     show('workorders-list-id')
   }
 
