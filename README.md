@@ -2,9 +2,9 @@ Work Order
 ----------
 Work order web app linking homeowners and service providers.
 
-Usage
------
->***Must*** register at least ***one*** service provider before ***any*** homeowners register and submit work orders.
+Documentation
+-------------
+>See [Readme](../doc/../work.order/doc/0.readme.md)
 
 Technologies
 ------------
