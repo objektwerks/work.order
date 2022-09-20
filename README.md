@@ -122,13 +122,11 @@ Authentication
 
 Authorization
 -------------
->**Routes**:
+>The following routes are authorized:
 1. /workorders/add
 2. /workorders/save
 3. /workorders
 4. /users/save
->**Functions**: handler.{ addWorkOrder, saveWorkOrder, listWorkOrders, saveUser } with **license** via *SaveWorkOrder*,
->*ListWorkOrders* and *SaveUser* commands.
 
 Schema
 ------
