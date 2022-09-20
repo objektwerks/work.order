@@ -6,16 +6,21 @@ Setup
 -----
 >At least ***one*** service provider must be ***registered*** before ***any*** homeowners register and submit work orders.
 
+App
+---
+>Entry point via:
+* [App](../doc/app/app.png)
+
 Register
 --------
 >Provide a 1) role, 2) name, 3) email address and 4) street address via:
-* [Register](../doc/2.register.png)
+* [Register](../doc/app/register.png)
 >If the email address is valid, a registration email is sent:
-* [Registration Email](../doc/3.1.register.email.png)
+* [Registration Email](../doc/app/register.email.png)
 
 Login
 -----
->Provide an 1) email address and 2) pin via [Login](../doc/3.login.png)
+>Provide an 1) email address and 2) pin via [Login](../doc/app/login.png)
 
 WorkOrders
 ----------
