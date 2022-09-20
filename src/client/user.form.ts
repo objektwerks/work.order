@@ -28,7 +28,7 @@ export default () => {
           errors.push(userSaved.error)
           setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
         } else {          
-          show('user-dialog-id')
+          show('workorders-list-id')
         }
       })
     } else {
