@@ -30,8 +30,8 @@ WorkOrders
 3. Only 1 photo may be selected. A photo is not required, though.
 4. Once a work order is submitted, only a service provider may edit and closed it.
 >Views:
-* [WorkOrders](../doc/4.work.orders.homeowner.png) for homeowners.
-* [WorkOrders](../doc/5.work.orders.service.provider.png) for service providers.
+* [WorkOrders Homeowners](../doc/workorders/work.orders.homeowner.png)
+* [WorkOrders Service Providers](../doc/workorders/work.orders.service.provider.png)
 * A homeowner will see a New and Refresh button; while a service provider will only see a Refresh button.
 * Both a homeowner and service provider may select and view an open or closed work order.
 * Closed work orders are readonly.
