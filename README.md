@@ -156,7 +156,7 @@ Cache
 >A user **license** is cached at login. This is the simplest possible cache, with no time-to-live configuration
 >or random-cache-miss database access. With an expected max user base of 50 to 100, this is the best option at
 >present. Moreover, it is expected the server will need to be restarted at leaast once a week - due to likely
->memory leaks.
+>nodejs memory leaks.
 
 Date Time
 ---------
