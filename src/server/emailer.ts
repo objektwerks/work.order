@@ -21,7 +21,7 @@ export default () => {
   console.log('*** emailer init ...')
 }
 
-export function send(recipients: string, subject: string, html: string): void {
+export async function send(recipients: string, subject: string, html: string): Promise<void> {
   transporter.sendMail({
     from: sender,
     to: recipients, // recipients can contain 1 or more comman-delimitted email addresses
