@@ -82,7 +82,7 @@ export async function addWorkOrder(saveWorkOrder: SaveWorkOrder): Promise<WorkOr
     if (number > 0) {
       log('addWorkOrder', `succeeded for number: ${number}`)
       added = WorkOrderSaved.success(number)
-      const html = `<p>A new work order, number <b>${number}</b>, has been submitted.</p>`
+      const html = `<p>A new work order, number <b>${number}</b>, has been opened.</p>`
       store.listEmailAddressesByIds(saveWorkOrder.workOrder.homeownerId, saveWorkOrder.workOrder.serviceProviderId).then(emailAddresses => {
         emailer.send(emailAddresses, subjectNotification, html)
       })
