@@ -131,17 +131,6 @@ export default () => {
     }  
   }, false)
 
-  getById('workorder-title-id').addEventListener('input', (event) => {
-    const title = ( event.target as HTMLInputElement ).value
-    if (title.length >= 4) { // is title valid?
-      const number = parseInt( getValueById('workorder-number-id'))
-      if (number !== undefined && number > 0) { // is number valid?
-        getById(number.toString()).children[0].innerHTML = `${number} - ${title}` // set new title to corresponding work orders list item
-        console.log('*** workorder title changed: @s', `${number} - ${title}`)
-      }
-    }
-  }, false)
-
   getById('workorder-image-file-id').addEventListener('change', () => {
     const file = getFileById('workorder-image-file-id')
     if (file !== null && file !== undefined) {
