@@ -107,7 +107,7 @@ Sequences
 
 Registration
 ------------
->A prospective user must register with:
+>A prospective user must register with a:
 1. role
 2. name
 3. email address
