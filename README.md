@@ -26,10 +26,6 @@ Code Sharing
 >Consequently, ***entity.ts***, located in >**src/client** and **src/server** is ***duplicate*** code.
 >Interestingly, code sharing is available by **default** with ScalaJs.
 
-Doc
----
->See **doc** folder for ui images.
-
 Install
 -------
 1. npm install
