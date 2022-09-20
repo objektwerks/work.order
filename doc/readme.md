@@ -36,14 +36,14 @@ WorkOrders
 * Both a homeowner and service provider may select and view an open or closed work order.
 * Closed work orders are readonly.
 >Examples:
-1. [WorkOrder Closed No Photo](../doc/6.work.order.service.provider.no.photo.png)
-2. [WorkOrder New](../doc/7.work.order.new.homeowner.png)
-3. [WorkOrder Opened](../doc/8.work.order.opened.homeowner.png)
-4. [WorkOrders](../doc/9.work.orders.opened.homeowner.png)
-5. [WorkOrder Opened Email](../doc/10.work.order.opened.email.png)
-6. [WorkOrder Closed](../doc/11.work.order.closed.by.service.provider.png)
-7. [WorkOrder Closed Email](../doc/12.work.order.closed.email.png)
-8. [WorkOrders](../doc/13.work.orders.closed.png)
+1. [WorkOrder Closed No Photo](../doc/workorder/work.order.service.provider.no.photo.png)
+2. [WorkOrder New](../doc/workorder/work.order.new.homeowner.png)
+3. [WorkOrder Opened](../doc/workorder/work.order.opened.homeowner.png)
+4. [WorkOrders](../doc/workorders/work.orders.opened.homeowner.png)
+5. [WorkOrder Opened Email](../doc/workorder/work.order.opened.email.png)
+6. [WorkOrder Closed](../doc/workorder/work.order.closed.by.service.provider.png)
+7. [WorkOrder Closed Email](../doc/workorder/work.order.closed.email.png)
+8. [WorkOrders](../doc/workorders/work.orders.closed.png)
 
 Profile
 -------
