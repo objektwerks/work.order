@@ -48,5 +48,5 @@ WorkOrders
 Profile
 -------
 >Service providers and homeowners create a profile during registration. See:
-* [Service Provider](../doc/14.profile.service.provider.png)
-* [Homeowner Profile](../doc/15.profile.homeowner.png)
+* [Service Provider](../doc/profile/profile.service.provider.png)
+* [Homeowner Profile](../doc/profile/profile.homeowner.png)
