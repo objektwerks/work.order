@@ -105,7 +105,8 @@ export default () => {
           if (!workOrderSaved.success) {
             errors.push(workOrderSaved.error)
             setErrorsList(errors, 'workorder-errors-list-id', 'workorder-errors-form-id')
-          } else {          
+          } else {      
+            binder.ifClosedSplitWorkOrders(workOrder)
             postAddSaveWorkOrder()
             console.log('*** workorder saved: @o', workOrder)
           }

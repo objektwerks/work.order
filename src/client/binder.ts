@@ -6,6 +6,10 @@ export default () => {
   console.log('*** binder init ...')
 }
 
+export function ifClosedSplitWorkOrders(workOrder: WorkOrder): void {
+  if (workOrder.closed.length > 0) splitWorkOrders(model.getWorkOrders())
+}
+
 export function splitWorkOrders(workOrders: WorkOrder[]): void {
   const openedWorkOrders = workOrders
     .filter((workOrder) => workOrder.closed.length === 0) // opened
