@@ -10,22 +10,6 @@ Technologies
 ------------
 >Typescript, Html, Css, W3C.css, Express, Nodemailer, Mysql and Nodejs.
 
-Code Sharing
-------------
->To share Typescript code between client and server, in a node web app, I discovered the following solutions:
-1. npm link
-2. npm publish
-3. npm install via npm **and** github repo
-4. browserify ( browserify.org )
-5. lerna ( lerna.js.org )
-6. bit ( bit.dev )
-7. typescript references ( blog.logrocket.com/make-sharing-typescript-code-types-quick-easy/ )
->The top 3 solutions allow for proper ES module imports in both client and server source code during development.
->Yet ES6 imports ***fail*** to work when deployed to a browser. Moreover, said solutions require endless research,
->trial and error. I have explored solutions 4, 5, 6 and 7, with 7 looking the most promising. None are ideal.
->Consequently, ***entity.ts***, located in >**src/client** and **src/server** is ***duplicate*** code.
->Interestingly, code sharing is available by **default** with ScalaJs.
-
 Install
 -------
 1. npm install
@@ -199,6 +183,22 @@ Curl
        --request POST \
        --data '{"emailAddress":"objektwerks@runbox.com","pin":"1234567"}' \
        http://127.0.0.1:3000/login
+
+Code Sharing
+------------
+>To share Typescript code between client and server, in a node web app, I discovered the following solutions:
+1. npm link
+2. npm publish
+3. npm install via npm **and** github repo
+4. browserify ( browserify.org )
+5. lerna ( lerna.js.org )
+6. bit ( bit.dev )
+7. typescript references ( blog.logrocket.com/make-sharing-typescript-code-types-quick-easy/ )
+>The top 3 solutions allow for proper ES module imports in both client and server source code during development.
+>Yet ES6 imports ***fail*** to work when deployed to a browser. Moreover, said solutions require endless research,
+>trial and error. I have explored solutions 4, 5, 6 and 7, with 7 looking the most promising. None are ideal.
+>Consequently, ***entity.ts***, located in >**src/client** and **src/server** is ***duplicate*** code.
+>Interestingly, code sharing is available by **default** with ScalaJs.
 
 License
 -------
