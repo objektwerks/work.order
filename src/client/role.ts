@@ -20,6 +20,7 @@ export function apply(role: string) {
       addReadonlyById('workorder-title-id')
       addReadonlyById('workorder-issue-id')
     }
+    addReadonlyById('workorder-street-address-id')
     show('workorder-image-file-container-id')
     addReadonlyById('workorder-resolution-id')
     addReadonlyById('workorder-opened-id')
@@ -34,6 +35,7 @@ export function apply(role: string) {
     addReadonlyById('workorder-service-provider-id')
     addReadonlyById('workorder-title-id')
     addReadonlyById('workorder-issue-id')
+    addReadonlyById('workorder-street-address-id')
     hide('workorder-image-file-container-id')
     removeReadonlyById('workorder-resolution-id')
     addReadonlyById('workorder-opened-id')
@@ -48,6 +50,7 @@ export function apply(role: string) {
     addReadonlyById('workorder-service-provider-id')
     addReadonlyById('workorder-title-id')
     addReadonlyById('workorder-issue-id')
+    addReadonlyById('workorder-street-address-id')
     hide('workorder-image-file-container-id')
     addReadonlyById('workorder-resolution-id')
     addReadonlyById('workorder-opened-id')
