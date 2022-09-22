@@ -86,7 +86,7 @@ export async function getUserByEmailAddressPin(emailAddress: string, pin: string
 
 export async function addWorkOrder(workOrder: WorkOrder): Promise<number> {
   const [result] = await connection
-    .query<OkPacket>('insert into work_order (homeownerId, serviceProviderId, title, issue, streetAddress, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?)',
+    .query<OkPacket>('insert into work_order (homeownerId, serviceProviderId, title, issue, streetAddress, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
     [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.streetAddress, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed])
   return result.insertId
 }
