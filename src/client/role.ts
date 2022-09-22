@@ -14,13 +14,14 @@ export function apply(role: string) {
       removeReadonlyById('workorder-service-provider-id')
       removeReadonlyById('workorder-title-id')
       removeReadonlyById('workorder-issue-id')
+      show('workorder-image-file-container-id')
     } else { // immutable work order
       addReadonlyById('workorder-service-provider-id')
       addReadonlyById('workorder-title-id')
       addReadonlyById('workorder-issue-id')
+      hide('workorder-image-file-container-id')
     }
     addReadonlyById('workorder-street-address-id')
-    show('workorder-image-file-container-id')
     addReadonlyById('workorder-resolution-id')
     addReadonlyById('workorder-opened-id')
     disable('workorder-closed-check-id')
