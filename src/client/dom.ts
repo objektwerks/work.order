@@ -54,11 +54,13 @@ export function show(id: string): void {
 export function addReadonlyById(id: string): void {
   const element = getById(id)
   element.setAttribute('readonly', 'readonly')
+  element.style.backgroundColor = 'lightgrey'
 }
 
 export function removeReadonlyById(id: string): void {
   const element = getById(id)
   element.removeAttribute('readonly')
+  element.style.backgroundColor = 'white'
 }
 
 export function setCheckBoxById(id: string, isChecked: boolean): void {
