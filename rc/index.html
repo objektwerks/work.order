@@ -35,9 +35,9 @@
           <ul id="login-errors-list-id" class="w3-ul"></ul>
         </div>
         <label for="login-email-address-id" class="w3-text-indigo">Email Address:</label>
-        <input id="login-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required/>
+        <input id="login-email-address-id" class="w3-input w3-text-indigo" type="email" minlength="3" maxlength="128" required/>
         <label for="login-pin-id" class="w3-text-indigo">Pin:</label>
-        <input id="login-pin-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="7" maxlength="7" required/>
+        <input id="login-pin-id" class="w3-input w3-text-indigo" minlength="7" maxlength="7" required/>
         <div class="w3-bar w3-center w3-padding">
           <button id="login-command-id" class="w3-button w3-indigo w3-round" style="height:40px;width:100px" type="submit">Login</button>
         </div>
@@ -53,16 +53,16 @@
           <p class="w3-text-white">After registering, check your email for your new login pin. Then select Login.</p>
         </div>
         <label for="register-role-id" class="w3-text-indigo">Role:</label>
-        <select id="register-role-id" class="w3-select w3-text-indigo w3-hover-light-blue">
+        <select id="register-role-id" class="w3-select w3-text-indigo">
           <option value="homeowner" selected>Homeowner</option>
           <option value="serviceprovider">Service Provider</option>
         </select>
         <label for="register-name-id" class="w3-text-indigo">Name:</label>
-        <input id="register-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required/>
+        <input id="register-name-id" class="w3-input w3-text-indigo" minlength="2" maxlength="64" required/>
         <label for="register-email-address-id" class="w3-text-indigo">Email Address:</label>
-        <input id="register-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required/>
+        <input id="register-email-address-id" class="w3-input w3-text-indigo" type="email" minlength="3" maxlength="128" required/>
         <label for="register-street-address-id" class="w3-text-indigo">Street Address:</label>
-        <input id="register-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required/>
+        <input id="register-street-address-id" class="w3-input w3-text-indigo" minlength="6" maxlength="128" required/>
         <div class="w3-bar w3-center w3-padding">
           <button id="register-command-id" class="w3-button w3-indigo w3-round" style="height:40px;width:100px" type="submit">Register</button>
         </div>
@@ -96,15 +96,15 @@
           <ul id="workorder-errors-list-id" class="w3-ul"></ul>
         </div>
         <label for="workorder-number-id" class="w3-text-indigo">Number:</label>
-        <input id="workorder-number-id" class="w3-input w3-text-indigo" readonly/>
-        <label for="workorder-homeowner-id" class="w3-text-indigo">Number:</label>
-        <input id="workorder-homeowner-id" class="w3-input w3-text-indigo" readonly/>
+        <input id="workorder-number-id" class="w3-input w3-text-indigo"/>
+        <label for="workorder-homeowner-id" class="w3-text-indigo">Homeowner:</label>
+        <input id="workorder-homeowner-id" class="w3-input w3-text-indigo"/>
         <label for="workorder-service-provider-id" class="w3-text-indigo">Service Provider:</label>
-        <select id="workorder-service-provider-id" class="w3-select w3-text-indigo w3-hover-light-blue"></select>
+        <select id="workorder-service-provider-id" class="w3-select w3-text-indigo"></select>
         <label for="workorder-title-id" class="w3-text-indigo">Title:</label>
-        <input id="workorder-title-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="64" required/>
+        <input id="workorder-title-id" class="w3-input w3-text-indigo" minlength="4" maxlength="64" required/>
         <label for="workorder-issue-id" class="w3-text-indigo">Issue:</label>
-        <textarea id="workorder-issue-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255" required></textarea>
+        <textarea id="workorder-issue-id" class="w3-input w3-text-indigo" minlength="4" maxlength="255" required></textarea>
         <label class="w3-text-indigo">Photo:</label>
         <div>
           <a id="workorder-image-url-anchor-id" target="_blank" href="#0">
@@ -118,10 +118,10 @@
         <label for="workorder-resolution-id" class="w3-text-indigo">Resolution:</label>
         <textarea id="workorder-resolution-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="4" maxlength="255"></textarea>
         <label for="workorder-opened-id" class="w3-text-indigo">Open:</label>
-        <input id="workorder-opened-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly/>
+        <input id="workorder-opened-id" class="w3-input w3-text-indigo w3-hover-light-blue"/>
         <label for="workorder-closed-check-id" class="w3-text-indigo">Closed:</label>
         <input id="workorder-closed-check-id" class="w3-input w3-text-indigo w3-hover-light-blue w3-left-align" type="checkbox"/>
-        <input id="workorder-closed-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly/>
+        <input id="workorder-closed-id" class="w3-input w3-text-indigo w3-hover-light-blue"/>
         <div class="w3-cell-row w3-center w3-padding">
           <div class="w3-container w3-cell">
             <button id="workorder-save-command-id" class="w3-button w3-indigo w3-round" style="height:40px;width:100px" type="submit">Save</button>
@@ -136,15 +136,15 @@
           <ul id="user-errors-list-id" class="w3-ul"></ul>
         </div>
         <label for="user-role-id" class="w3-text-indigo">Role:</label>
-        <input id="user-role-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly/>
+        <input id="user-role-id" class="w3-input w3-text-indigo" readonly/>
         <label for="user-name-id" class="w3-text-indigo">Name:</label>
-        <input id="user-name-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="2" maxlength="64" required/>
+        <input id="user-name-id" class="w3-input w3-text-indigo" minlength="2" maxlength="64" required/>
         <label for="user-email-address-id" class="w3-text-indigo">Email Address:</label>
-        <input id="user-email-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" type="email" minlength="3" maxlength="128" required/>
+        <input id="user-email-address-id" class="w3-input w3-text-indigo" type="email" minlength="3" maxlength="128" required/>
         <label for="user-street-address-id" class="w3-text-indigo">Street Address:</label>
-        <input id="user-street-address-id" class="w3-input w3-text-indigo w3-hover-light-blue" minlength="6" maxlength="128" required/>
+        <input id="user-street-address-id" class="w3-input w3-text-indigo" minlength="6" maxlength="128" required/>
         <label for="user-registered-id" class="w3-text-indigo">Registered:</label>
-        <input id="user-registered-id" class="w3-input w3-text-indigo w3-hover-light-blue" readonly/>
+        <input id="user-registered-id" class="w3-input w3-text-indigo" readonly/>
         <div class="w3-bar w3-center w3-padding">
           <button id="user-save-command-id" class="w3-button w3-indigo w3-round" style="height:40px;width:100px" type="submit">Save</button>
         </div>
