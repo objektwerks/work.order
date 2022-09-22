@@ -33,7 +33,7 @@ export async function send(recipients: string, subject: string, html: string): P
       logger.error(`*** emailer failed with error: ${error.message}`)
       throw error
     } else {
-      logger.info(`*** emailer sent message id: ${info.messageId} to: ${recipients}`)
+      logger.info(`*** emailer to: ${recipients} subject: ${subject} message: ${html}`)
     }
   })
 }
