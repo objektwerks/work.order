@@ -25,12 +25,12 @@ export default () => {
 export async function send(recipients: string, subject: string, html: string): Promise<void> {
   transporter.sendMail({
     from: sender,
-    to: recipients, // recipients can contain 1 or more comman-delimitted email addresses
+    to: recipients, // recipients can contain 1 or more comma-delimitted email addresses
     subject: subject,
     html: html
   }, (error: Error | null, info: SentMessageInfo) => {
     if (error) {
-      logger.error(`*** emailer failed with error: ${error.message}`)
+      logger.error(`*** emailer failed error: ${error.message} to: ${recipients} subject: ${subject} message: ${html}`)
       throw error
     } else {
       logger.info(`*** emailer to: ${recipients} subject: ${subject} message: ${html}`)
