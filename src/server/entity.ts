@@ -131,17 +131,18 @@ export class UserSaved {
 // Entities
 export class WorkOrder {
   constructor(public number: number,
-              public homeownerId: number, 
-              public serviceProviderId: number, 
-              public title: string, 
-              public issue: string, 
-              public imageUrl: string, 
-              public resolution: string, 
-              public opened: string, 
+              public homeownerId: number,
+              public serviceProviderId: number,
+              public title: string,
+              public issue: string,
+              public streetAddress: string,
+              public imageUrl: string,
+              public resolution: string,
+              public opened: string,
               public closed: string) {}
 
   static empty(): WorkOrder {
-    return new WorkOrder(0, 0, 0, '', '', '', '', '', '')
+    return new WorkOrder(0, 0, 0, '', '', '', '', '', '', '')
   }
 }
 
@@ -218,7 +219,7 @@ export function isLoginValid(login: Login): boolean {
 
 export function isWorkOrderValid(workOrder: WorkOrder): boolean {
   return validateWorkOrder(workOrder.number, workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title,
-     workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed).length === 0
+     workOrder.issue, workOrder.streetAddress, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed).length === 0
 }
 
 export function isUserValid(user: User): boolean {
@@ -249,13 +250,14 @@ export function validateUserForm(name: string, emailAddress: string, streetAddre
   return errors
 }
 
-export function validateWorkOrder(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, imageUrl: string, resolution: string, opened: string, closed: string): string[] {
+export function validateWorkOrder(number: number, homeownerId: number, serviceProviderId: number, title: string, issue: string, streetAddress: string, imageUrl: string, resolution: string, opened: string, closed: string): string[] {
   const errors = []
   if (!isGreaterThanOrEqualZero(number)) errors.push(numberInvalidMessage)
   if (!isGreaterThanZero(homeownerId)) errors.push(idInvalidMessage)
   if (!isGreaterThanZero(serviceProviderId)) errors.push(idInvalidMessage)
   if (!idLengthRange(title, 4, 64)) errors.push(definedInvalidMessage)
   if (!idLengthRange(issue, 4, 255)) errors.push(definedInvalidMessage)
+  if (!idLengthRange(streetAddress, 6, 128)) errors.push(streetAddressInvalidMessage)
   if (!isDefined(imageUrl)) errors.push(definedInvalidMessage)
   if (!isDefined(resolution)) errors.push(definedInvalidMessage)
   if (!isLength(opened, 24)) errors.push(datetimeInvalidMessage)

@@ -29,8 +29,8 @@ async function test() {
   console.log('*** running integration test ...')
 
   // register
-  const serviceProviderRegistered = await handler.register(new Register(serviceProvider, "lawncare service", serviceProviderEmail, "123 green rd"))
-  const homeownerRegistered = await handler.register(new Register(homeowner, "fred flintstone", homeownerEmail, "345 stone st"))
+  const serviceProviderRegistered = await handler.register(new Register(serviceProvider, 'lawncare service', serviceProviderEmail, '123 green rd'))
+  const homeownerRegistered = await handler.register(new Register(homeowner, 'fred flintstone', homeownerEmail, '345 stone st'))
   assert(serviceProviderRegistered.success, '*** register service provider failed: ' + serviceProviderRegistered)
   assert(homeownerRegistered.success, `*** register homeowner failed: ${homeownerRegistered}`)
 
@@ -43,7 +43,7 @@ async function test() {
   assert(homeownerLoggedIn.user.pin === homeownerRegistered.pin, `*** logged in homeowner pin is invalid: ${homeownerRegistered.pin}`)
 
   // work order add
-  const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '', '', new Date().toISOString(), '')
+  const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', '345 stone st', 'broken', '', '', new Date().toISOString(), '')
   const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
   workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success, `*** add work order failed: ${workOrderAdded}`)

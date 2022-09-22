@@ -41,7 +41,7 @@ export async function listWorkOrders(userId: number): Promise<WorkOrder[]> {
   const workOrders: WorkOrder[] = []
   rows.forEach((row: RowDataPacket) => {
     workOrders.push(
-      new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.imageUrl, row.resolution, row.opened, row.closed)
+      new WorkOrder(row.number, row.homeownerId, row.serviceProviderId, row.title, row.issue, row.streetAddress, row.imageUrl, row.resolution, row.opened, row.closed)
     )
   })
   return workOrders
