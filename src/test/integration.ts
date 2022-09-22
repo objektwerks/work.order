@@ -66,9 +66,10 @@ async function test() {
   assert(workOrdersListed.success, `*** list work orders failed: ${workOrdersListed}`)
   assert(workOrdersListed.workOrders.length === 1, '*** list work orders size !== 1')
   
-  console.log('*** integration test complete!')
-  console.log('*** allow a few seconds for emails to be sent ...')
-  console.log('*** then hit ctrl-c to kill test.')
+  console.log('*** sending emails ...')
 
-  // WARNING: Don't add a process.exit() here! Doing so will prevent the emailer from sending out all required emails.
+  setTimeout(function() {
+    console.log('*** integration test complete!')
+    process.exit()
+  }, 5000)
 }
