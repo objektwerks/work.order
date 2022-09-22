@@ -1,4 +1,4 @@
-import { disable, enable, getValueById, removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
+import { disable, enable, getImageUrlById, getValueById, removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
 import { homeowner, serviceProvider } from './entity.js'
 
 export const readonlyRole = 'readonly'
@@ -14,11 +14,17 @@ export function apply(role: string) {
       removeReadonlyById('workorder-service-provider-id')
       removeReadonlyById('workorder-title-id')
       removeReadonlyById('workorder-issue-id')
+      hide('workorder-image-url-anchor-container-id')
       show('workorder-image-file-container-id')
     } else { // immutable work order
       addReadonlyById('workorder-service-provider-id')
       addReadonlyById('workorder-title-id')
       addReadonlyById('workorder-issue-id')
+      if (getImageUrlById('workorder-image-url-id').length > 0) {
+        show('workorder-image-url-anchor-container-id')
+      } else {
+        hide('workorder-image-url-anchor-container-id')
+      }
       hide('workorder-image-file-container-id')
     }
     addReadonlyById('workorder-street-address-id')
