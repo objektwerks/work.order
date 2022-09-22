@@ -13,7 +13,8 @@ const options: Mail.Options = {
     user: sender,
     pass: process.env.WORK_ORDER_EMAIL_PASSWORD as string,
   },
-  logger:true
+  logger:false,
+  debug:false
 }
 const transporter = nodemailer.createTransport(options)
 
