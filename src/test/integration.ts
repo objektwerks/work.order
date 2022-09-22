@@ -27,7 +27,6 @@ test()
 
 async function test() {
   console.log('*** running integration test ...')
-  console.log('*** wait about 5 seconds for emails to be sent, then hit Ctrl-C ...')
 
   // register
   const serviceProviderRegistered = await handler.register(new Register(serviceProvider, 'lawncare service', serviceProviderEmail, '123 green rd'))
