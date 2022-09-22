@@ -86,15 +86,15 @@ export async function getUserByEmailAddressPin(emailAddress: string, pin: string
 
 export async function addWorkOrder(workOrder: WorkOrder): Promise<number> {
   const [result] = await connection
-    .query<OkPacket>('insert into work_order (homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?)',
-    [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed])
+    .query<OkPacket>('insert into work_order (homeownerId, serviceProviderId, title, issue, streetAddress, imageUrl, resolution, opened, closed) values (?, ?, ?, ?, ?, ?, ?, ?)',
+    [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.streetAddress, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed])
   return result.insertId
 }
 
 export async function saveWorkOrder(workOrder: WorkOrder): Promise<number> {
   const [result] = await connection
-    .query<OkPacket>('update work_order set homeownerId = ?, serviceProviderId = ?, title = ?, issue = ?, imageUrl = ?, resolution = ?, opened = ?, closed = ? where number = ?',
-    [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed, workOrder.number])
+    .query<OkPacket>('update work_order set homeownerId = ?, serviceProviderId = ?, title = ?, issue = ?, streetAddress =?, imageUrl = ?, resolution = ?, opened = ?, closed = ? where number = ?',
+    [workOrder.homeownerId, workOrder.serviceProviderId, workOrder.title, workOrder.issue, workOrder.streetAddress, workOrder.imageUrl, workOrder.resolution, workOrder.opened, workOrder.closed, workOrder.number])
   return result.affectedRows
 }
 
