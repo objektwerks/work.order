@@ -84,13 +84,14 @@ export default () => {
     const serviceProviderId = parseInt( getSelectedIndexId('workorder-service-provider-id') )
     const title = getValueById('workorder-title-id')
     const issue = getValueById('workorder-issue-id')
+    const streetAddress = getValueById('workorder-street-address-id')
     const imageUrl = getImageUrlById('workorder-image-url-id')
     console.log('*** workorder form image url: ', imageUrl)
     const resolution = getValueById('workorder-resolution-id')
     const opened = getValueById('workorder-opened-id')
     const closed = getValueById('workorder-closed-id')
 
-    const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
+    const errors = validateWorkOrder(number, homeownerId, serviceProviderId, title, issue, streetAddress, imageUrl, resolution, opened, closed)
     if (errors.length === 0) {
       const workOrder = model.getWorkOrderByNumber(number)
       if (workOrder !== undefined && number > 0) { // save
@@ -111,7 +112,7 @@ export default () => {
           }
         })
       } else { // add
-        const workOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, imageUrl, resolution, opened, closed)
+        const workOrder = new WorkOrder(number, homeownerId, serviceProviderId, title, issue, streetAddress, imageUrl, resolution, opened, closed)
         fetcher.addWorkOrder(workOrder,  model.getImageFile()).then(workOrderSaved => {
           if (!workOrderSaved.success) {
             errors.push(workOrderSaved.error)
