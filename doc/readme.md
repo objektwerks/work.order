@@ -43,7 +43,7 @@ WorkOrders
 4. [WorkOrder Opened Email](../doc/workorder/work.order.opened.email.png)
 5. [WorkOrder Closed By Service Provider](../doc/workorder/work.order.closed.by.service.provider.png)
 6. [WorkOrder Closed Email](../doc/workorder/work.order.closed.email.png)
-7. [WorkOrders](../doc/workorders/work.orders.closed.png)
+7. [WorkOrders Closed](../doc/workorders/work.orders.closed.png)
 
 Profile
 -------
