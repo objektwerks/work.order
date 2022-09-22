@@ -46,14 +46,15 @@ export function bindWorkOrdersToList(workOrders: WorkOrder[]): void {
 
 export function bindEmptyWorkOrderToForm() {
   setValueById('workorder-number-id', '0')
-  setValueById('workorder-homeowner-id', model.getUser().name)
-  setValueById('workorder-title-id', "")
-  setValueById('workorder-issue-id', "")
+  setValueById('workorder-homeowner-id','')
+  setValueById('workorder-title-id', '')
+  setValueById('workorder-issue-id', '')
+  setValueById('workorder-street-address-id', model.getUser().streetAddress)
   setImageUrlHrefById('workorder-image-url-anchor-id', "#0")
   setValueById('workorder-image-url-id', "data:,")
-  setValueById('workorder-resolution-id', "")
+  setValueById('workorder-resolution-id', '')
   setValueById('workorder-opened-id', new Date().toISOString())
-  setValueById('workorder-closed-id', "")
+  setValueById('workorder-closed-id', '')
   setCheckBoxById('workorder-closed-check-id', false)
 }
 
@@ -63,6 +64,7 @@ export function bindWorkOrderToForm(workOrder: WorkOrder) {
   setSelectOptionById('workorder-service-provider-id', workOrder.serviceProviderId.toString())
   setValueById('workorder-title-id', workOrder.title)
   setValueById('workorder-issue-id', workOrder.issue)
+  setValueById('workorder-street-address-id', workOrder.streetAddress)
   setImageUrlHrefById('workorder-image-url-anchor-id', workOrder.imageUrl.length === 0 ? '#0' : workOrder.imageUrl)
   setImageUrlById('workorder-image-url-id', workOrder.imageUrl)
   setValueById('workorder-resolution-id', workOrder.resolution)
