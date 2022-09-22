@@ -27,7 +27,8 @@ export default () => {
         if (!userSaved.success) {
           errors.push(userSaved.error)
           setErrorsList(errors, 'user-errors-list-id', 'user-errors-form-id')
-        } else {          
+        } else {  
+          hide('user-form-id')        
           show('workorders-list-id')
         }
       })
