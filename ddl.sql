@@ -24,6 +24,7 @@ create table `work_order` (
   `serviceProviderId` int not null,
   `title` varchar(64) not null,
   `issue` varchar(255) not null,
+  `streetAddress` varchar(128) not null,
   `imageUrl` varchar(255) not null default "",
   `resolution` varchar(255) not null default "",
   `opened` varchar(24) not null,
