@@ -140,7 +140,6 @@ export default () => {
       const filename = `${datetime}.${ext}`
       const url = `/${filename}`
       model.setImageFile( new model.ImageFile(number, file, filename, url) )
-      setImageUrlById('workorder-image-url-id', url)
       console.log('*** image file set for number: %i url: %s ', number, url)
     }}, false)
 
