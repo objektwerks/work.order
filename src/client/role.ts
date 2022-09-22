@@ -10,7 +10,6 @@ export default () => {
 export function apply(role: string) {
   if (role === homeowner) {
     addReadonlyById('workorder-number-id')
-    addReadonlyById('workorder-homeowner-id')
     if ( parseInt( getValueById('workorder-number-id') ) === 0 ) { // new work order
       removeReadonlyById('workorder-service-provider-id')
       removeReadonlyById('workorder-title-id')
@@ -31,7 +30,6 @@ export function apply(role: string) {
     show('workorder-save-command-id')
   } else if (role === serviceProvider) {
     addReadonlyById('workorder-number-id')
-    addReadonlyById('workorder-homeowner-id')
     addReadonlyById('workorder-service-provider-id')
     addReadonlyById('workorder-title-id')
     addReadonlyById('workorder-issue-id')
@@ -46,7 +44,6 @@ export function apply(role: string) {
     show('workorder-save-command-id')
   } else if (role === readonlyRole) {
     addReadonlyById('workorder-number-id')
-    addReadonlyById('workorder-homeowner-id')
     addReadonlyById('workorder-service-provider-id')
     addReadonlyById('workorder-title-id')
     addReadonlyById('workorder-issue-id')
