@@ -8,7 +8,7 @@ const options: PoolOptions = {
 const connection: Pool = mysql.createPool(options)
 
 export default () => {
-  console.log('*** store connected: %o', options)
+  console.log('*** store connected ...')
 }
 
 export function disconnect(): void {

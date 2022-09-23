@@ -1,5 +1,9 @@
 import fs from 'fs'
 import assert from 'assert'
+import store from '../server/store.js'
+import cache from '../server/cache.js'
+import emailer from '../server/emailer.js'
+import service from '../server/service.js'
 import * as handler from '../server/handler.js'
 import {
   homeowner,
@@ -23,6 +27,14 @@ if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
 const homeownerEmail = process.env.WORK_ORDER_HOME_OWNER_EMAIL as string
+
+// Due to random connect ECONNREFUSED ::1:3306 errors caused by Nodejs,
+// not Mysql, this code mimics server.ts by calling default server services
+// called from handler. No, it doesn't make sense - just like the web. :)
+store()
+cache()
+emailer()
+service()
 
 test()
 
