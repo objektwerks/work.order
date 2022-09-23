@@ -136,6 +136,11 @@ Mysql Log
 ---------
 >Apple M1/macOS Big Sur - /opt/homebrew/var/mysql/computername.local.err
 
+Mysql Connection Error
+----------------------
+>Nodejs occassionally produces this error with Mysql: connect ECONNREFUSED ::1:3306
+>The solution is varied and fundamentally unknown.
+
 Cache
 -----
 >A user **license** is cached at login. This is the simplest possible cache, with no time-to-live configuration
