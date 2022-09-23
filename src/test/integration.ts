@@ -31,7 +31,7 @@ async function test() {
   // register
   const serviceProviderRegistered = await handler.register(new Register(serviceProvider, 'lawncare service', serviceProviderEmail, '123 green rd'))
   const homeownerRegistered = await handler.register(new Register(homeowner, 'fred flintstone', homeownerEmail, '345 stone st'))
-  assert(serviceProviderRegistered.success, '*** register service provider failed: ' + serviceProviderRegistered)
+  assert(serviceProviderRegistered.success, `*** register service provider failed: ${serviceProviderRegistered}`)
   assert(homeownerRegistered.success, `*** register homeowner failed: ${homeownerRegistered}`)
 
   // login
