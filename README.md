@@ -126,6 +126,10 @@ Mysql Setup
 2. \. user.sql
 8. \. ddl.sql
 
+Mysql Connection Url
+--------------------
+* mysql://workorder:workorder@127.0.0.1:3306/work_order_db
+
 Mysql Update
 ------------
 >Built with version - 8.0.30
