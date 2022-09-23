@@ -20,6 +20,7 @@ export function apply(role: string) {
       addReadonlyById('workorder-service-provider-id')
       addReadonlyById('workorder-title-id')
       addReadonlyById('workorder-issue-id')
+      show('workorder-image-url-anchor-container-id')
       hide('workorder-image-file-container-id')
     }
     addReadonlyById('workorder-street-address-id')
