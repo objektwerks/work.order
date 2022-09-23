@@ -1,4 +1,4 @@
-import { disable, enable, getImageUrlById, getValueById, removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
+import { disable, enable, getValueById, removeReadonlyById, addReadonlyById, hide, show } from './dom.js'
 import { homeowner, serviceProvider } from './entity.js'
 
 export const readonlyRole = 'readonly'
