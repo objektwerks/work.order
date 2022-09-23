@@ -28,9 +28,9 @@ if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 const serviceProviderEmail = process.env.WORK_ORDER_SERVICE_PROVIDER_EMAIL as string
 const homeownerEmail = process.env.WORK_ORDER_HOME_OWNER_EMAIL as string
 
-// Due to random connect ECONNREFUSED ::1:3306 errors caused by Nodejs,
-// not Mysql, this code mimics server.ts by calling default server services
-// called from handler. No, it doesn't make sense - just like the web. :)
+// Due to random connect ECONNREFUSED ::1:3306 errors caused by Nodejs, not Mysql,
+// this code mimics server.ts by calling default services called from handler. No,
+// it doesn't make sense. Secret incantations to follow. :)
 store()
 cache()
 emailer()
