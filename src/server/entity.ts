@@ -1,6 +1,7 @@
 // Mime Types
 const mimetypes = new Map<string, string>()
 mimetypes.set('image/jpeg', 'jpeg')
+mimetypes.set('image/jpg', 'jpg')
 mimetypes.set('image/png', 'png')
 
 export function isMimeTypeAccepted(mimetype: string): boolean {
