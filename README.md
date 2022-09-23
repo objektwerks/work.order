@@ -113,8 +113,8 @@ Authorization
 3. /workorders
 4. /users/save
 
-Schema
-------
+Mysql Schema
+------------
 1. work_order_db
 2. user
 3. work_order
