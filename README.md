@@ -126,8 +126,8 @@ Mysql Setup
 2. \. user.sql
 8. \. ddl.sql
 
-Mysql
------
+Mysql Update
+------------
 >Built with version - 8.0.30
 1. mysql -u workorder -p
 2. \. ddl.sql
