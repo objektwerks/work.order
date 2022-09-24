@@ -160,7 +160,8 @@ Photos
 ------
 >The following image file types are supported:
 1. **jpeg**
-2. **png**
+2. **jpg**
+3. **png**
 >Only **1** image is allowed ***per*** work order. The app stores ***images*** in **WORK_ORDER_IMAGES_DIR** defined below.
 
 Environment
