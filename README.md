@@ -196,7 +196,7 @@ Curl
 
 Code Sharing
 ------------
->To share Typescript code between client and server, in a node web app, I discovered the following solutions:
+>To share Typescript code between client and server, in a node web app, I discovered the following purported solutions:
 1. npm link
 2. npm publish
 3. npm install via npm **and** github repo
