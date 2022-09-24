@@ -69,7 +69,7 @@ Forms
 -----
 1. **register** — role, name, email address, street address
 2. **login**— email address, pin
-3. **work order** — number, homeowner id, service provider id via list, issue, street address, image_url, resolution, opened, closed
+3. **work order** — number, homeowner, service provider, issue, street address, image url, resolution, opened, closed
 4. **user** - role, name, email address, street address, registered
 
 Routes
