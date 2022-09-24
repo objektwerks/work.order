@@ -40,13 +40,9 @@ Prod
 Hosting
 -------
 >Consider:
-1. [NodeChef](https://www.nodechef.com/nodejs-mysql-hosting){:target="_blank"}
-2. [Heroku](https://www.heroku.com/nodejs){:target="_blank"}
-3. [A2](https://www.a2hosting.com/nodejs-hosting){:target="_blank"}
-4. <a href="https://www.nodechef.com/nodejs-mysql-hosting" target="_blank">NodeChef</a>
-5. <a href="https://www.heroku.com/nodejs" target="_blank">Heroku</a>
-6. <a href="https://www.a2hosting.com/nodejs-hosting" target="_blank">A2</a>
-
+1. [NodeChef](https://www.nodechef.com/nodejs-mysql-hosting target="_blank")
+2. [Heroku](https://www.heroku.com/nodejs target="_blank")
+3. [A2](https://www.a2hosting.com/nodejs-hosting target="_blank")
 >Requires a Mysql database, email service and monitoring.
 
 Roles
