@@ -40,7 +40,7 @@ Prod
 Hosting
 -------
 >Consider:
-1. [NodeChef](nodechef.com/nodejs-hosting)
+1. [NodeChef](https://www.nodechef.com/nodejs-mysql-hostinge)
 2. [Heroku](heroku.com/nodejs)
 3. [A2](a2hosting.com/nodejs-hosting)
 >Requires a Mysql database, email service and monitoring.
