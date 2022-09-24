@@ -35,7 +35,7 @@ Prod
 2. cp -r dist target/
 3. cd target
 4. pm2 start server.js
->See [PM2](pm2.keymetrics.io/). Requires a Mysql database and email service.
+>Requires a Mysql database and email service.
 
 Hosting
 -------
