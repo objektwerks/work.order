@@ -36,6 +36,7 @@ WorkOrders
 * A homeowner will see a New and Refresh button; while a service provider will only see a Refresh button.
 * Both a homeowner and service provider may select and view an open or closed work order.
 * Closed work orders are readonly.
+* Form fields with a light grey background are readonly.
 >Examples:
 1. [WorkOrder Opened By Homeowner](../doc/workorder/work.order.opened.homeowner.png)
 2. [WorkOrders Opened](../doc/workorders/work.orders.opened.png)
