@@ -8,7 +8,7 @@ Setup
 
 App
 ---
->Entry point via:
+>Home page:
 * [App](../doc/app/app.png)
 
 Register
