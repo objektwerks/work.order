@@ -138,7 +138,7 @@ Mysql Update
 
 Mysql Log
 ---------
->Apple M1/macOS Big Sur - /opt/homebrew/var/mysql/computername.local.err
+>Apple M1, macOS, Big Sur - /opt/homebrew/var/mysql/computername.local.err
 
 Mysql Connection Error
 ----------------------
