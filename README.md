@@ -42,7 +42,7 @@ Hosting
 >Consider:
 1. [NodeChef](https://www.nodechef.com/nodejs-mysql-hosting)
 2. [Heroku](https://www.heroku.com/nodejs)
-3. [A2](a2hosting.com/nodejs-hosting)
+3. [A2](https://www.a2hosting.com/nodejs-hosting)
 >Requires a Mysql database, email service and monitoring.
 
 Roles
