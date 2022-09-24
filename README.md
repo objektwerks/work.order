@@ -107,7 +107,7 @@ Authentication
 
 Authorization
 -------------
->The following routes are authorized:
+>The following routes are authorized by a user's license:
 1. /workorders/add
 2. /workorders/save
 3. /workorders
