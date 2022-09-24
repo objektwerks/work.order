@@ -29,7 +29,7 @@ WorkOrders
 1. Only homeowners can submit a work order. Service providers can't.
 2. Only service providers can close a work order. Homeowners can't.
 3. Only 1 photo may be selected. A photo is not required, though.
-4. Once a work order is submitted, only a service provider may edit and closed it.
+4. Once a work order is submitted, only a service provider may edit and close it.
 >Views:
 * [WorkOrders Homeowners](../doc/workorders/work.orders.homeowner.png)
 * [WorkOrders Service Providers](../doc/workorders/work.orders.service.provider.png)
