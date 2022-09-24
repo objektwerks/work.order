@@ -43,6 +43,10 @@ Hosting
 1. [NodeChef](https://www.nodechef.com/nodejs-mysql-hosting)
 2. [Heroku](https://www.heroku.com/nodejs)
 3. [A2](https://www.a2hosting.com/nodejs-hosting)
+4. <a href="https://www.nodechef.com/nodejs-mysql-hosting" target="_blank">NodeChef</a>
+5. <a href="https://www.heroku.com/nodejs" target="_blank">Heroku</a>
+6. <a href="https://www.a2hosting.com/nodejs-hosting" target="_blank">A2</a>
+
 >Requires a Mysql database, email service and monitoring.
 
 Roles
