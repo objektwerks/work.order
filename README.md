@@ -154,7 +154,7 @@ Cache
 
 Date Time
 ---------
->Use ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ
+>ISO standard: YYYY-MM-DDTHH:mm:ss.sssZ
 
 Photos
 ------
