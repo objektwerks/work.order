@@ -97,7 +97,7 @@ Registration
 2. name
 3. email address
 4. street address
->If the email address is valid, the new user will receive a pin via a registration email.
+>If the email address is valid, the new user will receive a ***pin*** via a **Work Order Registration** email.
 
 Authentication
 --------------
