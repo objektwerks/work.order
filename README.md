@@ -122,6 +122,7 @@ Mysql Schema
 
 Mysql Setup
 -----------
+>Built using Mysql 8.0.30
 1. sudo mysql -u root
 2. \. user.sql
 8. \. ddl.sql
@@ -132,7 +133,6 @@ Mysql Connection Url
 
 Mysql Update
 ------------
->Built with version - 8.0.30
 1. mysql -u workorder -p
 2. \. ddl.sql
 
