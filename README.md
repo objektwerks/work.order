@@ -63,7 +63,7 @@ Features [ Roles ]
 6. **edit user** — [ homeowner, service provider ]
 7. **registration email notification*** - [ app ]
 8. **new work order email notification** - [ app ]
-9. **updated and closed work order email notification** - [ app ]
+9. **work order (updated and closed) email notifications** - [ app ]
 
 Forms
 -----
