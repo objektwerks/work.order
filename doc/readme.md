@@ -41,7 +41,7 @@ WorkOrders
 1. [WorkOrder Opened By Homeowner](../doc/workorder/work.order.opened.homeowner.png)
 2. [WorkOrders Opened](../doc/workorders/work.orders.opened.png)
 3. [WorkOrder Opened Email](../doc/workorder/work.order.opened.email.png)
-4. [WorkOrder Closed By Service Provider](../doc/workorder/work.order.closed.by.service.provider.png)
+4. [WorkOrder Closed By Service Provider](../doc/workorder/work.order.closed.service.provider.png)
 5. [WorkOrder Closed Email](../doc/workorder/work.order.closed.email.png)
 6. [WorkOrders Closed](../doc/workorders/work.orders.closed.png)
 
