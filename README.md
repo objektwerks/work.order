@@ -1,6 +1,6 @@
 Work Order
 ----------
->Work order web app linking homeowners and service providers via work orders and email notification.
+>Work order (mobile) web app linking homeowners and service providers via work orders and email notification.
 
 Documentation
 -------------
