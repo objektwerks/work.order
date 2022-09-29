@@ -2,8 +2,8 @@ Work Order
 ----------
 >Work order (mobile) web app linking homeowners and service providers via work orders and email notification.
 
-Documentation
--------------
+User Documentation
+------------------
 >See [Readme](doc/readme.md)
 
 Technologies
