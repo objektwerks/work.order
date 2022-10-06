@@ -11,6 +11,7 @@ Ian Commits
 5. 10.3
 6. 10.4
 7. 10.5
+8. 10.6
 
 Documentation
 -------------
