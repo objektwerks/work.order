@@ -2,18 +2,6 @@ Work Order
 ----------
 >Work order (mobile) web app linking homeowners and service providers via work orders and email notification.
 
-Ian Commits
------------
-1. 9.29
-2. 9.30
-3. 10.1
-4. 10.2
-5. 10.3
-6. 10.4
-7. 10.5
-8. 10.6
-9. 10.7
-
 Documentation
 -------------
 >See [Readme](doc/readme.md)
