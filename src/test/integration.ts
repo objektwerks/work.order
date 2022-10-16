@@ -65,7 +65,7 @@ async function test() {
   // work order save
   workOrder.resolution = 'fixed'
   workOrder.closed = new Date().toISOString()
-  const workOrderSaved = await handler.saveWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
+  const workOrderSaved = await handler.saveWorkOrder(new SaveWorkOrder(workOrder, serviceProviderLoggedIn.user.license))
   assert(workOrderSaved.success, `*** save work order failed: ${toJson(workOrderSaved)}`)
 
   // user save
