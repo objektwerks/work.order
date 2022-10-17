@@ -56,7 +56,7 @@ async function test() {
   assert(homeownerLoggedIn.user.pin === homeownerRegistered.pin, `*** logged in homeowner pin is invalid: ${homeownerRegistered.pin}`)
 
   // work order add
-  const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', '345 stone st', 'broken', '', '', new Date().toISOString(), '')
+  const workOrder = new WorkOrder(0, homeownerLoggedIn.user.id, serviceProviderLoggedIn.user.id, 'sprinkler', 'broken', '345 stone st', '', '', new Date().toISOString(), '')
   const workOrderAdded = await handler.addWorkOrder(new SaveWorkOrder(workOrder, homeownerLoggedIn.user.license))
   workOrder.number = workOrderAdded.number
   assert(workOrderAdded.success, `*** add work order failed: ${toJson(workOrderAdded)}`)
