@@ -2,6 +2,10 @@ Work Order
 ----------
 >Work order (mobile) web app linking homeowners and service providers via work orders and email notification.
 
+Todo
+----
+1. Refactored service.ts and store.ts ( see notes and code for details ).
+
 Documentation
 -------------
 >See [Readme](doc/readme.md)
