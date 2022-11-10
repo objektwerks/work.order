@@ -58,6 +58,31 @@ export async function register(register: Register): Promise<Registered> {
   return registered
 }
 
+/*
+ Refactor ts login accordingly. Also see store.
+  /**
+   *  user.role == service provider:
+   *    don't list service providers
+   *    list all homeowners in assigned work orders to a single service provider
+   *  user.role == homeowner:
+   *    don't list homeowners
+   *    list all service providers
+   */
+  /*
+   def login(login: Login): LoggedIn =
+   Try {
+     val user = store.getUserByEmailAddressPin(login.emailAddress, login.pin).get
+     val users = user.role match
+       case Roles.serviceProvider => store.listHomeownersInWorkOrdersByServiceProviderId(user.id)
+       case Roles.homeowner => store.listServiceProviders()
+     val workOrders = store.listWorkOrders(user.id)
+     log("login", s"succeeded for: ${login.emailAddress}")
+     LoggedIn.success(user, users, workOrders)
+   }.recover { case error =>
+     logError("login", s"failed error: $error for: ${login.emailAddress}")
+     LoggedIn.fail(s"Login failed for: ${login.emailAddress}")
+   }.get
+*/
 export async function login(login: Login): Promise<LoggedIn> {
   let loggedIn: LoggedIn
   try {
