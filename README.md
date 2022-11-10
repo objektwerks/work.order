@@ -4,7 +4,7 @@ Work Order
 
 Todo
 ----
-1. Refactored service.ts and store.ts ( see notes and code for details ).
+1. Refactored service.ts and store.ts ( see notes and code in both files for details ).
 
 Documentation
 -------------
