@@ -47,6 +47,46 @@ export async function listWorkOrders(userId: number): Promise<WorkOrder[]> {
   return workOrders
 }
 
+/*
+Refactored listUsersByRole accordingly ( see service.ts for matching refactoring ):
+
+  def listHomeownersInWorkOrdersByServiceProviderId(userId: Int): List[User] =
+    DB readOnly { implicit session =>
+      sql"""select * from user
+            inner join work_order ON user.id = work_order.homeownerId
+            where work_order.serviceProviderId = $userId
+            order by name asc"""
+      .map(rs => User(
+        rs.int("id"),
+        rs.string("role"),
+        rs.string("name"),
+        rs.string("emailAddress"),
+        rs.string("streetAddress"),
+        rs.string("registered"),
+        "",
+        ""))
+        .list()
+    }
+
+  def listServiceProviders(): List[User] =
+    DB readOnly { implicit session =>
+      sql"""select id, role, name, emailAddress, streetAddress, registered from user
+            where role = ${Roles.serviceProvider}
+            order by name asc"""
+        .map(rs => User(
+          rs.int("id"),
+          rs.string("role"),
+          rs.string("name"),
+          rs.string("emailAddress"),
+          rs.string("streetAddress"),
+          rs.string("registered"),
+          "",
+          ""))
+        .list()
+    }
+
+*/
+
 export async function listUsersByRole(role: string): Promise<User[]> {
   const [rows] = await connection
     .query<RowDataPacket[]>('select * from user where role = ? order by name asc',
